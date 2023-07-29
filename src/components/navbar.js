@@ -4,44 +4,28 @@ import React from 'react'
 export default function navbar() {
   return (
     <>
-    
-    <div  className="navbar-no-shadow-container w-nav">
-      <div className="container-regular">
-        <div className="navbar-wrapper">
-          <a href="#" className="navbar-brand w-nav-brand">
-          <img src="https://uploads-ssl.webflow.com/62434fa732124a0fb112aab4/62434fa732124a332512aaee_placeholder-1.svg" loading="lazy" alt=""/>
-          </a>
-          <nav role="navigation" className="nav-menu-wrapper w-nav-menu">
-            <ul role="list" className="nav-menu w-list-unstyled">
-              <li>
-                <a href="#" className="nav-link">About</a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">Feature</a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">User Examples</a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">Pricing</a>
-              </li>
-              <li>
-                <a href="#" className="nav-link">Pricing</a>
-              </li>
-             
-              <li className="mobile-margin-top-10">
-                <div className="nav-button-wrapper">
-                  <a href="#" className="button-primary w-button">Get Started</a>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <div className="menu-button w-nav-button">
-            <div className="w-icon-nav-menu"></div>
-          </div>
+  
+  <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
+    <div className="f-navigation-container">
+      <a href="#" className="f-navigation-logo-link w-inline-block"><img src="images/FlowUI-Nav.png" loading="lazy" width="124" alt="" className="f-logo"/></a>
+      <nav role="navigation" className="f-navigation-menu w-nav-menu">
+        <a href="#" className="f-navigation-link w-nav-link">Link One</a>
+        <a href="#" className="f-navigation-link w-nav-link">Link Two</a>
+        <a href="#" className="f-navigation-link w-nav-link">Link Three</a>
+        <a href="#" className="f-navigation-link w-nav-link">Link Four</a>
+      </nav>
+      <div className="f-navigation-content">
+        <div className="f-navigation-menu-button w-nav-button">
+          <div className="w-icon-nav-menu"></div>
         </div>
+        <a href="#" className="f-navigation-button w-inline-block">
+          <div>Primary</div>
+        </a>
       </div>
     </div>
+  </div>
+
+ 
     </>
   )
 }

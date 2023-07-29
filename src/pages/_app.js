@@ -2,9 +2,16 @@
 import '@/styles/globals.css'
 // import "@/styles/alley.module.css";
 import Head from "next/head";
+import dynamic from 'next/dynamic';
+
+const DynamicWebflowScriptLoader = dynamic(
+  () => import('./WebflowScriptLoader'),
+  { ssr: false } // esto deshabilitará la renderización en el servidor para este componente
+)
 
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <>
       <Head>
@@ -35,6 +42,8 @@ function MyApp({ Component, pageProps }) {
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossOrigin="anonymous"
       ></script>
+
+<script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=64c27d1872143fc4d0d34bc6" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossOrigin="anonymous"></script>
 
       <script
         type="text/javascript"
