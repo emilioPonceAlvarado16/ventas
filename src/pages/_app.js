@@ -3,12 +3,15 @@ import '@/styles/globals.css'
 // import "@/styles/alley.module.css";
 import Head from "next/head";
 import dynamic from 'next/dynamic';
+import  {Amplify} from '@aws-amplify/core';
+import config from '../aws-exports'; // Asegúrate de que la ruta a aws-exports es correcta
+import "@aws-amplify/ui/dist/styles.css"
+import { Auth } from 'aws-amplify';
 
-const DynamicWebflowScriptLoader = dynamic(
-  () => import('./WebflowScriptLoader'),
-  { ssr: false } // esto deshabilitará la renderización en el servidor para este componente
-)
+Auth.configure(config);
 
+
+Amplify.configure(config)
 
 function MyApp({ Component, pageProps }) {
 

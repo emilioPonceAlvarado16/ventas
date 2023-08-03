@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-formatmaker-dev-172552-authRole",
+      "UnauthRoleArn": "arn:aws:iam::728429206846:role/amplify-formatmaker-dev-172552-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::728429206846:role/amplify-formatmaker-dev-172552-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-formatmaker-dev-172552-deployment",
+      "UnauthRoleName": "amplify-formatmaker-dev-172552-unauthRole",
+      "StackName": "amplify-formatmaker-dev-172552",
+      "StackId": "arn:aws:cloudformation:us-east-1:728429206846:stack/amplify-formatmaker-dev-172552/b7a8a450-324c-11ee-bcd5-0a8dc865b5ff",
+      "AmplifyAppId": "ds6wc5an9igkw"
+    },
+    "categories": {
+      "auth": {
+        "formatmaker3628035b": {}
+      }
+    }
+  }
+}
