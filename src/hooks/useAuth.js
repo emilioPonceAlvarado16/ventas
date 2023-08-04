@@ -9,11 +9,11 @@ export function useAuth() {
       if (data.payload.event === 'signIn') {
         checkAuth();
       } else if (data.payload.event === 'signOut') {
-        setcurrentUser(null);
+          setCurrentUser(null);
       }
     });
 
-    checkAuth();
+    // checkAuth();
 
     return () => {
       listener();

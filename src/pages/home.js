@@ -21,8 +21,10 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify'
 import RequireAuth from '../components/RequireAuth';
+import { useAuth } from '../hooks/useAuth';
 
 function Posi() {
+
   // const [currentUser, setcurrentUser] = useState(null);
 
 
@@ -68,7 +70,7 @@ function Posi() {
        <RequireAuth>
         <Navbar />
       </RequireAuth>
-      <Account />
+     
     {/* {isSignedIn ? <Navbar /> : <Account />} */}
 
     {/* <Account/> */}

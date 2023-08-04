@@ -1,19 +1,11 @@
-import { Auth } from 'aws-amplify';
+import { useAuth } from '../hooks/useAuth';
 import React from 'react'
 
 
 export default function navbar() {
-  const signOutBtn = async function (event) {
-    event.preventDefault();
-    try {
-      await Auth.signOut();
-      // Eliminar datos del localStorage
-      localStorage.clear();
-      console.log('Successfully signed out.');
-    } catch (error) {
-      console.log('Error signing out:', error);
-    }
-  };
+  const { currentUser, signOut } = useAuth();
+
+
   return (
     <>
   
@@ -33,7 +25,7 @@ export default function navbar() {
         {/* <a href="#" className="f-navigation-button w-inline-block">
           <div>Primary</div>
         </a> */}
-        <a onClick={signOutBtn}  className="f-navigation-button w-inline-block">Salir</a>
+        <a onClick={signOut}  className="f-navigation-button w-inline-block">Salir</a>
 
       </div>
     </div>
