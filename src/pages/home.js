@@ -20,12 +20,10 @@ import { Hub } from '@aws-amplify/core'
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify'
-import RequireAuth from '../components/RequireAuth2';
+import RequireAuth from '../components/RequireAuth';
 import { useAuth } from '../hooks/useAuth';
 
 function Home() {
-
-
   
   return (
  
