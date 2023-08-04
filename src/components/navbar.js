@@ -1,7 +1,19 @@
+import { Auth } from 'aws-amplify';
 import React from 'react'
 
 
 export default function navbar() {
+  const signOutBtn = async function (event) {
+    event.preventDefault();
+    try {
+      await Auth.signOut();
+      // Eliminar datos del localStorage
+      localStorage.clear();
+      console.log('Successfully signed out.');
+    } catch (error) {
+      console.log('Error signing out:', error);
+    }
+  };
   return (
     <>
   
@@ -18,9 +30,11 @@ export default function navbar() {
         <div className="f-navigation-menu-button w-nav-button">
           <div className="w-icon-nav-menu"></div>
         </div>
-        <a href="#" className="f-navigation-button w-inline-block">
+        {/* <a href="#" className="f-navigation-button w-inline-block">
           <div>Primary</div>
-        </a>
+        </a> */}
+        <a onClick={signOutBtn}  className="f-navigation-button w-inline-block">Salir</a>
+
       </div>
     </div>
   </div>

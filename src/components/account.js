@@ -1,10 +1,36 @@
-import React, { useState } from 'react'
-import { Auth } from 'aws-amplify'
+import React, { useReducer } from 'react';
+import { Auth } from 'aws-amplify';
 
+const initialState = {
+  name: '',
+  email: '',
+  password: ''
+};
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'UPDATE_FIELD':
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};
 
 export default function Account() {
-  const [email, setemail] = useState("")
-  const [password, setpassword] = useState("")
+
+  const [state, dispatch] = useReducer(formReducer, initialState);
+
+  const handleSubmit = async function (event) {
+    event.preventDefault();
+    let response = await Auth.signIn(state.email, state.password);
+  };
+
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({ type: 'UPDATE_FIELD', field: name, value });
+  };
+
+
   return (
     <div className="f-account-section">
     <div className="f-account-container-l">
@@ -52,13 +78,37 @@ export default function Account() {
           <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" method="get" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
             <div className="w-layout-grid f-account-input-grid">
               <div className="f-field-wrapper">
-                <div className="f-field-label">Name</div><input type="text" className="f-field-input w-input" name="Name-Field-03" data-name="Name Field 03" placeholder="Your name..." id="Name-Field-03"/>
+                <div className="f-field-label">Name</div>
+                <input
+                  type="text"
+                  className="f-field-input w-input"
+                  name="name"
+                  placeholder="Your name..."
+                  value={state.name}
+                  onChange={handleFieldChange}
+                />
               </div>
               <div className="f-field-wrapper">
-                <div className="f-field-label">Email</div><input type="email" className="f-field-input w-input" name="Email-Field-03" data-name="Email Field 03" placeholder="Your email..." id="Email-Field-03"/>
+                <div className="f-field-label">Email</div>
+                <input
+                  type="email"
+                  className="f-field-input w-input"
+                  name="email"
+                  placeholder="Your email..."
+                  value={state.email}
+                  onChange={handleFieldChange}
+                />
               </div>
               <div className="f-field-wrapper">
-                <div className="f-field-label">Password</div><input type="password" className="f-field-input w-input"  name="Password-Field-03" data-name="Password Field 03" placeholder="Enter a password..." id="Password-Field-03"/>
+                <div className="f-field-label">Password</div> 
+                 <input
+                  type="password"
+                  className="f-field-input w-input"
+                  name="password"
+                  placeholder="Enter a password..."
+                  value={state.password}
+                  onChange={handleFieldChange}
+                />
               </div><label className="w-checkbox f-checkbox-field">
                 <div className="w-checkbox-input w-checkbox-input--inputType-custom f-checkbox"></div>
                 <input 
@@ -66,13 +116,13 @@ export default function Account() {
                         id="Privacy-Checkbox-03" 
                         name="Privacy-Checkbox-03" 
                         data-name="Privacy Checkbox 03" 
-                        required 
+                         
                         style={{opacity: 0, position: "absolute", zIndex: -1}}
 />
                 <span className="f-checkbox-label w-form-label" >I agree to the Terms and Privacy Policy</span>
               </label>
             </div>
-            <div className="f-account-form-button"><input type="submit" value="Register" data-wait="Please wait..." className="f-button-neutral w-button"/></div>
+            <div className="f-account-form-button"><input type="submit" onClick={handleSubmit} value="Register" data-wait="Please wait..." className="f-button-neutral w-button"/></div>
           </form>
           <div className="f-success-message w-form-done">
             <div>Thank you! Your submission has been received!</div>
