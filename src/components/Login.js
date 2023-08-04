@@ -38,9 +38,9 @@ export default function Account() {
     <div className="f-account-container-l">
       <div className="f-account-content-wrapper">
         <div className="f-margin-bottom-138">
-          <h5 className="f-h5-heading">Login</h5>
+          <h5 className="f-h5-heading">Inicio de sesión</h5>
         </div>
-        <p className="f-paragraph-regular">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+        <p className="f-paragraph-regular">Inicia sesión con redes sociales</p>
         <div className="f-account-social-wrapper">
           <a href="#" className="f-account-social-icon w-inline-block">
             <div className="f-icon-regular w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
@@ -74,22 +74,12 @@ export default function Account() {
           </a>
         </div>
         <div className="f-margin-bottom-137">
-          <p className="f-paragraph-small-5 f-text-color-gray-500">or use your email for registration :</p>
+          <p className="f-paragraph-small-5 f-text-color-gray-500">O usa tu correo :</p>
         </div>
         <div className="f-account-form-block w-form">
           <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" method="get" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
             <div className="w-layout-grid f-account-input-grid">
-              <div className="f-field-wrapper">
-                <div className="f-field-label">Name</div>
-                <input
-                  type="text"
-                  className="f-field-input w-input"
-                  name="name"
-                  placeholder="Your name..."
-                  value={state.name}
-                  onChange={handleFieldChange}
-                />
-              </div>
+          
               <div className="f-field-wrapper">
                 <div className="f-field-label">Email</div>
                 <input
@@ -111,22 +101,10 @@ export default function Account() {
                   value={state.password}
                   onChange={handleFieldChange}
                 />
-              </div><label className="w-checkbox f-checkbox-field">
-                <div className="w-checkbox-input w-checkbox-input--inputType-custom f-checkbox"></div>
-                <input 
-                        type="checkbox" 
-                        id="Privacy-Checkbox-03" 
-                        name="Privacy-Checkbox-03" 
-                        data-name="Privacy Checkbox 03" 
-                         
-                        style={{opacity: 0, position: "absolute", zIndex: -1}}
-/>
-                <span className="f-checkbox-label w-form-label" >I agree to the Terms and Privacy Policy</span>
-              </label>
+              </div>
             </div>
             <div className="f-account-form-button">
               <a type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
-              {/* <div className=" spin"></div> */}
               {isLoading ? <div className=" spin"></div> : 'Ingresar'}
               </a>
               </div>
@@ -138,7 +116,7 @@ export default function Account() {
             <div>Oops! Something went wrong while submitting the form.</div>
           </div>
         </div>
-        <p className="f-paragraph-small-5">Already have an account? <a href="#" className="f-account-link">Sign in</a>
+        <p className="f-paragraph-small-5">Eres nuevo? <a href="#" className="f-account-link">Registrate.</a>
         </p>
       </div>
     </div>

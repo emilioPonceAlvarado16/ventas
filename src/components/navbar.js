@@ -3,7 +3,7 @@ import React from 'react'
 
 
 export default function navbar() {
-  const { currentUser, signOut } = useAuth();
+  const { currentUser, signOut,isSigningOut } = useAuth();
 
 
   return (
@@ -22,10 +22,10 @@ export default function navbar() {
         <div className="f-navigation-menu-button w-nav-button">
           <div className="w-icon-nav-menu"></div>
         </div>
-        {/* <a href="#" className="f-navigation-button w-inline-block">
-          <div>Primary</div>
-        </a> */}
-        <a onClick={signOut}  className="f-navigation-button w-inline-block">Salir</a>
+     
+        <a onClick={signOut} className="f-navigation-button w-inline-block">
+        {isSigningOut ? <div className=" spin"></div> : 'Salir'}
+      </a>
 
       </div>
     </div>

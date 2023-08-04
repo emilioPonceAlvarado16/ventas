@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Auth, Hub } from 'aws-amplify';
-import Account from './account';
-
+import Login from './Login'
 // Componente que verifica si el usuario está autenticado antes de renderizar su contenido
 function RequireAuth({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -32,7 +31,7 @@ function RequireAuth({ children }) {
     return <>{children}</>;
   } else {
     // Puedes redirigir a una página de inicio de sesión o mostrar un mensaje de no autorizado
-    return <Account />;
+    return <Login />;
   }
 }
 
