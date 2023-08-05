@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { Auth } from 'aws-amplify';
-
+import { useAuth } from '../hooks/useAuth'; 
 const initialState = {
   name: '',
   email: '',
@@ -18,20 +18,18 @@ const formReducer = (state, action) => {
 
 export default function Account() {
 
-  const [state, dispatch] = useReducer(formReducer, initialState);
-  const [isLoading, setisLoading] = useState(false)
-  const handleSubmit = async function (event) {
-    event.preventDefault();
-    setisLoading(true);
-    let response = await Auth.signIn(state.email, state.password);
-    setisLoading(false)
-  };
-
-  const handleFieldChange = (event) => {
-    const { name, value } = event.target;
-    dispatch({ type: 'UPDATE_FIELD', field: name, value });
-  };
-
+    const [state, dispatch] = useReducer(formReducer, initialState);
+    const { signIn, isLoading } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  
+    const handleSubmit = async function (event) {
+      event.preventDefault();
+      await signIn(state.email, state.password); // Utilizar la función signIn desde el hook
+    };
+  
+    const handleFieldChange = (event) => {
+      const { name, value } = event.target;
+      dispatch({ type: 'UPDATE_FIELD', field: name, value });
+    };
 
   return (
     <div className="f-account-section">

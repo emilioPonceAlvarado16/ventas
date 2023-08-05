@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { useRouter } from 'next/router';
-import Login from './Login';
 import Loading from './Loading';
 
 function RequireAuth({ children }) {
@@ -10,21 +9,21 @@ function RequireAuth({ children }) {
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      router.push('/login');
+      router.push('/login').then(() => {});
     }
-  }, [isLoading, isAuthenticated]);
+    else if (!isLoading && isAuthenticated && !children){
+      router.push('/home').then(() => {});
+    }
+  }, [isLoading, isAuthenticated, children]);
 
   if (isLoading) {
     return <Loading />;
   }
 
   if (isAuthenticated) {
-    if (!children) {
-      router.push('/home');
-      return <Loading />;
-    }
     return <>{children}</>;
   }
+
 
   // Aquí ya no sería necesario devolver el componente Login
   // porque si el usuario no está autenticado, ya se habría redirigido a la página de login.
