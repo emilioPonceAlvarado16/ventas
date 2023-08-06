@@ -19,15 +19,19 @@ export default function navbar() {
         <a href="#" className="f-navigation-link w-nav-link">Link Four</a>
       </nav>
       <div className="f-navigation-content">
-        <div className="f-navigation-menu-button w-nav-button">
-          <div className="w-icon-nav-menu"></div>
-        </div>
-     
-        <a onClick={signOut} className="f-navigation-button w-inline-block">
-        {isSigningOut ? <div className=" spin"></div> : 'Salir'}
-      </a>
+    <div className="f-navigation-menu-button w-nav-button">
+      <div className="w-icon-nav-menu"></div>
+    </div>
 
-      </div>
+    <a 
+      onClick={signOut} 
+      className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
+    >
+      <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
+      <span className={isSigningOut ? "d-none" : ""}>Salir</span>
+    </a>
+  </div>
+
     </div>
   </div>
 

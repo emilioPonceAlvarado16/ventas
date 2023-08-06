@@ -25,8 +25,6 @@ function RequireAuth({ children }) {
   }
 
 
-  // Aquí ya no sería necesario devolver el componente Login
-  // porque si el usuario no está autenticado, ya se habría redirigido a la página de login.
   return null;
 }
 

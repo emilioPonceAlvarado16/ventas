@@ -72,5 +72,27 @@ export function useAuth() {
     setIsSigningOut(false);  // Establecer isSigningOut a false cuando se completa el cierre de sesión
   };
 
-  return { currentUser, isAuthenticated, signOut, signIn, isLoading, isSigningOut };  // Incluir signIn en los valores devueltos
+
+  const signUp = async (username, password, email, name) => {
+    setIsLoading(true); // Establecer isLoading a true durante el registro
+  
+    try {
+      const { user } = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email, // atributo opcional
+          name, // atributo personalizado
+        },
+      });
+      console.log(user);
+    } catch (error) {
+      console.log('error signing up:', error);
+    }
+  
+    setIsLoading(false); // Establecer isLoading a false cuando se completa el registro
+  };
+  
+
+  return { currentUser, isAuthenticated, signOut, signIn, signUp ,isLoading, isSigningOut };  // Incluir signIn en los valores devueltos
 }

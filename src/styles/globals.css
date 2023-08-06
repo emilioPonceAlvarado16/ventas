@@ -2383,19 +2383,26 @@ textarea.w-select {
   background-color: #282556;
 }
 
-.f-navigation-button.spin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centrar el spinner */
+
+/* Clase para el botón en estado de carga */
+.f-navigation-button.button-loading, 
+.f-button-neutral.button-loading {
+  pointer-events: none; 
+  opacity: 0.88; 
+  position: relative;
 }
 
-.f-button-neutral.spin {
+/* Estilos para el spinner dentro del botón en estado de carga */
+.f-navigation-button.button-loading.spin, 
+.f-button-neutral.button-loading.spin {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centrar el spinner */
+  transform: translate(-50%, -50%); 
 }
+
+
+
 .f-navigation-content {
   grid-column-gap: 8px;
   align-items: center;
@@ -2415,6 +2422,10 @@ textarea.w-select {
   text-decoration: none;
   transition: all .35s;
 }
+.d-none {
+  display: none !important;
+}
+
 
 .f-navigation-link:hover {
   color: var(--neutral-primario);

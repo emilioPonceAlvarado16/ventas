@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import { Auth } from 'aws-amplify';
-import { useAuth } from '../hooks/useAuth'; 
+import { useAuth } from '../hooks/useAuth'; // Importar el hook
+
 const initialState = {
   name: '',
   email: '',
@@ -16,29 +16,40 @@ const formReducer = (state, action) => {
   }
 };
 
-export default function Account() {
+export default function Registro() {
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [state, dispatch] = useReducer(formReducer, initialState);
-    const { signIn, isLoading } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
-  
-    const handleSubmit = async function (event) {
-      event.preventDefault();
-      await signIn(state.email, state.password); // Utilizar la función signIn desde el hook
-    };
-  
-    const handleFieldChange = (event) => {
-      const { name, value } = event.target;
-      dispatch({ type: 'UPDATE_FIELD', field: name, value });
-    };
+  const { signUp } = useAuth(); // Usar el hook
+
+  const handleSubmit = async function (event) {
+    event.preventDefault();
+    setIsLoading(true);
+
+    // Usar signUp en lugar de Auth.signIn
+    try {
+      await signUp(state.email, state.password, state.email, state.name);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    dispatch({ type: 'UPDATE_FIELD', field: name, value });
+  };
+
 
   return (
     <div className="f-account-section">
     <div className="f-account-container-l">
       <div className="f-account-content-wrapper">
         <div className="f-margin-bottom-138">
-          <h5 className="f-h5-heading">Inicio de sesión</h5>
+          <h5 className="f-h5-heading">Registro</h5>
         </div>
-        <p className="f-paragraph-regular">Inicia sesión con redes sociales</p>
+        <p className="f-paragraph-regular">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
         <div className="f-account-social-wrapper">
           <a href="#" className="f-account-social-icon w-inline-block">
             <div className="f-icon-regular w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
@@ -72,12 +83,22 @@ export default function Account() {
           </a>
         </div>
         <div className="f-margin-bottom-137">
-          <p className="f-paragraph-small-5 f-text-color-gray-500">O usa tu correo :</p>
+          <p className="f-paragraph-small-5 f-text-color-gray-500">or use your email for registration :</p>
         </div>
         <div className="f-account-form-block w-form">
           <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" method="get" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
             <div className="w-layout-grid f-account-input-grid">
-          
+              <div className="f-field-wrapper">
+                <div className="f-field-label">Name</div>
+                <input
+                  type="text"
+                  className="f-field-input w-input"
+                  name="name"
+                  placeholder="Your name..."
+                  value={state.name}
+                  onChange={handleFieldChange}
+                />
+              </div>
               <div className="f-field-wrapper">
                 <div className="f-field-label">Email</div>
                 <input
@@ -99,17 +120,25 @@ export default function Account() {
                   value={state.password}
                   onChange={handleFieldChange}
                 />
-              </div>
+              </div><label className="w-checkbox f-checkbox-field">
+                <div className="w-checkbox-input w-checkbox-input--inputType-custom f-checkbox"></div>
+                <input 
+                        type="checkbox" 
+                        id="Privacy-Checkbox-03" 
+                        name="Privacy-Checkbox-03" 
+                        data-name="Privacy Checkbox 03" 
+                         
+                        style={{opacity: 0, position: "absolute", zIndex: -1}}
+/>
+                <span className="f-checkbox-label w-form-label" >I agree to the Terms and Privacy Policy</span>
+              </label>
             </div>
             <div className="f-account-form-button">
-            <a 
-              onClick={handleSubmit} 
-              className={`f-button-neutral w-button ${isLoading ? "button-loading" : ""}`}
-            >
-              {isLoading ? <div className="spin"></div> : 'Ingresar'}
-            </a>
-          </div>
-
+              <a type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
+              {/* <div className=" spin"></div> */}
+              {isLoading ? <div className=" spin"></div> : 'Ingresar'}
+              </a>
+              </div>
           </form>
           <div className="f-success-message w-form-done">
             <div>Thank you! Your submission has been received!</div>
@@ -118,7 +147,7 @@ export default function Account() {
             <div>Oops! Something went wrong while submitting the form.</div>
           </div>
         </div>
-        <p className="f-paragraph-small-5">Eres nuevo? <a href="#" className="f-account-link">Registrate.</a>
+        <p className="f-paragraph-small-5">Already have an account? <a href="#" className="f-account-link">Sign in</a>
         </p>
       </div>
     </div>

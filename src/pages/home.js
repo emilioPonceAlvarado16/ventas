@@ -17,7 +17,6 @@ import Account from "../components/account"
 import ModalCard from "../components/modalCard"
 import ModalHeading from "../components/modalHeading"
 import { Hub } from '@aws-amplify/core'
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify'
 import RequireAuth from '../components/RequireAuth';
