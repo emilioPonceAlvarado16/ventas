@@ -5,21 +5,29 @@ import { useEffect, useState } from 'react';
 export function useAuth() {
   const [currentUser, setCurrentUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);  // Nuevo estado
-  const [isSigningOut, setIsSigningOut] = useState(false);  // Nuevo estado para el proceso de cierre de sesión
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSigningOut, setIsSigningOut] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const user = await Auth.currentAuthenticatedUser();
-        setCurrentUser(user);
-        setIsAuthenticated(true);
+        const localAuth = JSON.parse(localStorage.getItem('auth'));
+        if (localAuth) {
+          setCurrentUser(localAuth.user);
+          setIsAuthenticated(localAuth.isAuthenticated);
+        } else {
+          const user = await Auth.currentAuthenticatedUser();
+          setCurrentUser(user);
+          setIsAuthenticated(true);
+          localStorage.setItem('auth', JSON.stringify({ user, isAuthenticated: true }));
+        }
       } catch (error) {
         setCurrentUser(null);
         setIsAuthenticated(false);
+        localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
       }
-      setIsLoading(false);  // Establecer isLoading a false cuando se completa la comprobación
+      setIsLoading(false);
     };
 
     const authListener = (data) => {
@@ -30,6 +38,7 @@ export function useAuth() {
         case 'signOut':
           setCurrentUser(null);
           setIsAuthenticated(false);
+          localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
           break;
       }
     };
@@ -49,7 +58,8 @@ export function useAuth() {
       const user = await Auth.signIn(username, password);
       setCurrentUser(user);
       setIsAuthenticated(true);
-      router.push('/home'); // redirigir a /home después de un inicio de sesión exitoso
+      localStorage.setItem('auth', JSON.stringify({ user, isAuthenticated: true }));
+      router.push('/home');
     } catch (error) {
       console.log('Error signing in:', error);
     }
@@ -57,32 +67,31 @@ export function useAuth() {
     setIsLoading(false);
   };
 
-
   const signOut = async () => {
-    setIsSigningOut(true);  // Establecer isSigningOut a true al inicio del cierre de sesión
+    setIsSigningOut(true);
 
     try {
       await Auth.signOut();
+      setCurrentUser(null);
       setIsAuthenticated(false);
-      localStorage.clear();
+      localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
     } catch (error) {
       console.log('Error signing out:', error);
     }
 
-    setIsSigningOut(false);  // Establecer isSigningOut a false cuando se completa el cierre de sesión
+    setIsSigningOut(false);
   };
 
-
   const signUp = async (username, password, email, name) => {
-    setIsLoading(true); // Establecer isLoading a true durante el registro
+    setIsLoading(true);
   
     try {
       const { user } = await Auth.signUp({
         username,
         password,
         attributes: {
-          email, // atributo opcional
-          name, // atributo personalizado
+          email,
+          name,
         },
       });
       console.log(user);
@@ -90,9 +99,8 @@ export function useAuth() {
       console.log('error signing up:', error);
     }
   
-    setIsLoading(false); // Establecer isLoading a false cuando se completa el registro
+    setIsLoading(false);
   };
-  
 
-  return { currentUser, isAuthenticated, signOut, signIn, signUp ,isLoading, isSigningOut };  // Incluir signIn en los valores devueltos
+  return { currentUser, isAuthenticated, signOut, signIn, signUp, isLoading, isSigningOut };
 }

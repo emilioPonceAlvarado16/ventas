@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "../components/navbar"
 import Hero from "../components/hero"
-import Pricing from "../components/pricing"
-import Inicio from "../components/inicio"
+// import Pricing from "../components/pricing"
+// import Inicio from "../components/inicio"
 import Footer from "../components/footer"
-import ServiceList from "../components/serviceList"
-import Comparison from "../components/comparison"
+// import ServiceList from "../components/serviceList"
+// import Comparison from "../components/comparison"
 import Alerts from "../components/alerts"
 import ModalAlert from "../components/modalAlert"
-import Features from "../components/features"
-import FeaturesNew from "../components/features_new"
-import AvatarName from "../components/avatarName"
-import AvatarPhoto from "../components/avatarPhoto"
-import Contact from "../components/contact"
-import Account from "../components/account"
-import ModalCard from "../components/modalCard"
-import ModalHeading from "../components/modalHeading"
-import { Hub } from '@aws-amplify/core'
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import { Auth } from 'aws-amplify'
+// import Features from "../components/features"
+// import FeaturesNew from "../components/features_new"
+// import AvatarName from "../components/avatarName"
+// import AvatarPhoto from "../components/avatarPhoto"
+// import Contact from "../components/contact"
+// import Account from "../components/account"
+// import ModalCard from "../components/modalCard"
+// import ModalHeading from "../components/modalHeading"
+// import { Hub } from '@aws-amplify/core'
+// import { useAuthenticator } from '@aws-amplify/ui-react';
+// import { Auth } from 'aws-amplify'
 import RequireAuth from '../components/RequireAuth';
-import { useAuth } from '../hooks/useAuth';
+// import { useAuth } from '../hooks/useAuth';
 
 function Home() {
   
@@ -42,11 +42,10 @@ function Home() {
     {/* <AvatarPhoto/>
     <FeaturesNew/>
     <Features/>
-    <Pricing/>
-    {/* <ModalAlert type="success" message="Guardado correctamente!"/> */}
+    <Pricing/>*/}
+   {/* <ModalAlert type="error" message="Guardado correctamente!"/>  */}
     {/* <Inicio/> */}
     <Hero/>
-    {/* <Alerts type="success" message="Guardado correctamente!"/> */}
 
     <Footer/>
 </>

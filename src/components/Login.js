@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { useAuth } from '../hooks/useAuth'; 
+import Alerts from "../components/alerts"
+
 const initialState = {
   name: '',
   email: '',
@@ -108,6 +110,7 @@ export default function Account() {
             >
               {isLoading ? <div className="spin"></div> : 'Ingresar'}
             </a>
+           
           </div>
 
           </form>
