@@ -17,7 +17,7 @@ const PasswordInput = (props) => {
                 {...props}
             />
             <div className="icon-container" onClick={togglePasswordVisibility}>
-                {showPassword ? <SvgIcons type="eyeOffIcon" /> :<SvgIcons type="eyeIcon" />}
+                {!showPassword ? <SvgIcons type="eyeOffIcon" /> :<SvgIcons type="eyeIcon" />}
             </div>
         </div>
     );

@@ -14,8 +14,8 @@ import ModalAlert from "../components/modalAlert"
 // import AvatarPhoto from "../components/avatarPhoto"
 // import Contact from "../components/contact"
 // import Account from "../components/account"
-// import ModalCard from "../components/modalCard"
-// import ModalHeading from "../components/modalHeading"
+import ModalCard from "../components/modalCard"
+import ModalHeading from "../components/modalHeading"
 // import { Hub } from '@aws-amplify/core'
 // import { useAuthenticator } from '@aws-amplify/ui-react';
 // import { Auth } from 'aws-amplify'
@@ -31,7 +31,10 @@ function Home() {
        <RequireAuth>
         <Navbar />
       </RequireAuth>
-     
+      <br/>
+      <modalCard message="simon"/>
+      <ModalAlert type="success"/>
+      <ModalHeading type="success"/>
     {/* {isSignedIn ? <Navbar /> : <Account />} */}
 
     {/* <Account/> */}

@@ -111,7 +111,6 @@ export default function Account() {
 
                   />
                 </div>
-                <div className="f-field-wrapper">
                   <div className="f-field-label">Password</div>
                   <PasswordInput
                     className="f-field-input w-input"
@@ -125,7 +124,6 @@ export default function Account() {
 
 
                   />
-                </div>
               </div>
               {signInError && !hasStartedTyping ? <Alerts type="warning" message={`${signInError}`} /> : <></>}
               <div className="f-account-form-button">

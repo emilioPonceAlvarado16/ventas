@@ -1,5 +1,9 @@
 import React, { useReducer, useState } from 'react';
 import { useAuth } from '../hooks/useAuth'; // Importar el hook
+import PasswordInput from './PasswordInput';
+import modalCard from './modalCard';
+import modalHeading from './modalHeading';
+import modalAlert from './modalAlert';
 
 const initialState = {
   name: '',
@@ -17,30 +21,34 @@ const formReducer = (state, action) => {
 };
 
 export default function Registro() {
-  const [state, dispatch] = useReducer(formReducer, initialState);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const { signUp } = useAuth(); // Usar el hook
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const { signIn, isLoading, signInError, setSignInError } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  const [hasStartedTyping, setHasStartedTyping] = useState(false);
 
   const handleSubmit = async function (event) {
     event.preventDefault();
-    setIsLoading(true);
-
-    // Usar signUp en lugar de Auth.signIn
-    try {
-      await signUp(state.email, state.password, state.email, state.name);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
+    setHasStartedTyping(false);
+    // Asegurarse de que los campos de email y password no estén vacíos antes de iniciar sesión.
+    if (state.email === "" || state.password === "") {
+      setSignInError("Por favor, llena todos los campos");
+    } else {
+      await signIn(state.email, state.password); // Utilizar la función signIn desde el hook
     }
   };
 
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
     dispatch({ type: 'UPDATE_FIELD', field: name, value });
+    if (!hasStartedTyping) setHasStartedTyping(true);
+    setSignInError(); // Borrar el mensaje de error cuando el usuario comienza a escribir
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleSubmit(event);
+    }
+  };
 
   return (
     <div className="f-account-section">
@@ -55,6 +63,7 @@ export default function Registro() {
             <div className="f-icon-regular w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
                 <g>
                   <path d="M13 19.938C15.0173 19.6813 16.8611 18.6661 18.1568 17.0988C19.4525 15.5314 20.1027 13.5295 19.9754 11.5C19.848 9.47041 18.9527 7.56549 17.4713 6.17238C15.9898 4.77927 14.0336 4.00252 12 4C9.96396 3.99848 8.00395 4.77334 6.51934 6.16668C5.03473 7.56002 4.13724 9.46699 4.00974 11.499C3.88225 13.5311 4.53434 15.5353 5.83314 17.1033C7.13195 18.6712 8.97974 19.685 11 19.938V14H9V12H11V10.346C11 9.009 11.14 8.524 11.4 8.035C11.6561 7.55119 12.052 7.15569 12.536 6.9C12.918 6.695 13.393 6.572 14.223 6.519C14.552 6.498 14.978 6.524 15.501 6.599V8.499H15C14.083 8.499 13.704 8.542 13.478 8.663C13.3431 8.73236 13.2334 8.84215 13.164 8.977C13.044 9.203 13 9.427 13 10.345V12H15.5L15 14H13V19.938ZM12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22Z" fill="currentColor"></path>
+    
                 </g>
                 <defs>
                   <clippath id="clip0_4257_2468">
@@ -110,17 +119,21 @@ export default function Registro() {
                   onChange={handleFieldChange}
                 />
               </div>
-              <div className="f-field-wrapper">
-                <div className="f-field-label">Password</div> 
-                 <input
-                  type="password"
-                  className="f-field-input w-input"
-                  name="password"
-                  placeholder="Enter a password..."
-                  value={state.password}
-                  onChange={handleFieldChange}
-                />
-              </div><label className="w-checkbox f-checkbox-field">
+              <div className="f-field-label">Password</div>
+                  <PasswordInput
+                    className="f-field-input w-input"
+                    name="password"
+                    placeholder="Enter a password..."
+                    value={state.password}
+                    onChange={handleFieldChange}
+                    onKeyDown={handleKeyDown}
+                    style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                    required={true}
+
+
+                  />
+              
+              <label className="w-checkbox f-checkbox-field">
                 <div className="w-checkbox-input w-checkbox-input--inputType-custom f-checkbox"></div>
                 <input 
                         type="checkbox" 

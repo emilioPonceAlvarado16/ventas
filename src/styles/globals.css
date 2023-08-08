@@ -4431,6 +4431,8 @@ textarea.w-select {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.5;
+  margin-bottom: 16px;  /* Añadir margen para dar espacio entre título y descripción */
+  text-align: center;  /* Centrar texto dentro de su contenedor */
 }
 
 .f-margin-bottom-143 {
@@ -4447,8 +4449,8 @@ textarea.w-select {
 }
 
 .f-modal-icon-success {
-  width: 72px;
-  height: 72px;
+  width: 50px;
+  height: 50px;
   color: #0ebc6e;
   background-color: rgba(37, 204, 136, .1);
   border-radius: 100px;
@@ -4574,8 +4576,8 @@ textarea.w-select {
 }
 
 .f-modal-base-small {
-  width: 100%;
-  max-width: 480px;
+  width: 50%;
+  max-width: 400px;
   color: var(--neutral-primario);
   background-color:  var(--white);
   border-radius: 16px;
@@ -5111,4 +5113,22 @@ textarea.w-select {
   }
 }
 
+.password-container {
+  position: relative;
+  width: 100%; /* ensure it takes the full width of its parent */
+}
 
+.password-input {
+  width: 100%; /* ensure it takes the full width of its container */
+  box-sizing: border-box; /* to include padding and border in width */
+  padding-right: 40px; /* space for the icon inside the input */
+}
+
+.icon-container {
+  position: absolute;
+  top: 50%; /* center vertically */
+  right: 12px; /* adjust as needed for your design */
+  transform: translateY(-50%); /* vertical centering trick */
+  cursor: pointer; /* indicate it's clickable */
+  z-index: 10; /* place it above the input field */
+}
