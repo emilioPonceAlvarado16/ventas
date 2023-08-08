@@ -278,6 +278,10 @@ input::-moz-focus-inner {
 input {
   line-height: normal;
 }
+input.w-input.w-input-error {
+  border: 1px solid red;
+}
+
 /**
  * It's recommended that you don't attempt to style these elements.
  * Firefox's implementation doesn't respect box-sizing, padding, or width.
@@ -718,6 +722,17 @@ label {
   background-color:  var(--white)fff;
   border: 1px solid #cccccc;
 }
+
+.w-input-error {
+  border: 1px solid red !important;
+}
+
+/* Añade esto para aplicar un borde rojo/naranja a los elementos con error */
+.w-input.w-input-error,
+.w-select.w-input-error {
+  border: 1px solid #ea384c !important; /* Ajusta el color según lo necesites */
+}
+
 .w-input:-moz-placeholder,
 .w-select:-moz-placeholder {
   color: #999;
@@ -2264,6 +2279,9 @@ textarea.w-select {
   align-items: center;
   padding: 4px;
   display: flex;
+  position: relative;
+  left:45px;
+  bottom: -191px;
 }
 
 .f-paragraph-small {

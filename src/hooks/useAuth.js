@@ -7,7 +7,12 @@ export function useAuth() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSigningOut, setIsSigningOut] = useState(false);
+  const [signInError, setSignInError] = useState(null);
+  const [signUpError, setSignUpError] = useState(null);
   const router = useRouter();
+
+  const [confirmationError, setConfirmationError] = useState(null);
+  const [resendCodeError, setResendCodeError] = useState(null);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -53,6 +58,7 @@ export function useAuth() {
 
   const signIn = async (username, password) => {
     setIsLoading(true);
+    setSignInError(null);  // reset the error state
 
     try {
       const user = await Auth.signIn(username, password);
@@ -61,6 +67,7 @@ export function useAuth() {
       localStorage.setItem('auth', JSON.stringify({ user, isAuthenticated: true }));
       router.push('/home');
     } catch (error) {
+      setSignInError(error.message);
       console.log('Error signing in:', error);
     }
 
@@ -84,9 +91,10 @@ export function useAuth() {
 
   const signUp = async (username, password, email, name) => {
     setIsLoading(true);
+    setSignUpError(null);  // reset the error state
   
     try {
-      const { user } = await Auth.signUp({
+      await Auth.signUp({
         username,
         password,
         attributes: {
@@ -94,13 +102,40 @@ export function useAuth() {
           name,
         },
       });
-      console.log(user);
     } catch (error) {
+      setSignUpError(error.message);
       console.log('error signing up:', error);
     }
   
     setIsLoading(false);
   };
+  const confirmSignUp = async (username, code) => {
+    setIsLoading(true);
+    setConfirmationError(null); // reset the error state
 
-  return { currentUser, isAuthenticated, signOut, signIn, signUp, isLoading, isSigningOut };
+    try {
+      await Auth.confirmSignUp(username, code);
+    } catch (error) {
+      setConfirmationError(error.message);
+      console.log('Error confirming sign up:', error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const resendConfirmationCode = async (username) => {
+    setIsLoading(true);
+    setResendCodeError(null); // reset the error state
+
+    try {
+      await Auth.resendSignUp(username);
+    } catch (error) {
+      setResendCodeError(error.message);
+      console.log('Error resending confirmation code:', error);
+    }
+
+    setIsLoading(false);
+  };
+
+  return { currentUser, isAuthenticated, signOut, signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, confirmationError,resendCodeError};
 }
