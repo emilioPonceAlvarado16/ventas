@@ -2298,6 +2298,8 @@ textarea.w-select {
   justify-content: center;
   align-items: center;
   display: flex;
+  
+  
 }
 
 .f-alert-success {
@@ -2318,7 +2320,6 @@ textarea.w-select {
   align-items: center;
   display: flex;
 }
-
 .f-alert-small {
   max-width: 340px;
   grid-column-gap: 16px;
@@ -2330,7 +2331,37 @@ textarea.w-select {
   padding: 12px 16px;
   display: flex;
   box-shadow: 28px 28px 40px -28px rgba(57, 59, 106, .12);
+
 }
+
+
+.f-alert-small-above {
+  max-width: 340px;
+  grid-column-gap: 16px;
+  color: var(--neutral-primario);
+  background-color:  var(--white);
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  display: flex;
+  box-shadow: 28px 28px 40px -28px rgba(57, 59, 106, .12);
+
+  position: absolute;
+  top: 10px; /* Darle un poco de espacio desde la parte superior */
+  right: 10px; /* Darle un poco de espacio desde la derecha */
+  z-index: 1000; /* Un alto z-index para asegurarse de que esté encima de otros elementos */
+
+  transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out; 
+  transform: translateX(0);
+
+}
+
+.f-alert-small-above.dismissed {
+  transform: translateX(100%); /* Desplaza el elemento a la derecha */
+  opacity: 0; /* Desvanece el elemento */
+}
+
 
 .f-paragraph-regular {
   letter-spacing: -.02em;
@@ -2580,6 +2611,8 @@ textarea.w-select {
   align-items: center;
   transition: color .2s;
   display: flex;
+  
+  
 }
 
 .f-banner-icon {
@@ -4458,7 +4491,7 @@ textarea.w-select {
   align-items: center;
   margin-bottom: 24px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 10px;
   display: flex;
 }
 
@@ -4576,17 +4609,19 @@ textarea.w-select {
 }
 
 .f-modal-base-small {
+  display: flex;  /* convierte esto en un contenedor flex */
   width: 50%;
   max-width: 400px;
   color: var(--neutral-primario);
-  background-color:  var(--white);
+  background-color: var(--white);
   border-radius: 16px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;  /* los elementos hijos se apilarán verticalmente */
+  justify-content: center;  /* centra los hijos verticalmente */
+  align-items: center;  /* centra los hijos horizontalmente */
   padding: 24px;
   box-shadow: 105px 105px 144px -32px rgba(27, 9, 67, .04);
 }
+
 
 .f-modal-header {
   color: var(--neutral-primario);
@@ -4624,6 +4659,8 @@ textarea.w-select {
 .f-modal-wrapper {
   align-items: center;
   display: flex;
+  width: 100%;  /* Ocupa todo el ancho disponible */
+  justify-content: center;  /* centra los hijos horizontalmente */
 }
 
 .f-modal-base-wide {
@@ -5131,4 +5168,34 @@ textarea.w-select {
   transform: translateY(-50%); /* vertical centering trick */
   cursor: pointer; /* indicate it's clickable */
   z-index: 10; /* place it above the input field */
+}
+
+.f-field-input-code {
+  width: 60%; /* Limitar el ancho para códigos cortos */
+  padding: 12px 16px; /* Padding para comodidad */
+  font-size: 16px; /* Tamaño de fuente legible */
+  text-align: center; /* Centrar el texto ya que los códigos suelen ser cortos */
+  border: 1px solid var(--neutral-primario); /* Bordes visibles pero no muy destacados */
+  border-radius: 8px; /* Esquinas redondeadas para un aspecto moderno */
+  margin: 20px 0; /* Espacio antes y después del input para separarlo de otros elementos */
+  outline: none; /* Quitar el contorno predeterminado en foco */
+  transition: border-color 0.3s ease; /* Transición suave para cambios en el borde */
+}
+
+.f-field-input-code:focus {
+  border-color: var(--color-primary); /* Cambiar el color del borde al enfocarse, para un feedback visual */
+  font-weight: bold;
+}
+
+.f-modal-overlay {
+  position: fixed !important;      /* Hace que la superposición se fije en la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;          /* Ocupa toda la anchura de la pantalla */
+  height: 100%;         /* Ocupa toda la altura de la pantalla */
+  background-color: rgba(0, 0, 0, 0.5) !important;  /* Un fondo semitransparente para oscurecer el contenido detrás del modal */
+  display: flex;        /* Usar flexbox para centrar el modal en la superposición */
+  justify-content: center;  /* Centrar el modal horizontalmente */
+  align-items: center;      /* Centrar el modal verticalmente */
+  z-index: 1000;       /* Asegurar que la superposición esté por encima de otros contenidos */
 }

@@ -93,7 +93,7 @@ export default function Account() {
             <p className="f-paragraph-small-5 f-text-color-gray-500">O usa tu correo :</p>
           </div>
           <div className="f-account-form-block w-form">
-            <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" method="get" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
+            <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
               <div className="w-layout-grid f-account-input-grid">
 
                 <div className="f-field-wrapper">

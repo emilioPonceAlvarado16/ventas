@@ -8,20 +8,45 @@ export default function modalHeading(props) {
   const heading = props.title || "Modal Heading";
   const details = props.details || "Are you sure Send the code?";
 
+  const handleInput = (e) => {
+    // Reemplaza cualquier caracter que no sea un dígito con una cadena vacía.
+    e.target.value = e.target.value.replace(/[^0-9]/g, "");
+};
+
+  const handleConfirmClick = () => {
+    const code = document.querySelector(".f-field-input-code").value;
+    props.onConfirm(code);  // Llamamos a la función que pasamos como prop para confirmar
+  };
+
+  const handleResendClick = () => {
+    props.onResend();  // Llamamos a la función que pasamos como prop para reenviar el código
+  };
   return (
+    
+    <div className="f-modal-overlay">
+  
     <div className="f-modal-base-small">
-    <div className="f-modal-wrapper">
-     
+    <div className="f-modal-detail">
+      <div className={`f-modal-icon${type}`}>
+
+        <div className="f-icon-regular w-embed">
+          
+        <SvgIcons type="success"/>
+          
+          </div>
+      </div>
       <div>
         <div className="f-sub-heading-regular">{heading}</div>
         <div className="f-paragraph-regular">{details}</div>
       </div>
     </div>
-    <input  className="f-field-input w-input"/>
+    <input onInput={handleInput}  className="f-field-input-code" maxLength="6" pattern="\d{6}"/>
     <div className="f-line-regular"></div>
-    <div className="f-modal-wrapper">
-      <a href="#" className="f-button-action w-button">Enviar</a>
+    <div className="f-modal-wrapper-right">
+    <a href="#" onClick={handleResendClick} className="f-button-secondary w-button">Reenviar Código</a>
+    <a href="#" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>
     </div>
+  </div>
   </div>
   )
 }

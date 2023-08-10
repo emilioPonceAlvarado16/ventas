@@ -32,9 +32,8 @@ function Home() {
         <Navbar />
       </RequireAuth>
       <br/>
-      <modalCard message="simon"/>
-      <ModalAlert type="success"/>
-      <ModalHeading type="success"/>
+
+
     {/* {isSignedIn ? <Navbar /> : <Account />} */}
 
     {/* <Account/> */}

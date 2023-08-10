@@ -1,9 +1,9 @@
 import React, { useReducer, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/useAuth'; // Importar el hook
 import PasswordInput from './PasswordInput';
-import modalCard from './modalCard';
-import modalHeading from './modalHeading';
-import modalAlert from './modalAlert';
+import ModalHeading from './modalHeading'; 
+import Alerts from './alerts';
 
 const initialState = {
   name: '',
@@ -23,25 +23,37 @@ const formReducer = (state, action) => {
 export default function Registro() {
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const { signIn, isLoading, signInError, setSignInError } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  const { confirmSignUp, signUp, resendConfirmationCode,setSignUpError,signUpError, isLoading } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
+  const [showWelcomeAlert, setShowWelcomeAlert] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async function (event) {
     event.preventDefault();
     setHasStartedTyping(false);
     // Asegurarse de que los campos de email y password no estén vacíos antes de iniciar sesión.
-    if (state.email === "" || state.password === "") {
-      setSignInError("Por favor, llena todos los campos");
+    if (state.email === "" || state.password === "" || state.name ==="") {
+      setSignUpError("Por favor, llena todos los campos");
     } else {
-      await signIn(state.email, state.password); // Utilizar la función signIn desde el hook
+      try {
+        await signUp(state.email, state.password, state.email, state.name);  // También enviamos el email y el nombre al signUp
+        if (!signUpError)setShowModal(true);  // Mostramos el modal para la confirmación del código
+      } catch (error) {
+        // El error se maneja en el hook, pero si necesitas hacer algo adicional aquí, puedes agregarlo.
+        setShowModal(false); 
+      }
     }
+    
+    
   };
 
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
     dispatch({ type: 'UPDATE_FIELD', field: name, value });
     if (!hasStartedTyping) setHasStartedTyping(true);
-    setSignInError(); // Borrar el mensaje de error cuando el usuario comienza a escribir
+    setSignUpError(); // Borrar el mensaje de error cuando el usuario comienza a escribir
+    setShowModal(false);
   };
 
   const handleKeyDown = (event) => {
@@ -50,9 +62,45 @@ export default function Registro() {
     }
   };
 
+  const handleConfirmation = async (code) => {
+    try {
+      await confirmSignUp(state.email, code);  // Confirmamos el registro con el código
+      setShowModal(false);  // Cerramos el modal
+      setShowWelcomeAlert(true); // Mostrar la alerta de bienvenida
+      setTimeout(() => {
+        router.push('/home'); // Redirige al usuario a "/home"
+      }, 3000);
+
+      // Redirigir al usuario a otra página o mostrar un mensaje de éxito si es necesario.
+    } catch (error) {
+      // Manejo del error al confirmar.
+      setShowModal(false); 
+    }
+  };
+  const handleResendCode = async () => {
+    try {
+      await resendConfirmationCode(state.email);
+      // Mostrar un mensaje de que el código se reenvió exitosamente si es necesario.
+    } catch (error) {
+      // Manejo del error al reenviar el código.
+    }
+  };
+
   return (
+
+    
     <div className="f-account-section">
+      
+    {showWelcomeAlert && (
+            <Alerts 
+              type="success"
+              message="¡Bienvenido! Tu registro fue exitoso."
+              close={true}
+              above={true}
+            />
+    )}
     <div className="f-account-container-l">
+      
       <div className="f-account-content-wrapper">
         <div className="f-margin-bottom-138">
           <h5 className="f-h5-heading">Registro</h5>
@@ -106,7 +154,9 @@ export default function Registro() {
                   placeholder="Your name..."
                   value={state.name}
                   onChange={handleFieldChange}
-                />
+                  onKeyDown={handleKeyDown}
+                  style={signUpError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                  />
               </div>
               <div className="f-field-wrapper">
                 <div className="f-field-label">Email</div>
@@ -117,7 +167,9 @@ export default function Registro() {
                   placeholder="Your email..."
                   value={state.email}
                   onChange={handleFieldChange}
-                />
+                  onKeyDown={handleKeyDown}
+                  style={signUpError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                  />
               </div>
               <div className="f-field-label">Password</div>
                   <PasswordInput
@@ -127,11 +179,11 @@ export default function Registro() {
                     value={state.password}
                     onChange={handleFieldChange}
                     onKeyDown={handleKeyDown}
-                    style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                    style={signUpError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
                     required={true}
-
-
-                  />
+                    
+                    
+                    />
               
               <label className="w-checkbox f-checkbox-field">
                 <div className="w-checkbox-input w-checkbox-input--inputType-custom f-checkbox"></div>
@@ -140,12 +192,14 @@ export default function Registro() {
                         id="Privacy-Checkbox-03" 
                         name="Privacy-Checkbox-03" 
                         data-name="Privacy Checkbox 03" 
-                         
+                        
                         style={{opacity: 0, position: "absolute", zIndex: -1}}
 />
                 <span className="f-checkbox-label w-form-label" >I agree to the Terms and Privacy Policy</span>
               </label>
+            {signUpError &&<Alerts type="warning" message={`${signUpError}`} />  }
             </div>
+
             <div className="f-account-form-button">
               <a type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
               {/* <div className=" spin"></div> */}
@@ -153,6 +207,7 @@ export default function Registro() {
               </a>
               </div>
           </form>
+
           <div className="f-success-message w-form-done">
             <div>Thank you! Your submission has been received!</div>
           </div>
@@ -165,6 +220,20 @@ export default function Registro() {
       </div>
     </div>
     <div className="f-account-image-wrapper"><img src="images/Account-Placeholder.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover"/></div>
+   
+    {showModal && !signUpError && (
+      <ModalHeading 
+        type="success" 
+        details="Revise su correo!" 
+        title="Registro exitoso!" 
+        onConfirm={handleConfirmation} 
+        onResend={handleResendCode}
+  />
+)}
+
+  
   </div>
+
+
   )
 }

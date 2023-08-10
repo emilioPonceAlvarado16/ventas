@@ -115,6 +115,7 @@ export function useAuth() {
 
     try {
       await Auth.confirmSignUp(username, code);
+      
     } catch (error) {
       setConfirmationError(error.message);
       console.log('Error confirming sign up:', error);
@@ -137,5 +138,5 @@ export function useAuth() {
     setIsLoading(false);
   };
 
-  return { currentUser, isAuthenticated, signOut, signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, confirmationError,resendCodeError};
+  return { currentUser, isAuthenticated, signOut, signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, setSignUpError,confirmationError,resendCodeError};
 }
