@@ -1,12 +1,16 @@
 import React from 'react'
 import PasswordInput from './PasswordInput'
 import SvgIcons from './svgIcons'
+import Alerts from './alerts';
 
 export default function modalHeading(props) {
   const type = props.type ? `-${props.type}` : "success";
 
   const heading = props.title || "Modal Heading";
   const details = props.details || "Are you sure Send the code?";
+  const canResendProp= props.canResendProp || true;
+  const resendCooldownProp=props.resendCooldown || 0;
+  const confirmationErrorProp=props.confirmationError || null;
 
   const handleInput = (e) => {
     // Reemplaza cualquier caracter que no sea un dígito con una cadena vacía.
@@ -41,7 +45,17 @@ export default function modalHeading(props) {
       </div>
     </div>
     <input onInput={handleInput}  className="f-field-input-code" maxLength="6" pattern="\d{6}"/>
+    {confirmationErrorProp && (
+            <Alerts 
+              type="error"
+              message="El código enviado es inválido."
+            />
+    )}
+
     <div className="f-line-regular"></div>
+    {!canResendProp && <p>Podrás reenviar el código en {resendCooldownProp} segundos.</p>}
+     
+  
     <div className="f-modal-wrapper-right">
     <a href="#" onClick={handleResendClick} className="f-button-secondary w-button">Reenviar Código</a>
     <a href="#" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>

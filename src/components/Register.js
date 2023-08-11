@@ -1,9 +1,10 @@
-import React, { useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/useAuth'; // Importar el hook
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading'; 
 import Alerts from './alerts';
+
 
 const initialState = {
   name: '',
@@ -23,30 +24,31 @@ const formReducer = (state, action) => {
 export default function Registro() {
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const { confirmSignUp, signUp, resendConfirmationCode,setSignUpError,signUpError, isLoading } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  const { confirmSignUp, signUp, resendConfirmationCode,setSignUpError,signUpError, isLoading, canResend, resendCooldown ,confirmationError} = useAuth(); 
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
   const [showWelcomeAlert, setShowWelcomeAlert] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async function (event) {
+const handleSubmit = async function (event) {
     event.preventDefault();
     setHasStartedTyping(false);
+
     // Asegurarse de que los campos de email y password no estén vacíos antes de iniciar sesión.
     if (state.email === "" || state.password === "" || state.name ==="") {
       setSignUpError("Por favor, llena todos los campos");
     } else {
-      try {
-        await signUp(state.email, state.password, state.email, state.name);  // También enviamos el email y el nombre al signUp
-        if (!signUpError)setShowModal(true);  // Mostramos el modal para la confirmación del código
-      } catch (error) {
-        // El error se maneja en el hook, pero si necesitas hacer algo adicional aquí, puedes agregarlo.
-        setShowModal(false); 
+      const wasSuccessful = await signUp(state.email, state.password, state.email, state.name);  // También enviamos el email y el nombre al signUp
+
+      if (wasSuccessful) {
+        setShowModal(true); // Mostramos el modal para la confirmación del código si el registro fue exitoso
+      } else {
+        setShowModal(false); // No mostramos el modal si hubo un error
       }
     }
-    
-    
-  };
+};
+
+
 
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
@@ -63,20 +65,21 @@ export default function Registro() {
   };
 
   const handleConfirmation = async (code) => {
-    try {
-      await confirmSignUp(state.email, code);  // Confirmamos el registro con el código
-      setShowModal(false);  // Cerramos el modal
+    const wasSuccessful = await confirmSignUp(state.email, code);  // Confirmamos el registro con el código
+  
+    if (wasSuccessful) {
+      setShowModal(false);  
       setShowWelcomeAlert(true); // Mostrar la alerta de bienvenida
       setTimeout(() => {
-        router.push('/home'); // Redirige al usuario a "/home"
-      }, 3000);
-
-      // Redirigir al usuario a otra página o mostrar un mensaje de éxito si es necesario.
-    } catch (error) {
-      // Manejo del error al confirmar.
-      setShowModal(false); 
+        router.push('/login'); // Redirige al usuario a "/home"
+      }, 2000);
+    } else {
+      setShowModal(true); 
+      setShowWelcomeAlert(false);
     }
   };
+  
+  
   const handleResendCode = async () => {
     try {
       await resendConfirmationCode(state.email);
@@ -86,12 +89,13 @@ export default function Registro() {
     }
   };
 
+  
   return (
 
     
     <div className="f-account-section">
       
-    {showWelcomeAlert && (
+    {true && (
             <Alerts 
               type="success"
               message="¡Bienvenido! Tu registro fue exitoso."
@@ -104,6 +108,7 @@ export default function Registro() {
       <div className="f-account-content-wrapper">
         <div className="f-margin-bottom-138">
           <h5 className="f-h5-heading">Registro</h5>
+
         </div>
         <p className="f-paragraph-regular">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
         <div className="f-account-social-wrapper">
@@ -140,6 +145,7 @@ export default function Registro() {
           </a>
         </div>
         <div className="f-margin-bottom-137">
+          
           <p className="f-paragraph-small-5 f-text-color-gray-500">or use your email for registration :</p>
         </div>
         <div className="f-account-form-block w-form">
@@ -221,13 +227,17 @@ export default function Registro() {
     </div>
     <div className="f-account-image-wrapper"><img src="images/Account-Placeholder.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover"/></div>
    
-    {showModal && !signUpError && (
+    {showModal    &&(
       <ModalHeading 
         type="success" 
         details="Revise su correo!" 
         title="Registro exitoso!" 
         onConfirm={handleConfirmation} 
         onResend={handleResendCode}
+        resendCooldown={resendCooldown}
+        canResend={canResend}
+        confirmationError={confirmationError}
+        
   />
 )}
 

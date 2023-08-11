@@ -11,13 +11,13 @@ export default function alerts(props) {
     const handleClose = () => {
       setDismissed(true); 
       setTimeout(() => {
-      }, 500); 
+      }, 150); 
     }
 
     useEffect(() => {
       const timer = setTimeout(() => {
         handleClose();
-      }, 2500); // por ejemplo, después de 3 segundos
+      }, 1200); // por ejemplo, después de 3 segundos
 
       return () => clearTimeout(timer); // Limpiar el temporizador si el componente se desmonta antes de que expire el temporizador
     }, []);

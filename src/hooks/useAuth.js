@@ -14,6 +14,11 @@ export function useAuth() {
   const [confirmationError, setConfirmationError] = useState(null);
   const [resendCodeError, setResendCodeError] = useState(null);
 
+
+  const [canResend, setCanResend] = useState(true);
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -35,6 +40,8 @@ export function useAuth() {
       setIsLoading(false);
     };
 
+  
+
     const authListener = (data) => {
       switch(data.payload.event) {
         case 'signIn':
@@ -55,6 +62,20 @@ export function useAuth() {
       Hub.remove('auth', authListener);
     };
   }, []);
+
+  useEffect(() => {
+    let cooldownTimer;
+    if (resendCooldown > 0) {
+      cooldownTimer = setTimeout(() => {
+        setResendCooldown(prevCooldown => prevCooldown - 1);
+      }, 1000); // decrementa el contador cada segundo
+    } else {
+      setCanResend(true);
+    }
+    return () => clearTimeout(cooldownTimer);
+  }, [resendCooldown]);
+
+
 
   const signIn = async (username, password) => {
     setIsLoading(true);
@@ -89,54 +110,62 @@ export function useAuth() {
     setIsSigningOut(false);
   };
 
-  const signUp = async (username, password, email, name) => {
+  const signUp = async (email, password, username, name) => {
     setIsLoading(true);
-    setSignUpError(null);  // reset the error state
-  
+    setSignUpError(null); // reset the error state
+
     try {
-      await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email,
-          name,
-        },
-      });
+      await Auth.signUp({ username, password, attributes: { email, name } });
+      setIsLoading(false);
+      return true; // Devuelve true si el registro fue exitoso
     } catch (error) {
       setSignUpError(error.message);
-      console.log('error signing up:', error);
+      console.log('Error during sign up:', error);
+      setIsLoading(false);
+      return false; // Devuelve false si hubo un error
     }
-  
-    setIsLoading(false);
-  };
+};
+
+
   const confirmSignUp = async (username, code) => {
     setIsLoading(true);
     setConfirmationError(null); // reset the error state
 
     try {
       await Auth.confirmSignUp(username, code);
-      
+      setIsLoading(false);
+      return true; // Devuelve true si la confirmación fue exitosa
     } catch (error) {
       setConfirmationError(error.message);
       console.log('Error confirming sign up:', error);
+      setIsLoading(false);
+      return false; // Devuelve false si hubo un error
     }
-
-    setIsLoading(false);
-  };
+};
 
   const resendConfirmationCode = async (username) => {
     setIsLoading(true);
-    setResendCodeError(null); // reset the error state
-
+    setResendCodeError(null);
+  
+    if (!canResend) {
+      setResendCodeError("Por favor espera antes de reenviar el código.");
+      setIsLoading(false);
+      return;
+    }
+  
     try {
       await Auth.resendSignUp(username);
+      
+      // Inicia el temporizador de reenvío
+      setCanResend(false);
+      setResendCooldown(60); // Establece un intervalo de tiempo de 60 segundos (puedes ajustarlo según necesites)
     } catch (error) {
       setResendCodeError(error.message);
       console.log('Error resending confirmation code:', error);
     }
-
+  
     setIsLoading(false);
   };
 
-  return { currentUser, isAuthenticated, signOut, signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, setSignUpError,confirmationError,resendCodeError};
+  return { currentUser, canResend,resendCooldown,isAuthenticated, signOut, setConfirmationError,signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, setSignUpError,confirmationError,resendCodeError};
 }
