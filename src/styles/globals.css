@@ -2319,6 +2319,7 @@ textarea.w-select {
 .f-alert-wrapper {
   align-items: center;
   display: flex;
+  text-align: left;
 }
 .f-alert-small {
   max-width: 340px;
@@ -4611,7 +4612,7 @@ textarea.w-select {
 .f-modal-base-small {
   display: flex;  /* convierte esto en un contenedor flex */
   width: 50%;
-  max-width: 400px;
+  max-width: 500px;
   color: var(--neutral-primario);
   background-color: var(--white);
   border-radius: 16px;
@@ -4620,6 +4621,8 @@ textarea.w-select {
   align-items: center;  /* centra los hijos horizontalmente */
   padding: 24px;
   box-shadow: 105px 105px 144px -32px rgba(27, 9, 67, .04);
+  text-align: center;
+
 }
 
 

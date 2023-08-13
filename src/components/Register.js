@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth'; // Importar el hook
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading'; 
 import Alerts from './alerts';
+import Link from 'next/link';
 
 
 const initialState = {
@@ -95,7 +96,7 @@ const handleSubmit = async function (event) {
     
     <div className="f-account-section">
       
-    {true && (
+    {showWelcomeAlert && (
             <Alerts 
               type="success"
               message="¡Bienvenido! Tu registro fue exitoso."
@@ -221,7 +222,7 @@ const handleSubmit = async function (event) {
             <div>Oops! Something went wrong while submitting the form.</div>
           </div>
         </div>
-        <p className="f-paragraph-small-5">Already have an account? <a href="#" className="f-account-link">Sign in</a>
+        <p className="f-paragraph-small-5">Already have an account? <Link href="/login" className="f-account-link">Sign in</Link>
         </p>
       </div>
     </div>
@@ -230,13 +231,14 @@ const handleSubmit = async function (event) {
     {showModal    &&(
       <ModalHeading 
         type="success" 
-        details="Revise su correo!" 
-        title="Registro exitoso!" 
+        details="Ingresa el código de 6 dígitos que hemos enviado a tu dirección de correo electrónico." 
+        title="Confirma tu cuenta" 
         onConfirm={handleConfirmation} 
         onResend={handleResendCode}
         resendCooldown={resendCooldown}
         canResend={canResend}
         confirmationError={confirmationError}
+        hasIcon={false}
         
   />
 )}

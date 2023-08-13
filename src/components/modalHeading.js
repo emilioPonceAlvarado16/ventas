@@ -11,6 +11,7 @@ export default function modalHeading(props) {
   const canResendProp= props.canResendProp || true;
   const resendCooldownProp=props.resendCooldown || 0;
   const confirmationErrorProp=props.confirmationError || null;
+  const hasIconProp=props.hasIcon || false;
 
   const handleInput = (e) => {
     // Reemplaza cualquier caracter que no sea un dígito con una cadena vacía.
@@ -31,14 +32,19 @@ export default function modalHeading(props) {
   
     <div className="f-modal-base-small">
     <div className="f-modal-detail">
-      <div className={`f-modal-icon${type}`}>
+    
 
+       
+          
+       {hasIconProp && (
+          <div className={`f-modal-icon${type}`}>
         <div className="f-icon-regular w-embed">
-          
-        <SvgIcons type="success"/>
-          
+       <SvgIcons type="success"/>
           </div>
-      </div>
+          </div>
+       )}
+          
+      
       <div>
         <div className="f-sub-heading-regular">{heading}</div>
         <div className="f-paragraph-regular">{details}</div>
@@ -48,7 +54,7 @@ export default function modalHeading(props) {
     {confirmationErrorProp && (
             <Alerts 
               type="error"
-              message="El código enviado es inválido."
+              message={confirmationErrorProp}
             />
     )}
 

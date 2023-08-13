@@ -28,11 +28,13 @@ export default function Account() {
   const handleSubmit = async function (event) {
     event.preventDefault();
     setHasStartedTyping(false);
-    // Asegurarse de que los campos de email y password no estén vacíos antes de iniciar sesión.
+  
     if (state.email === "" || state.password === "") {
       setSignInError("Por favor, llena todos los campos");
+    } else if (!isValidEmail(state.email)) {
+      setSignInError("Por favor, ingresa un correo válido");
     } else {
-      await signIn(state.email, state.password); // Utilizar la función signIn desde el hook
+      await signIn(state.email, state.password);
     }
   };
 
@@ -47,6 +49,11 @@ export default function Account() {
     if (event.key === 'Enter') {
       handleSubmit(event);
     }
+  };
+
+  const isValidEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return regex.test(email);
   };
 
   return (
