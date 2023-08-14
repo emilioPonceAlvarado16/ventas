@@ -3,6 +3,9 @@ import { useAuth } from '../hooks/useAuth';
 import Alerts from "../components/alerts"
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
+import ModalHeading from './modalHeading';
+import { useRouter } from 'next/router';
+
 
 const initialState = {
   name: '',
@@ -22,13 +25,17 @@ const formReducer = (state, action) => {
 export default function Account() {
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const { signIn, isLoading, signInError, setSignInError } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  const { signIn, isLoading, signInError, setSignInError, confirmationError, resendConfirmationCode,confirmSignUp } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
+
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
+  const [showConfirmed, setshowConfirmed] = useState(false)
+  const router = useRouter();
 
   const handleSubmit = async function (event) {
     event.preventDefault();
     setHasStartedTyping(false);
-  
+
     if (state.email === "" || state.password === "") {
       setSignInError("Por favor, llena todos los campos");
     } else if (!isValidEmail(state.email)) {
@@ -56,8 +63,45 @@ export default function Account() {
     return regex.test(email);
   };
 
+
+  const handleConfirmation = async (code) => {
+    const wasSuccessful = await confirmSignUp(state.email, code);  // Confirmamos el registro con el código
+
+    if (wasSuccessful) {
+      setShowModal(false);
+      setshowConfirmed(true); // Mostrar la alerta de bienvenida
+      setTimeout(() => {
+        router.push('/login'); // Redirige al usuario a "/home"
+      }, 2000);
+    } else {
+      setShowModal(true);
+      setshowConfirmed(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    try {
+      await resendConfirmationCode(state.email);
+      setShowModal(true)
+      // Mostrar un mensaje de que el código se reenvió exitosamente si es necesario.
+    } catch (error) {
+      setShowModal(false)
+      // Manejo del error al reenviar el código.
+    }
+  };
+
+
+
   return (
     <div className="f-account-section">
+        {showConfirmed && (
+            <Alerts 
+              type="success"
+              message="¡Bienvenido! Tu registro fue exitoso."
+              close={true}
+              above={true}
+            />
+    )}
       <div className="f-account-container-l">
         <div className="f-account-content-wrapper">
           <div className="f-margin-bottom-138">
@@ -118,21 +162,38 @@ export default function Account() {
 
                   />
                 </div>
-                  <div className="f-field-label">Password</div>
-                  <PasswordInput
-                    className="f-field-input w-input"
-                    name="password"
-                    placeholder="Enter a password..."
-                    value={state.password}
-                    onChange={handleFieldChange}
-                    onKeyDown={handleKeyDown}
-                    style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
-                    required={true}
+                <div className="f-field-label">Password</div>
+                <PasswordInput
+                  className="f-field-input w-input"
+                  name="password"
+                  placeholder="Enter a password..."
+                  value={state.password}
+                  onChange={handleFieldChange}
+                  onKeyDown={handleKeyDown}
+                  style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                  required={true}
 
 
-                  />
+                />
               </div>
               {signInError && !hasStartedTyping ? <Alerts type="warning" message={`${signInError}`} /> : <></>}
+
+              {
+                signInError === "User is not confirmed." ? (
+                  <p className="f-paragraph-small-5">
+                    Generar
+                    <span
+                      onClick={handleResendCode}
+                      className="f-account-link"
+                      style={{ cursor: 'pointer' }}  // Esto es para que el cursor cambie a "mano" al pasar sobre el texto.
+                    >
+                      Código de verificación.
+                    </span>
+                  </p>
+                ) : <></>
+              }
+
+
               <div className="f-account-form-button">
                 <a
                   onClick={handleSubmit}
@@ -149,7 +210,7 @@ export default function Account() {
           </div>
 
           <p className="f-paragraph-small-5">Eres nuevo?
-          <Link href="/register" className="f-account-link"> Registrate.</Link>
+            <Link href="/register" className="f-account-link"> Registrate.</Link>
 
           </p>
           <Link href="/register" className="f-account-link">Olvidaste tu contraseña?</Link>
@@ -157,6 +218,19 @@ export default function Account() {
         </div>
       </div>
       <div className="f-account-image-wrapper"><img src="images/Account-Placeholder.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover" /></div>
+      {showModal && (
+        <ModalHeading
+          type="success"
+          details="Ingresa el código de 6 dígitos que hemos enviado a tu dirección de correo electrónico."
+          title="Confirma tu cuenta"
+          onConfirm={handleConfirmation}
+          onResend={handleResendCode}
+          canResend={false}
+          confirmationError={confirmationError}
+          hasIcon={false}
+
+        />
+      )}
     </div>
   )
 }

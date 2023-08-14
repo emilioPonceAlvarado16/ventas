@@ -8,7 +8,7 @@ export default function modalHeading(props) {
 
   const heading = props.title || "Modal Heading";
   const details = props.details || "Are you sure Send the code?";
-  const canResendProp= props.canResendProp || true;
+  const canResendProp= props.canResendProp || false;
   const resendCooldownProp=props.resendCooldown || 0;
   const confirmationErrorProp=props.confirmationError || null;
   const hasIconProp=props.hasIcon || false;
@@ -59,11 +59,13 @@ export default function modalHeading(props) {
     )}
 
     <div className="f-line-regular"></div>
-    {!canResendProp && <p>Podrás reenviar el código en {resendCooldownProp} segundos.</p>}
      
   
     <div className="f-modal-wrapper-right">
-    <a href="#" onClick={handleResendClick} className="f-button-secondary w-button">Reenviar Código</a>
+      {
+canResendProp?
+(    <a href="#" onClick={handleResendClick} className="f-button-secondary w-button">Reenviar Código</a>
+):<></>      }
     <a href="#" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>
     </div>
   </div>
