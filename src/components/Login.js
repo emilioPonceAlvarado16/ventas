@@ -152,6 +152,8 @@ export default function Account() {
           <Link href="/register" className="f-account-link"> Registrate.</Link>
 
           </p>
+          <Link href="/register" className="f-account-link">Olvidaste tu contraseña?</Link>
+
         </div>
       </div>
       <div className="f-account-image-wrapper"><img src="images/Account-Placeholder.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover" /></div>
