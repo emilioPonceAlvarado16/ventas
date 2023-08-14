@@ -71,7 +71,7 @@ export default function Account() {
       setShowModal(false);
       setshowConfirmed(true); // Mostrar la alerta de bienvenida
       setTimeout(() => {
-        router.push('/login'); // Redirige al usuario a "/home"
+       setSignInError()// Redirige al usuario a "/home"
       }, 2000);
     } else {
       setShowModal(true);

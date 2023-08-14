@@ -8,8 +8,6 @@ export default function modalHeading(props) {
 
   const heading = props.title || "Modal Heading";
   const details = props.details || "Are you sure Send the code?";
-  const canResendProp= props.canResendProp || false;
-  const resendCooldownProp=props.resendCooldown || 0;
   const confirmationErrorProp=props.confirmationError || null;
   const hasIconProp=props.hasIcon || false;
 
@@ -23,9 +21,7 @@ export default function modalHeading(props) {
     props.onConfirm(code);  // Llamamos a la función que pasamos como prop para confirmar
   };
 
-  const handleResendClick = () => {
-    props.onResend();  // Llamamos a la función que pasamos como prop para reenviar el código
-  };
+
   return (
     
     <div className="f-modal-overlay">
@@ -58,14 +54,10 @@ export default function modalHeading(props) {
             />
     )}
 
-    <div className="f-line-regular"></div>
      
   
     <div className="f-modal-wrapper-right">
-      {
-canResendProp?
-(    <a href="#" onClick={handleResendClick} className="f-button-secondary w-button">Reenviar Código</a>
-):<></>      }
+
     <a href="#" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>
     </div>
   </div>
