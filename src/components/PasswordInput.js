@@ -13,7 +13,7 @@ const PasswordInput = (props) => {
         <div className="password-container">
             <input
                 type={showPassword ? "text" : "password"}
-                className="password-input"
+                className="f-field-input w-input"
                 {...props}
             />
             <div className="icon-container" onClick={togglePasswordVisibility}>

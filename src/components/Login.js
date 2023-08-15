@@ -164,7 +164,6 @@ export default function Account() {
                 </div>
                 <div className="f-field-label">Password</div>
                 <PasswordInput
-                  className="f-field-input w-input"
                   name="password"
                   placeholder="Enter a password..."
                   value={state.password}

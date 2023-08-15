@@ -25,7 +25,7 @@ export default function ForgotPassword({ forgotPassword, forgotPasswordError }) 
         <div className="f-container-regular">
           <div className="f-header-title-wrapper-center">
             <div className="f-margin-bottom-43" style={{marginTop:"12vh"}}>
-              <h1 className="f-h1-heading">Restablezca su contraseña.</h1>
+              <h1 className="f-h1-heading">Restablezca su contraseña</h1>
             </div>
             <div className="f-margin-bottom-42">
               <p className="f-paragraph-large">Introduce tu dirección de correo electrónico y te enviaremos un código para restablecer tu contraseña.</p>

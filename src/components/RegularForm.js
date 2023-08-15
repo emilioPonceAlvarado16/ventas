@@ -1,40 +1,79 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PasswordInput from './PasswordInput';
 
+const initialState = {
+  confirmationCode: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+};
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case 'UPDATE_FIELD':
+      return { ...state, [action.field]: action.value };
+    default:
+      return state;
+  }
+};
+
 export default function RegularForm(props) {
-   const data = props.data || [];
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const data=props.data || []
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    dispatch({
+      type: 'UPDATE_FIELD',
+      field: name,
+      value: value
+    });
+  };
 
-    const renderField = (item) => {
-        switch (item.field) {
-            case 'input':
-                return (
-                    <div className="f-margin-bottom-135" key={item.id}>
-                        <label className="f-field-label">{item.label}</label>
-                        <input type={item.type || 'text'} className="f-field-input w-input" name={item.name} placeholder={item.placeholder} id={item.id} value={item.value} disabled={item.disabled} />
-                    </div>
-                );
-            case 'PasswordInput':
-                return (
-                    <div className="f-margin-bottom-135" key={item.id}>
-                        <label className="f-field-label">{item.label}</label>
-                        <PasswordInput placeholder={item.placeholder} value={item.value} size={item.size} disabled={item.disabled} />
-                    </div>
-                );
-            default:
-                return null;
-        }
-    };
-
+  const renderField = (item) => {
+    switch (item.field) {
+      case 'input':
+        return (
+          <div className="f-margin-bottom-135" key={item.id}>
+            <label className="f-field-label">{item.label}</label>
+            <input 
+              type={item.type || 'text'} 
+              className="f-field-input w-input" 
+              name={item.name} 
+              placeholder={item.placeholder} 
+              id={item.id} 
+              value={state[item.name] || item.value} 
+              onChange={handleInputChange} 
+              disabled={item.disabled} 
+            />
+          </div>
+        );
+      case 'PasswordInput':
+        return (
+          <div className="f-margin-bottom-135" key={item.id}>
+            <label className="f-field-label">{item.label}</label>
+            <PasswordInput 
+              placeholder={item.placeholder} 
+              value={state[item.name] || item.value} 
+              size={item.size} 
+              onChange={handleInputChange} 
+              disabled={item.disabled} 
+            />
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
     return (
         <div className="f-section-large">
             <div className="f-contact-content">
                 <div className="f-margin-bottom-48">
-                    <div className="f-title-wrapper-center">
+                    <div className="f-title-wrapper-justify">
                         <div className="f-margin-bottom-136"></div>
                         <div className="f-margin-bottom-135">
                             <h1 className="f-h3-heading">{data.header}</h1>
                         </div>
-                        <p className="f-paragraph-large">{data.paragraph}</p>
+                        <p className="f-paragraph-regular">{data.paragraph}</p>
                     </div>
                 </div>
                 <div className="w-form">

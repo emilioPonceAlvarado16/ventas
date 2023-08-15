@@ -2,9 +2,9 @@ import React from 'react'
 import RegularForm from './RegularForm'
 
 export default function resetPassword() {
-  
+
   const passwordRecoveryData = {
-    header: "Restablecer Contraseña",
+    header: "Cambiar Contraseña",
     paragraph:"Ingresa el código que llegó a tu correo electrónico y escribe la nueva contraseña",
     body: [
         {

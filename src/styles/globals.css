@@ -3279,6 +3279,20 @@ textarea.w-select {
   position: relative;
 }
 
+.f-title-wrapper-justify {
+  z-index: 5;
+  width: 100%;
+  max-width: 580px;
+  text-align: justify;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  position: relative;
+  white-space: nowrap; /* This ensures all words are on the same line */
+}
 .f-margin-bottom-128 {
   margin-bottom: 128px;
 }
