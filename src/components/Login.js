@@ -206,14 +206,12 @@ export default function Account() {
               </div>
 
             </form>
-
           </div>
-
           <p className="f-paragraph-small-5">Eres nuevo?
             <Link href="/register" className="f-account-link"> Registrate.</Link>
 
           </p>
-          <Link href="/register" className="f-account-link">Olvidaste tu contraseña?</Link>
+          <Link href="/forgot-password" className="f-account-link">Olvidaste tu contraseña?</Link>
 
         </div>
       </div>
