@@ -19,6 +19,9 @@ export function useAuth() {
   const [resendCooldown, setResendCooldown] = useState(0);
 
 
+  const [forgotPasswordError, setForgotPasswordError] = useState(null);
+  const [resetPasswordError, setResetPasswordError] = useState(null);
+
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -40,10 +43,10 @@ export function useAuth() {
       setIsLoading(false);
     };
 
-  
+
 
     const authListener = (data) => {
-      switch(data.payload.event) {
+      switch (data.payload.event) {
         case 'signIn':
           checkAuth();
           break;
@@ -124,7 +127,7 @@ export function useAuth() {
       setIsLoading(false);
       return false; // Devuelve false si hubo un error
     }
-};
+  };
 
 
   const confirmSignUp = async (username, code) => {
@@ -141,21 +144,21 @@ export function useAuth() {
       setIsLoading(false);
       return false; // Devuelve false si hubo un error
     }
-};
+  };
 
   const resendConfirmationCode = async (username) => {
     setIsLoading(true);
     setResendCodeError(null);
-  
+
     if (!canResend) {
       setResendCodeError("Por favor espera antes de reenviar el código.");
       setIsLoading(false);
       return;
     }
-  
+
     try {
       await Auth.resendSignUp(username);
-      
+
       // Inicia el temporizador de reenvío
       setCanResend(false);
       setResendCooldown(60); // Establece un intervalo de tiempo de 60 segundos (puedes ajustarlo según necesites)
@@ -163,9 +166,50 @@ export function useAuth() {
       setResendCodeError(error.message);
       console.log('Error resending confirmation code:', error);
     }
-  
+
     setIsLoading(false);
   };
 
-  return { currentUser, canResend,resendCooldown,isAuthenticated, signOut, setConfirmationError,signIn, signUp, confirmSignUp ,resendConfirmationCode ,isLoading, isSigningOut, signInError, signUpError ,setSignInError, setSignUpError,confirmationError,resendCodeError};
+  const forgotPassword = async (username) => {
+    setIsLoading(true);
+    setForgotPasswordError(null);
+
+    try {
+      await Auth.forgotPassword(username);
+      setIsLoading(false);
+      return true; // Devuelve true si la solicitud fue exitosa
+    } catch (error) {
+      setForgotPasswordError(error.message);
+      console.log('Error during forgot password:', error);
+      setIsLoading(false);
+      return false; // Devuelve false si hubo un error
+    }
+  };
+  const forgotPasswordSubmit = async (username, code, newPassword) => {
+    setIsLoading(true);
+    setResetPasswordError(null);
+
+    try {
+      await Auth.forgotPasswordSubmit(username, code, newPassword);
+      setIsLoading(false);
+      return true; // Devuelve true si el reseteo fue exitoso
+    } catch (error) {
+      setResetPasswordError(error.message);
+      console.log('Error resetting password:', error);
+      setIsLoading(false);
+      return false; // Devuelve false si hubo un error
+    }
+  };
+
+  return {
+    currentUser,
+    canResend, resendCooldown,
+    isAuthenticated, 
+    signOut, 
+    forgotPassword,
+    forgotPasswordSubmit,
+    forgotPasswordError,
+    resetPasswordError,
+    setConfirmationError, signIn, signUp, confirmSignUp, resendConfirmationCode, isLoading, isSigningOut, signInError, signUpError, setSignInError, setSignUpError, confirmationError, resendCodeError
+  };
 }

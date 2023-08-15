@@ -1,18 +1,19 @@
 import React from 'react'
 
-export default function contact() {
+export default function contact(props) {
+  const subtitle=props.subtitle || "Contact Section"
+  const paragraph= props.paragraph || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pellentesque arcu sed felis"
   return (
     <div className="f-section-large">
     <div className="f-contact-content">
       <div className="f-margin-bottom-48">
         <div className="f-title-wrapper-center">
           <div className="f-margin-bottom-136">
-            <div className="f-heading-detail-small">Flowui components</div>
           </div>
           <div className="f-margin-bottom-135">
-            <h1 className="f-h3-heading">Contact Section</h1>
+            <h1 className="f-h3-heading">{subtitle}</h1>
           </div>
-          <p className="f-paragraph-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pellentesque arcu sed felis</p>
+          <p className="f-paragraph-large">{paragraph}</p>
         </div>
       </div>
       <div className="w-form">

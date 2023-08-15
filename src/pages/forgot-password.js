@@ -1,7 +1,11 @@
-import React from 'react'
-import ForgotPassword from "../components/forgotPassword"
-export default function forgotPasswordPage() {
+import React from 'react';
+import ForgotPassword from "../components/forgotPassword";
+import { useAuth } from '../hooks/useAuth';
+
+export default function ForgotPasswordPage() {
+  const { forgotPassword, forgotPasswordError } = useAuth();
+
   return (
-    <ForgotPassword/>
-  )
+    <ForgotPassword forgotPassword={forgotPassword} forgotPasswordError={forgotPasswordError} />
+  );
 }
