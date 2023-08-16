@@ -20,7 +20,6 @@ import ModalHeading from "../components/modalHeading"
 // import { useAuthenticator } from '@aws-amplify/ui-react';
 // import { Auth } from 'aws-amplify'
 import RequireAuth from '../components/RequireAuth';
-import { withAuthenticator } from '@aws-amplify/ui-react'
 // import { useAuth } from '../hooks/useAuth';
 function Home() {
   
@@ -57,4 +56,4 @@ function Home() {
 }
 
 
-export default withAuthenticator(Home);
+export default Home;
