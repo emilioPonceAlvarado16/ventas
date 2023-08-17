@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RegularForm from './RegularForm'
+import { useAuth } from '@/hooks/useAuth';
 
 export default function resetPassword() {
+    const { forgotPasswordSubmit, setResetPasswordError ,resetPasswordError, isLoading} = useAuth();
+    const [isSuccess, setIsSuccess] = useState(false)
+    const handleSubmit = async (formData) => {
+        
+        if(formData.email==="" || formData.password==="" || formData.confirmPassword===""|| formData.code===""){
+            setResetPasswordError("Todos los campos deben ser completados.")
+            return false
+        }
+        if (formData.password !== formData.confirmPassword) {
+        setResetPasswordError("Las contraseñas no coinciden.");
+        return false;
+        }
+
+        const success = await forgotPasswordSubmit(formData.email, formData.code, formData.password);
+        if (success){
+            setIsSuccess(success);
+            setResetPasswordError();
+            
+        }
+        return success
+    
+    };
+
 
   const passwordRecoveryData = {
     header: "Cambiar Contraseña",
@@ -14,7 +38,7 @@ export default function resetPassword() {
             type: 'number',
             placeholder: 'Ingrese el código de confirmación',
             size: 'lg',
-            name: 'confirmationCode',
+            name: 'code',
         },
         {
             id: 'email',
@@ -47,11 +71,14 @@ export default function resetPassword() {
             label: 'Resetear Contraseña',
             mode: 'neutral',
             type: 'submit',
+            onSubmit:{handleSubmit}
         },
     ],
 };
 
   return (
-    <RegularForm  data={passwordRecoveryData}/>
+    <RegularForm  data={passwordRecoveryData} resetPasswordError={resetPasswordError} isLoading={isLoading} setResetPasswordError={setResetPasswordError} isSuccess={isSuccess} onSubmit={handleSubmit} />
+    
+
   )
 }

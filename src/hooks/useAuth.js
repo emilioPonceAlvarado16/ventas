@@ -192,6 +192,10 @@ export function useAuth() {
     try {
       await Auth.forgotPasswordSubmit(username, code, newPassword);
       setIsLoading(false);
+      setTimeout(() => {
+        router.push('/login'); // Redirige al usuario a "/home"
+      }, 1200);
+    
       return true; // Devuelve true si el reseteo fue exitoso
     } catch (error) {
       setResetPasswordError(error.message);
@@ -210,6 +214,7 @@ export function useAuth() {
     forgotPasswordSubmit,
     forgotPasswordError,
     resetPasswordError,
+    setResetPasswordError,
     setConfirmationError, signIn, signUp, confirmSignUp, resendConfirmationCode, isLoading, isSigningOut, signInError, signUpError, setSignInError, setSignUpError, confirmationError, resendCodeError
   };
 }

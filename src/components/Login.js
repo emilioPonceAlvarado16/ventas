@@ -4,7 +4,6 @@ import Alerts from "../components/alerts"
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading';
-import { useRouter } from 'next/router';
 
 
 const initialState = {
@@ -30,7 +29,6 @@ export default function Account() {
 
   const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
   const [showConfirmed, setshowConfirmed] = useState(false)
-  const router = useRouter();
 
   const handleSubmit = async function (event) {
     event.preventDefault();

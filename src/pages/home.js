@@ -27,12 +27,12 @@ function Home() {
  
 <>
 
-       {/* <RequireAuth>
+      <RequireAuth>
         <Navbar />
-        </RequireAuth> */}
+        </RequireAuth> 
       <br/>
 
-      <Navbar />
+      {/* <Navbar /> */}
 
     {/* {isSignedIn ? <Navbar /> : <Account />} */}
 
