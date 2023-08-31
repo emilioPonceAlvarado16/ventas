@@ -5217,3 +5217,115 @@ textarea.w-select {
   align-items: center;      /* Centrar el modal verticalmente */
   z-index: 1000;       /* Asegurar que la superposición esté por encima de otros contenidos */
 }
+
+
+/* Estilos para el contenedor general del árbol */
+.treeview-animated {
+	width: 13.5%;
+	/* width: 20vw%; */
+	border: 1px solid #9a68d0  !important;  /* Un borde más claro que el fondo morado oscuro */
+	padding: 1rem;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	height: 100em;
+	background-color: #4b2a75  !important; /* Fondo morado oscuro */
+	color: #ebe0f5; /* Letras en un tono claro para contraste */
+	
+	position: absolute; /* Posición absoluta */
+	top: 0;  /* Pegado a la parte superior
+	left: 0; /* Pegado a la izquierda */
+	overflow-y: auto; /* Scroll vertical en caso de que haya muchos ítems */
+	transition: width 0.3s ease; /* Transición para el efecto de colapsar 	*/
+	
+	/* left: 0;	/*  Pegado a la derecha 	*/
+	right: auto; 	/* Anulando la propiedad anterior	 */
+  }
+  
+  /* Estilo para el estado colapsado del árbol de directorios */
+  .treeview-animated.collapsed {
+    width: 10px;
+    overflow: hidden;
+    color:#4b2a75;
+}
+
+  
+  .treeview-animated .collapse-btn {
+	position: absolute; 
+	top: 0.5rem; 
+	right: 0.2rem; /* Cambiamos 'left' por 'right' */
+	border: none;
+	background: transparent;
+	color: #ebe0f5; /* El mismo color que el texto */
+	cursor: pointer;
+	z-index: 10; /* Asegura que esté al frente */
+}
+/* Estilo adicional para el icono del botón */
+.treeview-animated .collapse-btn i {
+    margin-right: 0.5rem;
+	
+}
+
+.collapse-btn {
+	position: absolute;
+	right: 0; 
+}
+  /* Estilo para el título "Folders" */
+  .treeview-animated h6 {
+	margin-top: .1rem;
+	margin-left: .1rem;
+  }
+
+  
+  /* Estilo para la lista de directorios */
+  .treeview-animated-list {
+	margin-bottom: 1rem;
+	list-style-type: none;
+	padding: 0;
+  }
+  
+  /* Estilo general para los ítems de la lista */
+  .treeview-animated-items {
+	cursor: pointer;
+	margin: 0.5rem 0;
+  }
+  
+  /* Estilo para los links de los ítems de la lista */
+  .treeview-animated-items a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: inherit; /* Se heredará el color claro definido en .treeview-animated */
+  }
+  
+  /* Ícono de flecha a la derecha */
+  .fa-angle-right {
+	margin-right: 0.5rem;
+	transition: transform 0.3s ease;
+  }
+  
+  /* Estilo para cuando un ítem está abierto */
+  .treeview-animated-items a.open .fa-angle-right {
+	transform: rotate(90deg);
+  }
+  
+  /* Espacio entre el ícono y el texto del ítem */
+  .ic-w {
+	margin-right: 0.2rem;
+  }
+  
+  /* Estilo para la lista anidada (children) */
+  .nested {
+	margin-top: 0.5rem;
+	list-style-type: none;
+	padding-left: 20px;  /* Esto es para la indentación de los children */
+  }
+  @media (max-width: 768px) { /* Ajusta este valor según tus necesidades */
+    .treeview-animated {
+        min-width: 220px; /* O cualquier valor que consideres adecuado */
+    }
+}
+  @media (max-width: 768px) { /* Ajusta este valor según tus necesidades */
+    .treeview-animated.collapsed {
+        min-width: 10px; /* O cualquier valor que consideres adecuado */
+    }
+}

@@ -3,23 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "export": "next export",
+    "start": "next start"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^5.0.6",
     "@next/font": "13.4.12",
     "aws-amplify": "^5.3.6",
     "next": "13.4.12",
+    "pdfjs-dist": "^3.9.179",
     "react": "18.2.0",
     "react-dom": "18.2.0"
-  },
-"scripts": {
-  "dev": "next",
-  "build": "next build",
-  "export": "next export",
-  "start": "next start"
-}
+  }
 }
