@@ -39,12 +39,37 @@ const TextEditor = () => {
     }
   };
 
-  const updateLineNumbers = (htmlContent) => {
-    const lines = htmlContent.split('<br>');
-    setLineNumbers(lines.map((_, index) => index + 1));
-  };
+  const handleDrop = async (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.items[0].getAsFile();
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const selection = window.getSelection();
+      let range;
+      if (selection.rangeCount > 0) {
+        range = selection.getRangeAt(0);
+      } else {
+        range = document.createRange();
+        range.selectNodeContents(editorRef.current);
+        range.collapse(false); // Colapsar el rango al final
+      }
+      const textNode = document.createTextNode(event.target.result);
+      range.insertNode(textNode);
+      handleContentChange();
+      updateLineNumbers(editorRef.current.innerHTML);
+    };
+    reader.readAsText(file);
+};
 
-  const lineHeightStyle = '20px'; // Establece la altura de línea que desees
+
+
+const updateLineNumbers = (htmlContent) => {
+  // Convertir <br> a saltos de línea y luego dividir por saltos de línea
+  const lines = htmlContent.replace(/<br\s*\/?>/g, '\n').split('\n');
+  setLineNumbers(lines.map((_, index) => index + 1));
+};
+
+  const lineHeightStyle = '20px';
 
   return (
     <div style={{ display: 'flex', background: '#2c2c2c', height: '100vh', width: '50vw', borderRadius: '5px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>
@@ -60,6 +85,8 @@ const TextEditor = () => {
         contentEditable={true}
         onInput={handleContentChange}
         onKeyDown={handleKeyDown}
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={handleDrop}
         style={{
           padding: '10px',
           overflowY: 'auto',
