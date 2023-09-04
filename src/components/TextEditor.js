@@ -1,23 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ModalHeading from './modalHeading';
 
 const TextEditor = () => {
   const editorRef = useRef(null);
   const lineNumberRef = useRef(null);
   const [lineNumbers, setLineNumbers] = useState([1]);
   const [highlightedLine, setHighlightedLine] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedImageName, setSelectedImageName] = useState('');
 
   const updateHighlightedLine = () => {
     const selection = window.getSelection();    
     setHighlightedLine(selection.focusOffset);
   };
-
-  useEffect(() => {
-    editorRef.current.addEventListener('keyup', updateHighlightedLine);
-    editorRef.current.addEventListener('click', updateHighlightedLine);
-    editorRef.current.addEventListener('scroll', (e) => {
-      lineNumberRef.current.scrollTop = e.target.scrollTop;
-    });
-  }, [lineNumbers]);
 
   const handleContentChange = () => {
     const currentContent = editorRef.current.innerHTML;
@@ -42,32 +37,66 @@ const TextEditor = () => {
   const handleDrop = async (e) => {
     e.preventDefault();
     const file = e.dataTransfer.items[0].getAsFile();
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const selection = window.getSelection();
-      let range;
-      if (selection.rangeCount > 0) {
+    const fileType = file.type.split('/')[0];
+
+    const selection = window.getSelection();
+    let range;
+    if (selection.rangeCount > 0) {
         range = selection.getRangeAt(0);
-      } else {
+    } else {
         range = document.createRange();
         range.selectNodeContents(editorRef.current);
-        range.collapse(false); // Colapsar el rango al final
-      }
-      const textNode = document.createTextNode(event.target.result);
-      range.insertNode(textNode);
-      handleContentChange();
-      updateLineNumbers(editorRef.current.innerHTML);
+        range.collapse(false);
+    }
+
+    if (fileType === 'image') {
+        const photoTag = document.createElement('span');
+        photoTag.innerHTML = `<PHOTO ${file.name}>`;
+        photoTag.onclick = () => {
+          console.log("Photo tag clicked"); // Añade esta línea
+
+          setIsModalVisible(true)
+          setSelectedImageName(file.name)
+          
+        };
+        range.insertNode(photoTag);
+    } else {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const textNode = document.createTextNode(event.target.result);
+            range.insertNode(textNode);
+        };
+        reader.readAsText(file);
+    }
+
+    handleContentChange();
+    updateLineNumbers(editorRef.current.innerHTML);
+};
+
+  const updateLineNumbers = (htmlContent) => {
+    const lines = htmlContent.replace(/<br\s*\/?>/g, '\n').split('\n');
+    setLineNumbers(lines.map((_, index) => index + 1));
+  };
+
+  const handleEditorClick = (e) => {
+    if (e.target.textContent.startsWith('<PHOTO')) {
+      const imageName = e.target.textContent.replace('<PHOTO ', '').replace('>', '');
+      setSelectedImageName(imageName);
+      setIsModalVisible(true);
+    }
+};
+  useEffect(() => {
+    editorRef.current.addEventListener('keyup', updateHighlightedLine);
+    editorRef.current.addEventListener('click', updateHighlightedLine);
+    editorRef.current.addEventListener('click', handleEditorClick);
+    editorRef.current.addEventListener('scroll', (e) => {
+      lineNumberRef.current.scrollTop = e.target.scrollTop;
+    });
+
+    return () => {
+      editorRef.current.removeEventListener('click', handleEditorClick);
     };
-    reader.readAsText(file);
-};
-
-
-
-const updateLineNumbers = (htmlContent) => {
-  // Convertir <br> a saltos de línea y luego dividir por saltos de línea
-  const lines = htmlContent.replace(/<br\s*\/?>/g, '\n').split('\n');
-  setLineNumbers(lines.map((_, index) => index + 1));
-};
+  }, [lineNumbers]);
 
   const lineHeightStyle = '20px';
 
@@ -87,6 +116,8 @@ const updateLineNumbers = (htmlContent) => {
         onKeyDown={handleKeyDown}
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
+        onClick={handleEditorClick}  // Manejar el clic directamente aquí
+
         style={{
           padding: '10px',
           overflowY: 'auto',
@@ -99,7 +130,17 @@ const updateLineNumbers = (htmlContent) => {
           fontFamily: 'Arial, sans-serif'
         }}
       ></div>
+      {isModalVisible && (
+        <ModalHeading
+          title="Image Preview"
+          details={selectedImageName}
+          onConfirm={() => setIsModalVisible(false)}
+        />
+      )}
+  
     </div>
+   
+      
   );
 };
 
