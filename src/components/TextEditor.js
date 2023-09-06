@@ -8,7 +8,11 @@ const TextEditor = () => {
   const [highlightedLine, setHighlightedLine] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedImageName, setSelectedImageName] = useState('');
+  const [message, setMessage] = useState(null); // Nuevo estado para el mensaje
+  const [imageLocation, setImageLocation] = useState(null); // Nuevo estado para la ubicación de la imagen
 
+
+  
   const updateHighlightedLine = () => {
     const selection = window.getSelection();    
     setHighlightedLine(selection.focusOffset);
@@ -36,7 +40,10 @@ const TextEditor = () => {
 
   const handleDrop = async (e) => {
     e.preventDefault();
+    console.log("Drop event triggered"); // Añade esta línea
     const file = e.dataTransfer.items[0].getAsFile();
+    console.log("File type:", file.type); // Añade esta línea
+
     const fileType = file.type.split('/')[0];
 
     const selection = window.getSelection();
@@ -50,16 +57,18 @@ const TextEditor = () => {
     }
 
     if (fileType === 'image') {
-        const photoTag = document.createElement('span');
-        photoTag.innerHTML = `<PHOTO ${file.name}>`;
-        photoTag.onclick = () => {
-          console.log("Photo tag clicked"); // Añade esta línea
+       console.log("Handling image file"); // Añade esta línea
 
-          setIsModalVisible(true)
-          setSelectedImageName(file.name)
-          
+        const photoTag = document.createElement('span');
+        photoTag.innerHTML = `<PHOTO title="${file.name}">`;
+        photoTag.onclick = () => {
+          setIsModalVisible(true);
+          setSelectedImageName(file.name);
         };
         range.insertNode(photoTag);
+        setImageLocation(file.name); // Guardar la ubicación de la imagen
+        setMessage("Imagen cargada exitosamente!"); // Mostrar mensaje
+        setTimeout(() => setMessage(null), 3000); // Ocultar mensaje después de 3 segundos
     } else {
         const reader = new FileReader();
         reader.onload = (event) => {
@@ -71,7 +80,7 @@ const TextEditor = () => {
 
     handleContentChange();
     updateLineNumbers(editorRef.current.innerHTML);
-};
+  };
 
   const updateLineNumbers = (htmlContent) => {
     const lines = htmlContent.replace(/<br\s*\/?>/g, '\n').split('\n');
