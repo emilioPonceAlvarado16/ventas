@@ -10,8 +10,16 @@ import { Auth } from 'aws-amplify';
 Auth.configure(config);
 
 
-Amplify.configure(config)
-
+// Amplify.configure(config)
+Amplify.configure({
+  ...config,
+  Storage: {
+    AWSS3: {
+      ...config.Storage,
+      region: 'us-west-1'
+    }
+  }
+});
 function MyApp({ Component, pageProps }) {
 
   return (

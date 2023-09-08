@@ -61,17 +61,18 @@ function PdfViewer({ url }) {
 
     return (
         <div>
-            <input 
+            {/* <input 
                 type="range" 
-                min="50" 
+                min="0" 
                 max="100" 
                 value={widthPercentage} 
                 onChange={(e) => setWidthPercentage(e.target.value)} 
-            />
+            /> */}
             <div 
                 ref={containerRef} 
                 style={{ 
-                    width: `${widthPercentage}%`, 
+                    // width: `${widthPercentage}%`, 
+                    width: "100%", 
                     height: '100vh', 
                     overflowY: 'auto', 
                     overflowX: 'hidden', 

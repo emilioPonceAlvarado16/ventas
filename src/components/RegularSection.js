@@ -1,13 +1,28 @@
 import React from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { s3Upload } from '../utils/s3Upload'; // o '../hooks/s3Upload' según dónde lo coloques
 
 export default function RegularSection() {
+  const { currentUser } = useAuth();
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+  
+    // Utiliza el currentUser del hook para subir el archivo
+    const key = await s3Upload(file, currentUser);
+  
+    if (key) {
+      console.log(`File uploaded successfully with key: ${key}`);
+    }
+  };
+  
   return (
     <div className="a-section-regular-2">
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">
           <div className="a-cta-grid-block">
             <div className="a-margin-bottom-35">
-              {/* Tu icono aquí */}
             </div>
             <div className="a-margin-bottom-34">
               <h6 className="a-h6-heading">Subir Archivo</h6>
@@ -22,6 +37,7 @@ export default function RegularSection() {
                 type="file"
                 id="file"
                 className="w-file-upload-input"
+                onChange={handleFileUpload}
               />
               <label htmlFor="file" className="w-file-upload-uploading-btn">
                 <svg height="20" width="20" fill="#FFC107">
@@ -35,7 +51,6 @@ export default function RegularSection() {
 
           <div className="a-cta-grid-block">
             <div className="a-margin-bottom-35">
-              {/* Tu icono aquí */}
             </div>
             <div className="a-margin-bottom-34">
               <h6 className="a-h6-heading">Subir Plantilla</h6>
@@ -50,6 +65,7 @@ export default function RegularSection() {
                 type="file"
                 id="template"
                 className="w-file-upload-input"
+                onChange={handleFileUpload}
               />
               <label htmlFor="template" className="w-file-upload-uploading-btn">
                 <svg height="20" width="20"fill="#FFC107">
