@@ -4,7 +4,9 @@ import FileUploadSection from '../components/FileUploadSection';
 import MyBlueComponent from '@/components/MyBlueComponent';
 import RegularSection from '@/components/RegularSection';
 import PdfViewer from '@/components/PdfViewer';
-import TextEditor from '@/components/TextEditor';
+// import TextEditor from '@/components/TextEditor';
+import TextEditor from '@/components/TextEditor2';
+// import TextEditor2 from '@/components/TextEditor2';
 
 export default function oli() {
   return (
