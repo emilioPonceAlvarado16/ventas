@@ -1,24 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { s3Upload } from '../utils/s3Upload'; // o '../hooks/s3Upload' según dónde lo coloques
+import { uploadFile } from '../services/fileService';
+import Loading from './Loading';
 
 export default function RegularSection() {
   const { currentUser } = useAuth();
+  const [isLoading1, setIsLoading1] = useState(false);
 
-  const handleFileUpload = async (e) => {
+  const handleFileUpload = async (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
+    setIsLoading1(true); 
+    try {
+      const response = await uploadFile(file);
+      console.log("File uploaded successfully:", response);
   
-    // Utiliza el currentUser del hook para subir el archivo
-    const key = await s3Upload(file, currentUser);
-  
-    if (key) {
-      console.log(`File uploaded successfully with key: ${key}`);
+      // Llama a la función upload del padre y pasa el archivo y el tipo
+      upload(file, type);
+    } catch (error) {
+      console.error("Error uploading the file:", error);
+    }finally {
+      setIsLoading1(false); // Terminar el estado de carga
     }
   };
   
   return (
     <div className="a-section-regular-2">
+     { 
+    isLoading1 &&   <Loading/>
+    }
+      
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">
           <div className="a-cta-grid-block">
@@ -40,11 +52,11 @@ export default function RegularSection() {
                 onChange={handleFileUpload}
               />
               <label htmlFor="file" className="w-file-upload-uploading-btn">
-                <svg height="20" width="20" fill="#FFC107">
+                <svg height="20" width="20" fill="white">
                   <path d="M0 0h24v24H0z" fill="none"/>
                   <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
                 </svg>
-                Seleccionar Archivo
+                {isLoading1 ? <div className="spin"></div> : 'Seleccionar Archivo'}
               </label>
             </div>
           </div>
@@ -68,7 +80,7 @@ export default function RegularSection() {
                 onChange={handleFileUpload}
               />
               <label htmlFor="template" className="w-file-upload-uploading-btn">
-                <svg height="20" width="20"fill="#FFC107">
+                <svg height="20" width="20"fill="white">
                   <path d="M0 0h24v24H0z" fill="none"/>
                   <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
                 </svg>
