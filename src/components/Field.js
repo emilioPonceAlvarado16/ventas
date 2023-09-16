@@ -1,14 +1,17 @@
 import React, { Fragment, useState } from "react";
 
 const Field = React.forwardRef((props, ref) => {
-  const type=props.type;
-  const value=props.value;
-  const size=props.size;
-  const deleteField=props.deleteField;
-  const index=props.index;
+  const type = props.type;
+  const value = props.value;
+  const size = props.size;
+  const deleteField = props.deleteField;
+  const index = props.index;
+  const setIsImageModalOpen = props.setIsImageModalOpen;
+
   const [isHovered, setIsHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newValue, setNewValue] = useState(value);
+
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -24,28 +27,29 @@ const Field = React.forwardRef((props, ref) => {
   };
 
   return (
-      <div
+    <div
       ref={ref}
-        {...props}
+      {...props}
 
+    >
+      <p
+        contentEditable={isEditing}
+        suppressContentEditableWarning={true}
+        style={sharedStyle}
+        // value={newValue}
+        onClick={() => { type === "im" ? setIsImageModalOpen(true) : null }}
       >
-        <p
-          contentEditable={isEditing}
-          suppressContentEditableWarning={true}
-          style={sharedStyle}
-          value={newValue}
-        >
-          {newValue}
-        </p>
-        <button
-          className="button is-small is-danger"
-          onClick={(event) => deleteField(
-            index, event
-          )}
-        >
-          x
-        </button>
-      </div>
+        {newValue} 
+      </p>
+      <button
+        className="button is-small is-danger"
+        onClick={(event) => deleteField(
+          index, event
+        )}
+      >
+        x
+      </button>
+    </div>
 
   );
 });

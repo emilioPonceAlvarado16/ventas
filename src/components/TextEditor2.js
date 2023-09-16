@@ -1,23 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-// import React, { useState, useEffect } from 'react';
-import ModalHeading from './modalHeading';
-import EditableElement from '@/components/EditableElement';
+import React, { useState } from 'react';
+// import EditableElement from '@/components/EditableElement';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Field from './Field';
 import FileSystem from './FileSystem';
+import Modal from './Modal';
+
 
 const TextEditor = (props) => {
 
-  const [editorObjects, setEditorObjects] = useState([])
   const [isCollapsed, setIsCollapsed] = useState(true);
-  useEffect(() => {
-    
-  setEditorObjects(props.fields)
-   
-  }, [props.fields])
-
-const [isModalVisible, setIsModalVisible] = useState(false);
-const [selectedImageName, setSelectedImageName] = useState('');
+  const editorObjects = props.editorObjects || []
+  const setEditorObjects= props.setEditorObjects
+  const assetList=props.assetList || []
+  const handleOpenModal =props.handleOpenModal || null
+  
 
 
 
@@ -54,9 +50,13 @@ return (
     <div style={{ display: 'flex', background: '#2c2c2c', height: '100vh', width: '50vw', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>
       {/* <div ref={lineNumberRef} style={{ width: '50px', lineHeight: lineHeightStyle, background: '#1a1a1a', padding: '10px 5px', color: '#b5b5b5', borderRight: '1px solid #aaa', overflowY: 'hidden' }}> */}
       {/* <div style={{ width: '50px', lineHeight: lineHeightStyle, background: '#080f25', padding: '10px 5px', color: '#b5b5b5', borderRight: '1px solid #aaa', overflowY: 'hidden' }}> */}
-      <div style={{ width: '50px', lineHeight: lineHeightStyle, padding: '10px 5px', color: '#b5b5b5', overflowY: 'hidden' }}>
-      </div>
-      <FileSystem isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+      {/* <div style={{ width: '50px', lineHeight: lineHeightStyle, padding: '10px 5px', color: '#b5b5b5', overflowY: 'hidden' }}>
+      </div> */}
+      <FileSystem isCollapsed={isCollapsed}
+      isImageModalOpen={props.isImageModalOpen} 
+      selectedImageName={props.selectedImageName}
+      setIsImageModalOpen={props.setIsImageModalOpen}
+       setIsCollapsed={setIsCollapsed} assetList={assetList}/>
 
       <Droppable droppableId="textEditor">
         {(Droppableprovided) => (
@@ -86,10 +86,12 @@ return (
                 {(Draggableprovided) => (
 
                   <Field
+                  
                     ref={Draggableprovided.innerRef}
                     {...Draggableprovided.draggableProps}
                     {...Draggableprovided.dragHandleProps}
                     id={obj.id}
+                    setIsImageModalOpen={props.setIsImageModalOpen}
                     type={obj.type}
                     name={obj.name}
                     value={obj.value}
@@ -103,11 +105,12 @@ return (
           </div>
         )}
       </Droppable>
-      {isModalVisible && (
-        <ModalHeading
+      {props.isImageModalOpen && (
+        <Modal
+        onClose={props.setIsImageModalOpen}
           title="Image Preview"
-          details={selectedImageName}
-          onConfirm={() => setIsModalVisible(false)}
+          details={props.selectedImageName}
+          imageUrl="./images/image1.png"
         />
       )}
     </div>

@@ -160,7 +160,9 @@ sub {
  * Remove border when inside `a` element in IE 8/9/10.
  */
 img {
+
   border: 0;
+  
 }
 /**
  * Correct overflow not hidden in IE 9/10/11.
@@ -1097,6 +1099,10 @@ textarea.w-select {
     left: auto;
     right: auto;
   }
+  .treeview-animated {
+    width: 17%; /* O cualquier valor que consideres adecuado */
+
+  }
 }
 @media screen and (max-width: 767px) {
   .a-section-regular-2{
@@ -1159,7 +1165,11 @@ textarea.w-select {
     width: 100%;
   }
 }
+
 @media screen and (max-width: 479px) {
+  .treeview-animated {
+    width: 100% !important; /* Toma el 50% del ancho en pantallas más grandes */
+  }
   .w-container {
     max-width: none;
   }
@@ -1595,7 +1605,10 @@ textarea.w-select {
 .w-dropdown-link:focus {
   outline: 0;
 }
+/* Media queries para pantallas más grandes */
+
 @media screen and (max-width: 767px) {
+ 
   .w-nav-brand {
     padding-left: 10px;
   }
@@ -1875,6 +1888,9 @@ textarea.w-select {
   overflow: hidden;
 }
 @media (min-width: 768px) {
+  .treeview-animated {
+    width: 19; /* Toma el 50% del ancho en pantallas más grandes */
+  }
   .w-lightbox-content {
     height: 96vh;
     margin-top: 2vh;
@@ -2240,6 +2256,7 @@ textarea.w-select {
   .w-tab-link {
     display: block;
   }
+
 }
 .w-ix-emptyfix:after {
   content: "";
@@ -2826,10 +2843,11 @@ textarea.w-select {
 }
 
 .f-alert-line {
-  height: 1px;
-  background-color: #f3f5fb;
+  /* height: 1px; */
+  /* background-color: #f3f5fb; */
   margin-top: 16px;
   margin-bottom: 16px;
+  border-top: 2px solid #000;
 }
 
 .f-paragraph-small-2 {
@@ -4704,7 +4722,6 @@ textarea.w-select {
   padding: 24px;
   box-shadow: 105px 105px 144px -32px rgba(27, 9, 67, .04);
   text-align: center;
-
 }
 
 
@@ -5286,27 +5303,29 @@ textarea.w-select {
   justify-content: center;  /* Centrar el modal horizontalmente */
   align-items: center;      /* Centrar el modal verticalmente */
   z-index: 1000;       /* Asegurar que la superposición esté por encima de otros contenidos */
+  
 }
-
+.f-modal-overlay img {
+  border: 2px solid #080f25;
+  border-radius: 3%;
+}
 
 /* Estilos para el contenedor general del árbol */
 .treeview-animated {
-	width: 9.5%;
+	/* width: 16.5%; */
 	/* width: 20vw%; */
-	border-right: 1px solid #9a68d0  !important;  /* Un borde más claro que el fondo morado oscuro */
+	border-right: 0.1px solid #9a68d0  !important;  /* Un borde más claro que el fondo morado oscuro */
 	padding: 1rem;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	height: 100em;
 	background-color: #080f25  !important; /* Fondo morado oscuro */
 	color: #ebe0f5; /* Letras en un tono claro para contraste */
-	
-	position: absolute; /* Posición absoluta */
-	top: 0;  /* Pegado a la parte superior
+	position: relative; /* Posición absoluta */
+	top: 0;  /* Pegado a la parte superior*/
 	left: 0; /* Pegado a la izquierda */
 	overflow-y: auto; /* Scroll vertical en caso de que haya muchos ítems */
 	transition: width 0.3s ease; /* Transición para el efecto de colapsar 	*/
-	
 	/* left: 0;	/*  Pegado a la derecha 	*/
 	right: auto; 	/* Anulando la propiedad anterior	 */
   }
@@ -5387,17 +5406,16 @@ textarea.w-select {
   .nested {
 	margin-top: 0.5rem;
 	list-style-type: none;
-	padding-left: 20px;  /* Esto es para la indentación de los children */
+	padding-left: 1px;  /* Esto es para la indentación de los children */
   }
-  @media (max-width: 768px) { /* Ajusta este valor según tus necesidades */
-    .treeview-animated {
-        min-width: 220px; /* O cualquier valor que consideres adecuado */
-    }
-}
+ 
   @media (max-width: 768px) { /* Ajusta este valor según tus necesidades */
     .treeview-animated.collapsed {
         min-width: 10px; /* O cualquier valor que consideres adecuado */
     }
+    .treeview-animated {
+      width: 19.5%; /* O cualquier valor que consideres adecuado */
+  }
 }
 /* FileUploadSection.css */
 
@@ -5428,7 +5446,8 @@ padding-top: 72px;
 padding-bottom: 72px;
 background-color: #080f25;
 padding: 20px;
-color:white
+color:white;
+/*border-bottom: 0.5px solid #9a68d0  !important;   Un borde más claro que el fondo morado oscuro */
 
 }
 .a-container-regular-2 {

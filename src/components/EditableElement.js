@@ -1,7 +1,14 @@
 import React, { useState ,Fragment} from 'react';
 
-const EditableElement = ({ type, id, name, value, onUpdate, size }) => {
-  const [isHovered, setIsHovered] = useState(false);
+// const EditableElement = ({ type, id, name, value, onUpdate, size }) => {
+  const EditableElement = React.forwardRef((props, ref) => {
+    const type=props.type || ""
+    const id=props.id || 0
+    const name=props.name || ""
+    const value= props.value
+    const onUpdate=props.onUpdate
+    const size =props.size
+    const [isHovered, setIsHovered] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [newValue, setNewValue] = useState(value);
 
@@ -26,42 +33,49 @@ const EditableElement = ({ type, id, name, value, onUpdate, size }) => {
     };
 
     return (
-      <Fragment>
-
+         
       <div 
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleClick}
-        contentEditable={true}
-        suppressContentEditableWarning={true}
+       ref={ref}  {...props}
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
+        // onClick={handleClick}
+        // contentEditable={true}
+        // suppressContentEditableWarning={true}
         
-        style={{ 
-          backgroundColor: isHovered ? '#444' : 'transparent',
-          cursor: 'pointer',
-          minHeight:size || "10vh"
-        }}
+        // style={{ 
+        //   backgroundColor: isHovered ? '#444' : 'transparent',
+        //   cursor: 'pointer',
+        //   minHeight:size || "10vh"
+        // }}
         >
         {type === 'pa' ? (
-          <textarea
-          readOnly={!isEditing}
-          value={newValue}
+          <p
+          contentEditable={isEditing}
+          suppressContentEditableWarning={true}
+          // readOnly={!isEditing}
+          // value={newValue}
           onChange={(e) => setNewValue(e.target.value)}
           // onBlur={handleUpdate}
           style={sharedStyle}
-          ></textarea>
+          > 
+          {newValue}
+        </p>
           ) : (
-            <input
+            <p
+            contentEditable={isEditing}
+          suppressContentEditableWarning={true}
             type="text"
             readOnly={!isEditing}
-            value={newValue}
+            // value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
             // onBlur={handleUpdate}
             style={sharedStyle}
-            />
+            >
+              {newValue}
+            </p>
             )}
       </div>
-            </Fragment>
     );
-};
+});
   
 export default EditableElement;

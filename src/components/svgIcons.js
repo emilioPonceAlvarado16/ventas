@@ -16,6 +16,25 @@ export default function SvgIcons({ type }) {
                     </div>
                 )
             break;
+        case 'folder':
+            svg = (
+                <div className="f-alert-icon w-embed">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+                        <path d="M10 4l2 2h10v14H2V4h8zm0 0H2v16h20V6H12L10 4z" />
+                    </svg>
+
+                </div>
+            );
+            break;
+        case 'image':
+            svg = (
+                <div className="f-alert-icon w-embed">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M2 2h20v20H2V2zm1 2v16h18V4H3zm10 12l4-5 4 5H7l4-4 2 2z" />
+                    </svg>
+                </div>
+            );
+            break;
         case 'error':
             svg = (
                 <div className="f-alert-icon w-embed">
