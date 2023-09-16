@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const Field = React.forwardRef((props, ref) => {
   const type = props.type;
@@ -6,8 +6,8 @@ const Field = React.forwardRef((props, ref) => {
   const size = props.size;
   const deleteField = props.deleteField;
   const index = props.index;
-  const setImageSelected=props.setImageSelected 
-  const url=props.url || ""
+  const setImageSelected = props.setImageSelected
+  const url = props.url || ""
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
@@ -28,9 +28,9 @@ const Field = React.forwardRef((props, ref) => {
     overflow: "auto",
     minHeight: size || "10vh",
   };
-  const handleShowImage=()=>{
+  const handleShowImage = () => {
     setIsImageModalOpen(true);
-    console.log("url es "+url)
+    console.log("url es " + url)
     setImageSelected(url);
   }
 
@@ -38,17 +38,24 @@ const Field = React.forwardRef((props, ref) => {
     <div
       ref={ref}
       {...props}
-
     >
-      
       <p
-        contentEditable={isEditing}
+        contentEditable={true}
         suppressContentEditableWarning={true}
-        style={sharedStyle}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ 
+          backgroundColor: isHovered ? '#444' : 'transparent',
+          cursor: 'pointer',
+          minHeight:size || "10vh"
+          
+        }}
         // value={newValue}
         onClick={() => { type === "im" ? handleShowImage() : null }}
-      >
-        {newValue} 
+     
+     
+     >
+        {newValue}
       </p>
       <button
         className="button is-small is-danger"
