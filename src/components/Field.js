@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, {  useState } from "react";
 
 const Field = React.forwardRef((props, ref) => {
   const type = props.type;
@@ -6,6 +6,9 @@ const Field = React.forwardRef((props, ref) => {
   const size = props.size;
   const deleteField = props.deleteField;
   const index = props.index;
+  const setImageSelected=props.setImageSelected 
+  const url=props.url || ""
+
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -25,6 +28,11 @@ const Field = React.forwardRef((props, ref) => {
     overflow: "auto",
     minHeight: size || "10vh",
   };
+  const handleShowImage=()=>{
+    setIsImageModalOpen(true);
+    console.log("url es "+url)
+    setImageSelected(url);
+  }
 
   return (
     <div
@@ -32,12 +40,13 @@ const Field = React.forwardRef((props, ref) => {
       {...props}
 
     >
+      
       <p
         contentEditable={isEditing}
         suppressContentEditableWarning={true}
         style={sharedStyle}
         // value={newValue}
-        onClick={() => { type === "im" ? setIsImageModalOpen(true) : null }}
+        onClick={() => { type === "im" ? handleShowImage() : null }}
       >
         {newValue} 
       </p>
