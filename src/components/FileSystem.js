@@ -11,7 +11,7 @@ const initialFolders = [
   },
 ];
 
-function Folder({ data, level = 0,  setIsImageModalOpen,isImageModalOpen}) {
+function Folder({ data, level = 0,  setImageSelected}) {
   const [isOpen, setIsOpen] = useState(true);
   const indentation = 9;
   const style = {
@@ -45,9 +45,12 @@ function Folder({ data, level = 0,  setIsImageModalOpen,isImageModalOpen}) {
     </li>
   );
 }
-export default function FileSystem({ isCollapsed, setIsCollapsed, assetList ,isImageModalOpen,selectedImageName,setIsImageModalOpen}) {
+export default function FileSystem({ isCollapsed, setIsCollapsed, assetList ,isImageModalOpen,setImageSelected,setIsImageModalOpen}) {
   const [folders, setFolders] = useState(initialFolders);
-
+  const handleShowImage = (url) => {
+    setIsImageModalOpen(true);
+    setImageSelected(url);
+  }
   useEffect(() => {
     if (!assetList) {
       return;
@@ -58,7 +61,8 @@ export default function FileSystem({ isCollapsed, setIsCollapsed, assetList ,isI
       name: item.name,
       type: item.type,  // Este es un ejemplo, ajusta según lo necesario
       icon: item.name.endsWith('.png') ? 'fa-file' : 'fa-folder',
-      onClick:()=>{item.type=="image"? setIsImageModalOpen(!isImageModalOpen) : null},
+      onClick:()=>{item.type=="image"? handleShowImage(item.url) : null},
+      url:item.url,
       children: []
     }));
 
@@ -89,7 +93,7 @@ export default function FileSystem({ isCollapsed, setIsCollapsed, assetList ,isI
       <h6 className="pt-3 pl-3" style={{ fontWeight: "bold" }}>/Root</h6>
       <ul className="treeview-animated-list mb-3">
         {folders.map((folder) => (
-          <Folder key={folder.name} data={folder} setIsImageModalOpen={setIsImageModalOpen} isImageModalOpen={isImageModalOpen} />
+          <Folder  key={folder.name} data={folder} setIsImageModalOpen={setIsImageModalOpen} isImageModalOpen={isImageModalOpen} />
         ))}
       </ul>
 

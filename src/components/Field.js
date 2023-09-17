@@ -30,7 +30,6 @@ const Field = React.forwardRef((props, ref) => {
   };
   const handleShowImage = () => {
     setIsImageModalOpen(true);
-    console.log("url es " + url)
     setImageSelected(url);
   }
 

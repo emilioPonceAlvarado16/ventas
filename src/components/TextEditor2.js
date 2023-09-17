@@ -44,13 +44,9 @@ const TextEditor = (props) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div style={{ display: 'flex', background: '#2c2c2c', height: '100vh', width: '50vw', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>
-        {/* <div ref={lineNumberRef} style={{ width: '50px', lineHeight: lineHeightStyle, background: '#1a1a1a', padding: '10px 5px', color: '#b5b5b5', borderRight: '1px solid #aaa', overflowY: 'hidden' }}> */}
-        {/* <div style={{ width: '50px', lineHeight: lineHeightStyle, background: '#080f25', padding: '10px 5px', color: '#b5b5b5', borderRight: '1px solid #aaa', overflowY: 'hidden' }}> */}
-        {/* <div style={{ width: '50px', lineHeight: lineHeightStyle, padding: '10px 5px', color: '#b5b5b5', overflowY: 'hidden' }}>
-      </div> */}
         <FileSystem isCollapsed={isCollapsed}
           isImageModalOpen={props.isImageModalOpen}
-          selectedImageName={props.selectedImageName}
+          setImageSelected={props.setImageSelected}
           setIsImageModalOpen={props.setIsImageModalOpen}
           setIsCollapsed={setIsCollapsed}
 
