@@ -79,11 +79,11 @@ const TextEditor = (props) => {
                   {(Draggableprovided) => (
 
                     <Field
-
                       ref={Draggableprovided.innerRef}
                       {...Draggableprovided.draggableProps}
                       {...Draggableprovided.dragHandleProps}
                       id={obj.id}
+                      updateField={props.updateField || null}
                       setIsImageModalOpen={props.setIsImageModalOpen}
                       setImageSelected={props.setImageSelected}
                       imageSelected={props.imageSelected}
@@ -91,6 +91,8 @@ const TextEditor = (props) => {
                       name={obj.name}
                       value={obj.value}
                       url={obj.url}
+                      index={index}
+                      removeField={props.removeField || null}
                     // onUpdate={handleUpdate}
                     />
                   )}

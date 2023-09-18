@@ -681,6 +681,7 @@ ol {
   padding-left: 0;
   list-style: none;
 }
+
 .w-embed:before,
 .w-embed:after {
   content: " ";
@@ -2369,14 +2370,14 @@ textarea.w-select {
 }
 
 .f-alert-icon {
-  width: 23px;
-  height: 23px;
+  width: 21px;
+  height: 21px;
   justify-content: center;
   align-items: center;
   display: flex;
   
-  
 }
+
 
 .f-alert-success {
   width: 40px;
@@ -4581,7 +4582,13 @@ textarea.w-select {
   align-items: center;
   display: flex;
 }
+.field{
+  background-color:transparent
+}
+.field:hover{
+  background-color:#444
 
+}
 .f-modal-icon-success {
   width: 50px;
   height: 50px;
@@ -4740,6 +4747,20 @@ textarea.w-select {
   grid-auto-columns: 1fr;
   align-items: center;
   display: flex;
+}
+
+.f-modal-entering,
+.f-modal-exiting,
+.f-modal-exited {
+  opacity: 0;
+  transform: translateY(-10%);
+  display: flex;
+}
+
+.f-modal-entered {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-in-out, transform 300ms ease-in-out;
 }
 
 .f-modal-form-card {
@@ -5417,29 +5438,8 @@ textarea.w-select {
       width: 19.5%; /* O cualquier valor que consideres adecuado */
   }
 }
-/* FileUploadSection.css */
 
-.upload-container {
-  background-color: #e6f7ff; /* Azul claro */
-}
 
-.upload-col {
-  border-right: 1px solid #ccc; /* Línea sólida entre columnas */
-  padding: 20px;
-  text-align: center; /* Centrar contenido */
-}
-
-.upload-col:last-child {
-  border-right: none;
-}
-
-.upload-heading {
-  margin-bottom: 20px;
-}
-
-.upload-icon-container {
-  display: inline-block;
-}
 
 .a-section-regular-2 {
 padding-top: 72px;
@@ -5486,39 +5486,35 @@ color:white;
   display: flex;
 }
 
-.upload-col {
-  text-align: center;
-  font-size: 18px;
-  flex: 5;
-  padding: 20px;
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-.upload-col:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
 .separator {
   flex: 1;
   text-align: center;
 }
 
-.shining-line {
-  height: 100%;
+
+.rounded-green-bg {
+  border-radius: 50%;
+  background-color: #080f25; /* Darker green */
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-in-out; /* Transition for hover effect */
+  opacity: 1; /* Full opacity by default */
 }
 
-.upload-heading {
-  margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 24px;
+.rounded-green-bg:hover {
+  transform: scale(1.2); /* Make it a bit bigger on hover */
 }
 
-.upload-icon-container {
-  display: inline-block;
+.rounded-green-bg.disabled, .yellow-fill.disabled {
+  opacity: 0.4; /* Reduced opacity for disabled state */
 }
 
-.material-icons {
-  font-size: 36px;
+.yellow-fill {
+  fill: #FFC107; /* Golden yellow */
+  transition: opacity 0.1s ease-in-out; /* Transition for disabled effect */
 }
+
 

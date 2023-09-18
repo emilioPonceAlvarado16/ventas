@@ -1,23 +1,24 @@
 import React, { useState } from "react";
+import SvgIcons from "./svgIcons";
+
 
 const Field = React.forwardRef((props, ref) => {
+
   const type = props.type;
+  const removeField = props.removeField;
   const value = props.value;
   const size = props.size;
-  const deleteField = props.deleteField;
   const index = props.index;
   const setImageSelected = props.setImageSelected
   const url = props.url || ""
+  const updateField = props.updateField || null
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
-  const [isHovered, setIsHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newValue, setNewValue] = useState(value);
 
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
   const handleClick = () => setIsEditing(true);
 
   const sharedStyle = {
@@ -32,38 +33,71 @@ const Field = React.forwardRef((props, ref) => {
     setIsImageModalOpen(true);
     setImageSelected(url);
   }
+  const pRef = React.useRef(null); // Añadir un ref para el elemento <p>
+
+  const handleChange = (event) => {
+    const newText = event.target.innerText;
+
+    if (updateField) {
+      updateField(index, { "value": newText });
+    }
+
+    // Mantener el cursor en su posición original
+    const range = document.createRange();
+    const sel = window.getSelection();
+
+    // Calcular la nueva posición del cursor
+    const cursorPosition = sel.anchorOffset;
+
+    if (pRef.current) {
+      let nodeToSet = pRef.current;
+      let positionToSet = cursorPosition;
+
+      // Si hay un nodo hijo, actualizar el nodo y la posición
+      if (pRef.current.childNodes[0]) {
+        nodeToSet = pRef.current.childNodes[0];
+
+        // Asegurarse de que la posición del cursor es válida
+        positionToSet = Math.min(cursorPosition, nodeToSet.length);
+      }
+
+      range.setStart(nodeToSet, positionToSet);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  };
+
 
   return (
     <div
       ref={ref}
       {...props}
+
+      className="field"
     >
       <p
-        contentEditable={true}
+        ref={pRef}
+
+        contentEditable={type === "im" ? false : true}
         suppressContentEditableWarning={true}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{ 
-          backgroundColor: isHovered ? '#444' : 'transparent',
+
+        onInput={handleChange}
+        style={{
           cursor: 'pointer',
-          minHeight:size || "10vh"
-          
+          minHeight: size || "3vh"
+
         }}
         // value={newValue}
         onClick={() => { type === "im" ? handleShowImage() : null }}
-     
-     
-     >
+
+
+      >
         {newValue}
       </p>
-      <button
-        className="button is-small is-danger"
-        onClick={(event) => deleteField(
-          index, event
-        )}
-      >
-        x
-      </button>
+      <div style={{ width: "1.7vw" }}>
+        <SvgIcons onClick={() => removeField(index)} type="trash" />
+      </div>
     </div>
 
   );
