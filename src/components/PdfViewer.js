@@ -73,7 +73,7 @@ function PdfViewer({ url }) {
                 style={{ 
                     // width: `${widthPercentage}%`, 
                     width: "100%", 
-                    height: '100vh', 
+                    height: 'calc(100vh - 17px)', 
                     overflowY: 'auto', 
                     overflowX: 'hidden', 
                     margin: '0 auto 0 0'

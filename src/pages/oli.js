@@ -19,10 +19,9 @@ export default function oli() {
 
   return (
     <div>
-      {JSON.stringify(Fields)}
-      <SvgIcons type="lightning"/>
+      {/* {JSON.stringify(Fields)} */}
       <RegularSection setFields={setFields} Fields={Fields} setassetList={setassetList} />
-      <div style={{ display: 'flex', height: '100vh', width: '100vw' }}>
+      <div style={{ display: 'flex', height: '100vh', width: '100vw', position:"relative" }}>
         <TextEditor setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
@@ -33,11 +32,16 @@ export default function oli() {
           removeField={removeField}
           updateField={updateField}
         />
-        <div style={{ flex: 4, width: '80%' }}>
-          <div style={{ padding: '17px', backgroundColor: '#f1f1f1' }}>
+         <div className='process_icon'>
+          <SvgIcons type="lightning"/>
+        </div>
+        <div style={{ flex: 4, width: '50vw' }}>
+          <div style={{ padding: '17px', paddingBottom:"0px",backgroundColor: '#f1f1f1' }}>
             <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" />
           </div>
         </div>
+        {/* <div style={{ position: 'absolute', top: '30vh', left: '50vw', transform: 'translateX(-50%)', zIndex: 1000 }}> */}
+       
       </div>
     </div>
   );
