@@ -5860,18 +5860,12 @@ textarea.w-select {
   display: flex;
 }
 
-.separator {
-  flex: 1;
-  text-align: center;
-}
-
-
 .rounded-green-bg {
   border-radius: 50%;
   background-color: #080f25;
   /* Darker green */
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -5881,9 +5875,17 @@ textarea.w-select {
   /* Full opacity by default */
 }
 
+
 .process_icon {
   position: absolute;
-  top: 5%;
+  top: 2%;
+  right: 50vw;
+  transform: translateX(50%);
+  z-index: 1000;
+}
+.process_icon-2 {
+  position: absolute;
+  top: 8%;
   right: 50vw;
   transform: translateX(50%);
   z-index: 1000;
@@ -5896,11 +5898,63 @@ textarea.w-select {
 
 .rounded-green-bg.disabled,
 .yellow-fill.disabled {
-  opacity: 0.4;
+  opacity: 0.6;
   /* Reduced opacity for disabled state */
 }
 
 .yellow-fill {
   fill: #FFC107;
   transition: opacity 0.1s ease-in-out;
+}
+
+.rounded-keyboard-bg {
+  border-radius: 50%;
+  background-color: #080f25;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease-in-out;
+}
+
+.keyboard-fill {
+  fill: #ffffff; /* Color blanco para el SVG */
+  transition: opacity 0.1s ease-in-out;
+}
+
+.rounded-keyboard-bg:hover {
+  transform: scale(1.2);
+}
+.rounded-keyboard-bg.disabled,
+.keyboard-fill.disabled {
+  opacity: 0.6;
+  /* Reduced opacity for disabled state */
+}
+
+
+
+.tooltip .tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  bottom: 125%; /* Posición del tooltip */
+  left: 50%;
+  margin-left: -30px;
+  z-index: 1001; /* por encima del SVG */
+  opacity: 0;
+  transition: opacity 0.3s;
+  transition-delay: 0s; /* inicialmente sin retraso */
+
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.8s; /* retraso de 0.8 segundos */
+
 }

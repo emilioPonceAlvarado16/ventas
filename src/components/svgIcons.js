@@ -1,8 +1,9 @@
 import React from 'react';
 
-  
+
 export default function SvgIcons(props) {
     const type = props.type;
+    const disabled=props.disabled || false
     let svg;
 
     switch (type) {
@@ -98,16 +99,26 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
+        case 'keyboard':
+            svg = (
+                <div className={`rounded-keyboard-bg ${disabled ? 'disabled' : ''}`}>
+                    <svg viewBox="0 0 24 24" width="22" height="22" className={`keyboard-fill ${disabled ? 'disabled' : ''}`}>
+                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2zm-9 12H4v-2h7v2zm0-4H4v-2h7v2zm0-4H4V6h7v2zm9 8h-7v-2h7v2zm0-4h-7v-2h7v2zm0-4h-7V6h7v2z"></path>
+                    </svg>
+                </div>
+            );
+            break;
+     
         case 'lightning':
             svg = (
-                <div  className="rounded-green-bg">
-                    <svg viewBox="0 0 24 24" width="20" height="20" className="yellow-fill">
+                <div className={`rounded-green-bg ${disabled ? 'disabled' : ''}`}>
+                    <svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
                         <path d="M7 2v11h3v9l7-12h-4l4-8z"></path>
                     </svg>
                 </div>
             );
             break;
-
+       
         default:
             svg = (
                 <div className="f-alert-icon w-embed">
