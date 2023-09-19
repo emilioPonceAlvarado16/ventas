@@ -6,7 +6,6 @@ import useFields from '@/hooks/useFields';
 import SvgIcons from '@/components/svgIcons';
 
 export default function oli() {
-  const [assetList, setassetList] = useState([]);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState("");
 
@@ -14,13 +13,13 @@ export default function oli() {
     fields: Fields,
     setFields,
     removeField,
-    updateField
+    updateField,
+    assetList, 
   } = useFields([]);
 
   return (
     <div>
-      {/* {JSON.stringify(Fields)} */}
-      <RegularSection setFields={setFields} Fields={Fields} setassetList={setassetList} />
+      <RegularSection setFields={setFields} Fields={Fields}  />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
         <TextEditor setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
@@ -49,10 +48,10 @@ export default function oli() {
         }
         <div style={{ flex: 4, width: '50vw' }}>
           <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-            <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" />
+            {/* <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" /> */}
+            <PdfViewer url="./nuevo.pdf" />
           </div>
         </div>
-        {/* <div style={{ position: 'absolute', top: '30vh', left: '50vw', transform: 'translateX(-50%)', zIndex: 1000 }}> */}
 
       </div>
     </div>

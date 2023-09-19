@@ -4,7 +4,6 @@ import Loading from './Loading';
 
 export default function RegularSection(props) {
   const [isLoading1, setIsLoading1] = useState(false);
-  const Fields = props.Fields || []
 
   const handleFileUpload = async (e, type) => {
     const file = e.target.files[0];
@@ -16,9 +15,7 @@ export default function RegularSection(props) {
       if (props.setFields) {
         props.setFields(response.body[0]);
       }
-      if (props.setassetList) {
-        props.setassetList(response.body[1])
-      }
+    
 
       // Llama a la función upload del padre y pasa el archivo y el tipo
       // upload(file, type);
@@ -34,7 +31,7 @@ export default function RegularSection(props) {
       {
         isLoading1 && <Loading />
       }
-
+      {JSON.stringify()}
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">
           <div className="a-cta-grid-block">

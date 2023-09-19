@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import EditableElement from '@/components/EditableElement';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Field from './Field';
 import FileSystem from './FileSystem';
@@ -12,7 +11,6 @@ const TextEditor = (props) => {
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
   const assetList = props.assetList || []
-  const handleOpenModal = props.handleOpenModal || null
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -35,9 +33,6 @@ const TextEditor = (props) => {
     setEditorObjects(newEditorObjects);
   };
 
-
-
-
   const lineHeightStyle = '20px';
 
 
@@ -54,14 +49,8 @@ const TextEditor = (props) => {
         <Droppable droppableId="textEditor">
           {(Droppableprovided) => (
             <div
-              // ref={editorRef}
               ref={Droppableprovided.innerRef}
               {...Droppableprovided.droppableProps}
-              // contentEditable={true}
-              // onInput={handleContentChange}
-              // onKeyDown={handleKeyDown}
-              // onDragOver={(e) => e.preventDefault()}
-              // onClick={handleEditorClick}
               style={{
                 padding: '10px',
                 overflowY: 'auto',
@@ -93,7 +82,6 @@ const TextEditor = (props) => {
                       url={obj.url}
                       index={index}
                       removeField={props.removeField || null}
-                    // onUpdate={handleUpdate}
                     />
                   )}
                 </Draggable>

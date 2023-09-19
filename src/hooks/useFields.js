@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 
 const ADD_FIELD = 'ADD_FIELD';
 const REMOVE_FIELD = 'REMOVE_FIELD';
@@ -18,7 +18,8 @@ const fieldReducer = (state, action) => {
           return { ...field, ...action.payload };
         }
         return field;
-      });    case CHANGE_FIELD_TYPE:
+      });
+    case CHANGE_FIELD_TYPE:
       return state.map((field, index) => index === action.index ? { ...field, type: action.payload } : field);
     case SET_FIELDS:
       return action.payload;
@@ -29,17 +30,33 @@ const fieldReducer = (state, action) => {
 
 const useFields = (initialFields = []) => {
   const [fields, dispatch] = useReducer(fieldReducer, initialFields);
+  const [assetList, setAssetList] = useState([]); // Nuevo estado para la lista de activos
+
+  const handleAssetList = (type, fieldData) => { // Nueva función para manejar la lista de activos
+    if (type === "im") {
+      setAssetList((prevList) => {
+        // Lógica para añadir o actualizar el assetList
+        return [...prevList, fieldData];
+      });
+    }
+  };
 
   const addField = (field) => {
     dispatch({ type: ADD_FIELD, payload: field });
+    handleAssetList(field.type, field);
   };
 
   const removeField = (index) => {
+    const fieldToRemove = fields[index];
     dispatch({ type: REMOVE_FIELD, payload: index });
+    if (fieldToRemove?.type === "im") {
+      setAssetList((prevList) => prevList.filter((item) => item !== fieldToRemove));
+    }
   };
 
   const updateField = (index, updatedField) => {
     dispatch({ type: UPDATE_FIELD, index, payload: updatedField });
+    handleAssetList(updatedField.type, updatedField);
   };
 
   const changeFieldType = (index, newType) => {
@@ -48,10 +65,14 @@ const useFields = (initialFields = []) => {
 
   const setFields = (newFields) => {
     dispatch({ type: SET_FIELDS, payload: newFields });
+    // Aquí deberías manejar también el assetList si es necesario
+    const newAssetList = newFields.filter((field) => field.type === "im");
+    setAssetList(newAssetList);
   };
 
   return {
     fields,
+    assetList,  // Asegúrate de retornar assetList aquí
     addField,
     removeField,
     updateField,
