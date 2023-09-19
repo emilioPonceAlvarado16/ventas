@@ -4,22 +4,30 @@ import PdfViewer from '@/components/PdfViewer';
 import TextEditor from '@/components/TextEditor2';
 import useFields from '@/hooks/useFields';
 import SvgIcons from '@/components/svgIcons';
+import Prompt from '@/components/Prompt';
+
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState("");
-
+  const [isPromptOpen, setisPromptOpen] = useState(false)
+  const ClosePrompt=()=>{
+    setisPromptOpen(false)
+  }
   const {
     fields: Fields,
     setFields,
     removeField,
     updateField,
-    assetList, 
+    assetList,
   } = useFields([]);
 
   return (
+      
     <div>
-      <RegularSection setFields={setFields} Fields={Fields}  />
+      <RegularSection 
+      isPromptOpen={isPromptOpen} onClose={ClosePrompt}
+      setFields={setFields} Fields={Fields} />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
         <TextEditor setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
@@ -32,17 +40,17 @@ export default function oli() {
           updateField={updateField}
         />
         {
-          !isImageModalOpen &&(
+          !isImageModalOpen && (
             <>
-            <div className='process_icon tooltip'>
-               <SvgIcons type="lightning"/>
-               <span className="tooltip-text">Compilar</span>
+              <div className='process_icon tooltip'>
+                <SvgIcons type="lightning" />
+                <span className="tooltip-text">Compilar</span>
 
-            </div>
-            <div className='process_icon-2 tooltip'>
-              <SvgIcons type="keyboard"/>
-              <span className="tooltip-text">Prompt</span>
-            </div>
+              </div>
+              <div className='process_icon-2 tooltip'>
+                <SvgIcons onClick={()=>setisPromptOpen(true)} type="keyboard" />
+                <span className="tooltip-text">Prompt</span>
+              </div>
             </>
           )
         }
@@ -54,6 +62,10 @@ export default function oli() {
         </div>
 
       </div>
+      <div >
+      { isPromptOpen && <Prompt onClose={ClosePrompt} />}
+        
+        </div>
     </div>
-  );
+      );
 }

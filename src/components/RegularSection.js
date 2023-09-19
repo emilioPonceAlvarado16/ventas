@@ -4,7 +4,7 @@ import Loading from './Loading';
 
 export default function RegularSection(props) {
   const [isLoading1, setIsLoading1] = useState(false);
-
+  
   const handleFileUpload = async (e, type) => {
     const file = e.target.files[0];
     if (!file) return;

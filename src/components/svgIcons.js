@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function SvgIcons(props) {
     const type = props.type;
-    const disabled=props.disabled || false
+    const disabled = props.disabled || false
     let svg;
 
     switch (type) {
@@ -99,6 +99,17 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
+            case 'send':
+                svg = (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="white"></path>
+                    </svg>
+                );
+                break;
+            
+
+
+
         case 'keyboard':
             svg = (
                 <div className={`rounded-keyboard-bg ${disabled ? 'disabled' : ''}`}>
@@ -108,7 +119,7 @@ export default function SvgIcons(props) {
                 </div>
             );
             break;
-     
+
         case 'lightning':
             svg = (
                 <div className={`rounded-green-bg ${disabled ? 'disabled' : ''}`}>
@@ -118,7 +129,7 @@ export default function SvgIcons(props) {
                 </div>
             );
             break;
-       
+
         default:
             svg = (
                 <div className="f-alert-icon w-embed">

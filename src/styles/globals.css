@@ -4144,7 +4144,7 @@ textarea.w-select {
   height: 32px;
   min-height: 32px;
   min-width: 32px;
-  background-color: #f3f5fd;
+  background-color: rgb(85, 85, 85);
   border-radius: 100px;
   justify-content: center;
   align-items: center;
