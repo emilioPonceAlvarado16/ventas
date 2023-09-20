@@ -67,9 +67,8 @@ const styles = {
 };
 
 export default function Chat(props) {
-  // const [messages, setMessages] = useState([]);
-  const { messages, setMessages } = useChat();
-  const [newMessage, setNewMessage] = useState('');
+  const { messages, setMessages, newMessage, setNewMessage } = useChat();  // <-- Aquí obtienes newMessage y setNewMessage
+  // const [newMessage, setNewMessage] = useState('');
   const messageRef = useRef(null);
 
 

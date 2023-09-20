@@ -4,9 +4,10 @@ const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');  // <-- Nuevo estado
 
     return (
-        <ChatContext.Provider value={{ messages, setMessages }}>
+        <ChatContext.Provider value={{ messages, setMessages, newMessage, setNewMessage }}>
             {children}
         </ChatContext.Provider>
     );
