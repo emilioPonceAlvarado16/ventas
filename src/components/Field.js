@@ -29,6 +29,14 @@ const Field = React.forwardRef((props, ref) => {
     overflow: "auto",
     minHeight: size || "10vh",
   };
+  const handleSelectChange = (event) => {
+    const newType = event.target.value;
+
+    // Aquí puedes usar la función updateField para actualizar el tipo
+    if (updateField) {
+      updateField(index, { type: newType });
+    }
+  };
   const handleShowImage = () => {
     setIsImageModalOpen(true);
     setImageSelected(url);
@@ -67,7 +75,13 @@ const Field = React.forwardRef((props, ref) => {
       sel.addRange(range);
     }
   };
-
+  const typeColors = {
+    ti: 'orchid',
+    un: 'royalblue',
+    pa: 'mediumseagreen',
+    im: 'darkorange',
+  };
+  
 
   return (
     <div
@@ -90,14 +104,30 @@ const Field = React.forwardRef((props, ref) => {
         }}
         // value={newValue}
         onClick={() => { type === "im" ? handleShowImage() : null }}
-
-
       >
         {newValue}
       </p>
-      <div style={{ width: "1.7vw" }}>
+      {/* <div style={{ width: "1.7vw" }}> */}
+      <div style={{ display: "flex", alignItems: "center" }}>
         <SvgIcons onClick={() => removeField(index)} type="trash" />
-      </div>
+      {type!=="im" && props.showFieldType  &&  <select 
+            value={type} 
+            onChange={handleSelectChange} 
+            style={{ 
+                marginLeft: '5px', 
+                backgroundColor: '#2c2c2c',
+                color: typeColors[type] || 'white', // establece el color basado en el tipo seleccionado
+                borderColor: '#2c2c2c',
+                borderBottom: ".1px solid white",
+                fontSize:"15px"
+            }}
+        >
+            <option value="ti" style={{ color: typeColors['ti'] }}>Title</option>
+            <option value="un" style={{ color: typeColors['un'] }}>Unknown</option>
+            <option value="pa" style={{ color: typeColors['pa'] }}>Paragraph</option>
+        </select>}
+    </div>
+
     </div>
 
   );

@@ -68,19 +68,28 @@ export default function SvgIcons(props) {
             )
             break;
         case 'eyeIcon':
+            const isTool = props.isTool || false
             svg =
                 (
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
-                    </svg>
+                    <div className={`${isTool ? 'rounded-keyboard-bg' : ''}`}>
+                        <svg width="21" height="21" viewBox="0 0 24 24">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" fill={`${isTool ? 'white' : ''}`}/>
+                        </svg>
+
+                    </div>
                 );
             break;
         case 'eyeOffIcon':
+            const isTool2 = props.isTool || false
             svg = (
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
-                    <path d="M2 2l20 20" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>)
+                <div className={`${isTool2 ? 'rounded-keyboard-bg'+`${disabled ? ' disabled' : ''}` : ''}`}>
+
+                    <svg width="21" height="21" viewBox="0 0 24 24">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"  fill={`${isTool2 ? 'white' : ''}`}/>
+                        <path d="M2 2l20 20" stroke="#000" strokeLinecap="round" strokeLinejoin="round"  fill={`${isTool2 ? 'white' : ''}`} />
+                    </svg>
+                </div>
+            )
             break;
         case 'angleRight':
             svg =
@@ -99,14 +108,15 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
-            case 'send':
-                svg = (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="white"></path>
-                    </svg>
-                );
-                break;
-            
+        case 'send':
+            svg = (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="white"></path>
+                    {/* <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="#ffc107"></path> */}
+                </svg>
+            );
+            break;
+
 
 
 

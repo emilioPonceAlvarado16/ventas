@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Avatar from './avatarName';
 import SvgIcons from './svgIcons';
+import { useChat } from '@/contexts/ChatContext';
+
 
 const styles = {
     chatContainer: {
@@ -59,15 +61,17 @@ const styles = {
         width: '30px',
         height: '30px',
         borderRadius: '50%',
-        marginRight: '10px'
+        marginRight: '10px',
       
   }
 };
 
 export default function Chat(props) {
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
+  const { messages, setMessages } = useChat();
   const [newMessage, setNewMessage] = useState('');
   const messageRef = useRef(null);
+
 
   useEffect(() => {
     if (messageRef.current) {
@@ -80,6 +84,7 @@ export default function Chat(props) {
     setMessages([...messages, { text: newMessage, sender: 'you' }]);
     setNewMessage('');
   };
+
 
   return (
     <div style={styles.chatContainer} {...props}>
@@ -104,11 +109,8 @@ export default function Chat(props) {
           onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
         />
 
-        {/* <SvgIcons type="send"/> */}
         <button style={styles.sendButton} onClick={sendMessage}>
-          {/* <i className="fa fa-paper-plane"></i> */}
           <SvgIcons type="send"/>
-
         </button>
       </div>
     </div>

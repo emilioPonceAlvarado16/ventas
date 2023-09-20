@@ -5890,6 +5890,13 @@ textarea.w-select {
   transform: translateX(50%);
   z-index: 1000;
 }
+.process_icon-3 {
+  position: absolute;
+  top: 14%;
+  right: 50vw;
+  transform: translateX(50%);
+  z-index: 1000;
+}
 
 .rounded-green-bg:hover {
   transform: scale(1.2);

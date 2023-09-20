@@ -82,6 +82,7 @@ const TextEditor = (props) => {
                       url={obj.url}
                       index={index}
                       removeField={props.removeField || null}
+                      showFieldType={props.showFieldType || false}
                     />
                   )}
                 </Draggable>

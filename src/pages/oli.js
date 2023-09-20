@@ -5,13 +5,21 @@ import TextEditor from '@/components/TextEditor2';
 import useFields from '@/hooks/useFields';
 import SvgIcons from '@/components/svgIcons';
 import Prompt from '@/components/Prompt';
+import dynamic from 'next/dynamic';
+import { ChatProvider } from '@/contexts/ChatContext';
 
+// const DynamicChatProvider = dynamic(
+//   () => import('@/contexts/ChatContext').then(mod => mod.ChatProvider),
+//   { loading: () => <p>Loading...</p>, ssr: false }
+// );
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState("");
-  const [isPromptOpen, setisPromptOpen] = useState(false)
-  const ClosePrompt=()=>{
+  const [isPromptOpen, setisPromptOpen] = useState(false);
+  const [showFieldType, setshowFieldType] = useState(false);
+
+  const ClosePrompt = () => {
     setisPromptOpen(false)
   }
   const {
@@ -23,11 +31,12 @@ export default function oli() {
   } = useFields([]);
 
   return (
-      
+
     <div>
-      <RegularSection 
-      isPromptOpen={isPromptOpen} onClose={ClosePrompt}
-      setFields={setFields} Fields={Fields} />
+      {/* {JSON.stringify(Fields)} */}
+      <RegularSection
+        isPromptOpen={isPromptOpen} onClose={ClosePrompt}
+        setFields={setFields} Fields={Fields} />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
         <TextEditor setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
@@ -38,7 +47,9 @@ export default function oli() {
           imageSelected={imageSelected}
           removeField={removeField}
           updateField={updateField}
+          showFieldType={showFieldType}
         />
+
         {
           !isImageModalOpen && (
             <>
@@ -48,9 +59,19 @@ export default function oli() {
 
               </div>
               <div className='process_icon-2 tooltip'>
-                <SvgIcons onClick={()=>setisPromptOpen(true)} type="keyboard" />
+                <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
                 <span className="tooltip-text">Prompt</span>
               </div>
+              <div className='process_icon-3 tooltip'>
+                <SvgIcons
+                  onClick={() => setshowFieldType(!showFieldType)}
+                  type={`${Fields && Fields[0] === undefined ? 'eyeOffIcon' : (showFieldType ? 'eyeIcon' : 'eyeOffIcon')}`}
+                  isTool={true}
+                  disabled={Fields && Fields[0] === undefined}
+                />
+                <span className="tooltip-text">Mostrar</span>
+              </div>
+
             </>
           )
         }
@@ -63,9 +84,14 @@ export default function oli() {
 
       </div>
       <div >
-      { isPromptOpen && <Prompt onClose={ClosePrompt} />}
-        
-        </div>
+        {/* <DynamicChatProvider> */}
+        <ChatProvider>
+
+          {isPromptOpen && <Prompt onClose={ClosePrompt} />}
+        {/* </DynamicChatProvider> */}
+        </ChatProvider>
+
+      </div>
     </div>
-      );
+  );
 }
