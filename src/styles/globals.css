@@ -5091,7 +5091,8 @@ textarea.w-select {
   border-radius: 16px;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
+  align-items: flex-start;
   padding: 24px;
   display: block;
   box-shadow: 105px 105px 144px -32px rgba(27, 9, 67, .04);
@@ -5964,4 +5965,101 @@ textarea.w-select {
   opacity: 1;
   transition-delay: 0.8s; /* retraso de 0.8 segundos */
 
+}
+
+/* Listado de templates */
+.modal {
+  position: fixed !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+  /* color:white !important */
+}
+
+.modal-content {
+  display: flex;
+  width: 80%;
+  height: 70%;
+  background-color: #fff; /* fondo blanco para resaltar el contenido */
+  /* background-color: #2c2c2c; fondo blanco para resaltar el contenido */
+  /* background-color: #080f25; fondo blanco para resaltar el contenido */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* sombra para darle profundidad */
+  border-radius: 8px; /* bordes redondeados */
+}
+
+.category-list {
+  width: 30%;
+  padding: 20px;
+  overflow-y: auto;
+  border-right: 1px solid #e0e0e0; /* borde claro */
+  background-color: #f9f9f9; /* fondo ligeramente gris para diferenciar las secciones */
+  background-color: #080f25; /* fondo ligeramente gris para diferenciar las secciones */
+
+}
+
+.category-list div {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0; /* borde claro */
+  color: #333; /* texto oscuro para mejor contraste */
+  color: white; /* texto oscuro para mejor contraste */
+  font-weight: bold;
+}
+
+.category-list div:hover {
+  background-color: #e0e0e0; /* resaltado al pasar el cursor */
+  background-color: #FFC107; /* resaltado al pasar el cursor */
+  color:#080f25;
+}
+
+.template-list {
+  width: 70%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-content input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0; /* borde claro */
+  border-radius: 4px; /* bordes redondeados */
+}
+
+.template-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.template-item {
+  /* width: calc(33.3333% - 20px); */
+  border: 1px solid #e0e0e0; /* borde claro */
+  padding: 10px;
+  text-align: center;
+  background-color: #fff; /* fondo blanco */
+  border-radius: 4px; /* bordes redondeados */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* sombra para darle profundidad */
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; /* transición suave */
+  width: 200px; /* ancho específico de la plantilla */
+  height: 200px; /* alto específico de la plantilla */
+
+}
+
+.template-item:hover {
+  transform: translateY(-5px); /* efecto de levitación al pasar el cursor */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* sombra más pronunciada al pasar el cursor */
+}
+
+template-item img {
+  width: 100%; /* ocupar el 100% del ancho del contenedor */
+  height: 100%; /* ocupar el 100% del alto del contenedor */
+  object-fit: cover; /* mantener la proporción, recortar si es necesario */
+  border-radius: 4px; /* bordes redondeados */
 }

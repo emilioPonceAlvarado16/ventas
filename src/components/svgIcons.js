@@ -112,7 +112,6 @@ export default function SvgIcons(props) {
             svg = (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="white"></path>
-                    {/* <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="#ffc107"></path> */}
                 </svg>
             );
             break;

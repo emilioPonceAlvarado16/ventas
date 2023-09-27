@@ -5,22 +5,26 @@ import TextEditor from '@/components/TextEditor2';
 import useFields from '@/hooks/useFields';
 import SvgIcons from '@/components/svgIcons';
 import Prompt from '@/components/Prompt';
+import TemplateModal from '@/components/TemplateModal';
 import dynamic from 'next/dynamic';
 import { ChatProvider } from '@/contexts/ChatContext';
 
-// const DynamicChatProvider = dynamic(
-//   () => import('@/contexts/ChatContext').then(mod => mod.ChatProvider),
-//   { loading: () => <p>Loading...</p>, ssr: false }
-// );
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState("");
   const [isPromptOpen, setisPromptOpen] = useState(false);
   const [showFieldType, setshowFieldType] = useState(false);
+  const [showTemplates, setshowTemplates] = useState(false)
 
   const ClosePrompt = () => {
     setisPromptOpen(false)
+  }
+  const CloseTemplateList=()=>{
+    setshowTemplates(false)
+  }
+  const OpenTemplateList=()=>{
+    setshowTemplates(true)
   }
   const {
     fields: Fields,
@@ -35,6 +39,9 @@ export default function oli() {
     <div>
       {/* {JSON.stringify(Fields)} */}
       <RegularSection
+      onCloseTemplateList ={CloseTemplateList}
+      showTemplates={showTemplates}
+      onOpenTemplateList={OpenTemplateList}
         isPromptOpen={isPromptOpen} onClose={ClosePrompt}
         setFields={setFields} Fields={Fields} />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
@@ -51,7 +58,7 @@ export default function oli() {
         />
 
         {
-          !isImageModalOpen && (
+          (!isImageModalOpen && !showTemplates) && (
             <>
               <div className='process_icon tooltip'>
                 <SvgIcons type="lightning" />
@@ -88,8 +95,10 @@ export default function oli() {
         <ChatProvider>
 
           {isPromptOpen && <Prompt onClose={ClosePrompt} />}
-        {/* </DynamicChatProvider> */}
+          {/* </DynamicChatProvider> */}
         </ChatProvider>
+
+        {(showTemplates || false) && <TemplateModal onClose={CloseTemplateList}/> }
 
       </div>
     </div>
