@@ -32,7 +32,6 @@ const Field = React.forwardRef((props, ref) => {
   const handleSelectChange = (event) => {
     const newType = event.target.value;
 
-    // Aquí puedes usar la función updateField para actualizar el tipo
     if (updateField) {
       updateField(index, { type: newType });
     }
@@ -50,22 +49,18 @@ const Field = React.forwardRef((props, ref) => {
       updateField(index, { "value": newText });
     }
 
-    // Mantener el cursor en su posición original
     const range = document.createRange();
     const sel = window.getSelection();
 
-    // Calcular la nueva posición del cursor
     const cursorPosition = sel.anchorOffset;
 
     if (pRef.current) {
       let nodeToSet = pRef.current;
       let positionToSet = cursorPosition;
 
-      // Si hay un nodo hijo, actualizar el nodo y la posición
       if (pRef.current.childNodes[0]) {
         nodeToSet = pRef.current.childNodes[0];
 
-        // Asegurarse de que la posición del cursor es válida
         positionToSet = Math.min(cursorPosition, nodeToSet.length);
       }
 
@@ -110,25 +105,32 @@ const Field = React.forwardRef((props, ref) => {
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <SvgIcons onClick={() => removeField(index)} type="trash" />
-      {type!=="im" && props.showFieldType  &&  <select 
+      {type!=="im" && props.showFieldType  &&
+       <>
+       <select 
             value={type} 
             onChange={handleSelectChange} 
             style={{ 
-                marginLeft: '5px', 
-                backgroundColor: '#2c2c2c',
-                color: typeColors[type] || 'white', // establece el color basado en el tipo seleccionado
-                borderColor: '#2c2c2c',
-                borderBottom: ".1px solid white",
-                fontSize:"15px"
+              marginLeft: '5px', 
+              backgroundColor: '#2c2c2c',
+              color: typeColors[type] || 'white', 
+              borderColor: '#2c2c2c',
+              borderBottom: ".1px solid white",
+              fontSize:"15px"
             }}
-        >
+            >
             <option value="ti" style={{ color: typeColors['ti'] }}>Title</option>
             <option value="un" style={{ color: typeColors['un'] }}>Unknown</option>
             <option value="pa" style={{ color: typeColors['pa'] }}>Paragraph</option>
-        </select>}
-    </div>
+        </select>
+        <SvgIcons type="settings"/>
+        </> 
+        
+        }
 
     </div>
+
+</div>
 
   );
 });
