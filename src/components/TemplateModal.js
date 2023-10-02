@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import SvgIcons from './svgIcons';
 
 const categories = ['Todas', 'Artículos', 'Tesis', 'Revistas'];
 const templates = [

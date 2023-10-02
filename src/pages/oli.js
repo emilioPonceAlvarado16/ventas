@@ -20,10 +20,10 @@ export default function oli() {
   const ClosePrompt = () => {
     setisPromptOpen(false)
   }
-  const CloseTemplateList=()=>{
+  const CloseTemplateList = () => {
     setshowTemplates(false)
   }
-  const OpenTemplateList=()=>{
+  const OpenTemplateList = () => {
     setshowTemplates(true)
   }
   const {
@@ -39,9 +39,9 @@ export default function oli() {
     <div>
       {/* {JSON.stringify(Fields)} */}
       <RegularSection
-      onCloseTemplateList ={CloseTemplateList}
-      showTemplates={showTemplates}
-      onOpenTemplateList={OpenTemplateList}
+        onCloseTemplateList={CloseTemplateList}
+        showTemplates={showTemplates}
+        onOpenTemplateList={OpenTemplateList}
         isPromptOpen={isPromptOpen} onClose={ClosePrompt}
         setFields={setFields} Fields={Fields} />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
@@ -98,7 +98,7 @@ export default function oli() {
           {/* </DynamicChatProvider> */}
         </ChatProvider>
 
-        {(showTemplates || false) && <TemplateModal onClose={CloseTemplateList}/> }
+        {(showTemplates || false) && <TemplateModal onClose={CloseTemplateList} />}
 
       </div>
     </div>
