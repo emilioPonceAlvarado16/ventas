@@ -108,7 +108,7 @@ export default function SvgIcons(props) {
             break;
         case 'settings':
             const isTool3 = props.isTool || false
-            const backgroundColor=props.backGroundColor || "#2c2c2c"
+            const backgroundColor = props.backGroundColor || "#2c2c2c"
             svg =
                 (
                     <div className={`${isTool3 ? 'rounded-keyboard-bg' : ''}`}>
@@ -131,6 +131,18 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
+        case 'plus':
+            svg = (
+                <div className= 'rounded-keyboard-bg' style={{backgroundColor:"white"}}>
+
+                <svg width="16" height="16" viewBox="0 0 24 24"fill="#E0A900" style={{backGroundColor:"#E0A900"}}>
+                    <path d="M12 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                    <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                </svg>
+                </div>
+            );
+            break;
+
         case 'send':
             svg = (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

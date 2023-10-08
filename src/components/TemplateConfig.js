@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import SvgIcons from './svgIcons';
 
 export default function TemplateConfig() {
-  const inputCount = 100;  // Ajusta este número según lo necesites
+  const inputCount = 10;  // Ajusta este número según lo necesites
   const defaultState = {};
   for (let i = 1; i <= inputCount; i++) {
     defaultState[`input${i}`] = "";
   }
 
   const [inputs, setInputs] = useState(defaultState);
+  const [customStyles, setCustomStyles] = useState([{ label: '', value: '' }]);
 
   const handleChange = (id, value) => {
     setInputs(prevState => ({
@@ -16,6 +18,23 @@ export default function TemplateConfig() {
     }));
   };
 
+  const handleCustomStyleChange = (index, type, value) => {
+    const newStyles = [...customStyles];
+    newStyles[index][type] = value;
+    setCustomStyles(newStyles);
+  };
+  const addCustomStyle = () => {
+    // Verifica si hay algún campo "Custom Styles" que esté vacío
+    const hasEmptyField = customStyles.some(style => !style.label || !style.value);
+  
+    // Si todos los campos están completos, agrega un nuevo campo
+    if (!hasEmptyField) {
+      setCustomStyles(prevStyles => [...prevStyles, { label: '', value: '' }]);
+    } else {
+      alert('Complete todos los campos antes de agregar más.');
+    }
+  };
+  
   // Cálculo de cuántos campos por columna
   const inputsPerColumn = Math.ceil(inputCount / 2);
 
@@ -25,17 +44,40 @@ export default function TemplateConfig() {
         style={{
           width: "40%",
           backgroundColor: "#080f25",
-          maxHeight: '90vh',  // 90% de la altura de la ventana
+          maxHeight: '90vh',
           overflowY: 'auto',
           display: 'flex',
           flexDirection: 'column',
-          // Elimina la siguiente línea:
-          // justifyContent: 'center',
           alignItems: 'center',
           padding: '20px'
         }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+        {/* Custom Styles section */}
+        <div style={{ marginBottom: '20px', width: '100%' }}>
+          <h2 style={{ textAlign: 'center', color: "#E0A900" }}> Custom Styles</h2>
+          {customStyles.map((style, index) => (
+            <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10px' }}>
+              <input
+                placeholder="Label"
+                value={style.label}
+                onChange={(e) => handleCustomStyleChange(index, 'label', e.target.value)}
+                style={{ marginRight: '10px', color: "white", backgroundColor: "#2c2c2c", maxWidth: '150px' }}
+                className='w-input'
+              />
+              <input
+                placeholder="Value"
+                value={style.value}
+                onChange={(e) => handleCustomStyleChange(index, 'value', e.target.value)}
+                style={{ marginRight: '10px', color: "white", backgroundColor: "#2c2c2c", maxWidth: '150px' }}
+                className='w-input'
+              />
+            </div>
+          ))}
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <SvgIcons onClick={addCustomStyle} type="plus"/>
+          </div>        </div>
+        <h2 style={{ textAlign: 'center', color: "#E0A900", marginTop: '5px' }}>Standard Styles</h2>
 
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           {/* Llenado dinámico de las columnas */}
           {[...Array(2)].map((_, colIndex) => (
             <div key={colIndex}>
@@ -45,14 +87,13 @@ export default function TemplateConfig() {
                   <input
                     value={inputs[key]}
                     onChange={(e) => handleChange(key, e.target.value)}
-                    style={{ marginLeft: '10px', color:"white",backgroundColor:"#2c2c2c", maxWidth: '150px' }}
+                    style={{ marginLeft: '10px', color: "white", backgroundColor: "#2c2c2c", maxWidth: '150px' }}
                     className='w-input'
                   />
                 </div>
               ))}
             </div>
           ))}
-
         </div>
       </div>
     </div>
