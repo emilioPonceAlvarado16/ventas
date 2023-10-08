@@ -826,9 +826,13 @@ button,
 }
 
 label {
-  display: block;
+  /* display: block; */
   margin-bottom: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin:10px;
   font-weight: bold;
+  display: inline-block;
 }
 
 .w-input,
@@ -5631,6 +5635,7 @@ textarea.w-select {
   /* indicate it's clickable */
   z-index: 10;
   /* place it above the input field */
+  
 }
 
 .f-field-input-code {
@@ -6055,6 +6060,7 @@ textarea.w-select {
 .template-item:hover {
   transform: translateY(-5px); /* efecto de levitación al pasar el cursor */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* sombra más pronunciada al pasar el cursor */
+
 }
 
 template-item img {
@@ -6062,4 +6068,25 @@ template-item img {
   height: 100%; /* ocupar el 100% del alto del contenedor */
   object-fit: cover; /* mantener la proporción, recortar si es necesario */
   border-radius: 4px; /* bordes redondeados */
+}
+
+.icon-container2 {
+  position: absolute; /* Posición absoluta */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centrado */
+  opacity: 0; /* Inicialmente invisible */
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espacio entre íconos */
+  transition: opacity .2s ease-in-out; /* Transición suave */
+}
+
+
+.template-item:hover .icon-container2 {
+  opacity: 1;
+}
+.w-form-label-2 {
+  color:#E0A900; 
+  padding-bottom:20px;
 }

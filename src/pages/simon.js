@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export default function simon() {
+const CircleComponent = () => {
   return (
-    <div>simon</div>
-  )
+    <div className="container">
+      <div className="circle large"></div>
+      <div className="circle medium"></div>
+      <div className="circle small"></div>
+    </div>
+  );
 }
+
+export default CircleComponent;

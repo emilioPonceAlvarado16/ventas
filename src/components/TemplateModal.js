@@ -4,9 +4,9 @@ import SvgIcons from './svgIcons';
 
 const categories = ['Todas', 'Artículos', 'Tesis', 'Revistas'];
 const templates = [
-    { id: 1, title: 'APA V7', img: './images/template_1.jpeg', category: 'Artículos' },
-    { id: 2, title: 'IEEE', img: './images/template_2.jpeg', category: 'Artículos' },
-    { id: 3, title: 'Paper', img: './images/template_3.jpeg', category: 'Revistas' },
+    { id: 1, title: 'APA V7', img: './images/template_1.jpeg', category: 'Artículos', url: "./pdfs/template1.pdf" },
+    { id: 2, title: 'IEEE', img: './images/template_2.jpeg', category: 'Artículos', url: "./pdfs/template3.pdf" },
+    { id: 3, title: 'Paper', img: './images/template_3.jpeg', category: 'Revistas', url: "./pdfs/template2.pdf" },
     //... más plantillas
 ];
 
@@ -59,6 +59,10 @@ const CategoryList = ({ categories, onSelect }) => {
 };
 
 const TemplateList = ({ templates, onSearch }) => {
+    const handleOpenURL = (url) => {
+        window.open(url, '_blank'); // '_blank' means to open the link in a new tab
+    };
+
     return (
         <div className="template-list">
             <input
@@ -69,11 +73,16 @@ const TemplateList = ({ templates, onSearch }) => {
             <div className="template-grid">
                 {templates.map((template) => (
                     <div key={template.id} className="template-item">
-                        <Image 
+                        <Image
                             width={500}
                             height={200}
                             src={template.img} alt={template.title}
                         />
+                        <div className="icon-container2">
+                            <SvgIcons type="settings" isTool={true} backGroundColor="#080f25" />
+                            <SvgIcons type="eyeIcon" isTool={true}
+                                onClick={() => handleOpenURL(template.url)} />
+                        </div>
                         <p>{template.title}</p>
                     </div>
                 ))}

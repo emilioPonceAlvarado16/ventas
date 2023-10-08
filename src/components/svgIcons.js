@@ -107,14 +107,20 @@ export default function SvgIcons(props) {
                 );
             break;
         case 'settings':
-            svg = (
-                <svg width="16" height="16" style={{ backgroundColor: "#2c2c2c",marginLeft: '5px', }}viewBox="0 0 24 24" fill="#2c2c2c" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="5" cy="12" r="2" fill="white" />
-                    <circle cx="12" cy="12" r="2" fill="white" />
-                    <circle cx="19" cy="12" r="2" fill="white" />
-                </svg>
+            const isTool3 = props.isTool || false
+            const backgroundColor=props.backGroundColor || "#2c2c2c"
+            svg =
+                (
+                    <div className={`${isTool3 ? 'rounded-keyboard-bg' : ''}`}>
 
-            )
+                        <svg width="16" height="16" style={{ backgroundColor: backgroundColor, marginLeft: `${isTool3 ? '' : '5px'}` }} viewBox="0 0 24 24" fill="#2c2c2c" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="5" cy="12" r="2" fill="white" />
+                            <circle cx="12" cy="12" r="2" fill="white" />
+                            <circle cx="19" cy="12" r="2" fill="white" />
+                        </svg>
+                    </div>
+
+                )
             break;
 
         case 'angleLeft':
