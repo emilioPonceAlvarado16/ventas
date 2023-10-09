@@ -17,6 +17,8 @@ export default function oli() {
   const [showFieldType, setshowFieldType] = useState(false);
   const [showTemplates, setshowTemplates] = useState(false)
 
+  const [carouselPosition, setCarouselPosition] = useState(0);
+
   const ClosePrompt = () => {
     setisPromptOpen(false)
   }
@@ -37,6 +39,7 @@ export default function oli() {
   return (
 
     <div>
+
       {/* {JSON.stringify(Fields)} */}
       <RegularSection
         onCloseTemplateList={CloseTemplateList}
@@ -45,18 +48,33 @@ export default function oli() {
         isPromptOpen={isPromptOpen} onClose={ClosePrompt}
         setFields={setFields} Fields={Fields} />
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
-        <TextEditor setEditorObjects={setFields}
-          setIsImageModalOpen={setIsImageModalOpen}
-          isImageModalOpen={isImageModalOpen}
-          assetList={assetList}
-          editorObjects={Fields}
-          setImageSelected={setImageSelected}
-          imageSelected={imageSelected}
-          removeField={removeField}
-          updateField={updateField}
-          showFieldType={showFieldType}
-        />
-
+        {carouselPosition === 0 && (
+          <>
+            <TextEditor setEditorObjects={setFields}
+              setIsImageModalOpen={setIsImageModalOpen}
+              isImageModalOpen={isImageModalOpen}
+              assetList={assetList}
+              editorObjects={Fields}
+              setImageSelected={setImageSelected}
+              imageSelected={imageSelected}
+              removeField={removeField}
+              updateField={updateField}
+              showFieldType={showFieldType}
+            />
+           <div
+              style={{
+                padding: '10px',
+                overflowY: 'auto',
+                flex: 1,
+                overflowWrap: 'break-word',
+                whiteSpace: 'pre-wrap',
+                color: '#e5e5e5',
+                fontSize: '16px',
+                fontFamily: 'Arial, sans-serif'
+              }}
+            />
+          </>
+        )}
         {
           (!isImageModalOpen && !showTemplates) && (
             <>
@@ -82,13 +100,47 @@ export default function oli() {
             </>
           )
         }
-        <div style={{ flex: 4, width: '50vw' }}>
-          <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-            {/* <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" /> */}
-            <PdfViewer url="./nuevo.pdf" />
-          </div>
-        </div>
+        {carouselPosition === 1 && (
+          <>
+            <TextEditor setEditorObjects={setFields}
+              setIsImageModalOpen={setIsImageModalOpen}
+              isImageModalOpen={isImageModalOpen}
+              assetList={assetList}
+              editorObjects={Fields}
+              setImageSelected={setImageSelected}
+              imageSelected={imageSelected}
+              removeField={removeField}
+              updateField={updateField}
+              showFieldType={showFieldType}
+            />
 
+            <div style={{ flex: 4, width: '50vw' }}>
+              <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
+                {/* <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" /> */}
+                <PdfViewer url="./nuevo.pdf" />
+                hola
+              </div>
+            </div>
+          </>
+        )}
+
+      </div>
+
+      {/* 3. Establecer puntos (o indicadores) que permitan a los usuarios cambiar la posición del carrusel */}
+      <div style={{ position: "absolute", top: 10, right: "50%", transform: "translateX(50%)", display: "flex", gap: "8px" }}>
+        {[0, 1].map(index => (
+          <div
+            key={index}
+            onClick={() => setCarouselPosition(index)}
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              backgroundColor: carouselPosition === index ? "black" : "gray",
+              cursor: "pointer"
+            }}
+          />
+        ))}
       </div>
       <div >
         {/* <DynamicChatProvider> */}
