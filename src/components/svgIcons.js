@@ -133,12 +133,31 @@ export default function SvgIcons(props) {
             break;
         case 'plus':
             svg = (
-                <div className= 'rounded-keyboard-bg' style={{backgroundColor:"white"}}>
+                <div className='rounded-keyboard-bg' style={{ backgroundColor: "white" }}>
 
-                <svg width="16" height="16" viewBox="0 0 24 24"fill="#E0A900" style={{backGroundColor:"#E0A900"}}>
-                    <path d="M12 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                    <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#E0A900" style={{ backGroundColor: "#E0A900" }}>
+                        <path d="M12 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                    </svg>
+                </div>
+            );
+            break;
+        case 'plagiarism':
+            svg = (
+                <div className='rounded-keyboard-bg'>
+
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="12" height="18" fill="white" stroke="black"></rect>
+
+                        <line x1="4" y1="6" x2="14" y2="6" stroke="black"></line>
+                        <line x1="4" y1="9" x2="14" y2="9" stroke="black"></line>
+                        <line x1="4" y1="12" x2="14" y2="12" stroke="black"></line>
+
+                        <circle cx="19" cy="7" r="5" stroke="black"  className="yellow-fill" fill="white"></circle>
+                        <line x1="21" y1="10" x2="24" y2="13" stroke="white"></line>
+                    </svg>
+
+
                 </div>
             );
             break;
