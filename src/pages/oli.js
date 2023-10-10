@@ -8,6 +8,7 @@ import Prompt from '@/components/Prompt';
 import TemplateModal from '@/components/TemplateModal';
 import dynamic from 'next/dynamic';
 import { ChatProvider } from '@/contexts/ChatContext';
+import Plagiarism from '@/components/Plagiarism';
 
 
 export default function oli() {
@@ -15,7 +16,9 @@ export default function oli() {
   const [imageSelected, setImageSelected] = useState("");
   const [isPromptOpen, setisPromptOpen] = useState(false);
   const [showFieldType, setshowFieldType] = useState(false);
-  const [showTemplates, setshowTemplates] = useState(false)
+  const [showTemplates, setshowTemplates] = useState(false);
+
+  const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
 
   const [carouselPosition, setCarouselPosition] = useState(1);
 
@@ -50,7 +53,7 @@ export default function oli() {
           setFields={setFields} Fields={Fields} />
 
   {/* Indicadores del carrusel */}
-  <div style={{ position: "absolute", bottom: 10, right: "50%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
+  <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
       {[0, 1].map(index => (
         <div
           key={index}
@@ -123,7 +126,7 @@ export default function oli() {
               </div>
 
               <div className='process_icon-4 tooltip'>
-                <SvgIcons type="plagiarism" />
+                <SvgIcons onClick={()=>setShowPlagiarismModal(true)} type="plagiarism" />
                 <span className="tooltip-text">Plagio</span>
 
               </div>
@@ -160,6 +163,8 @@ export default function oli() {
         {(showTemplates || false) && <TemplateModal onClose={CloseTemplateList} />}
 
       </div>
+
+      {showPlagiarismModal && <Plagiarism onClose={()=>setShowPlagiarismModal(false)}/>}
 
     </div>
   );
