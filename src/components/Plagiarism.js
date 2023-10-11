@@ -28,7 +28,7 @@ export default function Plagiarism(props) {
 
 
 
-            <div className='f-modal-base-wide' style={{ width: "30vw" }} >
+            <div className='f-modal-base-wide' style={{ width: "30vw",backgroundColor:"#080f25", color:"white", border:"1.5px solid white" }} >
                 <h2>Detector de Plagio</h2>
                 {state === 'init' && (
                     <div>
@@ -96,7 +96,7 @@ const styles = {
         color: '#333',
     },
     button: {
-        backgroundColor: '#009900',
+        backgroundColor: '#FFC107',
         color: '#fff',
         padding: '10px 15px',
         border: 'none',
