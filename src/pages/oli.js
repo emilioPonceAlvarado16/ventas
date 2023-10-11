@@ -9,6 +9,7 @@ import TemplateModal from '@/components/TemplateModal';
 import dynamic from 'next/dynamic';
 import { ChatProvider } from '@/contexts/ChatContext';
 import Plagiarism from '@/components/Plagiarism';
+import App from '@/components/App'
 
 
 export default function oli() {
@@ -52,24 +53,24 @@ export default function oli() {
           isPromptOpen={isPromptOpen} onClose={ClosePrompt}
           setFields={setFields} Fields={Fields} />
 
-  {/* Indicadores del carrusel */}
-  <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
-      {[0, 1].map(index => (
-        <div
-          key={index}
-          onClick={() => setCarouselPosition(index)}
-          style={{
-            width: 30, // Más ancho
-            height: 10, // Mantener el mismo alto
-            borderRadius: 5, // Esquinas redondeadas, pero no completamente circulares
-            backgroundColor: carouselPosition === index ? "#F1F1F1" : "#555", // Gris claro para el activo, gris más oscuro para el inactivo
-            cursor: "pointer",
-            border: "1px solid #888", // Borde medio gris
-            transition: "background-color 0.3s ease" // Transición suave al cambiar el color
-          }}
-        />
-      ))}
-    </div>
+        {/* Indicadores del carrusel */}
+        <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
+          {[0, 1].map(index => (
+            <div
+              key={index}
+              onClick={() => setCarouselPosition(index)}
+              style={{
+                width: 30, // Más ancho
+                height: 10, // Mantener el mismo alto
+                borderRadius: 5, // Esquinas redondeadas, pero no completamente circulares
+                backgroundColor: carouselPosition === index ? "#F1F1F1" : "#555", // Gris claro para el activo, gris más oscuro para el inactivo
+                cursor: "pointer",
+                border: "1px solid #888", // Borde medio gris
+                transition: "background-color 0.3s ease" // Transición suave al cambiar el color
+              }}
+            />
+          ))}
+        </div>
 
       </div>
       <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
@@ -88,20 +89,25 @@ export default function oli() {
           showFieldType={showFieldType}
         />
         {carouselPosition === 0 && (
-          <div
-            style={{
-              padding: '10px',
-              overflowY: 'auto',
-              flex: 1,
-              overflowWrap: 'break-word',
-              whiteSpace: 'pre-wrap',
-              color: '#e5e5e5',
-              fontSize: '16px',
-              fontFamily: 'Arial, sans-serif',
-              background: '#2c2c2c',
-              borderLeft: "1px solid white"
-            }}
-          />
+          // <div
+          //   style={{
+          //     padding: '10px',
+          //     overflowY: 'auto',
+          //     flex: 1,
+          //     overflowWrap: 'break-word',
+          //     whiteSpace: 'pre-wrap',
+          //     color: '#e5e5e5',
+          //     fontSize: '16px',
+          //     fontFamily: 'Arial, sans-serif',
+          //     background: '#2c2c2c',
+          //     borderLeft: "1px solid white"
+          //   }}
+          // >
+          // </div>
+
+          <div style={{ flex: 4, width: '50vw' }}>
+            <App />
+          </div>
         )}
         {
           (!isImageModalOpen && !showTemplates) && (
@@ -126,7 +132,7 @@ export default function oli() {
               </div>
 
               <div className='process_icon-4 tooltip'>
-                <SvgIcons onClick={()=>setShowPlagiarismModal(true)} type="plagiarism" />
+                <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" />
                 <span className="tooltip-text">Plagio</span>
 
               </div>
@@ -164,7 +170,7 @@ export default function oli() {
 
       </div>
 
-      {showPlagiarismModal && <Plagiarism onClose={()=>setShowPlagiarismModal(false)}/>}
+      {showPlagiarismModal && <Plagiarism onClose={() => setShowPlagiarismModal(false)} />}
 
     </div>
   );

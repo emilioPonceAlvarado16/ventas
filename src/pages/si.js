@@ -1,3 +1,4 @@
+import App from '@/components/App'
 import Plagiarism from '@/components/Plagiarism'
 import TemplateConfig from '@/components/TemplateConfig'
 import React from 'react'
@@ -6,7 +7,8 @@ import React from 'react'
 export default function si() {
   return (
     <>
-    <Plagiarism/>
+    {/* <Plagiarism/> */}
+    <App/>
     {/* <TemplateConfig/> */}
     </>
   )

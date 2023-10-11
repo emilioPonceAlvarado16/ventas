@@ -56,7 +56,7 @@ export default function Plagiarism(props) {
                     <div>
                         <p>Reporte de plagio:</p>
                         <div>Contenido original: 90% - Contenido plagiado: 10%</div>
-                        <p>Revisar <a style={{ color: "blue", textDecoration: "underline" }}>Reporte</a></p>
+                        <p>Revisar <a style={{ color: "white",fontWeight:"bold", textDecoration: "underline" }}>Reporte</a></p>
                         <button style={styles.button} onClick={() => setState('init')}>Volver a detectar</button>
                         <button style={styles.exitButton} onClick={onClose}>Salir</button>
 
@@ -97,7 +97,7 @@ const styles = {
     },
     button: {
         backgroundColor: '#FFC107',
-        color: '#fff',
+        color: 'black',
         padding: '10px 15px',
         border: 'none',
         borderRadius: '5px',
