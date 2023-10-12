@@ -11,6 +11,8 @@ const templates = [
 ];
 
 const Modal = ({ onClose }) => {
+    const [selectedTemplate, setSelectedTemplate] = useState(null);
+
     const modalRef = useRef();
     const [status, setStatus] = useState('entering');
 
@@ -35,11 +37,14 @@ const Modal = ({ onClose }) => {
 
     return (
         <div className="modal" onClick={handleOutsideClick}>
+
             <div className="modal-content" ref={modalRef}>
                 <CategoryList categories={categories} onSelect={setSelectedCategory} />
                 <TemplateList
                     templates={filteredTemplates}
                     onSearch={(term) => setSearchTerm(term)}
+                    selectedTemplate={selectedTemplate}
+                    onSelectTemplate={setSelectedTemplate}
                 />
             </div>
         </div>
@@ -58,9 +63,9 @@ const CategoryList = ({ categories, onSelect }) => {
     );
 };
 
-const TemplateList = ({ templates, onSearch }) => {
+const TemplateList = ({ templates, onSearch, selectedTemplate, onSelectTemplate }) => {
     const handleOpenURL = (url) => {
-        window.open(url, '_blank'); // '_blank' means to open the link in a new tab
+        window.open(url, '_blank');
     };
 
     return (
@@ -72,23 +77,34 @@ const TemplateList = ({ templates, onSearch }) => {
             />
             <div className="template-grid">
                 {templates.map((template) => (
-                    <div key={template.id} className="template-item">
-                        <Image
-                            width={500}
-                            height={200}
-                            src={template.img} alt={template.title}
-                        />
+                    <div
+                        key={template.id}
+                        className={`template-item ${selectedTemplate?.id === template.id ? 'selected' : ''}`}
+                        onClick={() => onSelectTemplate(template)}
+                    >
+                        <Image width={500} height={200} src={template.img} alt={template.title} />
                         <div className="icon-container2">
                             <SvgIcons type="settings" isTool={true} backGroundColor="#080f25" />
-                            <SvgIcons type="eyeIcon" isTool={true}
-                                onClick={() => handleOpenURL(template.url)} />
+                            <SvgIcons type="eyeIcon" isTool={true} onClick={() => handleOpenURL(template.url)} />
                         </div>
                         <p>{template.title}</p>
                     </div>
                 ))}
             </div>
+
+            <div className="selection-panel">
+                <button
+                    className="select-button"
+                    disabled={!selectedTemplate}
+                    onClick={() => alert('Template seleccionado: ' + selectedTemplate.title)}
+                >
+                    Seleccionar
+                </button>
+                {selectedTemplate && <p className="selected-template-name">{selectedTemplate.title}</p>}
+            </div>
         </div>
     );
 };
+
 
 export default Modal;

@@ -12,23 +12,19 @@ const Field = React.forwardRef((props, ref) => {
   const setImageSelected = props.setImageSelected
   const url = props.url || ""
   const updateField = props.updateField || null
+  const setAllText=props.setAllText || null
+  const allText=props.allText || ""
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
-  const [isEditing, setIsEditing] = useState(false);
   const [newValue, setNewValue] = useState(value);
 
 
-  const handleClick = () => setIsEditing(true);
+  const deleteField=()=>{
+    removeField(index);
+    setAllText(allText + '\n\n' + value)
+  }
 
-  const sharedStyle = {
-    width: "100%",
-    backgroundColor: isEditing ? "#555" : "transparent",
-    border: isEditing ? "1px solid #999" : "none",
-    color: "white",
-    overflow: "auto",
-    minHeight: size || "10vh",
-  };
   const handleSelectChange = (event) => {
     const newType = event.target.value;
 
@@ -104,7 +100,7 @@ const Field = React.forwardRef((props, ref) => {
       </p>
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>
-        <SvgIcons onClick={() => removeField(index)} type="trash" />
+        <SvgIcons onClick={deleteField} type="trash" />
       {type!=="im" && props.showFieldType  &&
        <>
        <select 

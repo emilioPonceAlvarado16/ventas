@@ -83,6 +83,9 @@ const TextEditor = (props) => {
                       index={index}
                       removeField={props.removeField || null}
                       showFieldType={props.showFieldType || false}
+
+                      setAllText={props.setAllText || null}
+                      allText={props.allText || ""}
                     />
                   )}
                 </Draggable>

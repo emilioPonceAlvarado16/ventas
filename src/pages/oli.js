@@ -16,12 +16,21 @@ export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState("");
   const [isPromptOpen, setisPromptOpen] = useState(false);
-  const [showFieldType, setshowFieldType] = useState(false);
+  const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
 
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
 
   const [carouselPosition, setCarouselPosition] = useState(1);
+
+  const [allText, setAllText] = useState(`What is Lorem Ipsum?
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+  
+  Why do we use it?
+  It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+  
+  
+  Where does it come from?`);
 
   const ClosePrompt = () => {
     setisPromptOpen(false)
@@ -38,6 +47,7 @@ export default function oli() {
     removeField,
     updateField,
     assetList,
+    addField
   } = useFields([]);
 
   return (
@@ -87,26 +97,17 @@ export default function oli() {
           removeField={removeField}
           updateField={updateField}
           showFieldType={showFieldType}
+
+          setAllText={setAllText}
+          allText={allText}
         />
         {carouselPosition === 0 && (
-          // <div
-          //   style={{
-          //     padding: '10px',
-          //     overflowY: 'auto',
-          //     flex: 1,
-          //     overflowWrap: 'break-word',
-          //     whiteSpace: 'pre-wrap',
-          //     color: '#e5e5e5',
-          //     fontSize: '16px',
-          //     fontFamily: 'Arial, sans-serif',
-          //     background: '#2c2c2c',
-          //     borderLeft: "1px solid white"
-          //   }}
-          // >
-          // </div>
+        
 
           <div style={{ flex: 4, width: '50vw' }}>
-            <App />
+            <App fields={Fields} setFields={setFields} addField={addField}
+              allText={allText} setAllText={setAllText}
+            />
           </div>
         )}
         {

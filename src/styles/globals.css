@@ -8,6 +8,8 @@
 }
 
 
+
+
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -66,6 +68,21 @@ video {
   /* 1 */
   vertical-align: baseline;
   /* 2 */
+}
+
+.select-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+  /* Transición suave para el hover */
+  top: 87%;
+  position: absolute;
+  /* bottom:8px; */
+  left: 87%;
 }
 
 /**
@@ -830,7 +847,7 @@ label {
   margin-bottom: 5px;
   margin-left: 10px;
   margin-top: 10px;
-  margin:10px;
+  margin: 10px;
   font-weight: bold;
   display: inline-block;
 }
@@ -1262,6 +1279,7 @@ textarea.w-select {
 }
 
 @media screen and (max-width: 767px) {
+
   .a-section-regular-2 {
     padding: 92px 5%;
     position: relative;
@@ -1329,6 +1347,9 @@ textarea.w-select {
 }
 
 @media screen and (max-width: 479px) {
+  .select-button{
+    left:50%
+  }
   .treeview-animated {
     width: 100% !important;
     /* Toma el 50% del ancho en pantallas más grandes */
@@ -1772,6 +1793,8 @@ textarea.w-select {
   .w-nav-brand {
     padding-left: 10px;
   }
+
+ 
 }
 
 /**
@@ -2087,6 +2110,8 @@ textarea.w-select {
     height: 96vh;
     margin-top: 2vh;
   }
+
+ 
 
   .w-lightbox-view,
   .w-lightbox-view:before {
@@ -2429,6 +2454,9 @@ textarea.w-select {
 }
 
 @media screen and (max-width: 991px) {
+  .select-button{
+    left:70%
+  }
   .w-nav[data-collapse="medium"] .w-nav-menu {
     display: none;
   }
@@ -4547,6 +4575,8 @@ textarea.w-select {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
+  bottom: 100%;
+  position: relative;
 }
 
 .f-footer-copyright {
@@ -5635,7 +5665,7 @@ textarea.w-select {
   /* indicate it's clickable */
   z-index: 10;
   /* place it above the input field */
-  
+
 }
 
 .f-field-input-code {
@@ -5808,7 +5838,10 @@ textarea.w-select {
 }
 
 @media (max-width: 768px) {
-
+  .select-button{
+    left:55%
+  }
+ 
   /* Ajusta este valor según tus necesidades */
   .treeview-animated.collapsed {
     min-width: 10px;
@@ -5849,6 +5882,7 @@ textarea.w-select {
   align-items: center;
   display: flex;
 }
+
 /* borrar */
 .blue-container {
   background-color: #001c33;
@@ -5889,6 +5923,7 @@ textarea.w-select {
   transform: translateX(50%);
   z-index: 1000;
 }
+
 .process_icon-2 {
   position: absolute;
   top: 8%;
@@ -5896,6 +5931,7 @@ textarea.w-select {
   transform: translateX(50%);
   z-index: 1000;
 }
+
 .process_icon-3 {
   position: absolute;
   top: 14%;
@@ -5903,7 +5939,8 @@ textarea.w-select {
   transform: translateX(50%);
   z-index: 1000;
 }
-.process_icon-4{
+
+.process_icon-4 {
   position: absolute;
   top: 20%;
   right: 50vw;
@@ -5939,13 +5976,15 @@ textarea.w-select {
 }
 
 .keyboard-fill {
-  fill: #ffffff; /* Color blanco para el SVG */
+  fill: #ffffff;
+  /* Color blanco para el SVG */
   transition: opacity 0.1s ease-in-out;
 }
 
 .rounded-keyboard-bg:hover {
   transform: scale(1.2);
 }
+
 .rounded-keyboard-bg.disabled,
 .keyboard-fill.disabled {
   opacity: 0.6;
@@ -5962,20 +6001,24 @@ textarea.w-select {
   text-align: center;
   padding: 5px;
   border-radius: 4px;
-  bottom: 125%; /* Posición del tooltip */
+  bottom: 125%;
+  /* Posición del tooltip */
   left: 50%;
   margin-left: -30px;
-  z-index: 1001; /* por encima del SVG */
+  z-index: 1001;
+  /* por encima del SVG */
   opacity: 0;
   transition: opacity 0.3s;
-  transition-delay: 0s; /* inicialmente sin retraso */
+  transition-delay: 0s;
+  /* inicialmente sin retraso */
 
 }
 
 .tooltip:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
-  transition-delay: 0.8s; /* retraso de 0.8 segundos */
+  transition-delay: 0.8s;
+  /* retraso de 0.8 segundos */
 
 }
 
@@ -5990,7 +6033,8 @@ textarea.w-select {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* fondo semitransparente */
   /* color:white !important */
 }
 
@@ -5998,36 +6042,48 @@ textarea.w-select {
   display: flex;
   width: 80%;
   height: 70%;
-  background-color: #fff; /* fondo blanco para resaltar el contenido */
+  background-color: #fff;
+  /* fondo blanco para resaltar el contenido */
   /* background-color: #2c2c2c; fondo blanco para resaltar el contenido */
   /* background-color: #080f25; fondo blanco para resaltar el contenido */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* sombra para darle profundidad */
-  border-radius: 8px; /* bordes redondeados */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* sombra para darle profundidad */
+  border-radius: 8px;
+  /* bordes redondeados */
+  position: absolute;
 }
 
 .category-list {
   width: 30%;
   padding: 20px;
   overflow-y: auto;
-  border-right: 1px solid #e0e0e0; /* borde claro */
-  background-color: #f9f9f9; /* fondo ligeramente gris para diferenciar las secciones */
-  background-color: #080f25; /* fondo ligeramente gris para diferenciar las secciones */
+  border-right: 1px solid #e0e0e0;
+  /* borde claro */
+  background-color: #f9f9f9;
+  /* fondo ligeramente gris para diferenciar las secciones */
+  background-color: #080f25;
+  /* fondo ligeramente gris para diferenciar las secciones */
 
 }
 
 .category-list div {
   cursor: pointer;
   padding: 10px;
-  border-bottom: 1px solid #e0e0e0; /* borde claro */
-  color: #333; /* texto oscuro para mejor contraste */
-  color: white; /* texto oscuro para mejor contraste */
+  border-bottom: 1px solid #e0e0e0;
+  /* borde claro */
+  color: #333;
+  /* texto oscuro para mejor contraste */
+  color: white;
+  /* texto oscuro para mejor contraste */
   font-weight: bold;
 }
 
 .category-list div:hover {
-  background-color: #e0e0e0; /* resaltado al pasar el cursor */
-  background-color: #FFC107; /* resaltado al pasar el cursor */
-  color:#080f25;
+  background-color: #e0e0e0;
+  /* resaltado al pasar el cursor */
+  background-color: #FFC107;
+  /* resaltado al pasar el cursor */
+  color: #080f25;
 }
 
 .template-list {
@@ -6040,8 +6096,10 @@ textarea.w-select {
   width: calc(100% - 20px);
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #e0e0e0; /* borde claro */
-  border-radius: 4px; /* bordes redondeados */
+  border: 1px solid #e0e0e0;
+  /* borde claro */
+  border-radius: 4px;
+  /* bordes redondeados */
 }
 
 .template-grid {
@@ -6052,48 +6110,115 @@ textarea.w-select {
 
 .template-item {
   /* width: calc(33.3333% - 20px); */
-  border: 1px solid #e0e0e0; /* borde claro */
+  border: 1px solid #e0e0e0;
+  /* borde claro */
   padding: 10px;
   text-align: center;
-  background-color: #fff; /* fondo blanco */
-  border-radius: 4px; /* bordes redondeados */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* sombra para darle profundidad */
-  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; /* transición suave */
-  width: 200px; /* ancho específico de la plantilla */
-  height: 200px; /* alto específico de la plantilla */
+  background-color: #fff;
+  /* fondo blanco */
+  border-radius: 4px;
+  /* bordes redondeados */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* sombra para darle profundidad */
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+  /* transición suave */
+  width: 200px;
+  /* ancho específico de la plantilla */
+  height: 200px;
+  /* alto específico de la plantilla */
 
 }
 
 .template-item:hover {
-  transform: translateY(-5px); /* efecto de levitación al pasar el cursor */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* sombra más pronunciada al pasar el cursor */
+  transform: translateY(-5px);
+  /* efecto de levitación al pasar el cursor */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  /* sombra más pronunciada al pasar el cursor */
 
 }
 
 template-item img {
-  width: 100%; /* ocupar el 100% del ancho del contenedor */
-  height: 100%; /* ocupar el 100% del alto del contenedor */
-  object-fit: cover; /* mantener la proporción, recortar si es necesario */
-  border-radius: 4px; /* bordes redondeados */
+  width: 100%;
+  /* ocupar el 100% del ancho del contenedor */
+  height: 100%;
+  /* ocupar el 100% del alto del contenedor */
+  object-fit: cover;
+  /* mantener la proporción, recortar si es necesario */
+  border-radius: 4px;
+  /* bordes redondeados */
 }
 
 .icon-container2 {
-  position: absolute; /* Posición absoluta */
+  position: absolute;
+  /* Posición absoluta */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Centrado */
-  opacity: 0; /* Inicialmente invisible */
+  transform: translate(-50%, -50%);
+  /* Centrado */
+  opacity: 0;
+  /* Inicialmente invisible */
   display: flex;
   justify-content: center;
-  gap: 10px; /* Espacio entre íconos */
-  transition: opacity .2s ease-in-out; /* Transición suave */
+  gap: 10px;
+  /* Espacio entre íconos */
+  transition: opacity .2s ease-in-out;
+  /* Transición suave */
 }
 
 
 .template-item:hover .icon-container2 {
   opacity: 1;
 }
+
 .w-form-label-2 {
-  color:#E0A900; 
-  padding-bottom:20px;
+  color: #E0A900;
+  padding-bottom: 20px;
+}
+
+/* Estilos adicionales para la selección */
+.template-item.selected {
+  border: 2px solid green;
+  /* Borde verde para indicar la selección */
+}
+
+.selection-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 7%; */
+  padding: 0 15px;
+  /* Añadir un padding para alinearse con los items del grid */
+
+}
+
+.footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+
+.select-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.select-button:not(:disabled):hover {
+  background-color: #005700;
+  /* Un verde un poco más oscuro para el hover */
+}
+
+.selected-template-name {
+  margin-left: 10px;
+  font-size: 16px;
+  /* Ajusta según tus necesidades */
+  color: green;
+  /* Texto en verde para mantener la consistencia */
+  position: absolute;
+  top:89%;
+  left: 80%;
 }
