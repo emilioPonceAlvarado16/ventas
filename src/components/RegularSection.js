@@ -89,7 +89,7 @@ export default function RegularSection(props) {
                 </svg>
 
 
-                Seleccionar Plantilla
+                {!props.selectedTemplate ? "Seleccionar Plantilla":"Cambiar a otra Plantilla"}
               </label>
             </div>
           </div>

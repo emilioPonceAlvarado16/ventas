@@ -7,11 +7,12 @@ const templates = [
     { id: 1, title: 'APA V7', img: './images/template_1.jpeg', category: 'Artículos', url: "./pdfs/template1.pdf" },
     { id: 2, title: 'IEEE', img: './images/template_2.jpeg', category: 'Artículos', url: "./pdfs/template3.pdf" },
     { id: 3, title: 'Paper', img: './images/template_3.jpeg', category: 'Revistas', url: "./pdfs/template2.pdf" },
+    { id: 4, title: 'CV', img: './images/template4.png', category: '', url: "./pdfs/Isaias_Ponce_CV.pdf" },
     //... más plantillas
 ];
 
-const Modal = ({ onClose }) => {
-    const [selectedTemplate, setSelectedTemplate] = useState(null);
+const Modal = ({ onClose ,selectedTemplate,setSelectedTemplate}) => {
+    // const [selectedTemplate, setSelectedTemplate] = useState(null);
 
     const modalRef = useRef();
     const [status, setStatus] = useState('entering');
@@ -45,6 +46,7 @@ const Modal = ({ onClose }) => {
                     onSearch={(term) => setSearchTerm(term)}
                     selectedTemplate={selectedTemplate}
                     onSelectTemplate={setSelectedTemplate}
+                    onClose={onClose}
                 />
             </div>
         </div>
@@ -63,7 +65,7 @@ const CategoryList = ({ categories, onSelect }) => {
     );
 };
 
-const TemplateList = ({ templates, onSearch, selectedTemplate, onSelectTemplate }) => {
+const TemplateList = ({ templates, onSearch, onClose,selectedTemplate, onSelectTemplate }) => {
     const handleOpenURL = (url) => {
         window.open(url, '_blank');
     };
@@ -96,9 +98,9 @@ const TemplateList = ({ templates, onSearch, selectedTemplate, onSelectTemplate 
                 <button
                     className="select-button"
                     disabled={!selectedTemplate}
-                    onClick={() => alert('Template seleccionado: ' + selectedTemplate.title)}
+                    onClick={onClose}
                 >
-                    Seleccionar
+                    {!selectedTemplate ? "Seleccionar":"¡ Seleccionado !"}
                 </button>
                 {selectedTemplate && <p className="selected-template-name">{selectedTemplate.title}</p>}
             </div>

@@ -18,6 +18,7 @@ export default function oli() {
   const [isPromptOpen, setisPromptOpen] = useState(false);
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
 
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
 
@@ -61,7 +62,9 @@ export default function oli() {
           showTemplates={showTemplates}
           onOpenTemplateList={OpenTemplateList}
           isPromptOpen={isPromptOpen} onClose={ClosePrompt}
-          setFields={setFields} Fields={Fields} />
+          setFields={setFields} Fields={Fields} 
+          selectedTemplate={selectedTemplate}
+          />
 
         {/* Indicadores del carrusel */}
         <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
@@ -167,7 +170,7 @@ export default function oli() {
           {/* </DynamicChatProvider> */}
         </ChatProvider>
 
-        {(showTemplates || false) && <TemplateModal onClose={CloseTemplateList} />}
+        {(showTemplates || false) && <TemplateModal selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} onClose={CloseTemplateList} />}
 
       </div>
 

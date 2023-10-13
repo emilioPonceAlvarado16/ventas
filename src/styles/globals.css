@@ -6113,6 +6113,7 @@ textarea.w-select {
   border: 1px solid #e0e0e0;
   /* borde claro */
   padding: 10px;
+  margin-bottom:30px;
   text-align: center;
   background-color: #fff;
   /* fondo blanco */
