@@ -4,7 +4,7 @@ import Loading from './Loading';
 import TemplateModal from "./TemplateModal"
 export default function RegularSection(props) {
   const [isLoading1, setIsLoading1] = useState(false);
-  const onOpenTemplateList=props.onOpenTemplateList || null;
+  const onOpenTemplateList = props.onOpenTemplateList || null;
 
   const handleFileUpload = async (e, type) => {
     const file = e.target.files[0];
@@ -39,13 +39,14 @@ export default function RegularSection(props) {
             <div className="a-margin-bottom-35">
             </div>
             <div className="a-margin-bottom-34">
-              <h6 className="a-h6-heading">Subir Archivo</h6>
+              <h6 className="a-h6-heading">Upload File</h6>
             </div>
             <div className="f-margin-bottom-24">
               <p className="f-paragraph-regular">
-                Elije un archivo para subir y procesar.
+                Choose a file to upload and process.
               </p>
             </div>
+
             <div className="w-file-upload">
               <input
                 type="file"
@@ -58,7 +59,7 @@ export default function RegularSection(props) {
                   <path d="M0 0h24v24H0z" fill="none" />
                   <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" />
                 </svg>
-                {isLoading1 ? <div className="spin"></div> : 'Seleccionar Archivo'}
+                {isLoading1 ? <div className="spin"></div> : 'Select File'}
               </label>
             </div>
           </div>
@@ -67,12 +68,14 @@ export default function RegularSection(props) {
             <div className="a-margin-bottom-35">
             </div>
             <div className="a-margin-bottom-34">
-              <h6 className="a-h6-heading">Escoger Plantilla</h6>
+              <h6 className="a-h6-heading">Choose Template</h6>
             </div>
+
             <div className="f-margin-bottom-24">
               <p className="f-paragraph-regular">
-                Escoge una plantilla para copiar el formato.
+                Choose a template to copy the format.
               </p>
+
             </div>
             <div className="w-file-upload">
               <button
@@ -89,7 +92,7 @@ export default function RegularSection(props) {
                 </svg>
 
 
-                {!props.selectedTemplate ? "Seleccionar Plantilla":"Cambiar a otra Plantilla"}
+                {!props.selectedTemplate ? "Select Template" : "Switch to another Template"}
               </label>
             </div>
           </div>

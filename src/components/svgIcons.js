@@ -181,11 +181,13 @@ export default function SvgIcons(props) {
             break;
 
         case 'lightning':
+            const isCompiling=props.isCompiling || false;
             svg = (
                 <div className={`rounded-green-bg ${disabled ? 'disabled' : ''}`}>
-                    <svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
+                  {  !isCompiling ?(<svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
                         <path d="M7 2v11h3v9l7-12h-4l4-8z"></path>
-                    </svg>
+                    </svg>):
+                     <div className="spin"/>}
                 </div>
             );
             break;

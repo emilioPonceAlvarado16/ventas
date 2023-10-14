@@ -136,6 +136,7 @@ const App = (props) => {
                         background: '#2c2c2c',
                         color: '#e5e5e5'
                     }}
+                    placeholder="Copy/write text, underline and have fun..."
                 ></textarea>
 
 

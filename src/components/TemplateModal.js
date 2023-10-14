@@ -2,22 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import SvgIcons from './svgIcons';
 
-const categories = ['Todas', 'Artículos', 'Tesis', 'Revistas'];
+const categories = ['All', 'Articles', 'Theses', 'Journals'];
 const templates = [
-    { id: 1, title: 'APA V7', img: './images/template_1.jpeg', category: 'Artículos', url: "./pdfs/template1.pdf" },
-    { id: 2, title: 'IEEE', img: './images/template_2.jpeg', category: 'Artículos', url: "./pdfs/template3.pdf" },
-    { id: 3, title: 'Paper', img: './images/template_3.jpeg', category: 'Revistas', url: "./pdfs/template2.pdf" },
+    { id: 1, title: 'APA V7', img: './images/template_1.jpeg', category: 'Articles', url: "./pdfs/template1.pdf" },
+    { id: 2, title: 'IEEE', img: './images/template_2.jpeg', category: 'Articles', url: "./pdfs/template3.pdf" },
+    { id: 3, title: 'Paper', img: './images/template_3.jpeg', category: 'Journals', url: "./pdfs/template2.pdf" },
     { id: 4, title: 'CV', img: './images/template4.png', category: '', url: "./pdfs/Isaias_Ponce_CV.pdf" },
-    //... más plantillas
+    //... more templates
 ];
 
-const Modal = ({ onClose ,selectedTemplate,setSelectedTemplate}) => {
+const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
     // const [selectedTemplate, setSelectedTemplate] = useState(null);
 
     const modalRef = useRef();
     const [status, setStatus] = useState('entering');
 
-    const [selectedCategory, setSelectedCategory] = useState('Todas');
+    const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Modal = ({ onClose ,selectedTemplate,setSelectedTemplate}) => {
     };
 
     const filteredTemplates = templates
-        .filter(template => selectedCategory === 'Todas' || template.category === selectedCategory)
+        .filter(template => selectedCategory === 'All' || template.category === selectedCategory)
         .filter(template => template.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
     return (
@@ -65,7 +65,7 @@ const CategoryList = ({ categories, onSelect }) => {
     );
 };
 
-const TemplateList = ({ templates, onSearch, onClose,selectedTemplate, onSelectTemplate }) => {
+const TemplateList = ({ templates, onSearch, onClose, selectedTemplate, onSelectTemplate }) => {
     const handleOpenURL = (url) => {
         window.open(url, '_blank');
     };
@@ -74,7 +74,7 @@ const TemplateList = ({ templates, onSearch, onClose,selectedTemplate, onSelectT
         <div className="template-list">
             <input
                 type="text"
-                placeholder="Buscar plantilla"
+                placeholder="Search template"
                 onChange={(e) => onSearch(e.target.value)}
             />
             <div className="template-grid">
@@ -100,7 +100,7 @@ const TemplateList = ({ templates, onSearch, onClose,selectedTemplate, onSelectT
                     disabled={!selectedTemplate}
                     onClick={onClose}
                 >
-                    {!selectedTemplate ? "Seleccionar":"¡ Seleccionado !"}
+                    {!selectedTemplate ? "Select" : "Selected!"}
                 </button>
                 {selectedTemplate && <p className="selected-template-name">{selectedTemplate.title}</p>}
             </div>

@@ -71,6 +71,8 @@ const Field = React.forwardRef((props, ref) => {
     un: 'royalblue',
     pa: 'mediumseagreen',
     im: 'darkorange',
+    sb:"orange",
+    li:"royalblue"
   };
   
 
@@ -116,8 +118,10 @@ const Field = React.forwardRef((props, ref) => {
             }}
             >
             <option value="ti" style={{ color: typeColors['ti'] }}>Title</option>
-            <option value="un" style={{ color: typeColors['un'] }}>Unknown</option>
+            <option value="sb" style={{ color: typeColors['sb'] }}>Subtitle</option>
             <option value="pa" style={{ color: typeColors['pa'] }}>Paragraph</option>
+            <option value="li" style={{ color: typeColors['li'] }}>Literal</option>
+            <option value="un" style={{ color: typeColors['un'] }}>Unknown</option>
         </select>
         <SvgIcons type="settings"/>
         </> 

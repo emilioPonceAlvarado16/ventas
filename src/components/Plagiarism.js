@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 export default function Plagiarism(props) {
-    const onClose=props.onClose || null;
+    const onClose = props.onClose || null;
     const [state, setState] = useState('init'); // init, detecting, report
     const [progress, setProgress] = useState(0); // progress value from 0 to 100
 
@@ -28,37 +28,38 @@ export default function Plagiarism(props) {
 
 
 
-            <div className='f-modal-base-wide' style={{ width: "30vw",backgroundColor:"#080f25", color:"white", border:"1.5px solid white" }} >
-                <h2>Detector de Plagio</h2>
+            <div className='f-modal-base-wide' style={{ width: "30vw", backgroundColor: "#080f25", color: "white", border: "1.5px solid white" }} >
+                <h2>Plagiarism Detector</h2>
                 {state === 'init' && (
                     <div>
-                        <p>Presiona el botón para iniciar la detección de plagio.</p>
+                        <p>Press the button to start plagiarism detection.</p>
                         <button style={styles.button} onClick={() => {
                             setState('detecting');
                             setProgress(0); // Reset progress when starting
-                        }}>Iniciar detección</button>
-                        <button style={styles.exitButton} onClick={onClose}>Salir</button>
-
+                        }}>Start Detection</button>
+                        <button style={styles.exitButton} onClick={onClose}>Exit</button>
                     </div>
+
                 )}
 
                 {state === 'detecting' && (
                     <div>
-                        <p>Revisando contenido...</p>
+                        <p>Reviewing content...</p>
                         <div style={styles.progressContainer}>
                             <div style={{ ...styles.progressBar, width: `${progress}%` }}></div>
                             <span style={styles.progressText}>{progress}%</span>
                         </div>
                     </div>
+
                 )}
 
                 {state === 'report' && (
                     <div>
-                        <p>Reporte de plagio:</p>
-                        <div>Contenido original: 90% - Contenido plagiado: 10%</div>
-                        <p>Revisar <a style={{ color: "white",fontWeight:"bold", textDecoration: "underline" }}>Reporte</a></p>
-                        <button style={styles.button} onClick={() => setState('init')}>Volver a detectar</button>
-                        <button style={styles.exitButton} onClick={onClose}>Salir</button>
+                        <p>Plagiarism Report:</p>
+                        <div>Original Content: 90% - Plagiarized Content: 10%</div>
+                        <p>Review <a style={{ color: "white", fontWeight: "bold", textDecoration: "underline" }}>Report</a></p>
+                        <button style={styles.button} onClick={() => setState('init')}>Detect Again</button>
+                        <button style={styles.exitButton} onClick={onClose}>Exit</button>
 
                     </div>
                 )}

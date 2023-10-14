@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import { ChatProvider } from '@/contexts/ChatContext';
 import Plagiarism from '@/components/Plagiarism';
 import App from '@/components/App'
+import { compileBlocksToPdf } from '@/services/CompileService';
 
 
 export default function oli() {
@@ -22,17 +23,38 @@ export default function oli() {
 
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
 
-  const [carouselPosition, setCarouselPosition] = useState(1);
+  const [carouselPosition, setCarouselPosition] = useState(0);
 
-  const [allText, setAllText] = useState(`What is Lorem Ipsum?
-  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-  
-  Why do we use it?
-  It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-  
-  
-  Where does it come from?`);
+  const [isCompiling, setisCompiling] = useState(false)
 
+  const [allText, setAllText] = useState(``);
+
+  const [pdfUrl, setPdfUrl] = useState(null);
+ 
+
+  const compileAndRenderPdf = async () => {
+    try {
+      const Blocks=[
+        {"id": 1, "type": "titulo", "value": "Experiencia Laboral", "id_padre": null},
+        {"id": 2, "type": "literal", "value": "Desarrollador FullStack", "id_padre": 1},
+        {"id": 3, "type": "literal", "value": "Ubicación: Chile, remoto", "id_padre": 1},
+        {"id": 4, "type": "literal", "value": "Fecha: 16/01/2023 - actualidad", "id_padre": 1},
+        {"id": 5, "type": "bloque", "value": "", "id_padre": 1},
+        {"id": 6, "type": "literal", "value": "Desarrollo del backend", "id_padre": 5},
+        {"id": 7, "type": "literal", "value": "Integración con BD", "id_padre": 5},
+        {"id": 8, "type": "literal", "value": "40% de mejora en eficiencia", "id_padre": 5}
+    ]
+        setisCompiling(true);  
+        if (carouselPosition!==1){setCarouselPosition(1)}
+        const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
+        setPdfUrl(newPdfUrl);
+    } catch (error) {
+        console.error("Error al compilar y renderizar PDF:", error);
+    }
+    finally {
+      setisCompiling(false);  // Asegurarse de que isLoading se establece en false incluso si hay un error
+  }
+};
   const ClosePrompt = () => {
     setisPromptOpen(false)
   }
@@ -117,7 +139,7 @@ export default function oli() {
           (!isImageModalOpen && !showTemplates) && (
             <>
               <div className='process_icon tooltip'>
-                <SvgIcons type="lightning" />
+                <SvgIcons type="lightning" isCompiling={isCompiling} onClick={compileAndRenderPdf} />
                 <span className="tooltip-text">Compilar</span>
 
               </div>
@@ -151,7 +173,8 @@ export default function oli() {
             <div style={{ flex: 4, width: '50vw' }}>
               <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
                 {/* <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" /> */}
-                <PdfViewer url="./nuevo.pdf" />
+                {/* <PdfViewer url="./nuevo.pdf" /> */}
+                <PdfViewer url={pdfUrl} />
 
               </div>
             </div>
