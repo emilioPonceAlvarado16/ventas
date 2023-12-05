@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { uploadFile } from '../services/fileService';
 import Loading from './Loading';
-import TemplateModal from "./TemplateModal"
 export default function RegularSection(props) {
   const [isLoading1, setIsLoading1] = useState(false);
   const onOpenTemplateList = props.onOpenTemplateList || null;

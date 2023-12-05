@@ -30,31 +30,31 @@ export default function oli() {
   const [allText, setAllText] = useState(``);
 
   const [pdfUrl, setPdfUrl] = useState(null);
- 
+
 
   const compileAndRenderPdf = async () => {
     try {
-      const Blocks=[
-        {"id": 1, "type": "titulo", "value": "Experiencia Laboral", "id_padre": null},
-        {"id": 2, "type": "literal", "value": "Desarrollador FullStack", "id_padre": 1},
-        {"id": 3, "type": "literal", "value": "Ubicación: Chile, remoto", "id_padre": 1},
-        {"id": 4, "type": "literal", "value": "Fecha: 16/01/2023 - actualidad", "id_padre": 1},
-        {"id": 5, "type": "bloque", "value": "", "id_padre": 1},
-        {"id": 6, "type": "literal", "value": "Desarrollo del backend", "id_padre": 5},
-        {"id": 7, "type": "literal", "value": "Integración con BD", "id_padre": 5},
-        {"id": 8, "type": "literal", "value": "40% de mejora en eficiencia", "id_padre": 5}
-    ]
-        setisCompiling(true);  
-        if (carouselPosition!==1){setCarouselPosition(1)}
-        const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
-        setPdfUrl(newPdfUrl);
+      const Blocks = [
+        { "id": 1, "type": "titulo", "value": "Experiencia Laboral", "id_padre": null },
+        { "id": 2, "type": "literal", "value": "Desarrollador FullStack", "id_padre": 1 },
+        { "id": 3, "type": "literal", "value": "Ubicación: Chile, remoto", "id_padre": 1 },
+        { "id": 4, "type": "literal", "value": "Fecha: 16/01/2023 - actualidad", "id_padre": 1 },
+        { "id": 5, "type": "bloque", "value": "", "id_padre": 1 },
+        { "id": 6, "type": "literal", "value": "Desarrollo del backend", "id_padre": 5 },
+        { "id": 7, "type": "literal", "value": "Integración con BD", "id_padre": 5 },
+        { "id": 8, "type": "literal", "value": "40% de mejora en eficiencia", "id_padre": 5 }
+      ]
+      setisCompiling(true);
+      if (carouselPosition !== 1) { setCarouselPosition(1) }
+      const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
+      setPdfUrl(newPdfUrl);
     } catch (error) {
-        console.error("Error al compilar y renderizar PDF:", error);
+      console.error("Error al compilar y renderizar PDF:", error);
     }
     finally {
       setisCompiling(false);  // Asegurarse de que isLoading se establece en false incluso si hay un error
-  }
-};
+    }
+  };
   const ClosePrompt = () => {
     setisPromptOpen(false)
   }
@@ -84,9 +84,9 @@ export default function oli() {
           showTemplates={showTemplates}
           onOpenTemplateList={OpenTemplateList}
           isPromptOpen={isPromptOpen} onClose={ClosePrompt}
-          setFields={setFields} Fields={Fields} 
+          setFields={setFields} Fields={Fields}
           selectedTemplate={selectedTemplate}
-          />
+        />
 
         {/* Indicadores del carrusel */}
         <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
@@ -127,7 +127,7 @@ export default function oli() {
           allText={allText}
         />
         {carouselPosition === 0 && (
-        
+
 
           <div style={{ flex: 4, width: '50vw' }}>
             <App fields={Fields} setFields={setFields} addField={addField}
@@ -140,8 +140,7 @@ export default function oli() {
             <>
               <div className='process_icon tooltip'>
                 <SvgIcons type="lightning" isCompiling={isCompiling} onClick={compileAndRenderPdf} />
-                <span className="tooltip-text">Compilar</span>
-
+                <span className="tooltip-text">Compile</span>
               </div>
               <div className='process_icon-2 tooltip'>
                 <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
@@ -154,16 +153,14 @@ export default function oli() {
                   isTool={true}
                   disabled={Fields && Fields[0] === undefined}
                 />
-                <span className="tooltip-text">Mostrar</span>
+                <span className="tooltip-text">Show</span>
               </div>
-
               <div className='process_icon-4 tooltip'>
                 <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" />
-                <span className="tooltip-text">Plagio</span>
-
+                <span className="tooltip-text">Plagiarism</span>
               </div>
-
             </>
+
           )
         }
         {carouselPosition === 1 && (
