@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { uploadFile } from '../services/fileService';
+import useFile from '../hooks/useFile'; // Importa el hook useFile
 import Loading from './Loading';
 export default function RegularSection(props) {
+  const { processFile, error, message } = useFile(); // Usa el hook useFile
   const [isLoading1, setIsLoading1] = useState(false);
   const onOpenTemplateList = props.onOpenTemplateList || null;
 
@@ -10,19 +11,15 @@ export default function RegularSection(props) {
     if (!file) return;
     setIsLoading1(true);
     try {
-      const response = await uploadFile(file);
-      console.log("File uploaded successfully:", response);
-      if (props.setFields) {
-        props.setFields(response.body[0]);
-      }
-
-
-      // Llama a la función upload del padre y pasa el archivo y el tipo
-      // upload(file, type);
-    } catch (error) {
-      console.error("Error uploading the file:", error);
+      const fileUrl = await processFile(file); // Usa processFile del hook
+      console.log("File uploaded successfully:", fileUrl);
+      // if (props.setFields) {
+      //   props.setFields({ url: fileUrl }); // Ajusta según la respuesta esperada
+      // }
+    } catch (err) {
+      console.error("Error uploading the file:", err);
     } finally {
-      setIsLoading1(false); // Terminar el estado de carga
+      setIsLoading1(false); // Termina el estado de carga
     }
   };
 

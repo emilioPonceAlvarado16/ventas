@@ -15,7 +15,7 @@ export const uploadFile = async (file) => {
   formData.append('file', file);
 
   try {
-    const response = await axios.post(`${apiUrl}/upload_file`, formData, {
+    const response = await axios.post(`${apiUrl}upload_file`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -31,7 +31,7 @@ export const uploadFile = async (file) => {
 // Función para extraer texto de imágenes
 export const extractDocument = async (fileUrl) => {
   try {
-    const response = await axios.post(`${apiUrl}/extract_document`, { url: fileUrl });
+    const response = await axios.post(`${apiUrl}extract_document`, { url: fileUrl });
     console.log("Document extraction successful.");
     return response.data;
   } catch (error) {
@@ -43,7 +43,7 @@ export const extractDocument = async (fileUrl) => {
 // Función para clasificar texto
 export const classifyText = async (documentData) => {
   try {
-    const response = await axios.post(`${apiUrl}/classify`, documentData);
+    const response = await axios.post(`${apiUrl}classify`, documentData);
     console.log("Text classification successful.");
     return response.data;
   } catch (error) {
