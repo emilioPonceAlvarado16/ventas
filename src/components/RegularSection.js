@@ -14,7 +14,7 @@ export default function RegularSection(props) {
       const fileUrl = await processFile(file); // Usa processFile del hook
       console.log("File uploaded successfully:", fileUrl);
       if (props.setFields) {
-        props.setFields({ url: fileUrl }); // Ajusta según la respuesta esperada
+        props.setFields(response.body[0]);
       }
     
       sethola(fileUrl)
