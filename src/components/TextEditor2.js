@@ -77,7 +77,6 @@ const TextEditor = (props) => {
                       setImageSelected={props.setImageSelected}
                       imageSelected={props.imageSelected}
                       type={obj.type}
-                      name={obj.name}
                       value={obj.value}
                       url={obj.url}
                       index={index}

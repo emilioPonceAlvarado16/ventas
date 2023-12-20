@@ -5,19 +5,17 @@ export default function RegularSection(props) {
   const { processFile, error, message } = useFile(); // Usa el hook useFile
   const [isLoading1, setIsLoading1] = useState(false);
   const onOpenTemplateList = props.onOpenTemplateList || null;
-  const [hola, sethola] = useState({})
   const handleFileUpload = async (e, type) => {
     const file = e.target.files[0];
     if (!file) return;
     setIsLoading1(true);
     try {
-      const fileUrl = await processFile(file); // Usa processFile del hook
-      console.log("File uploaded successfully:", fileUrl);
+      const response = await processFile(file); // Usa processFile del hook
+      console.log("File uploaded successfully:", response);
       if (props.setFields) {
         props.setFields(response.body[0]);
       }
     
-      sethola(fileUrl)
     } catch (err) {
       console.error("Error uploading the file:", err);
     } finally {
@@ -30,7 +28,7 @@ export default function RegularSection(props) {
       {
         isLoading1 && <Loading />
       }
-      {JSON.stringify(hola)}
+      {JSON.stringify()}
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">
           <div className="a-cta-grid-block">

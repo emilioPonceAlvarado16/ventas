@@ -31,7 +31,7 @@ function Folder({ data, level = 0, setIsImageModalOpen, setImageSelected }) {
       {isOpen && data.children && (
         <ul className="nested">
           {data.children.map((child) => (
-            <Folder key={child.name} data={child} level={level + 1} setIsImageModalOpen={setIsImageModalOpen} setImageSelected={setImageSelected} />
+            <Folder  data={child} level={level + 1} setIsImageModalOpen={setIsImageModalOpen} setImageSelected={setImageSelected} />
           ))}
         </ul>
       )}
@@ -51,10 +51,9 @@ export default function FileSystem({ isCollapsed, setIsCollapsed, assetList, isI
       return;
     }
     const updatedassetList = assetList.map(item => ({
-      name: item.name,
       type: item.type,
       value:item.value,
-      icon: item.name.endsWith('.png') ? 'fa-file' : 'fa-folder',
+      icon: item.value.endsWith('.png') ? 'fa-file' : 'fa-folder',
       onClick: () => item.type === "im" ? handleShowImage(item.url) : null,
       url: item.url,
       children: []
