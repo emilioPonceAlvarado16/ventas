@@ -17,14 +17,16 @@ const useFile = () => {
 
       setMessage(uploadResponse.message);
       const fileUrl = uploadResponse.url;
+      // return uploadResponse
       setMessage('Extracting text from document...');
       const documentData = await extractDocument(fileUrl);
-
+      // return documentData
       setMessage('Classifying text...');
-      const classificationResult = await classifyText(documentData);
-
+      const classificationResult = await classifyText(documentData[0]);
+      // return classificationResult
       setMessage('Process completed successfully.');
-      return classificationResult;
+      // return documentData[1];
+      return classificationResult
     } catch (err) {
       setError(err);
       setMessage(`Error: ${err.message}`);

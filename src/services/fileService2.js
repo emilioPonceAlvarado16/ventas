@@ -21,7 +21,7 @@ export const uploadFile = async (file) => {
       },
     });
     console.log("File upload successful.");
-    return response.data.url; // Asumiendo que la API devuelve la URL en response.data.url
+    return response.data; // Asumiendo que la API devuelve la URL en response.data.url
   } catch (error) {
     console.error("Error uploading the file:", error);
     throw error;
@@ -31,7 +31,7 @@ export const uploadFile = async (file) => {
 // Función para extraer texto de imágenes
 export const extractDocument = async (fileUrl) => {
   try {
-    const response = await axios.post(`${apiUrl}extract_document`, { url: fileUrl });
+    const response = await axios.post(`${apiUrl}extract_document`, { file_path: fileUrl });
     console.log("Document extraction successful.");
     return response.data;
   } catch (error) {
