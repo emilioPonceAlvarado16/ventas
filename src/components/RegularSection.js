@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useFile from '../hooks/useFile'; // Importa el hook useFile
-import Loading from './Loading';
+import Loading from './Loading2';
+
 export default function RegularSection(props) {
   const { processFile, error, message } = useFile(); // Usa el hook useFile
   const [isLoading1, setIsLoading1] = useState(false);
@@ -26,8 +27,9 @@ export default function RegularSection(props) {
   return (
     <div className="a-section-regular-2">
       {
-        isLoading1 && <Loading />
+       true && <Loading message="Subiendo archivo " />
       }
+        
       {JSON.stringify()}
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">

@@ -4,6 +4,8 @@ import React from 'react';
 export default function SvgIcons(props) {
     const type = props.type;
     const disabled = props.disabled || false
+    const width= props.width || "16"
+    const height=props.height || "16"
     let svg;
 
     switch (type) {
@@ -50,7 +52,7 @@ export default function SvgIcons(props) {
         case 'error':
             svg = (
                 <div className="f-alert-icon w-embed">
-                    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width={width} height={height} fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22ZM12 10.586L9.172 7.757L7.757 9.172L10.586 12L7.757 14.828L9.172 16.243L12 13.414L14.828 16.243L16.243 14.828L13.414 12L16.243 9.172L14.828 7.757L12 10.586Z" fill="currentColor"></path>
                     </svg>
                 </div>
@@ -98,6 +100,29 @@ export default function SvgIcons(props) {
                 );
             break;
 
+            case 'gear':
+                
+                svg = (
+                    <div>
+
+                    <svg className="gear-svg"  width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
+                    </svg>
+                    <style jsx>{`
+                        .gear-svg {
+                            animation: spin 5s linear infinite;
+                        }
+
+                        @keyframes spin {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                    `}</style>
+                    </div>
+                );
+                break;
+            
+            
         case 'angleLeft':
             svg =
                 (
@@ -205,6 +230,6 @@ export default function SvgIcons(props) {
     }
 
     return (
-        <div {...props} >{svg}</div>
+        <div  {...props} >{svg}</div>
     )
 }
