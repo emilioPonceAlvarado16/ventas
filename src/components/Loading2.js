@@ -5,7 +5,7 @@ function Loading2({ message }) {
     return (
         <div className="loading-container">
             <div className="spinner">
-                <SvgIcons type="gear" width="100" height="100" />
+                <SvgIcons type="gear2" width="100" height="100" />
             </div>
             <div className="message" style={{"color":"#E0A900"}}>
                 {message}
@@ -29,15 +29,12 @@ function Loading2({ message }) {
                 }
 
                 .spinner {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100px;
-                    height: 100px;
+                    width: 200px; 
+                    height: 200px;
+                    position: relative;
                 }
 
                 .message {
-                    margin-top: 20px;
                     color: white;
                     font-size: 1.25em;
                 }
