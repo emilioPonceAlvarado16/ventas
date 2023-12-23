@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import SvgIcons from './svgIcons';
 
 function Loading2({ message, error, setError }) {
@@ -22,10 +22,10 @@ function Loading2({ message, error, setError }) {
                 />
             )}
 
-<div className={`spinner ${error ? 'gear-fall' : ''}`}>
+            <div className={`spinner ${error ? 'gear-fall' : ''}`}>
                 <SvgIcons type="gear2" width="100" height="100" />
             </div>
-            <div className="message" style={{ "color": messageColor }} >
+            <div className={`message ${error ? 'message-rise' : ''}`} style={{ "color": messageColor }}>
                 {error ? error.message : message} {/* Modificado para usar error.message */}
                 {!error && (
                     <>
@@ -86,6 +86,9 @@ function Loading2({ message, error, setError }) {
                 @keyframes fall {
                     0% { transform: translateY(0); }
                     100% { transform: translateY(500px); opacity: 0; }
+                }
+                .message-rise {
+                    transform: translateY(-150px); // Sube el mensaje cuando hay un error
                 }
                 
             `}</style>
