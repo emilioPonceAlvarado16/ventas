@@ -1,17 +1,23 @@
 import React from 'react';
 import SvgIcons from './svgIcons';
 
-function Loading2({ message }) {
+function Loading2({ message, error }) {
+    const messageColor = error ? '#FF0000' : '#E0A900';
+
     return (
         <div className="loading-container">
             <div className="spinner">
                 <SvgIcons type="gear2" width="100" height="100" />
             </div>
-            <div className="message" style={{"color":"#E0A900"}}>
-                {message}
-                <span className="dot">.</span>
-                <span className="dot">.</span>
-                <span className="dot">.</span>
+            <div className="message" style={{ "color": messageColor }} >
+            {error || message}
+                {error && (<>
+                    <span className="dot">.</span>
+                    <span className="dot">.</span>
+                    <span className="dot">.</span>
+
+                </>
+                )}
             </div>
             <style jsx>{`
                 .loading-container {

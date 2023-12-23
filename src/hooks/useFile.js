@@ -29,7 +29,7 @@ const useFile = () => {
       return classificationResult
     } catch (err) {
       setError(err);
-      setMessage(`Error: ${err.message}`);
+      setMessage(` ${err}`);
     }
   };
 

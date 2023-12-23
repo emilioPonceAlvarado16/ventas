@@ -21,13 +21,14 @@ export default function RegularSection(props) {
       console.error("Error uploading the file:", err);
     } finally {
       setIsLoading1(false); // Termina el estado de carga
+      e.target.value = '';
     }
   };
 
   return (
     <div className="a-section-regular-2">
       {
-       true && <Loading message="Subiendo archivo " />
+        (isLoading1 || error) &&<Loading message={message}  />
       }
         
       {JSON.stringify()}
