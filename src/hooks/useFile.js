@@ -29,11 +29,11 @@ const useFile = () => {
       return classificationResult
     } catch (err) {
       setError(err);
-      setMessage(` ${err}`);
+      setMessage(` ${err.Error}`);
     }
   };
 
-  return { processFile, error, message };
+  return { processFile, error, message, setError };
 };
 
 export default useFile;
