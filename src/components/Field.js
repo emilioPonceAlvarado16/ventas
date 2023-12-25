@@ -12,15 +12,15 @@ const Field = React.forwardRef((props, ref) => {
   const setImageSelected = props.setImageSelected
   const url = props.url || ""
   const updateField = props.updateField || null
-  const setAllText=props.setAllText || null
-  const allText=props.allText || ""
+  const setAllText = props.setAllText || null
+  const allText = props.allText || ""
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
   const [newValue, setNewValue] = useState(value);
 
 
-  const deleteField=()=>{
+  const deleteField = () => {
     removeField(index);
     setAllText(allText + '\n\n' + value)
   }
@@ -66,15 +66,25 @@ const Field = React.forwardRef((props, ref) => {
       sel.addRange(range);
     }
   };
-  const typeColors = {
-    ti: 'orchid',
-    un: 'royalblue',
-    pa: 'mediumseagreen',
-    im: 'darkorange',
-    sb:"orange",
-    li:"royalblue"
+
+  const typeColors2 = {
+    abstract: 'orchid',
+    abstract_keywords: 'royalblue',
+    authors: 'mediumseagreen',
+    bibliografia: 'darkorange',
+    detalle: 'orange',
+    ecuacion: 'royalblue',
+    enumeracion: 'lightcoral',
+    image_title: 'mediumpurple',
+    parrafo: 'goldenrod',
+    programacion: 'lightskyblue',
+    subseccion: 'palevioletred',
+    text: 'olivedrab',
+    titulo: 'sandybrown',
+    im: 'steelblue' // Nueva etiqueta y color añadidos
   };
-  
+
+
 
   return (
     <div
@@ -103,34 +113,37 @@ const Field = React.forwardRef((props, ref) => {
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <SvgIcons onClick={deleteField} type="trash" />
-      {type!=="im" && props.showFieldType  &&
-       <>
-       <select 
-            value={type} 
-            onChange={handleSelectChange} 
-            style={{ 
-              marginLeft: '5px', 
-              backgroundColor: '#2c2c2c',
-              color: typeColors[type] || 'white', 
-              borderColor: '#2c2c2c',
-              borderBottom: ".1px solid white",
-              fontSize:"15px"
-            }}
+        {type !== "im" && props.showFieldType &&
+          <>
+            <select
+              value={type}
+              onChange={handleSelectChange}
+              style={{
+                marginLeft: '5px',
+                backgroundColor: '#2c2c2c',
+                color: typeColors2[type] || 'white',
+                borderColor: '#2c2c2c',
+                borderBottom: ".1px solid white",
+                fontSize: "15px"
+              }}
             >
-            <option value="ti" style={{ color: typeColors['ti'] }}>Title</option>
-            <option value="sb" style={{ color: typeColors['sb'] }}>Subtitle</option>
-            <option value="pa" style={{ color: typeColors['pa'] }}>Paragraph</option>
-            <option value="li" style={{ color: typeColors['li'] }}>Literal</option>
-            <option value="un" style={{ color: typeColors['un'] }}>Unknown</option>
-        </select>
-        <SvgIcons type="settings"/>
-        </> 
-        
+              {Object.entries(typeColors2)
+                .filter(([key]) => key !== 'im') // Excluyendo la opción 'im'
+                .map(([key, value]) => (
+                  <option key={key} value={key} style={{ color: value }}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)} {/* Capitalizando la primera letra */}
+                  </option>
+                ))
+              }
+            </select>
+            <SvgIcons type="settings" />
+          </>
+
         }
 
-    </div>
+      </div>
 
-</div>
+    </div>
 
   );
 });

@@ -11,7 +11,7 @@ import { ChatProvider } from '@/contexts/ChatContext';
 import Plagiarism from '@/components/Plagiarism';
 import App from '@/components/App'
 import { compileBlocksToPdf } from '@/services/CompileService';
-
+import Loading from '@/components/Loading2';
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function oli() {
   const [carouselPosition, setCarouselPosition] = useState(0);
 
   const [isCompiling, setisCompiling] = useState(false)
-
+  const [error, setError] = useState("")
   const [allText, setAllText] = useState(``);
 
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -34,21 +34,13 @@ export default function oli() {
 
   const compileAndRenderPdf = async () => {
     try {
-      const Blocks = [
-        { "id": 1, "type": "titulo", "value": "Experiencia Laboral", "id_padre": null },
-        { "id": 2, "type": "literal", "value": "Desarrollador FullStack", "id_padre": 1 },
-        { "id": 3, "type": "literal", "value": "Ubicación: Chile, remoto", "id_padre": 1 },
-        { "id": 4, "type": "literal", "value": "Fecha: 16/01/2023 - actualidad", "id_padre": 1 },
-        { "id": 5, "type": "bloque", "value": "", "id_padre": 1 },
-        { "id": 6, "type": "literal", "value": "Desarrollo del backend", "id_padre": 5 },
-        { "id": 7, "type": "literal", "value": "Integración con BD", "id_padre": 5 },
-        { "id": 8, "type": "literal", "value": "40% de mejora en eficiencia", "id_padre": 5 }
-      ]
+    
       setisCompiling(true);
       if (carouselPosition !== 1) { setCarouselPosition(1) }
       const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
       setPdfUrl(newPdfUrl);
     } catch (error) {
+      setError(error);
       console.error("Error al compilar y renderizar PDF:", error);
     }
     finally {
@@ -76,6 +68,7 @@ export default function oli() {
   return (
 
     <div>
+     {(isCompiling|| error) &&<Loading message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
 
         {/* {JSON.stringify(Fields)} */}

@@ -3,7 +3,7 @@ import axios from 'axios';
 export const compileBlocksToPdf = async (blocks) => {
     try {
         // Enviamos los bloques al servidor y esperamos un PDF como respuesta
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_WEB}generate_latex`, blocks, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_WEB}compile`, blocks, {
             responseType: 'blob' // Indicamos que esperamos una respuesta binaria (blob)
         });
 
