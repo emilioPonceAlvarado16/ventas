@@ -1,9 +1,23 @@
 import React, {useEffect} from 'react';
 import SvgIcons from './svgIcons';
 
-function Loading2({ message, error, setError }) {
+function Loading2({ message, error, setError, isLoading }) {
     const messageColor = error ? '#ea6c28' : '#E0A900';
-
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+          if (isLoading) {
+            // Muestra un mensaje de confirmación estándar del navegador
+            e.preventDefault();
+            e.returnValue = '';
+          }
+        };
+    
+        window.addEventListener('beforeunload', handleBeforeUnload);
+    
+        // Eliminar el controlador de eventos al desmontar
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+      }, [isLoading]); // Dependencia: isLoading1
+    
     return (
         <div className="loading-container">
             {error && (

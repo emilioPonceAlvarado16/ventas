@@ -68,7 +68,7 @@ export default function oli() {
   return (
 
     <div>
-     {(isCompiling|| error) &&<Loading message="compilando" setError={setError} error={error}/>}
+     {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
 
         {/* {JSON.stringify(Fields)} */}

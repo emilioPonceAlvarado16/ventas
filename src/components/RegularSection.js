@@ -6,20 +6,6 @@ export default function RegularSection(props) {
   const { processFile, error, message, setError } = useFile(); // Usa el hook useFile
   const [isLoading1, setIsLoading1] = useState(false);
   const onOpenTemplateList = props.onOpenTemplateList || null;
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (isLoading1) {
-        // Muestra un mensaje de confirmación estándar del navegador
-        e.preventDefault();
-        e.returnValue = '';
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    // Eliminar el controlador de eventos al desmontar
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [isLoading1]); // Dependencia: isLoading1
 
 
   const handleFileUpload = async (e, type) => {
@@ -44,7 +30,7 @@ export default function RegularSection(props) {
   return (
     <div className="a-section-regular-2">
       {
-        (isLoading1 || error) &&<Loading message={message}setError={setError} error={error}  />
+        (isLoading1 || error) &&<Loading isLoading={isLoading1} message={message}setError={setError} error={error}  />
       }
         
       {JSON.stringify()}
