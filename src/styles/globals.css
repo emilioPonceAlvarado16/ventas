@@ -6223,3 +6223,9 @@ template-item img {
   top:89%;
   left: 80%;
 }
+.react-resizable-handle {
+  width: 20px;
+  height: 20px;
+  /* background: url('path_to_your_custom_icon') no-repeat center center; */
+  background-size: 20px 20px;
+}
