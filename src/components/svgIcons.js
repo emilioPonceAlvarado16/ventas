@@ -4,8 +4,8 @@ import React from 'react';
 export default function SvgIcons(props) {
     const type = props.type;
     const disabled = props.disabled || false
-    const width= props.width || "16"
-    const height=props.height || "16"
+    const width = props.width || "16"
+    const height = props.height || "16"
     let svg;
 
     switch (type) {
@@ -100,13 +100,13 @@ export default function SvgIcons(props) {
                 );
             break;
 
-            case 'gear':
-                
-                svg = (
-                    <div>
+        case 'gear':
 
-                    <svg className="gear-svg"  width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
+            svg = (
+                <div>
+
+                    <svg className="gear-svg" width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
                     </svg>
                     <style jsx>{`
                         .gear-svg {
@@ -118,19 +118,19 @@ export default function SvgIcons(props) {
                             100% { transform: rotate(360deg); }
                         }
                     `}</style>
-                    </div>
-                );
-                break;
-            case 'gear2':
-                
-                svg = (
-                    <div>
+                </div>
+            );
+            break;
+        case 'gear2':
 
-                    <svg className="gear-svg small-gear"  width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
+            svg = (
+                <div>
+
+                    <svg className="gear-svg small-gear" width={width} height={height} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
                     </svg>
-                    <svg className="gear-svg large-gear"  width="125" height="125" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
+                    <svg className="gear-svg large-gear" width="125" height="125" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19.4,12.6a1.5,1.5,0,0,0,0-1.2l2.1-1.6a.75.75,0,0,0,.18-.95l-2-3.4a.75.75,0,0,0-.91-.3l-2.5,1a3.58,3.58,0,0,0-.84-.49l-.38-2.7a.75.75,0,0,0-.74-.63H9.7a.75.75,0,0,0-.74.63l-.38,2.7a3.58,3.58,0,0,0-.84.49l-2.5-1a.75.75,0,0,0-.91.3l-2,3.4a.75.75,0,0,0,.18.95l2.1,1.6a1.5,1.5,0,0,0,0,1.2l-2.1,1.6a.75.75,0,0,0-.18.95l2,3.4a.75.75,0,0,0,.91.3l2.5-1c.26.18.53.35.84.49l.38,2.7a.75.75,0,0,0,.74.63h4.6a.75.75,0,0,0,.74-.63l.38-2.7c.31-.14.58-.31.84-.49l2.5,1a.75.75,0,0,0,.91-.3l2-3.4a.75.75,0,0,0-.18-.95ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
                     </svg>
                     <style jsx>{`
                         .gear-svg {
@@ -155,11 +155,11 @@ export default function SvgIcons(props) {
                         }
                        
                          `}</style>
-                    </div>
-                );
-                break;
-            
-            
+                </div>
+            );
+            break;
+
+
         case 'angleLeft':
             svg =
                 (
@@ -193,13 +193,43 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
+        case 'collapse':
+            svg =
+                (
+                  
+<div className='rounded-green-bg'>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M8 12H12M12 12H16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+        <path d="M12 8V12M12 12V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+    </svg>
+</div>
+
+                );
+            break;
+        case 'expand':
+            svg =
+                (
+                    <div className='rounded-green-bg'>
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 12H9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path d="M18 12H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path d="M12 6V9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path d="M12 18V15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        </svg>
+
+
+
+                    </div>
+                );
+            break;
         case 'plus':
             svg = (
                 <div className='rounded-keyboard-bg' style={{ backgroundColor: "white" }}>
 
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="#E0A900" style={{ backGroundColor: "#E0A900" }}>
-                        <path d="M12 4V20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                        <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        <path d="M12 4V20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        <path d="M4 12H20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                     </svg>
                 </div>
             );
@@ -215,7 +245,7 @@ export default function SvgIcons(props) {
                         <line x1="4" y1="9" x2="14" y2="9" stroke="black"></line>
                         <line x1="4" y1="12" x2="14" y2="12" stroke="black"></line>
 
-                        <circle cx="19" cy="7" r="5" stroke="black"  className="yellow-fill" fill="white"></circle>
+                        <circle cx="19" cy="7" r="5" stroke="black" className="yellow-fill" fill="white"></circle>
                         <line x1="21" y1="10" x2="24" y2="13" stroke="white"></line>
                     </svg>
 
@@ -243,13 +273,13 @@ export default function SvgIcons(props) {
             break;
 
         case 'lightning':
-            const isCompiling=props.isCompiling || false;
+            const isCompiling = props.isCompiling || false;
             svg = (
                 <div className={`rounded-green-bg ${disabled ? 'disabled' : ''}`}>
-                  {  !isCompiling ?(<svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
+                    {!isCompiling ? (<svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
                         <path d="M7 2v11h3v9l7-12h-4l4-8z"></path>
-                    </svg>):
-                     <div className="spin"/>}
+                    </svg>) :
+                        <div className="spin" />}
                 </div>
             );
             break;

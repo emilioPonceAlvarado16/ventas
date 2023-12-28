@@ -20,17 +20,33 @@ export default function oli() {
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-
+  
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
-
+  
   const [carouselPosition, setCarouselPosition] = useState(0);
 
   const [isCompiling, setisCompiling] = useState(false)
   const [error, setError] = useState("")
   const [allText, setAllText] = useState(``);
-
+  
   const [pdfUrl, setPdfUrl] = useState(null);
+  
+  const [isFullScreen, setIsFullScreen] = useState(false);//fullScreen
+  
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((e) => {
+            console.error(`Error attempting to enable full-screen mode: ${e.message} (${e.name})`);
+        });
+        setIsFullScreen(true);
+    } else {
+        document.exitFullscreen().catch((e) => {
+            console.error(`Error attempting to disable full-screen mode: ${e.message} (${e.name})`);
+        });
+        setIsFullScreen(false);
+    }
 
+};
 
   const compileAndRenderPdf = async () => {
     try {
@@ -118,6 +134,7 @@ export default function oli() {
 
           setAllText={setAllText}
           allText={allText}
+         
         />
         {carouselPosition === 0 && (
 
@@ -149,8 +166,9 @@ export default function oli() {
                 <span className="tooltip-text">Show</span>
               </div>
               <div className='process_icon-4 tooltip'>
-                <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" />
-                <span className="tooltip-text">Plagiarism</span>
+                {/* <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" /> */}
+                <SvgIcons onClick={toggleFullScreen} type={isFullScreen ? 'collapse' : 'expand'} />
+                <span className="tooltip-text">{isFullScreen ? 'Collapse' : 'Expand'}</span>
               </div>
             </>
 
