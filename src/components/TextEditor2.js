@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Field from './Field';
 import FileSystem from './FileSystem';
 import Modal from './Modal';
+import ImageResizeModal from './ImageResizerModal';
 
 
 const TextEditor = (props) => {
@@ -95,7 +96,7 @@ const TextEditor = (props) => {
           )}
         </Droppable>
         {props.isImageModalOpen && (
-          <Modal
+          <ImageResizeModal
             onClose={props.setIsImageModalOpen}
             title="Image Preview"
             details={props.selectedImageName}

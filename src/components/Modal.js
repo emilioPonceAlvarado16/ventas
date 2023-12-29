@@ -14,10 +14,12 @@ export default function Modal({ onClose, imageUrl }) {
   }, []);
 
   const handleOutsideClick = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target) && onClose) {
-      setStatus('exiting');
-      setTimeout(() => onClose(), 80);
-    }
+    // if (modalRef.current && !modalRef.current.contains(e.target) && onClose) {
+    //   setStatus('exiting');
+    //   setTimeout(() => onClose(), 80);
+    // }
+    setStatus('exiting');
+    setTimeout(() => onClose(), 80);
   };
 
   const handleResize = (event, { element, size }) => {
@@ -25,7 +27,7 @@ export default function Modal({ onClose, imageUrl }) {
   };
 
   return (
-    <div className="f-modal-overlay" onClick={handleOutsideClick}>
+    <div className="f-modal-overlay" >
       <div className={`f-modal-base-wide f-modal-${status}`} ref={modalRef}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
           <Resizable width={size.width} height={size.height} onResize={handleResize} resizeHandles={['se', 'e', 's', 'w', 'n', 'nw', 'ne', 'sw']}>
@@ -34,8 +36,8 @@ export default function Modal({ onClose, imageUrl }) {
             </div>
           </Resizable>
         </div>
-        <button onClick={onClose}>Cerrar</button>
+        <button onClick={handleOutsideClick}>Cerrar</button>
       </div>
     </div>
   );
-}
+  }
