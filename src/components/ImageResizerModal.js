@@ -1,10 +1,9 @@
 import React, { useState, useRef } from 'react';
-import Image from 'next/image';
 
 export default function ImageResizeModal({ onClose }) {
   const modalRef = useRef();
   const [size, setSize] = useState({ width: 200, height: 200 });
-  const [imageUrl, setImageUrl] = useState("./images/image1.png");
+  const [imageUrl, setImageUrl] = useState("/images/image1.png");
 
   // Simula el cambio de tamaño
   const handleResize = (e) => {
@@ -57,7 +56,7 @@ export default function ImageResizeModal({ onClose }) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', height: '100%' }}>
         <div style={{ flex: 1, padding: '10px', overflow: 'hidden' }}>
-          <Image src={imageUrl} alt="Imagen a redimensionar" width={size.width} height={size.height} layout="responsive" />
+          <img src={imageUrl} alt="Imagen a redimensionar" style={{ width: `${size.width}px`, height: `${size.height}px` }} />
         </div>
         <div style={{ width: '200px', padding: '10px', borderLeft: '1px solid #ddd' }}>
           <h3 style={{ margin: '0 0 10px 0' }}>Configuración de Tamaño</h3>
