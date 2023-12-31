@@ -225,7 +225,7 @@ const handleSubmit = async function (event) {
         </p>
       </div>
     </div>
-    <div className="f-account-image-wrapper"><img src="images/Account-Placeholder.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover"/></div>
+    <div className="f-account-image-wrapper"><img src="images/formatmaker_photo.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover"/></div>
    
     {showModal    &&(
       <ModalHeading 

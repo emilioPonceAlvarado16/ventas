@@ -3360,6 +3360,8 @@ textarea.w-select {
 .f-section-large {
   padding: 92px 5%;
   position: relative;
+  background-color: #001c33;
+  color:white;
 }
 
 .f-button-secondary {
