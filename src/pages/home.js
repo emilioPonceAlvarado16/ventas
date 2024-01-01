@@ -27,14 +27,16 @@ import RequireAuth from '../components/RequireAuth';
 function Home() {
   
   return (
-    
+    <>
     <>
 
-      <MouseEffect/>
       <RequireAuth>
-        <Navbar />
+        {/* <Navbar /> */}
         </RequireAuth> 
+   
     <Hero/>
+    {/* <FeaturesNew/> */}
+    <Features/>
       <br/>
 
 
@@ -47,15 +49,14 @@ function Home() {
     {/* <ModalCard/>  */}
     {/* <ModalHeading/> */}
     {/* <AvatarName size="large" names="IA"/> */}
-    {/* <FeaturesNew/> */}
     {/* <AvatarPhoto/>
-    <Features/>
-    <Pricing/>*/}
+  <Pricing/>*/}
    {/* <ModalAlert type="error" message="Guardado correctamente!"/>  */}
     {/* <Inicio/> */}
 
     <Footer/>
-</>
+</>   <MouseEffect/>
+  </>
    
   )
 }

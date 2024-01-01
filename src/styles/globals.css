@@ -2893,6 +2893,7 @@ textarea.w-select {
 }
 
 .f-navigation-container {
+  background-color: #00192d;
   width: 100%;
   max-width: 1280px;
   justify-content: space-between;
@@ -3316,7 +3317,7 @@ textarea.w-select {
 }
 
 .f-h1-heading {
-  color: var(--neutral-primario);
+  /* color: var(--neutral-primario); */
   letter-spacing: -.04em;
   margin-top: 0;
   margin-bottom: 0;
@@ -3360,6 +3361,7 @@ textarea.w-select {
 .f-section-large {
   padding: 92px 5%;
   position: relative;
+  background-color: #00192d;
   background-color: #001c33;
   color:white;
 }
@@ -3643,7 +3645,7 @@ textarea.w-select {
 }
 
 .f-h3-heading {
-  color: var(--neutral-primario);
+  /* color: var(--neutral-primario); */
   letter-spacing: -.02em;
   margin-top: 0;
   margin-bottom: 0;
