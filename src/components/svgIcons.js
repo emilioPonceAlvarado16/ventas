@@ -67,6 +67,15 @@ export default function SvgIcons(props) {
                 </div>
             )
             break;
+        case 'featureCheck':
+            svg = (
+                <div className="f-icon-regular w-embed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                        <path d="M12.0002 19.6386C7.78126 19.6386 4.36133 16.2187 4.36133 11.9997C4.36133 7.78077 7.78126 4.36084 12.0002 4.36084C16.2192 4.36084 19.6391 7.78077 19.6391 11.9997C19.6391 16.2187 16.2192 19.6386 12.0002 19.6386ZM11.2386 15.0553L16.6393 9.65383L15.5592 8.57369L11.2386 12.895L9.07758 10.734L7.99744 11.8141L11.2386 15.0553Z" fill="#160042"></path>
+                    </svg>
+                </div>
+            )
+            break;
         case 'eyeIcon':
             const isTool = props.isTool || false
             svg =
@@ -196,13 +205,13 @@ export default function SvgIcons(props) {
         case 'collapse':
             svg =
                 (
-                  
-<div className='rounded-green-bg'>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M8 12H12M12 12H16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-        <path d="M12 8V12M12 12V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-    </svg>
-</div>
+
+                    <div className='rounded-green-bg'>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H12M12 12H16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path d="M12 8V12M12 12V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                        </svg>
+                    </div>
 
                 );
             break;
