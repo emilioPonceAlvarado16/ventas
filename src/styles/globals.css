@@ -30,6 +30,7 @@ html {
  */
 body {
   margin: 0;
+
 }
 
 /* HTML5 display definitions
@@ -3615,7 +3616,7 @@ textarea.w-select {
 }
 
 .f-sub-heading-large {
-  color: var(--neutral-primario);
+  /* color: var(--neutral-primario); */
   letter-spacing: -.02em;
   font-size: 24px;
   font-weight: 700;
@@ -3952,6 +3953,7 @@ textarea.w-select {
 
 .f-h2-heading {
   color: var(--neutral-primario);
+  color:white;
   letter-spacing: -.04em;
   margin-top: 0;
   margin-bottom: 0;
@@ -4679,6 +4681,8 @@ textarea.w-select {
 
 .f-footer-regular {
   background-color: var(--white);
+  color:white;
+  background-color: #001c33;
   padding: 64px 5%;
   position: relative;
 }

@@ -4,6 +4,7 @@ import Plagiarism from '@/components/Plagiarism'
 import TemplateConfig from '@/components/TemplateConfig'
 import Hero from '@/components/hero/Hero'
 import Navbar from '@/components/navbar'
+import Pricing from '@/components/pricing'
 import React from 'react'
 
 // import TemplateConfig from '@/components/TemplateConfigBorrar'
@@ -12,6 +13,7 @@ export default function si() {
   return (
     <>
     {/* <Navbar/> */}
+    <Pricing/>
     <Hero/>
     <MouseEffect/>
     </>

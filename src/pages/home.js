@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "../components/navbar"
 import Hero from "../components/hero/Hero"
-// import Pricing from "../components/pricing"
+import Pricing from "../components/pricing"
 // import Inicio from "../components/inicio"
 import MouseEffect from '@/components/MouseEffect'
 
@@ -29,15 +29,15 @@ function Home() {
   return (
     <>
     <>
-
+{/* 
       <RequireAuth>
-        {/* <Navbar /> */}
-        </RequireAuth> 
+        <Navbar />
+        </RequireAuth>  */}
    
     <Hero/>
     {/* <FeaturesNew/> */}
     <Features/>
-      <br/>
+      {/* <br/> */}
 
 
       {/* <Navbar /> */}
@@ -50,10 +50,10 @@ function Home() {
     {/* <ModalHeading/> */}
     {/* <AvatarName size="large" names="IA"/> */}
     {/* <AvatarPhoto/>
-  <Pricing/>*/}
    {/* <ModalAlert type="error" message="Guardado correctamente!"/>  */}
     {/* <Inicio/> */}
 
+  <Pricing/>
     <Footer/>
 </>   <MouseEffect/>
   </>
