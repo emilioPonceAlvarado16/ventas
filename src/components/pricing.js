@@ -6,7 +6,18 @@ export default function pricing() {
     monthly: { basic: 10, professional: 14, type:"Month"},
     yearly: { basic: 100, professional: 140 , type:"Year"},
   });
-
+ const features = {
+  monthly: [
+    "Feature 1 for Monthly",
+    "Feature 2 for Monthly",
+    "Feature 3 for Monthly"
+  ],
+  yearly: [
+    "Feature 1 for Yearly",
+    "Feature 2 for Yearly",
+    "Feature 3 for Yearly"
+  ]
+};
   const changeTab = (tab) => {
     setCurrentTab(tab);
   };
