@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from "../components/navbar"
-import Hero from "../components/hero"
+import Hero from "../components/hero/Hero"
 // import Pricing from "../components/pricing"
 // import Inicio from "../components/inicio"
 import MouseEffect from '@/components/MouseEffect'

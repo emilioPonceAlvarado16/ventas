@@ -10,7 +10,7 @@ export default function Hero() {
               <div className="f-heading-detail-small">Innovative Document Editing</div>
             </div>
             <div className="f-margin-bottom-35">
-              <h1 className="f-h1-heading">Transform Your Documents Effortlessly</h1>
+              <h1 className="f-h1-heading golden-rainbow-text">Transform Your Documents Effortlessly</h1>
             </div>
             <div className="f-margin-bottom-32">
               <p className="f-paragraph-large">
