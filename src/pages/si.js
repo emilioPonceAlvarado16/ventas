@@ -1,6 +1,7 @@
 import App from '@/components/App'
 import MouseEffect from '@/components/MouseEffect'
 import Plagiarism from '@/components/Plagiarism'
+import RequireAuth from '@/components/RequireAuth'
 import TemplateConfig from '@/components/TemplateConfig'
 import Hero from '@/components/hero/Hero'
 import Navbar from '@/components/navbar'
@@ -12,10 +13,13 @@ import React from 'react'
 export default function si() {
   return (
     <>
-    {/* <Navbar/> */}
-    <Pricing/>
+    <RequireAuth>
+
+    <Navbar/>
+    </RequireAuth>
+    {/* <Pricing/>
     <Hero/>
-    <MouseEffect/>
+    <MouseEffect/> */}
     </>
   )
 }

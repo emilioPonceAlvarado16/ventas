@@ -8,25 +8,41 @@ export default function navbar() {
     <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
         <div className="f-navigation-container">
-          {/* Logo Tipográfico */}
-          <button href="#" className="f-navigation-logo-link w-inline-block ">
-            <div style={{ fontFamily: '"Arial", sans-serif', fontSize: '24px', backgroundColor: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)' }}>
-              <span style={{ color: '#080f25', fontWeight: 'bold', fontStyle: 'italic' }}>Format</span>
-              <span style={{ color: '#FFC107', fontWeight: 'bold', fontStyle: 'italic' }}>Maker</span>
+          <button href="#" className="f-navigation-logo-link w-inline-block" style={{ backgroundColor: 'transparent', border: 'none' }}>
+            <div style={{
+              fontFamily: '"Arial", sans-serif',
+              fontSize: '24px',
+              backgroundColor: '#445566', // Gris azulado suave para el fondo del logo
+              padding: '10px',
+              borderRadius: '5px',
+              boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
+            }}>
+              <span style={{
+                color: 'white', // Blanco para alto contraste en la primera parte del texto
+                fontWeight: 'bold',
+                fontStyle: 'italic'
+              }}>Format</span>
+              <span style={{
+                color: '#708090', // Gris azulado para complementar en la segunda parte del texto
+                fontWeight: 'bold',
+                fontStyle: 'italic'
+              }}>Maker</span>
             </div>
           </button>
+
+
           <nav role="navigation" className="f-navigation-menu w-nav-menu">
             <a href="#" className="f-navigation-link w-nav-link">Link One</a>
             <a href="#" className="f-navigation-link w-nav-link">Link Two</a>
             <a href="#" className="f-navigation-link w-nav-link">Link Three</a>
-            <a href="#" className="f-navigation-link w-nav-link">Link Four</a>
+            <a href="#" className="f-navigation-link w-nav-link">PRICING</a>
           </nav>
           <div className="f-navigation-content">
             <div className="f-navigation-menu-button w-nav-button">
               <div className="w-icon-nav-menu"></div>
             </div>
-            <a 
-              onClick={signOut} 
+            <a
+              onClick={signOut}
               className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
