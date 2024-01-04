@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import SvgIcons from './svgIcons';
+import { useLanguage } from '../hooks/useLanguage'; // Asegúrate de que la ruta sea correcta
 
 export default function navbar() {
   const { currentUser, signOut, isSigningOut } = useAuth();
-  const [language, setLanguage] = useState('EN');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const languages = [
     { code: 'EN', name: 'English' },
     { code: 'ES', name: 'Spanish' },
-    // Puedes añadir más idiomas aquí
   ];
+
+  const { language, changeLanguage } = useLanguage();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
-    setDropdownOpen(false);
-  };
+  // const changeLanguage = (lang) => {
+  //   setLanguage(lang);
+  //   setDropdownOpen(false);
+  // };
 
   return (
     <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
+        {language}
         <div className="f-navigation-container">
           <button href="#" className="f-navigation-logo-link w-inline-block" style={{ backgroundColor: 'transparent', border: 'none' }}>
             <div style={{
