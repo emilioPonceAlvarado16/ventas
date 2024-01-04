@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SvgIcons from './svgIcons';
-import landingTranslations from 'i18n/landingTranslations';
+import { LanguageContext } from '@/contexts/LanguageContext';
 
-export default function pricing(props) {
-  const language=props.language || "EN";
+export default function pricing() {
+  const {  translations } = useContext(LanguageContext);
+
 
   const [currentTab, setCurrentTab] = useState('monthly');
+  const pricingText=translations.pricing;
+
   const [prices, setPrices] = useState({
-    monthly: { basic: 9.99, professional: 13.99, type: "Month" },
-    yearly: { basic: 99, professional: 139, type: "Year" },
+    monthly: { basic: 9.99, professional: 13.99, type:"" },
+    yearly: { basic: 99, professional: 139, type:""  },
   });
-  
-  const features=landingTranslations.pricing.features[language]
+
+  useEffect(() => {
+    if (translations) {
+      setPrices({
+        monthly: { basic: 9.99, professional: 13.99, type: pricingText?.month },
+        yearly: { basic: 99, professional: 139, type: pricingText?.year },
+      });
+    }
+  }, [translations]);
+
+  const features=pricingText?.features
   const changeTab = (tab) => {
     setCurrentTab(tab);
   };
@@ -22,9 +34,9 @@ export default function pricing(props) {
           <div className="f-margin-bottom-56">
             <div className="f-pricing-title-wrapper">
               <div className="f-margin-bottom-134 f-text-weight-bold">
-                <div className="f-heading-detail-small">FormatMaker: Editing Simplified</div>
+                <div className="f-heading-detail-small">{pricingText?.headingDetail}</div>
               </div>
-              <h2 className="f-h2-heading">AI & LaTeX Enhanced Documents</h2>
+              <h2 className="f-h2-heading">{pricingText?.headingH2}</h2>
             </div>
           </div>
           <div data-duration-in="300" data-duration-out="100" data-current="Tab 1" data-easing="ease" className="f-pricing-tab w-tabs">
@@ -34,14 +46,14 @@ export default function pricing(props) {
                 className={`f-pricing-button-toggle w-inline-block w-tab-link ${currentTab === 'monthly' ? 'w--current' : ''}`}
                 onClick={() => changeTab('monthly')}
               >
-                <div>Monthly</div>
+                <div>{pricingText?.monthly}</div>
               </a>
               <a
                 data-w-tab="Tab 2"
                 className={`f-pricing-button-toggle w-inline-block w-tab-link ${currentTab === 'yearly' ? 'w--current' : ''}`}
                 onClick={() => changeTab('yearly')}
               >
-                <div>Yearly</div>
+                <div>{pricingText?.yearly}</div>
               </a>
             </div>
             <div className="w-tab-content">
@@ -49,7 +61,7 @@ export default function pricing(props) {
                 <div className="w-layout-grid f-pricing-column-basic">
                   <div id="w-node-_81719f46-3c4f-d08c-afb5-674cfbbcf4bf-d0d34bca" className="f-pricing-card-outline">
                     <div className="f-margin-bottom-133">
-                      <div className="f-heading-detail-small">Basic plan</div>
+                      <div className="f-heading-detail-small">{pricingText?.basicPlan}</div>
                     </div>
                     <div className="f-margin-bottom-132">
                       <div className="f-pricing-month-wrapper">
@@ -58,7 +70,7 @@ export default function pricing(props) {
                     </div>
                     <div className="w-layout-grid f-pricing-feature-list">
 
-                      {features["basic"].map((feature, index) => (
+                      {features?.["basic"].map((feature, index) => (
                         <div key={index} id="w-node-_81719f46-3c4f-d08c-afb5-674cfbbcf4ce-d0d34bca" className="f-pricing-feature-item">
 
                           <SvgIcons type="featureCheck" />
@@ -69,12 +81,12 @@ export default function pricing(props) {
 
                     </div>
                     <div className="f-pricing-line"></div>
-                    <a href="#" className="f-button-secondary w-button">Get Started</a>
+                    <a href="#" className="f-button-secondary w-button">{pricingText?.getStarted}</a>
                   </div>
                   <div id="w-node-_81719f46-3c4f-d08c-afb5-674cfbbcf4dd-d0d34bca" className="f-pricing-card-dark">
                     <div className="f-margin-bottom-133">
                       <div className="f-pricing-type-wrapper">
-                        <div className="f-heading-detail-small f-text-color-white">professional</div>
+                        <div className="f-heading-detail-small f-text-color-white">{pricingText?.professionalPlan}</div>
                         <div className="f-badge-filled">
                           <div>Popular</div>
                         </div>
@@ -87,7 +99,7 @@ export default function pricing(props) {
                     </div>
                     <div className="w-layout-grid f-pricing-feature-list">
 
-                      {features["professional"].map((feature, index) => (
+                      {features?.["professional"].map((feature, index) => (
                         <div key={index} id="w-node-_81719f46-3c4f-d08c-afb5-674cfbbcf4ce-d0d34bca" className="f-pricing-feature-item">
 
                           <SvgIcons type="featureCheck" />
@@ -99,7 +111,7 @@ export default function pricing(props) {
 
                     </div>
                     <div className="f-pricing-line-dark"></div>
-                    <a href="#" className="f-pricing-button w-button">Get Started</a>
+                    <a href="#" className="f-pricing-button w-button">{pricingText?.getStarted}</a>
                   </div>
                 </div>
               </div>
