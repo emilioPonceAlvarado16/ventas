@@ -29,10 +29,10 @@ function Home() {
   return (
     <>
     <>
-{/* 
+
       <RequireAuth>
         <Navbar />
-        </RequireAuth>  */}
+        </RequireAuth> 
    
     <Hero/>
     {/* <FeaturesNew/> */}
