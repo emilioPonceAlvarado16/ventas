@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import SvgIcons from './svgIcons';
+import landingTranslations from 'i18n/landingTranslations';
 
-export default function pricing() {
+export default function pricing(props) {
+  const language=props.language || "EN";
+
   const [currentTab, setCurrentTab] = useState('monthly');
   const [prices, setPrices] = useState({
     monthly: { basic: 9.99, professional: 13.99, type: "Month" },
     yearly: { basic: 99, professional: 139, type: "Year" },
   });
-  const features = {
-    basic: [
-      "Load MS Word documents or TXT files",
-      "Text classification with AI",
-      "Simple editing and PDF compilation with LaTeX",
-      "Text editor with drag-and-drop functionality and template switching"
-    ],
-    professional: [
-      "All features of the Basic plan",
-      "Use of GPT-4 for advanced editing",
-      "Enhanced text editor capabilities"
-    ]
-  };
   
+  const features=landingTranslations.pricing.features[language]
   const changeTab = (tab) => {
     setCurrentTab(tab);
   };

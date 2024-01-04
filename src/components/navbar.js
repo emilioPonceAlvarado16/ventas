@@ -17,10 +17,7 @@ export default function navbar() {
     setDropdownOpen(!dropdownOpen);
   };
 
-  // const changeLanguage = (lang) => {
-  //   setLanguage(lang);
-  //   setDropdownOpen(false);
-  // };
+
 
   return (
     <>
