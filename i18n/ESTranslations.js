@@ -25,6 +25,13 @@ const ESTranslations = {
         "professionalPlan":"Profesional",
         "getStarted":"Empieza Ya"
 
-    }
+    },
+    hero: {
+        innovativeDocumentEditing: "Edición Innovadora de Documentos",
+        transformYourDocuments: "Transforma Tus Documentos sin Esfuerzo",
+        paragraph: "Format Maker revoluciona la edición y creación de documentos. Utiliza herramientas impulsadas por IA para modificar, crear y exportar documentos en formato LaTeX con facilidad. Importa desde MS Word, .txt o elige entre plantillas para optimizar tu flujo de trabajo.",
+        getStarted: "Empieza Ya",
+        learnMore: "Aprende Más",
+      },
 }
 export default ESTranslations;

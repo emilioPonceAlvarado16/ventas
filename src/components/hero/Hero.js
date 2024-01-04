@@ -1,28 +1,32 @@
-import React from 'react';
+import React, {  useContext } from 'react';
+import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function Hero() {
+  const {  translations } = useContext(LanguageContext);
+  const heroText = translations.hero;
+
   return (
     <div className="f-section-large">
       <div className="f-container-regular">
         <div className="w-layout-grid f-header-grid">
           <div id="w-node-_description">
             <div className="f-margin-bottom-36">
-              <div className="f-heading-detail-small">Innovative Document Editing</div>
+              <div className="f-heading-detail-small">{heroText?.innovativeDocumentEditing}</div>
             </div>
             <div className="f-margin-bottom-35">
-              <h1 className="f-h1-heading golden-rainbow-text">Transform Your Documents Effortlessly</h1>
+              <h1 className="f-h1-heading golden-rainbow-text">{heroText?.transformYourDocuments}</h1>
             </div>
             <div className="f-margin-bottom-32">
               <p className="f-paragraph-large">
-                Format Maker revolutionizes document editing and creation. Utilize AI-powered tools to modify, create, and export documents in LaTeX format with ease. Import from MS Word, .txt, or choose from templates to streamline your workflow.
+              {heroText?.paragraph}
               </p>
             </div>
             <div className="f-header-button-wrapper">
               <a href="#" className="f-button-neutral w-inline-block">
-                <div>Get Started</div>
+                <div>{heroText?.getStarted}</div>
               </a>
               <a href="#" className="f-button-secondary w-inline-block">
-                <div>Learn More</div>
+                <div>{heroText?.learnMore}</div>
               </a>
             </div>
           </div>

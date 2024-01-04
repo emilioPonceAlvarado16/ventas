@@ -25,6 +25,13 @@ const ENtranslations = {
         "basicPlan":"Basic Plan",
         "professionalPlan":"Professional",
         "getStarted":"Get Started"
-    }
+    },
+    hero: {
+        innovativeDocumentEditing: "Innovative Document Editing",
+        transformYourDocuments: "Transform Your Documents Effortlessly",
+        paragraph: "Format Maker revolutionizes document editing and creation. Utilize AI-powered tools to modify, create, and export documents in LaTeX format with ease. Import from MS Word, .txt, or choose from templates to streamline your workflow.",
+        getStarted: "Get Started",
+        learnMore: "Learn More",
+      },
 }
 export default ENtranslations;
