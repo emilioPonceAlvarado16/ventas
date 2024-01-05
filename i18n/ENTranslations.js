@@ -33,5 +33,14 @@ const ENtranslations = {
         getStarted: "Get Started",
         learnMore: "Learn More",
       },
+    navbar:{
+        routes : [
+            { route: "#demo", label: "Demo" },
+            { route: "#features", label: "Features" },
+            { route: "#link-three", label: "Link Three" },
+            { route: "#pricing", label: "Pricing" }
+          ]
+
+    }
 }
 export default ENtranslations;

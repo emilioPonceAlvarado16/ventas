@@ -19,9 +19,11 @@ export default function si() {
     <Navbar/>
     </RequireAuth>
     <Hero/>
+    <MouseEffect/> 
     {/* <Pricing /> */}
     {/*
-    <MouseEffect/> */}
+    
+    */}
     </>
   )
 }

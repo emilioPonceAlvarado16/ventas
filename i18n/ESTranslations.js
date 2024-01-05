@@ -33,5 +33,14 @@ const ESTranslations = {
         getStarted: "Empieza Ya",
         learnMore: "Aprende Más",
       },
+      navbar:{
+        routes : [
+            { route: "#demo", label: "Demo" },
+            { route: "#features", label: "Funcionalidades" },
+            { route: "#link-three", label: "Link Three" },
+            { route: "#pricing", label: "Precios" }
+          ]
+
+    }
 }
 export default ESTranslations;

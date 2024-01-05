@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import SvgIcons from './svgIcons';
 import { useLanguage } from '../hooks/useLanguage'; // Asegúrate de que la ruta sea correcta
+import Link from 'next/link';
+import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function navbar() {
   const { currentUser, signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const {  translations } = useContext(LanguageContext);
+
   const languages = [
     { code: 'EN', name: 'English' },
     { code: 'ES', name: 'Spanish' },
@@ -47,10 +51,11 @@ export default function navbar() {
 
 
           <nav role="navigation" className="f-navigation-menu w-nav-menu">
-            <a href="#" className="f-navigation-link w-nav-link">Link One</a>
-            <a href="#" className="f-navigation-link w-nav-link">Link Two</a>
-            <a href="#" className="f-navigation-link w-nav-link">Link Three</a>
-            <a href="#" className="f-navigation-link w-nav-link">Pricing</a>
+            {translations.navbar?.routes.map((routeObj, index) => (
+              <Link href={routeObj.route} key={index} legacyBehavior>
+                <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
+              </Link>
+            ))}
           </nav>
           <div className="f-navigation-content">
             <div className="f-navigation-menu-button w-nav-button">
