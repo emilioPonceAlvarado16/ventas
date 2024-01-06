@@ -9,9 +9,6 @@
   --landing-background: #001c33;
 }
 
-
-
-
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -3178,7 +3175,7 @@ textarea.w-select {
 
 .f-paragraph-small-2.f-text-color-gray-500,
 .f-text-color-gray-500 {
-  color: #6b7094;
+  color: #19268a;
 }
 
 .f-text-weight-medium {
@@ -3223,7 +3220,7 @@ textarea.w-select {
 }
 
 .f-paragraph-small-3.f-text-color-gray-500 {
-  color: #6b7094;
+  color: #b5b9d5;
 }
 
 .f-alert-warning {
@@ -3272,22 +3269,12 @@ textarea.w-select {
   line-height: 1.8;
 }
 
-.f-paragraph-small-5.f-text-color-gray-500 {
-  color: #6b7094;
-}
-
 .f-paragraph-small-5.f-text-color-gray-400 {
   color: #b6b9ce;
 }
 
 .f-paragraph-small-5.f-text-color-gray-500 {
-  color: #6b7094;
-  color: #6b7094;
-  color: #6b7094;
-  color: #6b7094;
-  color: #6b7094;
-  color: #6b7094;
-  color: #6b7094;
+  color: #c2c5dd;
 }
 
 .f-header-logo-wrap {
@@ -4023,7 +4010,7 @@ textarea.w-select {
 }
 
 .f-field-label {
-  color: var(--neutral-primario);
+  color: #b5b9d5;
   letter-spacing: -.01em;
   margin-bottom: 8px;
   font-size: 14px;
