@@ -4,7 +4,9 @@
   --neutral-light: #F3F5FB;
   /* Para el las lineas de los */
   --white: #fff;
-
+  --landing-navbar: #001c33;
+  --card-color:#f7f9fd;
+  --landing-background: #001c33;
 }
 
 
@@ -2895,7 +2897,7 @@ textarea.w-select {
 }
 
 .f-navigation-container {
-  background-color: #002244; /* Un tono ligeramente diferente al fondo de la página */
+  background-color: var(--landing-background); /* Un tono ligeramente diferente al fondo de la página */  
   width: 100%;
   max-width: 1280px;
   justify-content: space-between;
@@ -2908,7 +2910,8 @@ textarea.w-select {
 .f-navigation {
   width: 100%;
   min-height: 88px;
-  background-color: #002244; /* Un tono más oscuro que complementa el fondo general */
+  background-color: var(--landing-background); /* Un tono más oscuro que complementa el fondo general */
+  
   align-items: center;
   padding: 24px 5%;
   display: flex;
@@ -3317,6 +3320,9 @@ textarea.w-select {
   font-size: 18px;
   line-height: 32px;
 }
+.f-paragraph-large.features{
+  color: #000;
+}
 
 .f-h1-heading {
   /* color: var(--neutral-primario); */
@@ -3364,7 +3370,7 @@ textarea.w-select {
   padding: 92px 5%;
   position: relative;
   background-color: #00192d;
-  background-color: #001c33;
+  background-color: var(--landing-background);
   color:white;
 }
 
@@ -3698,7 +3704,7 @@ textarea.w-select {
 }
 
 .f-h5-heading {
-  color: var(--neutral-primario);
+  color:#fff;
   letter-spacing: -.02em;
   margin-top: 0;
   margin-bottom: 0;
@@ -3722,7 +3728,7 @@ textarea.w-select {
 }
 
 .f-feature-card-filled {
-  background-color: var(--white);
+  background-color:var(--card-color);
   border-radius: 12px;
   padding: 32px;
 }
@@ -4517,6 +4523,8 @@ textarea.w-select {
 }
 
 .f-account-section {
+  background-color: var(--landing-background);
+  color:#fff;
   height: 100vh;
   min-height: 900px;
   display: flex;
@@ -4683,7 +4691,7 @@ textarea.w-select {
 .f-footer-regular {
   background-color: var(--white);
   color:white;
-  background-color: #001c33;
+  background-color: var(--landing-background);
   padding: 64px 5%;
   position: relative;
 }

@@ -7,6 +7,8 @@ import Hero from '@/components/hero/Hero'
 import Navbar from '@/components/navbar'
 import Pricing from '@/components/pricing'
 import React from 'react'
+import Features from "../components/features"
+// import Features from "../components/features_new"
 
 // import TemplateConfig from '@/components/TemplateConfigBorrar'
 
@@ -18,6 +20,7 @@ export default function si() {
 
     <Navbar/>
     </RequireAuth>
+    <Features/>
     <Hero/>
     <MouseEffect/> 
     {/* <Pricing /> */}

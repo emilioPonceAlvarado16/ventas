@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react';
+
+import { LanguageContext } from '@/contexts/LanguageContext';
+
 
 export default function features() {
+  const {  translations } = useContext(LanguageContext);
+  const features=translations.featuresSection;
   return (
     <>
     <div className="f-section-large">
@@ -8,37 +13,27 @@ export default function features() {
       <div className="f-margin-bottom-128">
         <div className="f-title-wrapper-center">
           <div className="f-margin-bottom-47">
-            <div className="f-heading-detail-small">flowUI WEBFLOW SYSTEM</div>
+            <div className="f-heading-detail-small">{features?.headingDetail}</div>
           </div>
           <div className="f-margin-bottom-16">
-            <h3 className="f-h3-heading">Feature Section Header</h3>
+            <h3 className="f-h3-heading">{features?.headingH3}</h3>
           </div>
-          <p className="f-paragraph-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pellentesque arcu sed felis.</p>
+          <p className="f-paragraph-large">{features?.paragraph}</p>
         </div>
       </div>
       <div className="w-layout-grid f-grid-three-column">
-        <div>
-          <div className="f-feature-icon-wrapper"><img src="images/Logo-Mark.png" loading="lazy" alt=""/></div>
-          <div className="f-margin-bottom-47">
-            <div className="f-sub-heading-large">Feature One</div>
+            {features?.features.map((feature, index) => (
+              <div key={index}>
+                <div className="f-feature-icon-wrapper">
+                  <img src={feature.logo} loading="lazy" alt="" />
+                </div>
+                <div className="f-margin-bottom-47">
+                  <div className="f-sub-heading-large">{feature.title}</div>
+                </div>
+                <p className="f-paragraph-small-5">{feature.paragraph}</p>
+              </div>
+            ))}
           </div>
-          <p className="f-paragraph-small-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-        </div>
-        <div>
-          <div className="f-feature-icon-wrapper"><img src="images/Logo-Mark.png" loading="lazy" alt=""/></div>
-          <div className="f-margin-bottom-47">
-            <div className="f-sub-heading-large">Feature Two</div>
-          </div>
-          <p className="f-paragraph-small-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-        </div>
-        <div>
-          <div className="f-feature-icon-wrapper"><img src="images/Logo-Mark.png" loading="lazy" alt=""/></div>
-          <div className="f-margin-bottom-47">
-            <div className="f-sub-heading-large">Feature Three</div>
-          </div>
-          <p className="f-paragraph-small-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-        </div>
-      </div>
     </div>
   </div>
     </>

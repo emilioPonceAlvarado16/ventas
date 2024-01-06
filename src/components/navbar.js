@@ -9,7 +9,7 @@ export default function navbar() {
   const { currentUser, signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const {  translations } = useContext(LanguageContext);
-
+  const navbarTranslations=translations.navbar;
   const languages = [
     { code: 'EN', name: 'English' },
     { code: 'ES', name: 'Spanish' },
@@ -51,7 +51,7 @@ export default function navbar() {
 
 
           <nav role="navigation" className="f-navigation-menu w-nav-menu">
-            {translations.navbar?.routes.map((routeObj, index) => (
+            {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
                 <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
               </Link>
@@ -73,7 +73,7 @@ export default function navbar() {
                 </svg></div>
               </div>
               <div className={`f-banner-dropdown-list w-dropdown-list ${dropdownOpen ? 'w--open' : ''}`}>
-                {languages.map((lang) => (
+                {navbarTranslations?.languages.map((lang) => (
                   <a
                     key={lang.code}
                     href="#"
@@ -92,7 +92,7 @@ export default function navbar() {
               className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
-              <span className={isSigningOut ? "d-none" : ""}>Salir</span>
+              <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
             </a>
           </div>
         </div>
