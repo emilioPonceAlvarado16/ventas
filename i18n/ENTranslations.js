@@ -80,7 +80,45 @@ const ENtranslations = {
         headingH3: "Innovative Features",
         paragraph: "Discover the advanced tools that will transform your workflow. From AI to precise editing, FormatMaker makes it possible."
 
+    },
+    footer:{
+        data: [
+            {
+                title: "About Us",
+                links: [
+                    { url: "#", text: "Who We Are" },
+                    { url: "#", text: "Our Mission" },
+                    { url: "#", text: "Contact" }
+                ]
+            },
+            {
+                title: "Products",
+                links: [
+                    { url: "#", text: "FormatMaker Pro" },
+                    { url: "#", text: "FormatMaker Basic" },
+                    { url: "#", text: "Compare Products" }
+                ]
+            },
+            {
+                title: "Support",
+                links: [
+                    { url: "#", text: "Help Center" },
+                    { url: "#", text: "Documentation" },
+                    { url: "#", text: "Community" }
+                ]
+            },
+            {
+                title: "Resources",
+                links: [
+                    { url: "#", text: "Blog" },
+                    { url: "#", text: "Case Studies" },
+                    { url: "#", text: "Webinars" }
+                ]
+            }
+        ],
+        paragraphSmall: "With FormatMaker, transform your documents quickly and efficiently, optimizing your workflow."
     }
+
 
 
 }

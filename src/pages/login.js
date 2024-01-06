@@ -3,7 +3,6 @@ import { useAuth } from '../hooks/useAuth';
 import Login from '../components/Login';
 import { useRouter } from 'next/router';
 import Loading from '@/components/Loading';
-
 export default function LoginPage() {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
@@ -19,6 +18,8 @@ export default function LoginPage() {
   }
 
   return (
+
     <Login/>
+  
   )
 }

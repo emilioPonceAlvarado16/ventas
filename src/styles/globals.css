@@ -4471,6 +4471,7 @@ textarea.w-select {
   min-height: 48px;
   min-width: 48px;
   color: var(--neutral-primario);
+  background-color: var(--white);
   border: 1px solid #f3f5fb;
   border-radius: 100px;
   justify-content: center;
@@ -4479,9 +4480,17 @@ textarea.w-select {
   display: flex;
 }
 
-.f-account-social-icon:hover {
-  background-color: #f3f5fb;
+.f-account-social-icon path {
+  transition: fill 0.5s ease;
 }
+
+.f-account-social-icon:hover path {
+  fill: #642eff;
+}
+.f-account-social-icon:hover {
+  opacity: 80%;
+}
+
 
 .f-account-social-wrapper {
   grid-column-gap: 16px;
@@ -4617,7 +4626,7 @@ textarea.w-select {
 
 .f-footer-link {
   width: 100%;
-  color: var(--neutral-primario);
+  color: var(--white);
   letter-spacing: -.01em;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -4646,28 +4655,6 @@ textarea.w-select {
   flex-direction: column;
 }
 
-.f-footer-social {
-  width: 48px;
-  height: 48px;
-  color: var(--neutral-primario);
-  background-color: #f3f5fb;
-  border-radius: 100px;
-  justify-content: center;
-  align-items: center;
-  transition: color .3s;
-  display: flex;
-}
-
-.f-footer-social:hover {
-  color: #642eff;
-}
-
-.f-footer-social-group {
-  grid-column-gap: 16px;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-}
 
 .f-margin-bottom-141 {
   margin-bottom: 48px;

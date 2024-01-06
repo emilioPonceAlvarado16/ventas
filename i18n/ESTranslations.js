@@ -78,6 +78,46 @@ const ESTranslations = {
         headingDetail: "Edición Eficaz y Sencilla",
         headingH3: "Funcionalidades Innovadoras",
         paragraph: "Descubre las herramientas avanzadas que transformarán tu flujo de trabajo. Desde IA hasta edición precisa, FormatMaker lo hace posible."
-    }
+    },
+        footer: {
+            
+            data:[
+            {
+              title: "Acerca de Nosotros",
+              links: [
+                { url: "#", text: "Quiénes Somos" },
+                { url: "#", text: "Nuestra Misión" },
+                { url: "#", text: "Contacto" }
+              ]
+            },
+            {
+              title: "Productos",
+              links: [
+                { url: "#", text: "FormatMaker Pro" },
+                { url: "#", text: "FormatMaker Basic" },
+                { url: "#", text: "Comparar Productos" }
+              ]
+            },
+            {
+              title: "Soporte",
+              links: [
+                { url: "#", text: "Centro de Ayuda" },
+                { url: "#", text: "Documentación" },
+                { url: "#", text: "Comunidad" }
+              ]
+            },
+            {
+              title: "Recursos",
+              links: [
+                { url: "#", text: "Blog" },
+                { url: "#", text: "Estudios de Caso" },
+                { url: "#", text: "Webinars" }
+              ]
+            }
+          ],
+          paragraphSmall:"Con FormatMaker, transforma tus documentos de forma rápida y eficiente, optimizando tu flujo de trabajo."
+
+        }
+
 }
 export default ESTranslations;
