@@ -863,7 +863,7 @@ label {
   line-height: 1.42857143;
   color: #333333;
   vertical-align: middle;
-  background-color: var(--white)fff;
+  background-color: var(--white);
   border: 1px solid #cccccc;
 }
 
@@ -3274,7 +3274,7 @@ textarea.w-select {
 }
 
 .f-paragraph-small-5.f-text-color-gray-500 {
-  color: #c2c5dd;
+  color: #b6b9ce;
 }
 
 .f-header-logo-wrap {
@@ -4389,7 +4389,7 @@ textarea.w-select {
 }
 
 .f-account-link {
-  color: var(--neutral-primario);
+  color: var(--neutral-light);
   font-weight: 700;
   text-decoration: none;
 }
@@ -4401,7 +4401,7 @@ textarea.w-select {
 }
 
 .f-checkbox-label {
-  color: var(--neutral-primario);
+  color: var(--neutral-light);
   margin-bottom: 0;
   font-size: 14px;
   line-height: 24px;

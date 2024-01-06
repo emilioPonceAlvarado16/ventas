@@ -17,13 +17,13 @@ export default function si() {
 
   return (
     <>
-    <RequireAuth>
+    {/* <RequireAuth> */}
 
     <Navbar/>
-    </RequireAuth>
+    {/* </RequireAuth>
     <Footer/>
     <Features/>
-    <Hero/>
+    <Hero/> */}
     <MouseEffect/> 
     {/* <Pricing /> */}
     {/*

@@ -6,22 +6,17 @@ import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function navbar() {
-  const { currentUser, signOut, isSigningOut } = useAuth();
+  const {  signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const {  translations } = useContext(LanguageContext);
   const navbarTranslations=translations.navbar;
-  const languages = [
-    { code: 'EN', name: 'English' },
-    { code: 'ES', name: 'Spanish' },
-  ];
+
 
   const { language, changeLanguage } = useLanguage();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
-
 
   return (
     <>
@@ -58,12 +53,11 @@ export default function navbar() {
             ))}
           </nav>
           <div className="f-navigation-content">
-            <div className="f-navigation-menu-button w-nav-button">
-              <div className="w-icon-nav-menu"></div>
+            <div className="f-navigation-menu-button w-nav-button w--open">
+              <div className="w-icon-nav-menu">
+                
+              </div>
             </div>
-
-
-
             <SvgIcons type="international" onClick={toggleDropdown} />
             <div data-hover="false" data-delay="0" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
@@ -76,7 +70,6 @@ export default function navbar() {
                 {navbarTranslations?.languages.map((lang) => (
                   <a
                     key={lang.code}
-                    href="#"
                     className="f-banner-dropdown-link w-dropdown-link"
                     onClick={() => changeLanguage(lang.code)}
                   >
@@ -84,9 +77,7 @@ export default function navbar() {
                   </a>
                 ))}
               </div>
-
             </div>
-
             <a
               onClick={signOut}
               className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
