@@ -24,7 +24,7 @@ export default function si() {
     <Footer/>
     <Features/>
     <Hero/> */}
-    <MouseEffect/> 
+    {/* <MouseEffect/>  */}
     {/* <Pricing /> */}
     {/*
     */}

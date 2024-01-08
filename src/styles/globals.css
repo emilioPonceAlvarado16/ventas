@@ -2377,6 +2377,7 @@ textarea.w-select {
   position: absolute;
   overflow: hidden;
   display: none;
+  display: block;
   top: 100%;
   left: 0;
   right: 0;
@@ -2853,6 +2854,7 @@ textarea.w-select {
   letter-spacing: -.01em;
   white-space: nowrap;
   background-color: rgba(0, 0, 0, 0);
+  background-color:black;
   border-radius: 50px;
   padding: 8px 24px;
   font-size: 14px;

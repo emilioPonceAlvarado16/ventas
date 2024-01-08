@@ -6,16 +6,20 @@ import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function navbar() {
-  const {  signOut, isSigningOut } = useAuth();
+  const { signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {  translations } = useContext(LanguageContext);
-  const navbarTranslations=translations.navbar;
-
+  const { translations } = useContext(LanguageContext);
+  const navbarTranslations = translations.navbar;
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const { language, changeLanguage } = useLanguage();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
   };
 
   return (
@@ -53,13 +57,13 @@ export default function navbar() {
             ))}
           </nav>
           <div className="f-navigation-content">
-            <div className="f-navigation-menu-button w-nav-button w--open">
+            <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">
-                
+
               </div>
             </div>
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div data-hover="false" data-delay="0" onClick={toggleDropdown} className="w-dropdown">
+            <div data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -78,6 +82,16 @@ export default function navbar() {
                 ))}
               </div>
             </div>
+            {/* Menú de navegación responsive */}
+            <div className="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
+              <nav role="navigation" className="f-navigation-l w-nav-menu" style={{ transform: 'translateY(50px) translateX(50px)', transition: 'transform 400ms ease 0s' }} data-nav-menu-open>
+                {navbarTranslations?.routes.map((routeObj, index) => (
+                  <Link href={routeObj.route} key={index} legacyBehavior>
+                    <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
+                  </Link>
+                ))}
+              </nav>
+            </div>
             <a
               onClick={signOut}
               className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
@@ -88,6 +102,8 @@ export default function navbar() {
           </div>
         </div>
       </div>
+
+
     </>
   )
 }
