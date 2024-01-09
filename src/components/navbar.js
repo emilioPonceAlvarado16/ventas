@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import SvgIcons from './svgIcons';
-import { useLanguage } from '../hooks/useLanguage'; // Asegúrate de que la ruta sea correcta
+import { useLanguage } from '../hooks/useLanguage';
 import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function navbar() {
-
-
 
   const { signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -111,8 +109,6 @@ export default function navbar() {
           </div>
         </div>
       </div>
-
-
     </>
   )
 }
