@@ -4792,7 +4792,7 @@ textarea.w-select {
   }
 
   .f-navigation-menu.w--open {
-    background-color: #282556;
+    /* background-color: #282556; */
     border-color: var(--white);
   }
 
@@ -5751,8 +5751,4 @@ template-item img {
 
 .w-nav-overlay[data-wf-ignore] {
   display: none; /* Oculta el overlay cuando no se necesite */
-}
-
-.w-nav-menu:not(.w--nav-menu-open), .w-nav-overlay:not([data-wf-ignore]) {
-  display: none;
 }

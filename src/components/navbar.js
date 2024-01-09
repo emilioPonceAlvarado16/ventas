@@ -54,6 +54,7 @@ export default function navbar() {
 
 
           <nav role="navigation" className="f-navigation-menu w-nav-menu">
+         
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
                 <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
