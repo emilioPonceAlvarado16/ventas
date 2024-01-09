@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
 export default function navbar() {
+
+
+
   const { signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { translations } = useContext(LanguageContext);
@@ -25,7 +28,8 @@ export default function navbar() {
   return (
     <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
-        <div className="f-navigation-container">
+        <div className="f-navigation-container"
+        >
           <button href="#" className="f-navigation-logo-link w-inline-block" style={{ backgroundColor: 'transparent', border: 'none' }}>
             <div style={{
               fontFamily: '"Arial", sans-serif',
@@ -83,8 +87,12 @@ export default function navbar() {
               </div>
             </div>
             {/* Menú de navegación responsive */}
-            <div className="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation" className="f-navigation-l w-nav-menu" style={{ transform: 'translateY(50px) translateX(50px)', transition: 'transform 400ms ease 0s' }} data-nav-menu-open>
+            <div className="w-nav-overla,y" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
+              <nav role="navigation" className="f-navigation-l w-nav-menu" 
+              style={{ 
+                transform: `translateY(75px) translateX(0px)`,
+                transition: 'transform 400ms ease 0s' }} 
+                data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
                     <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
