@@ -2250,7 +2250,6 @@ textarea.w-select {
   transform: translateX(100%);
   /* Desplaza el elemento a la derecha */
   opacity: 0;
-  /* Desvanece el elemento */
 }
 
 

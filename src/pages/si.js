@@ -18,7 +18,7 @@ export default function si() {
   return (
     <>
     {/* <RequireAuth> */}
-    {/* <Navbar/> */}
+    <Navbar/>
     {/* </RequireAuth>
     <Footer/>
     <Features/>
