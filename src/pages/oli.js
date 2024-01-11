@@ -6,7 +6,6 @@ import useFields from '@/hooks/useFields';
 import SvgIcons from '@/components/svgIcons';
 import Prompt from '@/components/Prompt';
 import TemplateModal from '@/components/TemplateModal';
-import dynamic from 'next/dynamic';
 import { ChatProvider } from '@/contexts/ChatContext';
 import Plagiarism from '@/components/Plagiarism';
 import App from '@/components/App'
