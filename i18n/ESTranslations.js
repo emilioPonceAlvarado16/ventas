@@ -41,6 +41,9 @@ const ESTranslations = {
             { route: "#pricing", label: "Precios" }
         ],
         logout: "Salir",
+        mobileMenu: [
+          { route: "", label: "Salir", onClick:"Logout" } // Añade aquí otros elementos específicos para móviles si es necesario
+        ],
         languages: [
             { code: 'EN', name: 'Inglés' },
             { code: 'ES', name: 'Español' },

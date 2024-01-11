@@ -22,6 +22,15 @@ export default function navbar() {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
+  const handleMenuClick = (menuObj) => {
+    switch (menuObj?.onClick) {
+      case 'Logout':
+        signOut();
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <>
@@ -52,7 +61,7 @@ export default function navbar() {
 
 
           <nav role="navigation" className="f-navigation-menu w-nav-menu">
-         
+
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
                 <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
@@ -60,11 +69,7 @@ export default function navbar() {
             ))}
           </nav>
           <div className="f-navigation-content">
-            <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
-              <div className="w-icon-nav-menu">
-
-              </div>
-            </div>
+       
             <SvgIcons type="international" onClick={toggleDropdown} />
             <div data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
@@ -87,25 +92,47 @@ export default function navbar() {
             </div>
             {/* Menú de navegación responsive */}
             <div className="w-nav-overla,y" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation" className="f-navigation-l w-nav-menu" 
-              style={{ 
-                transform: `translateY(75px) translateX(0px)`,
-                transition: 'transform 400ms ease 0s' }} 
+              <nav role="navigation" className="f-navigation-l w-nav-menu"
+                style={{
+                  transform: `translateY(75px) translateX(0px)`,
+                  transition: 'transform 400ms ease 0s'
+                }}
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
                     <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
                   </Link>
                 ))}
+
+                {/* Añade el botón de Login para dispositivos móviles */}
+                {navbarTranslations?.mobileMenu.map((menuObj, index) => (
+                  <div key={index}  >
+                    
+                    <Link href={menuObj.route} legacyBehavior>
+                      <a
+
+                        onClick={() => handleMenuClick(menuObj)}
+
+                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
+                    </Link>
+                    <div className={`spin ${isSigningOut ? "" : "d-none"}`}></div>
+                  </div>
+                ))}
               </nav>
             </div>
             <a
               onClick={signOut}
-              className={`f-navigation-button w-inline-block ${isSigningOut ? "button-loading" : ""}`}
+              className={`f-navigation-button w-nav-menu  w-inline-block ${isSigningOut ? "button-loading" : ""}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
               <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
             </a>
+            
+            <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
+              <div className="w-icon-nav-menu">
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

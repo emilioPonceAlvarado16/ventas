@@ -41,11 +41,13 @@ const ENtranslations = {
             { route: "#pricing", label: "Pricing" }
         ],
         logout: "Logout",
+        mobileMenu: [
+            { route: "", label: "Logout", onClick:"Logout" } // Añade aquí otros elementos específicos para móviles si es necesario
+        ],
         languages: [
             { code: 'EN', name: 'English' },
             { code: 'ES', name: 'Spanish' },
         ]
-
     },
 
     featuresSection: {
