@@ -5655,3 +5655,33 @@ template-item img {
   display: none; /* Oculta el overlay cuando no se necesite */
 }
 
+/* eliminar css */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 3px;
+}
+
+.page-item a {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #007bff;
+  background-color: white;
+  cursor: pointer;
+}
+
+.page-item a:hover {
+  background-color: #eee;
+}
+
+.page-item.active a {
+  color: white;
+  background-color: #007bff;
+  border-color: #007bff;
+}

@@ -31,6 +31,17 @@ const fieldReducer = (state, action) => {
 const useFields = (initialFields = []) => {
   const [fields, dispatch] = useReducer(fieldReducer, initialFields);
   const [assetList, setAssetList] = useState([]); // Nuevo estado para la lista de activos
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Ajusta este valor según tus necesidades
+
+    // Calcula los elementos para la página actual
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentFields = fields.slice(indexOfFirstItem, indexOfLastItem);
+  
+    // Funciones para manejar la paginación
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const changeItemsPerPage = (number) => setItemsPerPage(number);
 
   const handleAssetList = (type, fieldData) => { // Nueva función para manejar la lista de activos
     if (type === "im") {
@@ -78,6 +89,12 @@ const useFields = (initialFields = []) => {
     updateField,
     changeFieldType,
     setFields,
+
+    currentFields,
+    currentPage,
+    itemsPerPage,
+    paginate,
+    changeItemsPerPage,
   };
 };
 

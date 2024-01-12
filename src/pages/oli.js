@@ -77,7 +77,14 @@ export default function oli() {
     removeField,
     updateField,
     assetList,
-    addField
+    addField,
+
+
+    currentFields,
+    currentPage,
+    itemsPerPage,
+    paginate,
+    changeItemsPerPage,
   } = useFields([]);
 
   return (
@@ -134,6 +141,10 @@ export default function oli() {
           setAllText={setAllText}
           allText={allText}
          
+          totalItems={Fields.length}
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          paginate={paginate}
         />
         {carouselPosition === 0 && (
 
@@ -179,8 +190,6 @@ export default function oli() {
 
             <div style={{ flex: 4, width: '50vw' }}>
               <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-                {/* <PdfViewer url="https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf" /> */}
-                {/* <PdfViewer url="./nuevo.pdf" /> */}
                 <PdfViewer url={pdfUrl} />
 
               </div>
