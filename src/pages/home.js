@@ -56,7 +56,7 @@ function Home() {
   <Pricing/>
     <Footer/>
 </> 
-  {/* <MouseEffect/> */}
+  <MouseEffect/>
   </>
    
   )
