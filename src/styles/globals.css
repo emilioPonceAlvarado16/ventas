@@ -5656,11 +5656,13 @@ template-item img {
 }
 
 /* eliminar css */
+
 .pagination {
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0;
+  background-color: #080f25; /* Fondo oscuro */
 }
 
 .page-item {
@@ -5668,20 +5670,16 @@ template-item img {
 }
 
 .page-item a {
-  border: 1px solid #ddd;
+  border: 1px solid #FFC107; /* Borde amarillo */
   padding: 8px 12px;
   text-decoration: none;
-  color: #007bff;
-  background-color: white;
+  color: #FFC107; /* Texto amarillo */
+  background-color: #080f25; /* Fondo oscuro */
   cursor: pointer;
+  transition: color 0.3s, background-color 0.3s; /* Transición suave */
 }
 
-.page-item a:hover {
-  background-color: #eee;
-}
-
-.page-item.active a {
-  color: white;
-  background-color: #007bff;
-  border-color: #007bff;
+.page-item a:hover, .page-item.active a {
+  color: #001c33; /* Color de fondo principal para contraste */
+  background-color: #FFC107; /* Fondo amarillo */
 }
