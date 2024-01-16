@@ -5666,12 +5666,13 @@ template-item img {
 }
 
 .page-item {
-  margin: 0 3px;
+  margin: 0 1px;
 }
 
 .page-item a {
   border: 1px solid #FFC107; /* Borde amarillo */
   padding: 8px 12px;
+  padding: 2.5px 10px;
   text-decoration: none;
   color: #FFC107; /* Texto amarillo */
   background-color: #080f25; /* Fondo oscuro */
