@@ -127,11 +127,14 @@ export default function oli() {
 
 
 
-        <TextEditor setEditorObjects={setFields}
+        <TextEditor 
+        setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
           assetList={assetList}
-          editorObjects={Fields}
+          // editorObjects={Fields}
+          editorObjects={currentFields}
+
           setImageSelected={setImageSelected}
           imageSelected={imageSelected}
           removeField={removeField}

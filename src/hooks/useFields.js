@@ -83,7 +83,7 @@ const useFields = (initialFields = []) => {
 
   return {
     fields,
-    assetList,  // Asegúrate de retornar assetList aquí
+    assetList, 
     addField,
     removeField,
     updateField,

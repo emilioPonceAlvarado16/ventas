@@ -42,38 +42,40 @@ const TextEditor = (props) => {
     }
 
     return (
-      <nav>
-        <ul className='pagination'>
-          {/* Botón para ir a la página anterior */}
-          {props.currentPage > 1 && (
-            <li className='page-item'>
-              <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
-            </li>
-          )}
+      <div style={{ position: 'absolute', top: "-4.5vh", right: "45vw", width: '50%', zIndex: 1000 }}>
+        <nav>
+          <ul className='pagination'>
+            {/* Botón para ir a la página anterior */}
+            {props.currentPage > 1 && (
+              <li className='page-item'>
+                <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
+              </li>
+            )}
 
-          {/* Números de página */}
-          {pageNumbers.map(number => (
-            <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''}`}>
-              <a onClick={() => props.paginate(number)} className='page-link'>
-                {number}
-              </a>
-            </li>
-          ))}
+            {/* Números de página */}
+            {pageNumbers.map(number => (
+              <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''}`}>
+                <a onClick={() => props.paginate(number)} className='page-link'>
+                  {number}
+                </a>
+              </li>
+            ))}
 
-          {/* Botón para ir a la página siguiente */}
-          {props.currentPage < pageNumbers.length && (
-            <li className='page-item'>
-              <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
-            </li>
-          )}
-        </ul>
-      </nav>
+            {/* Botón para ir a la página siguiente */}
+            {props.currentPage < pageNumbers.length && (
+              <li className='page-item'>
+                <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
+              </li>
+            )}
+          </ul>
+        </nav>
+      </div>
     );
   };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-       {renderPagination()}
+      {renderPagination()}
       <div style={{ display: 'flex', background: '#2c2c2c', height: '100vh', width: '50vw', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>
         <FileSystem isCollapsed={isCollapsed}
           isImageModalOpen={props.isImageModalOpen}
