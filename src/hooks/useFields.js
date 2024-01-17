@@ -32,7 +32,7 @@ const useFields = (initialFields = []) => {
   const [fields, dispatch] = useReducer(fieldReducer, initialFields);
   const [assetList, setAssetList] = useState([]); // Nuevo estado para la lista de activos
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10); // Ajusta este valor según tus necesidades
+  const [itemsPerPage, setItemsPerPage] = useState(13); // Ajusta este valor según tus necesidades
 
     // Calcula los elementos para la página actual
     const indexOfLastItem = currentPage * itemsPerPage;

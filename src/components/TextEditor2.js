@@ -43,8 +43,12 @@ const TextEditor = (props) => {
   };
 
   const renderPagination = () => {
-    const pageNumbers = Array.from({ length: 10 }, (_, i) => i + 1);
-
+    const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
+    const currentSetStart = Math.floor((props.currentPage - 1) / 10) * 10 + 1;
+    const currentSetEnd = Math.min(currentSetStart + 9, totalPages);
+  
+    const pageNumbers = Array.from({ length: currentSetEnd - currentSetStart + 1 }, (_, i) => currentSetStart + i);
+  
     return (
       <div style={{ position: 'absolute', top: "-4.5vh", right: "60vw", width: '25%', zIndex: 1000 }}>
         <nav>
@@ -52,41 +56,31 @@ const TextEditor = (props) => {
             {/* Botón para ir a la página anterior */}
             {props.currentPage > 1 && (
               <li className='page-item'>
-                <a onClick={() => {
-                  if (!isEditorObjectsEmptyForPage(props.currentPage - 1)) {
-                    props.paginate(props.currentPage - 1);
-                  }
-                }} className='page-link'>&laquo;</a>              </li>
+                <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
+              </li>
             )}
-
+  
             {/* Números de página */}
             {pageNumbers.map(number => (
-              <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''}`}>
-                <a onClick={() => {
-                  if (!isEditorObjectsEmptyForPage(number)) {
-                    props.paginate(number);
-                  }
-                }} className='page-link'>
+              <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''} ${number > totalPages ? 'disabled' : ''}`}>
+                <a onClick={() => props.paginate(number)} className='page-link'>
                   {number}
                 </a>
               </li>
             ))}
-
+  
             {/* Botón para ir a la página siguiente */}
-            {props.currentPage < pageNumbers.length && (
+            {props.currentPage < totalPages && (
               <li className='page-item'>
-                <a onClick={() => {
-                  if (!isEditorObjectsEmptyForPage(props.currentPage + 1)) {
-                    props.paginate(props.currentPage + 1);
-                  }
-                }} className='page-link'>&raquo;</a>              </li>
+                <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
+              </li>
             )}
           </ul>
         </nav>
       </div>
     );
   };
-
+  
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       {renderPagination()}
