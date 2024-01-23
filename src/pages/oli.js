@@ -11,6 +11,7 @@ import Plagiarism from '@/components/Plagiarism';
 import App from '@/components/App'
 import { compileBlocksToPdf } from '@/services/CompileService';
 import Loading from '@/components/Loading2';
+import Footer from '@/components/footer';
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -218,6 +219,7 @@ export default function oli() {
 
       {showPlagiarismModal && <Plagiarism onClose={() => setShowPlagiarismModal(false)} />}
 
+          <Footer/>
     </div>
   );
 }

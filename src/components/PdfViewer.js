@@ -2,34 +2,27 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as pdfjs from 'pdfjs-dist/build/pdf';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.entry';
 
-function ResizeIcon() {
-    return (
-        <svg width="24" height="24" viewBox="0 0 24 24">
-            <path d="M7 14L3 14L3 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M7 10L3 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M17 10L21 10L21 14" stroke ="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M17 14L21 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
-}
-
-
 function PdfViewer({ url }) {
     const containerRef = useRef(null);
-    const [widthPercentage, setWidthPercentage] = useState(50);  // Valor por defecto
+    const [scaleFactor, setScaleFactor] = useState(null); // Estado para almacenar el factor de escala
 
-   
+    // Función para manejar clics en el canvas
+    const handleCanvasClick = (event) => {
+        const canvas = event.target;
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        console.log('Coordenadas del clic:', x, y);
+        console.log('Factor de escala:', scaleFactor); // Mostrar el factor de escala
+        // Aquí puedes hacer algo con las coordenadas (x, y) y el factor de escala
+    };
 
     useEffect(() => {
         const renderPDF = async () => {
             try {
                 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
-
                 const loadingTask = pdfjs.getDocument(url);
                 const pdf = await loadingTask.promise;
-
-
-                // Limpiamos el contenedor antes de renderizar
                 containerRef.current.innerHTML = "";
 
                 const containerWidth = containerRef.current.clientWidth;
@@ -38,10 +31,15 @@ function PdfViewer({ url }) {
                     const page = await pdf.getPage(pageNum);
                     const viewportOriginal = page.getViewport({ scale: 1 });
                     const scale = containerWidth / viewportOriginal.width;
+                    if (pageNum === 1) {
+                        setScaleFactor(scale); // Guardar el factor de escala
+                    }
                     const viewport = page.getViewport({ scale: scale });
 
                     const canvas = document.createElement('canvas');
+                    canvas.addEventListener('click', handleCanvasClick);
                     containerRef.current.appendChild(canvas);
+
                     const context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
@@ -52,39 +50,26 @@ function PdfViewer({ url }) {
                     };
 
                     page.render(renderContext);
-
                 }
-
-
             } catch (error) {
                 console.error("Error al renderizar el PDF:", error);
             }
         };
         renderPDF();
-
-    }, [url, widthPercentage]);
+    }, [url]);
 
     return (
         <div>
-            {/* <input 
-                type="range" 
-                min="0" 
-                max="100" 
-                value={widthPercentage} 
-                onChange={(e) => setWidthPercentage(e.target.value)} 
-            /> */}
-
-                <div
-                    ref={containerRef}
-                    style={{
-                        // width: `${widthPercentage}%`, 
-                        width: "100%",
-                        height: 'calc(100vh - 17px)',
-                        overflowY: 'auto',
-                        overflowX: 'hidden',
-                        margin: '0 auto 0 0'
-                    }}
-                />
+            <div
+                ref={containerRef}
+                style={{
+                    width: "100%",
+                    height: 'calc(100vh - 17px)',
+                    overflowY: 'auto',
+                    overflowX: 'hidden',
+                    margin: '0 auto 0 0'
+                }}
+            />
         </div>
     );
 }
