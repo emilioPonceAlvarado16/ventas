@@ -1,20 +1,34 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as pdfjs from 'pdfjs-dist/build/pdf';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.entry';
+import axios from 'axios'; // Importando axios para realizar solicitudes HTTP
 
 function PdfViewer({ url }) {
     const containerRef = useRef(null);
     const [scaleFactor, setScaleFactor] = useState(null); // Estado para almacenar el factor de escala
 
-    // Función para manejar clics en el canvas
-    const handleCanvasClick = (event) => {
+    // Función para manejar doble clics en el canvas
+    const handleCanvasClick = async (event, pageNumber) => {
         const canvas = event.target;
         const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+        const x = parseFloat((event.clientX - rect.left).toFixed(4));
+        const y = parseFloat((event.clientY - rect.top).toFixed(4));
         console.log('Coordenadas del clic:', x, y);
         console.log('Factor de escala:', scaleFactor); // Mostrar el factor de escala
-        // Aquí puedes hacer algo con las coordenadas (x, y) y el factor de escala
+
+        // Realizar la petición GET
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_WEB}get-line`, {
+                params: {
+                    page: pageNumber,
+                    x,
+                    y
+                }
+            });
+            console.log('Respuesta del servidor:', response.data);
+        } catch (error) {
+            console.error('Error al realizar la petición GET:', error);
+        }
     };
 
     useEffect(() => {
@@ -34,10 +48,10 @@ function PdfViewer({ url }) {
                     if (pageNum === 1) {
                         setScaleFactor(scale); // Guardar el factor de escala
                     }
-                    const viewport = page.getViewport({ scale: scale });
+                    const viewport = page.getViewport({ scale });
 
                     const canvas = document.createElement('canvas');
-                    canvas.addEventListener('click', handleCanvasClick);
+                    canvas.addEventListener('dblclick', (event) => handleCanvasClick(event, pageNum));
                     containerRef.current.appendChild(canvas);
 
                     const context = canvas.getContext('2d');
@@ -46,7 +60,7 @@ function PdfViewer({ url }) {
 
                     const renderContext = {
                         canvasContext: context,
-                        viewport: viewport
+                        viewport
                     };
 
                     page.render(renderContext);
@@ -73,5 +87,4 @@ function PdfViewer({ url }) {
         </div>
     );
 }
-
 export default PdfViewer;
