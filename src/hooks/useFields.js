@@ -33,6 +33,8 @@ const useFields = (initialFields = []) => {
   const [assetList, setAssetList] = useState([]); // Nuevo estado para la lista de activos
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(13); // Ajusta este valor según tus necesidades
+  
+  const [foundedField, setFoundedField] = useState(0);
 
     // Calcula los elementos para la página actual
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -95,6 +97,10 @@ const useFields = (initialFields = []) => {
     itemsPerPage,
     paginate,
     changeItemsPerPage,
+
+     // Para el foundedField
+     foundedField,
+     setFoundedField
   };
 };
 

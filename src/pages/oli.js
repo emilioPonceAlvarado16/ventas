@@ -86,6 +86,10 @@ export default function oli() {
     itemsPerPage,
     paginate,
     changeItemsPerPage,
+
+    foundedField,
+    setFoundedField
+
   } = useFields([]);
 
   return (
@@ -93,7 +97,7 @@ export default function oli() {
     <div>
      {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
-
+      {foundedField}
         {/* {JSON.stringify(Fields)} */}
         <RegularSection
           onCloseTemplateList={CloseTemplateList}
@@ -194,7 +198,7 @@ export default function oli() {
 
             <div style={{ flex: 4, width: '50vw' }}>
               <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-                <PdfViewer url={pdfUrl} />
+                <PdfViewer url={pdfUrl} setFoundedField={setFoundedField}/>
 
               </div>
             </div>

@@ -12,6 +12,7 @@ const TextEditor = (props) => {
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
   const assetList = props.assetList || []
+  const foundedField=props.foundedField || 0
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
