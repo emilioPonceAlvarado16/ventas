@@ -80,7 +80,6 @@ export default function oli() {
     assetList,
     addField,
 
-
     currentFields,
     currentPage,
     itemsPerPage,
@@ -97,7 +96,6 @@ export default function oli() {
     <div>
      {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
-      {foundedField}
         {/* {JSON.stringify(Fields)} */}
         <RegularSection
           onCloseTemplateList={CloseTemplateList}
@@ -137,7 +135,7 @@ export default function oli() {
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
           assetList={assetList}
-          // editorObjects={Fields}
+          allFields={Fields}
           editorObjects={currentFields}
 
           setImageSelected={setImageSelected}
@@ -153,6 +151,8 @@ export default function oli() {
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
           paginate={paginate}
+
+          foundedField={foundedField}
         />
         {carouselPosition === 0 && (
 

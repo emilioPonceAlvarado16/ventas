@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Field from './Field';
 import FileSystem from './FileSystem';
@@ -7,12 +7,13 @@ import ImageResizeModal from './ImageResizerModal';
 
 
 const TextEditor = (props) => {
-
+const [pagee, setpagee] = useState(0)
   const [isCollapsed, setIsCollapsed] = useState(true);
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
   const assetList = props.assetList || []
   const foundedField=props.foundedField || 0
+  const allFields =props.allFields || []
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -49,7 +50,7 @@ const TextEditor = (props) => {
     const currentSetEnd = Math.min(currentSetStart + 9, totalPages);
   
     const pageNumbers = Array.from({ length: currentSetEnd - currentSetStart + 1 }, (_, i) => currentSetStart + i);
-  
+
     return (
       <div style={{ position: 'absolute', top: "-4.5vh", right: "60vw", width: '25%', zIndex: 1000 }}>
         <nav>
@@ -81,7 +82,34 @@ const TextEditor = (props) => {
       </div>
     );
   };
+//   const findPageOfField = (fieldId) => {
+//     const fieldIndex = props.allFields.findIndex(obj => obj.id === fieldId);
+    
+//     setpagee(fieldId)
+//     if (fieldIndex === -1) return null;
+//     return Math.ceil((fieldIndex + 1) / props.itemsPerPage);
+// };
   
+const findPageOfField = (fieldId) => {
+  const numericFieldId = Number(fieldId); // Convierte fieldId a número
+  console.log("Buscando ID:", numericFieldId); // Debugging: verifica el ID que buscas
+  // console.log("All Fields:", JSON.stringify(props.allFields)); // Debugging: verifica la estructura de allFields
+
+  const fieldIndex = props.allFields.findIndex(obj => obj.id === numericFieldId);
+  console.log("Índice encontrado:", fieldIndex); // Debugging: verifica el índice encontrado
+
+  if (fieldIndex === -1) return null;
+  return Math.ceil((fieldIndex + 1) / props.itemsPerPage);
+};
+
+  // Efecto que se ejecuta cuando foundedField cambia
+ useEffect(() => {
+    const page = findPageOfField(foundedField);
+    if (page && page !== props.currentPage) {
+        props.paginate(page);
+    }
+}, [foundedField]);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       {renderPagination()}
