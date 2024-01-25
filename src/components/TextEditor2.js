@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Field from './Field';
 import FileSystem from './FileSystem';
-import Modal from './Modal';
 import ImageResizeModal from './ImageResizerModal';
 
-
 const TextEditor = (props) => {
-const [pagee, setpagee] = useState(0)
   const [isCollapsed, setIsCollapsed] = useState(true);
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
   const assetList = props.assetList || []
   const foundedField=props.foundedField || 0
-  const allFields =props.allFields || []
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -37,12 +33,6 @@ const [pagee, setpagee] = useState(0)
   };
 
   const lineHeightStyle = '20px';
-
-
-  const isEditorObjectsEmptyForPage = (pageNumber) => {
-    const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
-    return pageNumber > totalPages
-  };
 
   const renderPagination = () => {
     const totalPages = Math.ceil(props.totalItems / props.itemsPerPage);
@@ -82,14 +72,6 @@ const [pagee, setpagee] = useState(0)
       </div>
     );
   };
-//   const findPageOfField = (fieldId) => {
-//     const fieldIndex = props.allFields.findIndex(obj => obj.id === fieldId);
-    
-//     setpagee(fieldId)
-//     if (fieldIndex === -1) return null;
-//     return Math.ceil((fieldIndex + 1) / props.itemsPerPage);
-// };
-  
 const findPageOfField = (fieldId) => {
   const numericFieldId = Number(fieldId); // Convierte fieldId a número
   console.log("Buscando ID:", numericFieldId); // Debugging: verifica el ID que buscas
@@ -147,6 +129,7 @@ const findPageOfField = (fieldId) => {
                       {...Draggableprovided.draggableProps}
                       {...Draggableprovided.dragHandleProps}
                       id={obj.id}
+                      shouldHighlight={obj.id === foundedField}
                       updateField={props.updateField || null}
                       setIsImageModalOpen={props.setIsImageModalOpen}
                       setImageSelected={props.setImageSelected}

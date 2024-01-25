@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SvgIcons from "./svgIcons";
 
 
@@ -19,6 +19,17 @@ const Field = React.forwardRef((props, ref) => {
 
   const [newValue, setNewValue] = useState(value);
 
+  const [isHighlighted, setIsHighlighted] = useState(props.shouldHighlight);
+  useEffect(() => {
+    setIsHighlighted(props.shouldHighlight);
+
+    if (props.shouldHighlight) {
+      const timer = setTimeout(() => {
+        setIsHighlighted(false);
+      }, 3000); // Resalta durante 3 segundos, ajusta según sea necesario
+      return () => clearTimeout(timer);
+    }
+  }, [props.shouldHighlight]); // Añadir props.shouldHighlight a las dependencias
 
   const deleteField = () => {
     removeField(index);
@@ -92,6 +103,7 @@ const Field = React.forwardRef((props, ref) => {
       {...props}
 
       className="field"
+      style={isHighlighted ? { backgroundColor: 'rgba(255, 193, 7, 0.5)' } : null}
     >
       <p
         ref={pRef}
@@ -137,10 +149,11 @@ const Field = React.forwardRef((props, ref) => {
               }
             </select>
             <SvgIcons type="settings" />
+          
           </>
 
         }
-
+  #{props.id}
       </div>
 
     </div>
