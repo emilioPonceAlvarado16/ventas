@@ -4,6 +4,7 @@ import Field from './Field';
 import FileSystem from './FileSystem';
 import ImageResizeModal from './ImageResizerModal';
 
+
 const TextEditor = (props) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const editorObjects = props.editorObjects || []
