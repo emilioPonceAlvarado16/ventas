@@ -43,33 +43,35 @@ const TextEditor = (props) => {
     const pageNumbers = Array.from({ length: currentSetEnd - currentSetStart + 1 }, (_, i) => currentSetStart + i);
 
     return (
-      <div style={{ position: 'absolute', top: "-4.5vh", right: "60vw", width: '25%', zIndex: 1000 }}>
-        <nav>
-          <ul className='pagination'>
-            {/* Botón para ir a la página anterior */}
-            {props.currentPage > 1 && (
-              <li className='page-item'>
-                <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
-              </li>
-            )}
-  
-            {/* Números de página */}
-            {pageNumbers.map(number => (
-              <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''} ${number > totalPages ? 'disabled' : ''}`}>
-                <a onClick={() => props.paginate(number)} className='page-link'>
-                  {number}
-                </a>
-              </li>
-            ))}
-  
-            {/* Botón para ir a la página siguiente */}
-            {props.currentPage < totalPages && (
-              <li className='page-item'>
-                <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
-              </li>
-            )}
-          </ul>
-        </nav>
+      <div style={{ position: 'absolute', top: "-4.5vh", right: "65vw", width: '25%', zIndex: 1000 }}>
+        {!props.showTemplates &&
+          <nav>
+            <ul className='pagination'>
+              {/* Botón para ir a la página anterior */}
+              {props.currentPage > 1 && (
+                <li className='page-item'>
+                  <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
+                </li>
+              )}
+    
+              {/* Números de página */}
+              {pageNumbers.map(number => (
+                <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''} ${number > totalPages ? 'disabled' : ''}`}>
+                  <a onClick={() => props.paginate(number)} className='page-link'>
+                    {number}
+                  </a>
+                </li>
+              ))}
+    
+              {/* Botón para ir a la página siguiente */}
+              {props.currentPage < totalPages && (
+                <li className='page-item'>
+                  <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
+                </li>
+              )}
+            </ul>
+          </nav>
+        }
       </div>
     );
   };

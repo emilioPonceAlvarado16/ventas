@@ -5661,7 +5661,6 @@ template-item img {
   display: flex;
   justify-content: center;
   list-style: none;
-  padding: 0;
   background-color: #080f25; /* Fondo oscuro */
 }
 

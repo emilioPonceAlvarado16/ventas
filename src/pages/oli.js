@@ -153,6 +153,7 @@ export default function oli() {
           paginate={paginate}
 
           foundedField={foundedField}
+          showTemplates={showTemplates}
         />
         {carouselPosition === 0 && (
 
