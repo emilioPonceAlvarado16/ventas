@@ -15,7 +15,7 @@ export default function Alerts(props) {
           // Llamar a onClose después de que la alerta se haya mostrado por un tiempo
           setDismissed(true)
           // props.onClose?.();
-      }, 2800); // Cambia este tiempo según lo que consideres adecuado
+      }, 3000); // Cambia este tiempo según lo que consideres adecuado
 
       return () => {setDismissed(false);clearTimeout(timer)};
   }, [props.onClose]); // Asegúrate de que onClose se llama solo si cambia
@@ -23,7 +23,7 @@ export default function Alerts(props) {
   const dynamicStyles = {
     transform: dismissed ? 'translateX(100%)' : 'translateX(0)',
     opacity: dismissed ? 0 : 1,
-    transition: 'transform 1s ease-in-out, opacity 1s ease-in-out',
+    transition: 'transform 0.75s ease-in-out, opacity 0.5s ease-in-out',
 };
   return (
     <div className={`${isAbove} ${dismissed ? 'dismissed' : ''}`} style={dynamicStyles}>
