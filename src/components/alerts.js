@@ -10,25 +10,20 @@ export default function Alerts(props) {
     // const isAbove =props.above ? "f-alert-regular-above": "f-alert-small"
     const [dismissed, setDismissed] = useState(false);
 
-    const handleClose = () => {
-      setDismissed(true); 
-      setTimeout(() => {
-      }, 150); 
-    }
-   
     useEffect(() => {
       const timer = setTimeout(() => {
           // Llamar a onClose después de que la alerta se haya mostrado por un tiempo
-          props.onClose?.();
+          setDismissed(true)
+          // props.onClose?.();
       }, 2800); // Cambia este tiempo según lo que consideres adecuado
 
-      return () => clearTimeout(timer);
+      return () => {setDismissed(false);clearTimeout(timer)};
   }, [props.onClose]); // Asegúrate de que onClose se llama solo si cambia
 
   const dynamicStyles = {
     transform: dismissed ? 'translateX(100%)' : 'translateX(0)',
     opacity: dismissed ? 0 : 1,
-    transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+    transition: 'transform 1s ease-in-out, opacity 1s ease-in-out',
 };
   return (
     <div className={`${isAbove} ${dismissed ? 'dismissed' : ''}`} style={dynamicStyles}>
