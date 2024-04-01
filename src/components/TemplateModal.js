@@ -13,6 +13,19 @@ const templates = [
 
 const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
     // const [selectedTemplate, setSelectedTemplate] = useState(null);
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') { // Verifica si la tecla presionada es ESC
+                setStatus('exiting');
+                setTimeout(() => onClose(), 150); 
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose]);
 
     const modalRef = useRef();
     const [status, setStatus] = useState('entering');

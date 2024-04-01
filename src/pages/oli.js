@@ -12,6 +12,7 @@ import App from '@/components/App'
 import { compileBlocksToPdf } from '@/services/CompileService';
 import Loading from '@/components/Loading2';
 import Footer from '@/components/footer';
+import Alerts from '@/components/alerts';
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function oli() {
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-  
+  const [alertInfo, setAlertInfo] = useState({visible: false, message: ''});
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
   
   const [carouselPosition, setCarouselPosition] = useState(0);
@@ -50,7 +51,10 @@ export default function oli() {
 
   const compileAndRenderPdf = async () => {
     try {
-    
+      if (Fields.length === 0) {
+        setAlertInfo({visible: true, message: "No hay campos a compilar!"});
+        return; 
+      }
       setisCompiling(true);
       if (carouselPosition !== 1) { setCarouselPosition(1) }
       const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
@@ -62,6 +66,9 @@ export default function oli() {
     finally {
       setisCompiling(false);  // Asegurarse de que isLoading se establece en false incluso si hay un error
     }
+  };
+  const handleAlertClose = () => {
+    setAlertInfo({ ...alertInfo, visible: false });
   };
   const ClosePrompt = () => {
     setisPromptOpen(false)
@@ -92,8 +99,16 @@ export default function oli() {
   } = useFields([]);
 
   return (
-
+    
     <div>
+        {alertInfo.visible && (
+          <Alerts
+              type="warning"
+              message={alertInfo.message}
+              above={true}
+              onClose={handleAlertClose} // Pasar handleAlertClose como prop
+          />
+      )}
      {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
         {/* {JSON.stringify(Fields)} */}

@@ -10,7 +10,21 @@ export default function Prompt(props) {
         const timer = setTimeout(() => setStatus('entered'), 0);
         return () => clearTimeout(timer);
     }, []);
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === "Escape") {
+                setStatus('exiting');
+                console.log("entro aqui por ESC");
+                setTimeout(() => onClose(), 10);
+            }
+        };
 
+        // Agregar eventListener para escuchar la tecla ESC
+        document.addEventListener('keydown', handleKeyDown);
+
+        // Limpiar eventListener al desmontar el componente
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
     const handleOutsideClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target) && onClose) {
             setStatus('exiting');

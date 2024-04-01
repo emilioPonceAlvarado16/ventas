@@ -71,7 +71,7 @@ export default function Chat(props) {
   // const [newMessage, setNewMessage] = useState('');
   const messageRef = useRef(null);
 
-
+  
   useEffect(() => {
     if (messageRef.current) {
       messageRef.current.scrollTop = messageRef.current.scrollHeight;
