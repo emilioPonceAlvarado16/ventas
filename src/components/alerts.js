@@ -10,15 +10,30 @@ export default function Alerts(props) {
     // const isAbove =props.above ? "f-alert-regular-above": "f-alert-small"
     const [dismissed, setDismissed] = useState(false);
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-          // Llamar a onClose después de que la alerta se haya mostrado por un tiempo
-          setDismissed(true)
-          // props.onClose?.();
-      }, 3000); // Cambia este tiempo según lo que consideres adecuado
+  //   useEffect(() => {
+  //     const timer = setTimeout(() => {
+  //         // Llamar a onClose después de que la alerta se haya mostrado por un tiempo
+  //         setDismissed(true)
+  //         // props.onClose?.();
+  //     }, 3000); // Cambia este tiempo según lo que consideres adecuado
 
-      return () => {setDismissed(false);clearTimeout(timer)};
-  }, [props.onClose]); // Asegúrate de que onClose se llama solo si cambia
+  //     return () => {setDismissed(false);clearTimeout(timer); props.onClose?.()};
+  // }, [props.onClose]); // Asegúrate de que onClose se llama solo si cambia
+
+  useEffect(() => {
+    // Establecer el temporizador para cambiar el estado a 'dismissed' y luego llamar a onClose
+    const timer = setTimeout(() => {
+        setDismissed(true); // Inicia la transición de salida
+        // Después de que la transición haya tenido tiempo de completarse, llamar a onClose
+        setTimeout(() => {
+            props.onClose?.();
+        }, 750); // Asegúrate de que este tiempo sea suficiente para completar la transición
+    }, 3000); // Tiempo después del cual queremos iniciar la transición de salida
+
+    // La función de limpieza ahora solo necesita limpiar el temporizador
+    return () => clearTimeout(timer);
+}, [props.onClose]); // Asegúrate de que onClose se llama solo si cambia
+
 
   const dynamicStyles = {
     transform: dismissed ? 'translateX(100%)' : 'translateX(0)',

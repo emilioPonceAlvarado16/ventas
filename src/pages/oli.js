@@ -54,10 +54,12 @@ export default function oli() {
       if (Fields.length === 0) {
         setAlertInfo({visible: true, message: "No hay campos a compilar!"});
         return; 
+      }else{
+        setAlertInfo({visible: false, message: ""});
       }
       setisCompiling(true);
       if (carouselPosition !== 1) { setCarouselPosition(1) }
-      const newPdfUrl = await compileBlocksToPdf(Fields);  // Suponiendo que Fields son los bloques que necesitas compilar
+      const newPdfUrl = await compileBlocksToPdf({fields:Fields, documentClass: selectedTemplate});  
       setPdfUrl(newPdfUrl);
     } catch (error) {
       setError(error);

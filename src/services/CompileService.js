@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const compileBlocksToPdf = async (blocks) => {
+export const compileBlocksToPdf = async (payload) => {
     try {
         // Enviamos los bloques al servidor y esperamos un PDF como respuesta
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_WEB}compile`, blocks, {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_WEB}compile`, payload, {
             responseType: 'blob' // Indicamos que esperamos una respuesta binaria (blob)
         });
 
