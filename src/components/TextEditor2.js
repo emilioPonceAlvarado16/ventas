@@ -160,7 +160,7 @@ const findPageOfField = (fieldId) => {
           <ImageResizeModal
             onClose={()=>props.setIsImageModalOpen(false)}
             title="Image Preview"
-            details={props.selectedImageName}
+            imageObj={props.imageSelected}
             imageUrl={props.imageSelected?.url}
           />
         )}

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function ImageResizeModal({ onClose }) {
+export default function ImageResizeModal(props) {
   const modalRef = useRef();
   const [scale, setScale] = useState(0.4); // Almacena la escala actual de la imagen
-  const [imageUrl, setImageUrl] = useState("/images/image1.png");
+  const onClose= props.onClose || null
+  const imageUrl=props.imageUrl || ""
+  const imageObj=props.imageObj || {}
   const [originalSize, setOriginalSize] = useState({ width: 200, height: 200 }); // Tamaño original de la imagen
   
   useEffect(() => {
@@ -32,19 +34,6 @@ export default function ImageResizeModal({ onClose }) {
     setScale(Number(e.target.value));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-
   return (
     <div ref={modalRef} style={{
       fontFamily: 'Arial, sans-serif',
@@ -63,6 +52,7 @@ export default function ImageResizeModal({ onClose }) {
       border: '1px solid #ddd',
       borderRadius: '10px'
     }}>
+      {JSON.stringify(imageObj)}
       <div style={{ marginBottom: '10px', textAlign: 'right' }}>
         <button onClick={onClose} style={{
           fontSize: '16px',
@@ -94,7 +84,7 @@ export default function ImageResizeModal({ onClose }) {
           </div>
           <div>
             <label style={{ display: 'block', marginBottom: '5px' }}>Cambiar imagen:</label>
-            <input type="file" onChange={handleImageChange} style={{ width: '100%', backgroundColor: '#fff', color: '#080f25' }} />
+            <input type="file" style={{ width: '100%', backgroundColor: '#fff', color: '#080f25' }} />
           </div>
         </div>
       </div>

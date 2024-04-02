@@ -74,7 +74,6 @@ export default function FileSystem({ isCollapsed, imageSelected , setIsCollapsed
 
   return (
     <div className={`treeview-animated ${isCollapsed ? 'collapsed' : ''}`}>
-      {JSON.stringify(imageSelected)}
       <button
         className="collapse-btn"
         onClick={() => setIsCollapsed(!isCollapsed)}>
