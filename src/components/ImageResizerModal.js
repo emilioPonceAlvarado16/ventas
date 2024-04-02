@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function ImageResizeModal(props) {
   const modalRef = useRef();
-  const [scale, setScale] = useState(0.4); // Almacena la escala actual de la imagen
   const onClose= props.onClose || null
   const imageUrl=props.imageUrl || ""
   const imageObj=props.imageObj || {}
+  const [scale, setScale] = useState(imageObj?.scale ? imageObj?.scale : 0.4); // Almacena la escala actual de la imagen
   const updateField=props.updateField || {}
-  const size=imageObj?.scale===null ? { width: 200, height: 200 } : { width: 200*imageObj.scale, height: 200*imageObj.scale }
-  const [originalSize, setOriginalSize] = useState(size); // Tamaño original de la imagen
+  const [originalSize, setOriginalSize] = useState({ width: 200, height: 200 }); // Tamaño original de la imagen
 
 
   useEffect(() => {
@@ -60,6 +59,7 @@ export default function ImageResizeModal(props) {
       border: '1px solid #ddd',
       borderRadius: '10px'
     }}>
+      {JSON.stringify(imageObj)}
       <div style={{ marginBottom: '10px', textAlign: 'right' }}>
         <button onClick={onClose} style={{
           fontSize: '16px',

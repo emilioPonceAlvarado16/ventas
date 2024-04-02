@@ -14,6 +14,7 @@ const Field = React.forwardRef((props, ref) => {
   const updateField = props.updateField || null
   const setAllText = props.setAllText || null
   const allText = props.allText || ""
+  const imageObj=props.imageObj || {}
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
@@ -45,7 +46,7 @@ const Field = React.forwardRef((props, ref) => {
   };
   const handleShowImage = () => {
     setIsImageModalOpen(true);
-    setImageSelected(url);
+    setImageSelected(imageObj);
   }
   const pRef = React.useRef(null); // Añadir un ref para el elemento <p>
 

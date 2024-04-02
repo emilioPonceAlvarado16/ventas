@@ -144,7 +144,7 @@ const findPageOfField = (fieldId) => {
                       index={index}
                       removeField={props.removeField || null}
                       showFieldType={props.showFieldType || false}
-
+                      imageObj={obj}
                       setAllText={props.setAllText || null}
                       allText={props.allText || ""}
                     />

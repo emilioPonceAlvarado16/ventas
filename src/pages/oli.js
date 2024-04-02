@@ -103,6 +103,7 @@ export default function oli() {
   return (
     
     <div>
+      {JSON.stringify(assetList)}
         {alertInfo.visible && (
           <Alerts
               type="warning"

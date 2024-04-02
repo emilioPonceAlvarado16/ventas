@@ -61,6 +61,23 @@ const useFields = (initialFields = []) => {
       });
     }
   };
+  // const updateAssetList = (id, updatedPayload) => { // Nueva función para manejar la lista de activos
+  //   index= assetList.map((field, index) => index === id ? { ...field, updatedPayload } : field);
+  // };
+
+  const updateAssetList = (id, updatedPayload) => {
+    const assetIndex = assetList.findIndex(asset => asset.id === id);
+  
+    if (assetIndex !== -1) {
+      const updatedAssets = [...assetList];
+      updatedAssets[assetIndex] = { ...updatedAssets[assetIndex], ...updatedPayload };
+  
+      // setAssetList(updatedAssets);
+      console.log(updatedAssets[assetIndex])
+      setAssetList([]);
+    }
+  };
+  
 
   const addField = (field) => {
     dispatch({ type: ADD_FIELD, payload: field });
@@ -80,12 +97,28 @@ const useFields = (initialFields = []) => {
   //   handleAssetList(updatedField.type, updatedField);
   // };
 
+  // const updateField = (id, updatedField) => {
+  //   // Encuentra el índice del campo basado en el id
+  //   const index = fields.findIndex(field => field.id === id);
+  //   if (index !== -1) {
+  //     dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); // Ahora usa id
+  //     // handleAssetList(updatedField.type, { ...fields[index], ...updatedField });
+  //     handleAssetList(updatedField.type, updatedField);
+  //   } else {
+  //     console.log("Campo no encontrado para actualizar");
+  //   }
+  // };
   const updateField = (id, updatedField) => {
     // Encuentra el índice del campo basado en el id
-    const index = fields.findIndex(field => field.id === id);
-    if (index !== -1) {
+    const fieldIndex = fields.findIndex(field => field.id === id);
+    if (fieldIndex !== -1) {
       dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); // Ahora usa id
-      handleAssetList(updatedField.type, { ...fields[index], ...updatedField });
+      // handleAssetList(updatedField.type, updatedField);
+
+      // Si el campo actualizado es de tipo 'im', actualiza también la lista de activos
+      if (updatedField.type === "im") {
+        updateAssetList(id, updatedField);
+      }
     } else {
       console.log("Campo no encontrado para actualizar");
     }
