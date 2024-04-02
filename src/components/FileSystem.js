@@ -39,11 +39,11 @@ function Folder({ data, level = 0, setIsImageModalOpen, setImageSelected }) {
   );
 }
 
-export default function FileSystem({ isCollapsed, setIsCollapsed, assetList, isImageModalOpen, setImageSelected, setIsImageModalOpen }) {
+export default function FileSystem({ isCollapsed, imageSelected , setIsCollapsed, assetList, isImageModalOpen, setImageSelected, setIsImageModalOpen }) {
   const [folders, setFolders] = useState(initialFolders);
-  const handleShowImage = (url) => {
+  const handleShowImage = (item) => {
     setIsImageModalOpen(true);
-    setImageSelected(url);
+    setImageSelected(item);
   }
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function FileSystem({ isCollapsed, setIsCollapsed, assetList, isI
       type: item.type,
       value:item.value,
       icon: item.value.endsWith('.png') ? 'fa-file' : 'fa-folder',
-      onClick: () => item.type === "im" ? handleShowImage(item.url) : null,
+      onClick: () => item.type === "im" ? handleShowImage(item) : null,
       url: item.url,
       children: []
     }));
@@ -74,6 +74,7 @@ export default function FileSystem({ isCollapsed, setIsCollapsed, assetList, isI
 
   return (
     <div className={`treeview-animated ${isCollapsed ? 'collapsed' : ''}`}>
+      {JSON.stringify(imageSelected)}
       <button
         className="collapse-btn"
         onClick={() => setIsCollapsed(!isCollapsed)}>

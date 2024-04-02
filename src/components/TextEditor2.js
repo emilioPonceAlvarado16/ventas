@@ -102,6 +102,7 @@ const findPageOfField = (fieldId) => {
         <FileSystem isCollapsed={isCollapsed}
           isImageModalOpen={props.isImageModalOpen}
           setImageSelected={props.setImageSelected}
+          imageSelected={props.imageSelected}
           setIsImageModalOpen={props.setIsImageModalOpen}
           setIsCollapsed={setIsCollapsed}
 
@@ -160,9 +161,10 @@ const findPageOfField = (fieldId) => {
             onClose={()=>props.setIsImageModalOpen(false)}
             title="Image Preview"
             details={props.selectedImageName}
-            imageUrl={props.imageSelected}
+            imageUrl={props.imageSelected?.url}
           />
         )}
+
       </div>
     </DragDropContext>
   );

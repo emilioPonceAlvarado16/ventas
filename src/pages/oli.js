@@ -16,7 +16,7 @@ import Alerts from '@/components/alerts';
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageSelected, setImageSelected] = useState("");
+  const [imageSelected, setImageSelected] = useState({url:"", id:""});
   const [isPromptOpen, setisPromptOpen] = useState(false);
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
