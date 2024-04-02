@@ -6,8 +6,11 @@ export default function ImageResizeModal(props) {
   const onClose= props.onClose || null
   const imageUrl=props.imageUrl || ""
   const imageObj=props.imageObj || {}
-  const [originalSize, setOriginalSize] = useState({ width: 200, height: 200 }); // Tamaño original de la imagen
-  
+  const updateField=props.updateField || {}
+  const size=imageObj?.scale===null ? { width: 200, height: 200 } : { width: 200*imageObj.scale, height: 200*imageObj.scale }
+  const [originalSize, setOriginalSize] = useState(size); // Tamaño original de la imagen
+
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -21,6 +24,8 @@ export default function ImageResizeModal(props) {
     };
   }, [onClose]);
 
+  
+  
   // Carga y establece el tamaño original de la imagen
   useEffect(() => {
     const img = new Image();
@@ -31,8 +36,12 @@ export default function ImageResizeModal(props) {
   }, [imageUrl]);
 
   const handleScaleChange = (e) => {
-    setScale(Number(e.target.value));
+    const newScale = Number(e.target.value);
+    setScale(newScale);
+    // updateField(imageObj.id, { ...imageObj, scale: newScale });
+    updateField(imageObj.id, { scale: newScale });
   };
+  
 
   return (
     <div ref={modalRef} style={{
@@ -52,7 +61,6 @@ export default function ImageResizeModal(props) {
       border: '1px solid #ddd',
       borderRadius: '10px'
     }}>
-      {JSON.stringify(imageObj)}
       <div style={{ marginBottom: '10px', textAlign: 'right' }}>
         <button onClick={onClose} style={{
           fontSize: '16px',

@@ -162,6 +162,7 @@ const findPageOfField = (fieldId) => {
             title="Image Preview"
             imageObj={props.imageSelected}
             imageUrl={props.imageSelected?.url}
+            updateField={props.updateField || null}
           />
         )}
 

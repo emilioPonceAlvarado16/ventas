@@ -113,7 +113,7 @@ export default function oli() {
       )}
      {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
-        {/* {JSON.stringify(Fields)} */}
+        {JSON.stringify(Fields)}
         <RegularSection
           onCloseTemplateList={CloseTemplateList}
           showTemplates={showTemplates}
