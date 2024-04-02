@@ -1,29 +1,37 @@
-import React, { useState,useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function ImageResizeModal({ onClose }) {
   const modalRef = useRef();
-  const [size, setSize] = useState({ width: 200, height: 200 });
+  const [scale, setScale] = useState(1); // Almacena la escala actual de la imagen
   const [imageUrl, setImageUrl] = useState("/images/image1.png");
+  const [originalSize, setOriginalSize] = useState({ width: 200, height: 200 }); // Tamaño original de la imagen
+  
   useEffect(() => {
     const handleKeyDown = (e) => {
-        if (e.key === 'Escape') { // Verifica si la tecla presionada es ESC
-            setTimeout(() => onClose(), 150); 
-        }
+      if (e.key === 'Escape') {
+        setTimeout(() => onClose(), 150);
+      }
     };
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-        document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-}, [onClose]);
-  // Simula el cambio de tamaño
-  const handleResize = (e) => {
-    const { name, value } = e.target;
-    setSize({ ...size, [name]: Number(value) });
-  };
-  
+  }, [onClose]);
 
-  // Maneja el cambio de imagen
+  // Carga y establece el tamaño original de la imagen
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      setOriginalSize({ width: img.width, height: img.height });
+    };
+    img.src = imageUrl;
+  }, [imageUrl]);
+
+  const handleScaleChange = (e) => {
+    setScale(Number(e.target.value));
+  };
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -68,22 +76,16 @@ export default function ImageResizeModal({ onClose }) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', height: '100%' }}>
         <div style={{ flex: 1, padding: '10px', overflow: 'hidden' }}>
-          <img src={imageUrl} alt="Imagen a redimensionar" style={{ width: `${size.width}px`, height: `${size.height}px` }} />
+          <img src={imageUrl} alt="Imagen a redimensionar" style={{ 
+            width: `${originalSize.width * scale}px`, 
+            height: `${originalSize.height * scale}px` 
+          }} />
         </div>
         <div style={{ width: '200px', padding: '10px', borderLeft: '1px solid #ddd' }}>
-          <h3 style={{ margin: '0 0 10px 0' }}>Configuración de Tamaño</h3>
+          <h3 style={{ margin: '0 0 10px 0' }}>Configuración de Escala</h3>
           <div style={{ marginBottom: '10px' }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Ancho:</label>
-            <input type="number" name="width" value={size.width} onChange={handleResize} style={{
-              padding: '5px',
-              width: '100%',
-              backgroundColor: '#fff',
-              color: '#080f25'
-            }} />
-          </div>
-          <div style={{ marginBottom: '10px' }}>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Alto:</label>
-            <input type="number" name="height" value={size.height} onChange={handleResize} style={{
+            <label style={{ display: 'block', marginBottom: '5px' }}>Escala:</label>
+            <input type="number" min="0.1" step="0.1" value={scale} onChange={handleScaleChange} style={{
               padding: '5px',
               width: '100%',
               backgroundColor: '#fff',
