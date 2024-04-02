@@ -12,13 +12,21 @@ const fieldReducer = (state, action) => {
       return [...state, action.payload];
     case REMOVE_FIELD:
       return state.filter((_, index) => index !== action.payload);
+    // case UPDATE_FIELD:
+    //   return state.map((field, index) => {
+    //     if (index === action.index) {
+    //       return { ...field, ...action.payload };
+    //     }
+    //     return field;
+    //   });
     case UPDATE_FIELD:
-      return state.map((field, index) => {
-        if (index === action.index) {
+      return state.map((field) => {
+        if (field.id === action.id) { // Busca por ID
           return { ...field, ...action.payload };
         }
         return field;
       });
+
     case CHANGE_FIELD_TYPE:
       return state.map((field, index) => index === action.index ? { ...field, type: action.payload } : field);
     case SET_FIELDS:
@@ -67,10 +75,22 @@ const useFields = (initialFields = []) => {
     }
   };
 
-  const updateField = (index, updatedField) => {
-    dispatch({ type: UPDATE_FIELD, index, payload: updatedField });
-    handleAssetList(updatedField.type, updatedField);
+  // const updateField = (index, updatedField) => {
+  //   dispatch({ type: UPDATE_FIELD, index, payload: updatedField });
+  //   handleAssetList(updatedField.type, updatedField);
+  // };
+
+  const updateField = (id, updatedField) => {
+    // Encuentra el índice del campo basado en el id
+    const index = fields.findIndex(field => field.id === id);
+    if (index !== -1) {
+      dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); // Ahora usa id
+      handleAssetList(updatedField.type, { ...fields[index], ...updatedField });
+    } else {
+      console.log("Campo no encontrado para actualizar");
+    }
   };
+  
 
   const changeFieldType = (index, newType) => {
     dispatch({ type: CHANGE_FIELD_TYPE, index, payload: newType });

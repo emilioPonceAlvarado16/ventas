@@ -38,7 +38,6 @@ export default function ImageResizeModal(props) {
   const handleScaleChange = (e) => {
     const newScale = Number(e.target.value);
     setScale(newScale);
-    // updateField(imageObj.id, { ...imageObj, scale: newScale });
     updateField(imageObj.id, { scale: newScale });
   };
   
