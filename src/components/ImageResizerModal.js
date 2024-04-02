@@ -1,15 +1,27 @@
-import React, { useState, useRef } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 
 export default function ImageResizeModal({ onClose }) {
   const modalRef = useRef();
   const [size, setSize] = useState({ width: 200, height: 200 });
   const [imageUrl, setImageUrl] = useState("/images/image1.png");
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+        if (e.key === 'Escape') { // Verifica si la tecla presionada es ESC
+            setTimeout(() => onClose(), 150); 
+        }
+    };
+    document.addEventListener('keydown', handleKeyDown);
 
+    return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+    };
+}, [onClose]);
   // Simula el cambio de tamaño
   const handleResize = (e) => {
     const { name, value } = e.target;
     setSize({ ...size, [name]: Number(value) });
   };
+  
 
   // Maneja el cambio de imagen
   const handleImageChange = (e) => {

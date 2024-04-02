@@ -157,7 +157,7 @@ const findPageOfField = (fieldId) => {
         </Droppable>
         {props.isImageModalOpen && (
           <ImageResizeModal
-            onClose={props.setIsImageModalOpen}
+            onClose={()=>props.setIsImageModalOpen(false)}
             title="Image Preview"
             details={props.selectedImageName}
             imageUrl={props.imageSelected}
