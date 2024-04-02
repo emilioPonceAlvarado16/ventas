@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function ImageResizeModal({ onClose }) {
   const modalRef = useRef();
-  const [scale, setScale] = useState(0.75); // Almacena la escala actual de la imagen
+  const [scale, setScale] = useState(0.4); // Almacena la escala actual de la imagen
   const [imageUrl, setImageUrl] = useState("/images/image1.png");
   const [originalSize, setOriginalSize] = useState({ width: 200, height: 200 }); // Tamaño original de la imagen
   
