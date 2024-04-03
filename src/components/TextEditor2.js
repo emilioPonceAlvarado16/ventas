@@ -9,7 +9,6 @@ const TextEditor = (props) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
-  const assetList = props.assetList || []
   const foundedField=props.foundedField || 0
 
   const onDragEnd = (result) => {
@@ -105,9 +104,8 @@ const findPageOfField = (fieldId) => {
           imageSelected={props.imageSelected}
           setIsImageModalOpen={props.setIsImageModalOpen}
           setIsCollapsed={setIsCollapsed}
-          fields={props.allFields}
-
-          assetList={assetList} />
+          fields={props.allFields}/>
+          
         <Droppable droppableId="textEditor">
           {(Droppableprovided) => (
             <div

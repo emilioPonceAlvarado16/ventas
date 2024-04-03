@@ -38,7 +38,6 @@ const fieldReducer = (state, action) => {
 
 const useFields = (initialFields = []) => {
   const [fields, dispatch] = useReducer(fieldReducer, initialFields);
-  const [assetList, setAssetList] = useState([]); // Nuevo estado para la lista de activos
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(13); // Ajusta este valor según tus necesidades
   
@@ -53,72 +52,22 @@ const useFields = (initialFields = []) => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     const changeItemsPerPage = (number) => setItemsPerPage(number);
 
-  const handleAssetList = (type, fieldData) => { // Nueva función para manejar la lista de activos
-    if (type === "im") {
-      setAssetList((prevList) => {
-        // Lógica para añadir o actualizar el assetList
-        return [...prevList, fieldData];
-      });
-    }
-  };
-  // const updateAssetList = (id, updatedPayload) => { // Nueva función para manejar la lista de activos
-  //   index= assetList.map((field, index) => index === id ? { ...field, updatedPayload } : field);
-  // };
-
-  const updateAssetList = (id, updatedPayload) => {
-    const assetIndex = assetList.findIndex(asset => asset.id === id);
-  
-    if (assetIndex !== -1) {
-      const updatedAssets = [...assetList];
-      updatedAssets[assetIndex] = { ...updatedAssets[assetIndex], ...updatedPayload };
-  
-      // setAssetList(updatedAssets);
-      console.log(updatedAssets[assetIndex])
-      setAssetList([]);
-    }
-  };
-  
 
   const addField = (field) => {
     dispatch({ type: ADD_FIELD, payload: field });
-    handleAssetList(field.type, field);
   };
 
   const removeField = (index) => {
     const fieldToRemove = fields[index];
     dispatch({ type: REMOVE_FIELD, payload: index });
-    if (fieldToRemove?.type === "im") {
-      setAssetList((prevList) => prevList.filter((item) => item !== fieldToRemove));
-    }
   };
 
-  // const updateField = (index, updatedField) => {
-  //   dispatch({ type: UPDATE_FIELD, index, payload: updatedField });
-  //   handleAssetList(updatedField.type, updatedField);
-  // };
 
-  // const updateField = (id, updatedField) => {
-  //   // Encuentra el índice del campo basado en el id
-  //   const index = fields.findIndex(field => field.id === id);
-  //   if (index !== -1) {
-  //     dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); // Ahora usa id
-  //     // handleAssetList(updatedField.type, { ...fields[index], ...updatedField });
-  //     handleAssetList(updatedField.type, updatedField);
-  //   } else {
-  //     console.log("Campo no encontrado para actualizar");
-  //   }
-  // };
   const updateField = (id, updatedField) => {
     // Encuentra el índice del campo basado en el id
     const fieldIndex = fields.findIndex(field => field.id === id);
     if (fieldIndex !== -1) {
-      dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); // Ahora usa id
-      // handleAssetList(updatedField.type, updatedField);
-
-      // Si el campo actualizado es de tipo 'im', actualiza también la lista de activos
-      if (updatedField.type === "im") {
-        updateAssetList(id, updatedField);
-      }
+      dispatch({ type: UPDATE_FIELD, id, payload: updatedField }); 
     } else {
       console.log("Campo no encontrado para actualizar");
     }
@@ -131,14 +80,10 @@ const useFields = (initialFields = []) => {
 
   const setFields = (newFields) => {
     dispatch({ type: SET_FIELDS, payload: newFields });
-    // Aquí deberías manejar también el assetList si es necesario
-    const newAssetList = newFields.filter((field) => field.type === "im");
-    setAssetList(newAssetList);
   };
 
   return {
     fields,
-    assetList, 
     addField,
     removeField,
     updateField,

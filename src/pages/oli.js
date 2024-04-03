@@ -86,7 +86,6 @@ export default function oli() {
     setFields,
     removeField,
     updateField,
-    assetList,
     addField,
 
     currentFields,
@@ -103,7 +102,6 @@ export default function oli() {
   return (
     
     <div>
-      {JSON.stringify(assetList)}
         {alertInfo.visible && (
           <Alerts
               type="warning"
@@ -151,7 +149,6 @@ export default function oli() {
         setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
-          assetList={assetList}
           allFields={Fields}
           editorObjects={currentFields}
 
