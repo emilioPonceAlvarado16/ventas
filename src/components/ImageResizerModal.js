@@ -59,7 +59,6 @@ export default function ImageResizeModal(props) {
       border: '1px solid #ddd',
       borderRadius: '10px'
     }}>
-      {JSON.stringify(imageObj)}
       <div style={{ marginBottom: '10px', textAlign: 'right' }}>
         <button onClick={onClose} style={{
           fontSize: '16px',
