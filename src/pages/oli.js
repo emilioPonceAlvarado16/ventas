@@ -110,6 +110,7 @@ export default function oli() {
               onClose={handleAlertClose} // Pasar handleAlertClose como prop
           />
       )}
+      
      {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
       <div style={{ position: 'relative' }}>
         <RegularSection

@@ -210,6 +210,18 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
+        case 'pencil':
+            svg = (
+                <div className="f-icon w-embed">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFC107" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.414 2.586a2 2 0 0 0-2.828 0L9 10.172V14h3.828l7.586-7.586a2 2 0 0 0 0-2.828L19.414 2.586Z" fill="white" />
+                        <path d="M18 4l2 2" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M4 20v-3.172l10-10L17.172 10l-10 10H4Z" fill="#FFC107" />
+                    </svg>
+                </div>
+            )
+            break;
+        
         case 'collapse':
             svg =
                 (

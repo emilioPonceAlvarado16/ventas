@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useFile from '../hooks/useFile'; // Importa el hook useFile
 import Loading from './Loading2';
+import ProjectPencil from './projectPencil/ProjectPencil';
 
 export default function RegularSection(props) {
   const { processFile, error, message, setError } = useFile(); // Usa el hook useFile
@@ -32,7 +33,7 @@ export default function RegularSection(props) {
       {
         (isLoading1 || error) &&<Loading isLoading={isLoading1} message={message}setError={setError} error={error}  />
       }
-        
+        <ProjectPencil/>
       {JSON.stringify()}
       <div className="a-container-regular-2">
         <div className="w-layout-grid a-cta-grid">
