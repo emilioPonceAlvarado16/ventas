@@ -25,13 +25,12 @@ function Folder({ data, level = 0, setIsImageModalOpen, setImageSelected }) {
         <span>
           <i className={`fa ${data.icon} ic-w mx-1`}></i>
           {data.value}
-          {/* {JSON.stringify(data)} */}
         </span>
       </a>
       {isOpen && data.children && (
         <ul className="nested">
           {data.children.map((child) => (
-            <Folder  data={child} level={level + 1} setIsImageModalOpen={setIsImageModalOpen} setImageSelected={setImageSelected} />
+            <Folder key={child.value} data={child} level={level + 1} setIsImageModalOpen={setIsImageModalOpen} setImageSelected={setImageSelected} />
           ))}
         </ul>
       )}
@@ -39,44 +38,38 @@ function Folder({ data, level = 0, setIsImageModalOpen, setImageSelected }) {
   );
 }
 
-export default function FileSystem({ isCollapsed, imageSelected , setIsCollapsed, assetList, isImageModalOpen, setImageSelected, setIsImageModalOpen }) {
+export default function FileSystem({ isCollapsed, fields, setIsCollapsed, isImageModalOpen, setImageSelected, setIsImageModalOpen }) {
   const [folders, setFolders] = useState(initialFolders);
+
   const handleShowImage = (item) => {
     setIsImageModalOpen(true);
     setImageSelected(item);
   }
 
   useEffect(() => {
-    if (!assetList) {
-      return;
-    }
-    const updatedassetList = assetList.map(item => ({
-      type: item.type,
-      value:item.value,
-      icon: item.value.endsWith('.png') ? 'fa-file' : 'fa-folder',
-      onClick: () => item.type === "im" ? handleShowImage(item) : null,
-      url: item.url,
-      children: []
+    // Filtra los fields por el tipo "im" para trabajarlos como activos de imágenes
+    const imageFields = fields.filter(field => field.type === "im").map(item => ({
+      ...item,
+      onClick: () => handleShowImage(item)
     }));
 
+    // Actualiza el folder "Images" para incluir las imágenes filtradas
     const updatedFolders = folders.map(folder => {
       if (folder.value === "Images") {
         return {
           ...folder,
-          children: updatedassetList
+          children: imageFields
         };
       }
       return folder;
     });
 
     setFolders(updatedFolders);
-  }, [assetList]);
+  }, [fields]);
 
   return (
     <div className={`treeview-animated ${isCollapsed ? 'collapsed' : ''}`}>
-      <button
-        className="collapse-btn"
-        onClick={() => setIsCollapsed(!isCollapsed)}>
+      <button className="collapse-btn" onClick={() => setIsCollapsed(!isCollapsed)}>
         <SvgIcons type="angleLeft" />
       </button>
       <h6 className="pt-3 pl-3" style={{ fontWeight: "bold" }}>/Root</h6>

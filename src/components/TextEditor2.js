@@ -105,6 +105,7 @@ const findPageOfField = (fieldId) => {
           imageSelected={props.imageSelected}
           setIsImageModalOpen={props.setIsImageModalOpen}
           setIsCollapsed={setIsCollapsed}
+          fields={props.allFields}
 
           assetList={assetList} />
         <Droppable droppableId="textEditor">
