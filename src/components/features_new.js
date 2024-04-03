@@ -10,7 +10,7 @@ export default function features_new() {
             <div className="f-feature-card-filled">
               <div className="f-feature-icon-wrapper-white"><img src="images/Logo-Mark.png" loading="lazy" width="40" alt="" /></div>
               <div className="f-margin-bottom-129">
-                <h5 className="f-h5-heading">Feature Title</h5>
+                <h5 className="f-h5-heading title" >Feature Title</h5>
               </div>
               <p className="f-paragraph-large features">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Far away sit a Fusce congue dolor sit.consectetur adipiscing amet.</p>
@@ -18,14 +18,14 @@ export default function features_new() {
             <div className="f-feature-card-filled">
               <div className="f-feature-icon-wrapper-white"><img src="images/Logo-Mark.png" loading="lazy" width="40" alt="" /></div>
               <div className="f-margin-bottom-129">
-                <h5 className="f-h5-heading">Feature Title</h5>
+                <h5 className="f-h5-heading title" >Feature Title</h5>
               </div>
               <p className="f-paragraph-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Far away sit a Fusce congue dolor sit.consectetur adipiscing amet.</p>
             </div>
             <div className="f-feature-card-filled">
               <div className="f-feature-icon-wrapper-white"><img src="images/Logo-Mark.png" loading="lazy" width="40" alt="" /></div>
               <div className="f-margin-bottom-129">
-                <h5 className="f-h5-heading">Feature Title</h5>
+                <h5 className="f-h5-heading title" >Feature Title</h5>
               </div>
               <p className="f-paragraph-large">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Far away sit a Fusce congue dolor sit.consectetur adipiscing amet.</p>
             </div>
