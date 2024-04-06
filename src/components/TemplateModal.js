@@ -10,26 +10,9 @@ const templates = [
     { id: 4, title: 'CV', img: './images/template4.png', category: '', url: "./pdfs/Isaias_Ponce_CV.pdf" },
     //... more templates
 ];
-
 const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
-    // const [selectedTemplate, setSelectedTemplate] = useState(null);
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') { // Verifica si la tecla presionada es ESC
-                setStatus('exiting');
-                setTimeout(() => onClose(), 150); 
-            }
-        };
-        document.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [onClose]);
-
     const modalRef = useRef();
     const [status, setStatus] = useState('entering');
-
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -48,6 +31,40 @@ const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
     const filteredTemplates = templates
         .filter(template => selectedCategory === 'All' || template.category === selectedCategory)
         .filter(template => template.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                setStatus('exiting');
+                setTimeout(() => onClose(), 150);
+            } else if (e.key === 'Tab') {
+                e.preventDefault();
+                const currentIndex = filteredTemplates.findIndex(template => template.id === selectedTemplate?.id);
+                const nextIndex = currentIndex >= 0 && currentIndex < filteredTemplates.length - 1 ? currentIndex + 1 : 0;
+                setSelectedTemplate(filteredTemplates[nextIndex]);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const currentIndex = filteredTemplates.findIndex(template => template.id === selectedTemplate?.id);
+                const nextIndex = (currentIndex + 1) % filteredTemplates.length;
+                setSelectedTemplate(filteredTemplates[nextIndex]);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const currentIndex = filteredTemplates.findIndex(template => template.id === selectedTemplate?.id);
+                const nextIndex = (currentIndex - 1 + filteredTemplates.length) % filteredTemplates.length;
+                setSelectedTemplate(filteredTemplates[nextIndex]);
+            }
+            else if (e.key === 'Enter' && selectedTemplate) {
+                e.preventDefault(); 
+                setStatus('exiting');
+                setTimeout(() => onClose(), 80);
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose, selectedTemplate, setSelectedTemplate, filteredTemplates, searchTerm, selectedCategory]);
 
     return (
         <div className="modal" onClick={handleOutsideClick}>
