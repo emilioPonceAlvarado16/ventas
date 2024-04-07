@@ -32,9 +32,9 @@ export default function posi() {
         "ultimaModificacion": "2024-01-15",
         "estado": { "value": "En Revisión", "class": "f-badge-transparent" },
         "actions": [
-          { "type": "edit", "onClick": () => console.log("Editando Propuesta de Proyecto") },
-          { "type": "generateLink", "onClick": () => console.log("Generando enlace para Propuesta de Proyecto") },
-          { "type": "delete", "onClick": () => console.log("Eliminando Propuesta de Proyecto") }
+          { "type": "edit", "onClick": () => console.log("Editando Propuesta de Proyecto"),"tooltip": "Editar"  },
+          { "type": "generateLink", "onClick": () => console.log("Generando enlace para Propuesta de Proyecto"),"tooltip": "Generar Link" },
+          { "type": "delete", "onClick": () => console.log("Eliminando Propuesta de Proyecto")}
         ]
       },
       {
@@ -42,7 +42,7 @@ export default function posi() {
         "ultimaModificacion": "2024-03-22",
         "estado": { "value": "Publicado", "class": "f-badge-transparent" },
         "actions": [
-          { "type": "edit", "onClick": () => console.log("Editando Acta de Reunión") },
+          { "type": "edit", "onClick": () => console.log("Editando Acta de Reunión") ,"tooltip": "Editar" },
           { "type": "generateLink", "onClick": () => console.log("Generando enlace para Acta de Reunión") },
           { "type": "delete", "onClick": () => console.log("Eliminando Acta de Reunión") }
         ]

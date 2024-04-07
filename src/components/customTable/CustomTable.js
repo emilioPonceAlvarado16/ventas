@@ -44,7 +44,7 @@ export default function CustomTable({ dataTable }) {
   return (
     <div className={styles['template-base']}>
       <div className={styles['table']}>
-      <form action="/search" className="f-dropdown-search w-form">
+      <form onSubmit={(event) => event.preventDefault()}  className="f-dropdown-search w-form">
           <img
             src="https://assets.website-files.com/63226e0878e701ae1e448d9e/63226e0878e701a8a2448f47_Search%20Icon%20Brand.svg"
             loading="lazy"
@@ -91,7 +91,7 @@ export default function CustomTable({ dataTable }) {
                     return (
                       <div className={styles['table-cell']} {...cell.getCellProps()}>
                         {cell.value?.map((action, index) => (
-                          <SvgIcons key={index} type={action.type} onClick={action?.onClick} />
+                            <SvgIcons key={index} type={action.type} onClick={action?.onClick} />
                         ))}
                       </div>
                     );
