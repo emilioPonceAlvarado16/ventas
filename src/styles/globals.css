@@ -4375,12 +4375,24 @@ textarea.w-select {
   left: 16px;
 }
 
+
 .f-dropdown-search {
   max-width: 540px;
   align-items: center;
   margin-bottom: 8px;
   display: flex;
   position: relative;
+}
+
+.search-large {
+  min-height: 48px;
+  margin-bottom: 0px;
+  padding: 12px 16px 12px 48px;
+  border: 1px solid #e9ecf0;
+  border-radius: 50px;
+  box-shadow: 1px 1px 2px 0 rgba(114, 129, 167, 0.04);
+  color: #151e24;
+  font-size: 16px;
 }
 
 .f-modal-close {

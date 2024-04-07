@@ -47,6 +47,11 @@ export default function CustomTable({ dataTable }) {
   return (
     <div className={styles['template-base']}>
       <div className={styles['table']}>
+      <form action="/search" className="f-dropdown-search w-form"><img
+        src="https://assets.website-files.com/63226e0878e701ae1e448d9e/63226e0878e701a8a2448f47_Search%20Icon%20Brand.svg"
+        loading="lazy" alt="" className="f-dropdown-search-icon"/><input type="search" className="search-large w-input"
+        maxlength="256" name="query" placeholder="Search" id="search" required=""/><input type="submit" value="Search"
+        className="f-dropdown-search-button w-button"/></form>
           {headerGroups.map(headerGroup => (
             <div className={`w-layout-grid ${styles['table-grid-top']}`} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (

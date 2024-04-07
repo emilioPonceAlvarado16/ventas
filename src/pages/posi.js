@@ -8,7 +8,7 @@ export default function posi() {
       {
         "Header": "Título del Documento",
         "accessor": "titulo",
-        "Filter": false
+        "Filter": true
       },
       {
         "Header": "Última Modificación",
