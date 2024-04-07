@@ -12,7 +12,12 @@
   .template-table-wrapper{
     width:100%;
   }
-  
+  .f-paragraph-small {
+    margin-bottom: 0px;
+    font-size: 14px;
+    line-height: 1.8;
+    letter-spacing: -0.01em;
+  }
   .table-grid-top{
   position: -webkit-sticky;
   position: sticky;
