@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTable, useFilters } from 'react-table';
 import styles from './CustomTable.module.css';
-
+import SvgIcons from '../svgIcons';
 function DefaultColumnFilter({
   column: { filterValue, setFilter },
 }) {
