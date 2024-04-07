@@ -2,7 +2,6 @@ import React from 'react';
 import { useTable, useFilters } from 'react-table';
 import styles from './CustomTable.module.css';
 import SvgIcons from '../svgIcons'; 
-import { ACTION } from 'next/dist/client/components/app-router-headers';
 
 function DefaultColumnFilter({
   column: { filterValue, setFilter },
@@ -48,13 +47,11 @@ export default function CustomTable({ dataTable }) {
   return (
     <div className={styles['template-base']}>
       <div className={styles['table']}>
-          {/* Aquí agregamos los encabezados correctamente */}
           {headerGroups.map(headerGroup => (
             <div className={`w-layout-grid ${styles['table-grid-top']}`} {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
                 <div className={styles['table-header']} {...column.getHeaderProps()}>
                   {column.render('Header')}
-                  {/* Opcional: incluir filtros aquí si es necesario */}
                   <div className={styles['table-cell']}>
                     <div className={styles['f-paragraph-small']}>
                       {column.canFilter ? column.render('Filter') : null}
