@@ -7,27 +7,33 @@ export default function posi() {
     "columns": [
       {
         "Header": "Nombre",
-        "accessor": "nombre", 
-        "Filter": false 
+        "accessor": "nombre",
+        "Filter": false
       },
       {
         "Header": "Edad",
         "accessor": "edad",
-        "Filter": false 
+        "Filter": false
+      },
+      {
+        "Header": "Estado",
+        "accessor": "estado",
+        "Filter": false
       }
     ],
     "data": [
       {
         "nombre": "Juan",
-        "edad": 30
+        "edad": 30,
+        "estado": { "value": "Activo", "class": "f-badge-transparent" }
       },
       {
         "nombre": "Ana",
-        "edad": 25
-      }
+        "edad": 25,
+        "estado": { "value": "Inactivo", "class": "f-badge-transparent" }
+      },
     ]
-  }
-  
+  }  
   return (
     <>
     
