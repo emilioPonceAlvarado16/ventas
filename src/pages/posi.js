@@ -31,13 +31,21 @@ export default function posi() {
         "titulo": "Propuesta de Proyecto",
         "ultimaModificacion": "2024-01-15",
         "estado": { "value": "En Revisión", "class": "f-badge-transparent" },
-        "actions": ["edit", "generateLink", "delete"]
+        "actions": [
+          { "type": "edit", "onClick": () => console.log("Editando Propuesta de Proyecto") },
+          { "type": "generateLink", "onClick": () => console.log("Generando enlace para Propuesta de Proyecto") },
+          { "type": "delete", "onClick": () => console.log("Eliminando Propuesta de Proyecto") }
+        ]
       },
       {
         "titulo": "Acta de Reunión",
         "ultimaModificacion": "2024-03-22",
         "estado": { "value": "Publicado", "class": "f-badge-transparent" },
-        "actions": ["edit", "generateLink", "delete"]
+        "actions": [
+          { "type": "edit", "onClick": () => console.log("Editando Acta de Reunión") },
+          { "type": "generateLink", "onClick": () => console.log("Generando enlace para Acta de Reunión") },
+          { "type": "delete", "onClick": () => console.log("Eliminando Acta de Reunión") }
+        ]
       },
     ]
   };

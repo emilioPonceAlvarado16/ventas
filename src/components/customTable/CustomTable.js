@@ -2,6 +2,7 @@ import React from 'react';
 import { useTable, useFilters } from 'react-table';
 import styles from './CustomTable.module.css';
 import SvgIcons from '../svgIcons'; 
+import { ACTION } from 'next/dist/client/components/app-router-headers';
 
 function DefaultColumnFilter({
   column: { filterValue, setFilter },
@@ -71,8 +72,8 @@ export default function CustomTable({ dataTable }) {
                   if (cell.column.id === 'actions') {
                     return (
                       <div className={styles['table-cell']} {...cell.getCellProps()}>
-                        {cell.value.map((actionType, index) => (
-                          <SvgIcons key={index} type={actionType} />
+                        {cell.value?.map((action, index) => (
+                          <SvgIcons key={index} type={action.type} onClick={action?.onClick} />
                         ))}
                       </div>
                     );
