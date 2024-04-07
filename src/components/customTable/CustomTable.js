@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTable, useFilters } from 'react-table';
 import styles from './CustomTable.module.css';
-import SvgIcons from '../svgIcons';
+import SvgIcons from '../svgIcons'; 
+
 function DefaultColumnFilter({
   column: { filterValue, setFilter },
 }) {
@@ -22,10 +23,13 @@ export default function CustomTable({ dataTable }) {
   })), [dataTable]);
 
   const data = React.useMemo(() => dataTable.data.map(row => {
-    // Transforma los datos si es necesario para incluir campos de clase
     const transformed = {};
     Object.keys(row).forEach(key => {
-      transformed[key] = typeof row[key] === 'object' && row[key] !== null ? row[key].value : row[key];
+      if (key === 'actions') {
+        transformed[key] = row[key];
+      } else {
+        transformed[key] = typeof row[key] === 'object' && row[key] !== null ? row[key].value : row[key];
+      }
     });
     return { ...transformed, _original: row };
   }), [dataTable]);
@@ -43,34 +47,46 @@ export default function CustomTable({ dataTable }) {
   return (
     <div className={styles['template-base']}>
       <div className={styles['table']}>
-          <div className={`w-layout-grid ${styles['table-grid-top']}`}>
-            {headerGroups.map(headerGroup => (
-              headerGroup.headers.map(column => (
+          {/* Aquí agregamos los encabezados correctamente */}
+          {headerGroups.map(headerGroup => (
+            <div className={`w-layout-grid ${styles['table-grid-top']}`} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
                 <div className={styles['table-header']} {...column.getHeaderProps()}>
                   {column.render('Header')}
+                  {/* Opcional: incluir filtros aquí si es necesario */}
                   <div className={styles['table-cell']}>
                     <div className={styles['f-paragraph-small']}>
                       {column.canFilter ? column.render('Filter') : null}
                     </div>
                   </div>
                 </div>
-              ))
-            ))}
-          </div>
+              ))}
+            </div>
+          ))}
           {rows.map(row => {
             prepareRow(row);
             return (
               <div className={`w-layout-grid ${styles['table-grid']}`} {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  const cellData = row.original._original[cell.column.id];
-                  const cellClass = typeof cellData === 'object' && cellData !== null ? cellData.class : '';
-                  return (
-                    <div className={styles['table-cell']} {...cell.getCellProps()}>
-                      <div className={`${styles['f-paragraph-small']} ${styles[cellClass] || ''}`}>
-                        {cell.render('Cell')}
+                  if (cell.column.id === 'actions') {
+                    return (
+                      <div className={styles['table-cell']} {...cell.getCellProps()}>
+                        {cell.value.map((actionType, index) => (
+                          <SvgIcons key={index} type={actionType} />
+                        ))}
                       </div>
-                    </div>
-                  );
+                    );
+                  } else {
+                    const cellData = row.original._original[cell.column.id];
+                    const cellClass = typeof cellData === 'object' && cellData !== null ? cellData.class : '';
+                    return (
+                      <div className={styles['table-cell']} {...cell.getCellProps()}>
+                        <div className={`${styles['f-paragraph-small']} ${styles[cellClass] || ''}`}>
+                          {cell.render('Cell')}
+                        </div>
+                      </div>
+                    );
+                  }
                 })}
               </div>
             );

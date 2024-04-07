@@ -3,37 +3,46 @@ import CustomTable from '@/components/customTable/CustomTable'
 import React from 'react'
 
 export default function posi() {
-  const data={
+  const data = {
     "columns": [
       {
-        "Header": "Nombre",
-        "accessor": "nombre",
+        "Header": "Título del Documento",
+        "accessor": "titulo",
         "Filter": false
       },
       {
-        "Header": "Edad",
-        "accessor": "edad",
+        "Header": "Última Modificación",
+        "accessor": "ultimaModificacion",
         "Filter": false
       },
       {
         "Header": "Estado",
         "accessor": "estado",
         "Filter": false
+      },
+      {
+        "Header": "Acciones",
+        "accessor": "actions",
+        "Filter": false
       }
     ],
     "data": [
       {
-        "nombre": "Juan",
-        "edad": 30,
-        "estado": { "value": "Activo", "class": "f-badge-transparent" }
+        "titulo": "Propuesta de Proyecto",
+        "ultimaModificacion": "2024-01-15",
+        "estado": { "value": "En Revisión", "class": "f-badge-transparent" },
+        "actions": ["edit", "generateLink", "delete"]
       },
       {
-        "nombre": "Ana",
-        "edad": 25,
-        "estado": { "value": "Inactivo", "class": "f-badge-transparent" }
+        "titulo": "Acta de Reunión",
+        "ultimaModificacion": "2024-03-22",
+        "estado": { "value": "Publicado", "class": "f-badge-transparent" },
+        "actions": ["edit", "generateLink", "delete"]
       },
     ]
-  }  
+  };
+  
+  
   return (
     <>
     

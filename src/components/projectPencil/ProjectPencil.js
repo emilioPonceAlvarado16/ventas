@@ -35,7 +35,7 @@ export default function ProjectPencil() {
 
   return (
     <div className={styles.container}>
-      <SvgIcons type='pencil' className={styles.pencilIcon} onClick={handleEdit} />
+      <SvgIcons type='edit' className={styles.pencilIcon} onClick={handleEdit} />
       <input
         ref={inputRef}
         type="text"

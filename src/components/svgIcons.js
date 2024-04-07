@@ -210,7 +210,7 @@ export default function SvgIcons(props) {
                     </svg>
                 );
             break;
-        case 'pencil':
+        case 'edit':
             svg = (
                 <div className="f-icon w-embed">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFC107" xmlns="http://www.w3.org/2000/svg">
@@ -221,7 +221,18 @@ export default function SvgIcons(props) {
                 </div>
             )
             break;
-        
+        case 'delete':
+            svg = (
+                <div className="f-icon w-embed">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 6H5H21" stroke="red" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6" stroke="red" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M10 11V17" stroke="red" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M14 11V17" stroke="red" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+            )
+            break;
         case 'collapse':
             svg =
                 (
@@ -287,6 +298,15 @@ export default function SvgIcons(props) {
             svg = (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2,21 L22,12 L2,3 L2,10 L17,12 L2,14 L2,21" fill="white"></path>
+                </svg>
+            );
+            break;
+
+        case 'generateLink':
+            svg = (
+                <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="18px" width="18px" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                 </svg>
             );
             break;
