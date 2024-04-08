@@ -1,0 +1,287 @@
+.f-navigation {
+    width: 100%;
+    min-height: 88px;
+    background-color: var(--landing-background); 
+    align-items: center;
+    padding: 24px 5%;
+    display: flex;
+  }
+  
+.w-nav-button {
+    position: relative;
+    float: right;
+    padding: 18px;
+    font-size: 24px;
+    display: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .w-icon-nav-menu:before {
+    content: "\e602";
+  }
+  
+  .w-nav-button:focus {
+    outline: 0;
+  }
+  
+  .w-nav-button.w--open {
+    background-color: #C8C8C8;
+    color: white;
+  }
+.f-navigation-button {
+    position: relative;
+    outline-offset: 0px;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: -.02em;
+    background-color: var(--neutral-primario);
+    border-radius: 48px;
+    outline: 2px solid rgba(0, 0, 0, 0);
+    justify-content: center;
+    /* Centrar horizontalmente */
+    align-items: center;
+    /* Centrar verticalmente */
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+    transition: all .2s;
+    display: flex;
+    /* Importante para el centrado con justify-content y align-items */
+  }
+  
+  .f-navigation-button:hover {
+    background-color: #282556;
+  }
+  
+  .f-navigation-button {
+    background-color: #6b7094; /* Diferenciando el botón 'Salir' */
+    color: #ffffff; /* Blanco para el texto dentro del botón */
+  }
+  .f-navigation-link {
+    color: #ffffff; /* Blanco para mayor contraste */
+    transition: background-color .35s, color .35s; /* Transición suave para efectos hover */
+    letter-spacing: -.01em;
+    white-space: nowrap;
+    background-color: var(--landing-background); /* Fondo del menú */
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+    transition: all .35s;
+  }
+  
+.w--nav-link-open {
+    display: block;
+    position: relative;
+  }
+  
+  .w-nav-overlay {
+    position: absolute;
+    overflow: hidden;
+    display: none;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  .w-nav-overlay [data-nav-menu-open] {
+    top: 0;
+  }
+  
+.w-nav-link {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: none;
+    color: #222222;
+    padding: 20px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .w-nav-link.w--current {
+    color: #0082f3;
+  }
+  
+  .w-nav-menu {
+    position: relative;
+    float: right;
+    background-color: var(--landing-background);
+  }
+.f-navigation-l {
+    width: 50%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    background-color: var(--landing-background);
+  }
+  .f-navigation-link:hover {
+    background-color: #6b7094; 
+  }
+  .f-navigation-link.w--current {
+    color: #642eff;
+  }
+  
+  .f-navigation-container {
+    background-color: var(--landing-background); /* Un tono ligeramente diferente al fondo de la página */  
+    width: 100%;
+    max-width: 1280px;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    height: 50px;
+  }
+  .w-inline-block {
+    max-width: 100%;
+    display: inline-block;
+  }
+
+  .f-navigation-menu {
+    grid-column-gap: 6px;
+    align-items: center;
+    display: flex;
+    position: static;
+  }
+  .w-nav-menu {
+    position: relative;
+    float: right;
+    background-color: var(--landing-background);
+  }
+  .w-nav[data-collapse="all"] .w-nav-menu {
+    display: none;
+  }
+  
+  @media screen and (max-width: 991px) {
+    .f-navigation-l {
+        width: 100%;
+        color: white;
+        border: 1px solid #f3f5fb;
+        border-radius: 8px;
+        padding: 12px;
+      }
+    
+    .w-nav[data-collapse="medium"] .w-nav-menu {
+        display: none;
+      }
+    
+      .w-nav[data-collapse="medium"] .w-nav-button {
+        display: block;
+      }
+    .f-navigation-menu-button {
+        color:var(--white);
+        border: 1px solid #f3f5fb;
+        border-radius: 8px;
+        padding: 10px;
+      }
+    
+      .f-navigation-menu-button.w--open {
+        background-color: var(--neutral-primario);
+        border-color: var(--white);
+      }
+    
+      .f-navigation-content {
+        width: auto;
+        align-items: center;
+        display: flex;
+      }
+    
+      .f-navigation-link {
+        width: 100%;
+      }
+    
+      .f-navigation-menu {
+        color: #393b6a;
+        background-color: var(--white);
+        padding: 12px;
+        position: absolute;
+      }
+    
+      .f-navigation-menu.w--open {
+        /* background-color: #282556; */
+        border-color: var(--white);
+      }
+    
+      .f-navigation-logo-link {
+        margin-right: 0;
+      }
+    
+      .f-navigation {
+        position: relative;
+      }
+    
+      .f-navigation-r {
+        width: auto;
+        align-items: center;
+        display: flex;
+      }
+    
+      .f-navigation-l {
+        width: 100%;
+        color: white;
+        border: 1px solid #f3f5fb;
+        border-radius: 8px;
+        padding: 12px;
+      }
+    
+      .f-navigation-l.w--open {
+        background-color: #282556;
+        border-color: var(--white);
+      }    
+      .f-navigation-container {
+        height: 50px; 
+      }
+}
+
+@media screen and (max-width: 767px) {
+    .w-nav[data-collapse="small"] .w-nav-menu {
+        display: none;
+      }
+    
+      .w-nav[data-collapse="small"] .w-nav-button {
+        display: block;
+      }    
+    .w--nav-link-open {
+            display: block; /* Asegúrate de que los enlaces sean visibles */
+        }
+    .f-navigation-container {
+        height: 40px; 
+    }
+    .f-navigation-l.w-nav-menu {
+    /* transform: translateX(0); Ajusta para que el menú aparezca */
+    transition: transform 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* O el ancho que prefieras */
+    /* z-index: 15;  */
+  }
+}
+
+@media screen and (max-width: 479px) {
+    .w-nav[data-collapse="tiny"] .w-nav-menu {
+      display: none;
+    }
+  
+    .w-nav[data-collapse="tiny"] .w-nav-button {
+      display: block;
+    }
+  }
+  
+ 
+  
