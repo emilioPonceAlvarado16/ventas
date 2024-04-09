@@ -62,11 +62,11 @@ export default function Navbar() {
           </button>
 
 
-          <nav role="navigation" className="f-navigation-menu w-nav-menu">
+          <nav role="navigation" className={`${styles["f-navigation-menu"]} w-nav-menu`}>
 
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
-                <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
+                <a className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</a>
               </Link>
             ))}
           </nav>
@@ -93,13 +93,13 @@ export default function Navbar() {
               </div>
             </div>
             {/* Menú de navegación responsive */}
-            <div className="w-nav-overlay-visibility" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation"className={`f-navigation-l w-nav-menu ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`} 
+            <div className={styles['w-nav-overlay-visibility']} data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
+              <nav role="navigation"className={`${styles["f-navigation-l"]} "w-nav-menu" ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`} 
                 
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
-                    <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
+                    <a className={`${styles["f-navigation-link"]} w-nav-link w--nav-link-open`}>{routeObj.label}</a>
                   </Link>
                 ))}
 

@@ -100,27 +100,9 @@
     top: 0;
   }
   
-.w-nav-link {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    text-decoration: none;
-    color: #222222;
-    padding: 20px;
-    text-align: left;
-    margin-left: auto;
-    margin-right: auto;
-  }
+
   
-  .w-nav-link.w--current {
-    color: #0082f3;
-  }
-  
-  .w-nav-menu {
-    position: relative;
-    float: right;
-    background-color: var(--landing-background);
-  }
+
 .f-navigation-l {
     width: 50%;
     flex-direction: row;
@@ -158,15 +140,8 @@
     display: flex;
     position: static;
   }
-  .w-nav-menu {
-    position: relative;
-    float: right;
-    background-color: var(--landing-background);
-  }
-  .w-nav[data-collapse="all"] .w-nav-menu {
-    display: none;
-  }
-  
+
+
   @media screen and (max-width: 991px) {
     .f-navigation-l {
         width: 100%;
@@ -174,10 +149,6 @@
         border: 1px solid #f3f5fb;
         border-radius: 8px;
         padding: 12px;
-      }
-    
-    .w-nav[data-collapse="medium"] .w-nav-menu {
-        display: none;
       }
     
       .w-nav[data-collapse="medium"] .w-nav-button {
@@ -194,12 +165,7 @@
         background-color: var(--neutral-primario);
         border-color: var(--white);
       }
-    
-      .f-navigation-content {
-        width: auto;
-        align-items: center;
-        display: flex;
-      }
+  
     
       .f-navigation-link {
         width: 100%;
@@ -249,9 +215,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .w-nav[data-collapse="small"] .w-nav-menu {
-        display: none;
-      }
+ 
     
       .w-nav[data-collapse="small"] .w-nav-button {
         display: block;
@@ -262,22 +226,11 @@
     .f-navigation-container {
         height: 40px; 
     }
-    .f-navigation-l.w-nav-menu {
-    /* transform: translateX(0); Ajusta para que el menú aparezca */
-    transition: transform 0.4s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* O el ancho que prefieras */
-    /* z-index: 15;  */
-  }
+   
 }
 
 @media screen and (max-width: 479px) {
-    .w-nav[data-collapse="tiny"] .w-nav-menu {
-      display: none;
-    }
-  
+ 
     .w-nav[data-collapse="tiny"] .w-nav-button {
       display: block;
     }
@@ -285,3 +238,10 @@
   
  
   
+
+  /* Oculta el modal en dispositivos que superen los 767px de ancho */
+@media screen and (min-width: 991px) {
+  .w-nav-overlay-visibility {
+    display: none !important; /* Usa !important para asegurarte de que esta regla tiene prioridad */
+  }
+}
