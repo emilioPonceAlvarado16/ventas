@@ -117,22 +117,7 @@
   .f-navigation-link.w--current {
     color: #642eff;
   }
-  
-  .f-navigation-container {
-    background-color: var(--landing-background); /* Un tono ligeramente diferente al fondo de la página */  
-    width: 100%;
-    max-width: 1280px;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    height: 50px;
-  }
-  .w-inline-block {
-    max-width: 100%;
-    display: inline-block;
-  }
+
 
   .f-navigation-menu {
     grid-column-gap: 6px;
@@ -235,8 +220,6 @@
       display: block;
     }
   }
-  
- 
   
 
   /* Oculta el modal en dispositivos que superen los 767px de ancho */
