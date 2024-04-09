@@ -22,49 +22,7 @@
     user-select: none;
   }
 
-  .w-icon-nav-menu:before {
-    content: "\e602";
-  }
-  
-  .w-nav-button:focus {
-    outline: 0;
-  }
-  
-  .w-nav-button.w--open {
-    background-color: #C8C8C8;
-    color: white;
-  }
-.f-navigation-button {
-    position: relative;
-    outline-offset: 0px;
-    color: var(--white);
-    text-align: center;
-    letter-spacing: -.02em;
-    background-color: var(--neutral-primario);
-    border-radius: 48px;
-    outline: 2px solid rgba(0, 0, 0, 0);
-    justify-content: center;
-    /* Centrar horizontalmente */
-    align-items: center;
-    /* Centrar verticalmente */
-    padding: 8px 24px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 24px;
-    text-decoration: none;
-    transition: all .2s;
-    display: flex;
-    /* Importante para el centrado con justify-content y align-items */
-  }
-  
-  .f-navigation-button:hover {
-    background-color: #282556;
-  }
-  
-  .f-navigation-button {
-    background-color: #6b7094; /* Diferenciando el botón 'Salir' */
-    color: #ffffff; /* Blanco para el texto dentro del botón */
-  }
+
   .f-navigation-link {
     color: #ffffff; /* Blanco para mayor contraste */
     transition: background-color .35s, color .35s; /* Transición suave para efectos hover */
@@ -79,29 +37,7 @@
     text-decoration: none;
     transition: all .35s;
   }
-  
-.w--nav-link-open {
-    display: block;
-    position: relative;
-  }
-  
-  .w-nav-overlay {
-    position: absolute;
-    overflow: hidden;
-    display: none;
-    display: block;
-    top: 100%;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
-  
-  .w-nav-overlay [data-nav-menu-open] {
-    top: 0;
-  }
-  
-
-  
+    
 
 .f-navigation-l {
     width: 50%;
@@ -139,17 +75,6 @@
       .w-nav[data-collapse="medium"] .w-nav-button {
         display: block;
       }
-    .f-navigation-menu-button {
-        color:var(--white);
-        border: 1px solid #f3f5fb;
-        border-radius: 8px;
-        padding: 10px;
-      }
-    
-      .f-navigation-menu-button.w--open {
-        background-color: var(--neutral-primario);
-        border-color: var(--white);
-      }
   
     
       .f-navigation-link {
@@ -168,20 +93,9 @@
         border-color: var(--white);
       }
     
-      .f-navigation-logo-link {
-        margin-right: 0;
-      }
+     
     
-      .f-navigation {
-        position: relative;
-      }
-    
-      .f-navigation-r {
-        width: auto;
-        align-items: center;
-        display: flex;
-      }
-    
+  
       .f-navigation-l {
         width: 100%;
         color: white;
@@ -194,24 +108,14 @@
         background-color: #282556;
         border-color: var(--white);
       }    
-      .f-navigation-container {
-        height: 50px; 
-      }
+
 }
 
 @media screen and (max-width: 767px) {
- 
-    
+
       .w-nav[data-collapse="small"] .w-nav-button {
         display: block;
-      }    
-    .w--nav-link-open {
-            display: block; /* Asegúrate de que los enlaces sean visibles */
-        }
-    .f-navigation-container {
-        height: 40px; 
-    }
-   
+      }      
 }
 
 @media screen and (max-width: 479px) {
@@ -221,7 +125,6 @@
     }
   }
   
-
   /* Oculta el modal en dispositivos que superen los 767px de ancho */
 @media screen and (min-width: 991px) {
   .w-nav-overlay-visibility {
