@@ -93,12 +93,9 @@ export default function Navbar() {
               </div>
             </div>
             {/* Menú de navegación responsive */}
-            <div className="w-nav-overla,y" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation" className="f-navigation-l w-nav-menu"
-                style={{
-                  transform: `translateY(75px) translateX(0px)`,
-                  transition: 'transform 400ms ease 0s'
-                }}
+            <div className="w-nav-overlay-visibility" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
+              <nav role="navigation"className={`f-navigation-l w-nav-menu ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`} 
+                
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>

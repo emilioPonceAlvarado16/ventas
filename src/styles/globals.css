@@ -4857,7 +4857,6 @@ textarea.w-select {
     /* transform: translateX(0); Ajusta para que el menú aparezca */
     transition: transform 0.4s ease;
     position: absolute;
-    top: 0;
     left: 0;
     width: 100%; /* O el ancho que prefieras */
     /* z-index: 15;  */
@@ -5741,4 +5740,11 @@ template-item img {
 .page-item a:hover, .page-item.active a {
   color: #001c33; /* Color de fondo principal para contraste */
   background-color: #FFC107; /* Fondo amarillo */
+}
+
+/* Oculta el modal en dispositivos que superen los 767px de ancho */
+@media screen and (min-width: 991px) {
+  .w-nav-overlay-visibility {
+    display: none !important; /* Usa !important para asegurarte de que esta regla tiene prioridad */
+  }
 }
