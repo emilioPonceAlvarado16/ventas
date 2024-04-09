@@ -2482,14 +2482,7 @@ textarea.w-select {
   display: flex;
 }
 
-.f-navigation-l {
-  width: 50%;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  display: flex;
-  background-color: var(--landing-background);
-}
+
 
 .f-banner-dropdown-link {
   color: #000;
@@ -4771,13 +4764,6 @@ textarea.w-select {
     display: flex;
   }
 
-  .f-navigation-l {
-    width: 100%;
-    color: white;
-    border: 1px solid #f3f5fb;
-    border-radius: 8px;
-    padding: 12px;
-  }
 
   .f-navigation-l.w--open {
     background-color: #282556;
