@@ -47,6 +47,10 @@ const ESTranslations = {
         languages: [
             { code: 'EN', name: 'Inglés' },
             { code: 'ES', name: 'Español' },
+        ],
+        avatarMenu: [ 
+          { label: "Mi Perfil", onClick: "profile" },
+          { label: "Configuración", onClick: "settings" },
         ]
 
     },

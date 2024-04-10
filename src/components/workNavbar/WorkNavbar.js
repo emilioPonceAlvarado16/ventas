@@ -16,6 +16,8 @@ export default function Navbar() {
   const navbarTranslations = translations.navbar;
   const [isNavOpen, setIsNavOpen] = useState(false);
 
+  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
+
   const { language, changeLanguage } = useLanguage();
   const dropdownRef = useRef(null)
   const toggleDropdown = () => {
