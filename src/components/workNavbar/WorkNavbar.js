@@ -16,10 +16,11 @@ export default function Navbar() {
   const navbarTranslations = translations.navbar;
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false)
+  const [avatarMenuOpen, setAvatarMenuOpen] = useState(true); // Nuevo estado para controlar el submenú del Avatar
 
   const { language, changeLanguage } = useLanguage();
   const dropdownRef = useRef(null)
+  const avatarMenuRef = useRef(null); 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -35,10 +36,13 @@ export default function Navbar() {
     };
 
     const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)){
+            setDropdownOpen(false);
+        } 
+        if (avatarMenuRef.current && !avatarMenuRef.current.contains(event.target)) {
+            setAvatarMenuOpen(false); 
+        }
+  };
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleClickOutside);
@@ -145,13 +149,24 @@ export default function Navbar() {
               </nav>
             </div>
             <Avatar names="IP" size="small"
-              onClick={signOut}
-              className={` bg-white w-inline-block ${isSigningOut ? "button-loading" : ""}`}
+              onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
+              
+              className={` bg-white w-inline-block ${isSigningOut ? "button-loading" : ""} ${styles.avatar}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
               <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
             </Avatar>
             
+            {/* Submenú del Avatar */}
+            {avatarMenuOpen && (
+            <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{color:"white"}}>
+                {navbarTranslations?.avatarMenu.map((item, index) => (
+                <div key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
+                    {item.label}
+                </div>
+                ))}
+            </div>
+            )}
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">
 

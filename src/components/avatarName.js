@@ -7,9 +7,10 @@ export default function Avatar(props) {
   const textSizeClass = `f-avatar-text-${sizeAbbr}` 
   const initialNames=props.names || "IP"
   const totalClases=`${sizeClass} ${props.className}`
+  const onClick=props.onClick || null
 
   return (
-    <div class={totalClases}>
+    <div class={totalClases} onClick={onClick}>
       <div class={textSizeClass}>{initialNames}</div>
     </div>
   )

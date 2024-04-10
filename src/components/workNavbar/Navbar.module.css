@@ -106,3 +106,30 @@
     display: none !important; /* Usa !important para asegurarte de que esta regla tiene prioridad */
   }
 }
+
+.avatar {
+  cursor: pointer;
+}
+
+.avatarMenu {
+  position: absolute;
+  right: 0;
+  background-color: green;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.avatarMenuItem {
+  padding: 10px;
+  border-bottom: 1px solid #e48484;
+  cursor: pointer;
+}
+
+.avatarMenuItem:last-child {
+  border-bottom: none;
+}
+
+.avatarMenuItem:hover {
+  background-color: #f9f9f9;
+}
