@@ -3732,6 +3732,20 @@ textarea.w-select {
   overflow: hidden;
 }
 
+.f-avatar-small.bg-white {
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  background-color: #f3f5fb;
+  border-radius: 100px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
 .f-avatar-text-m {
   color: #b6b9ce;
   letter-spacing: -.02em;

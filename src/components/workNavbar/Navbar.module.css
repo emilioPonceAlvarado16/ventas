@@ -1,0 +1,108 @@
+
+  
+  .f-navigation-link {
+    color: #ffffff; /* Blanco para mayor contraste */
+    transition: background-color .35s, color .35s; /* Transición suave para efectos hover */
+    letter-spacing: -.01em;
+    white-space: nowrap;
+    background-color: var(--landing-background); /* Fondo del menú */
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    text-decoration: none;
+    transition: all .35s;
+  }
+    
+
+.f-navigation-l {
+    width: 50%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    background-color: var(--landing-background);
+  }
+  .f-navigation-link:hover {
+    background-color: #6b7094; 
+  }
+  .f-navigation-link.w--current {
+    color: #642eff;
+  }
+
+
+  .f-navigation-menu {
+    grid-column-gap: 6px;
+    align-items: center;
+    display: flex;
+    position: static;
+  }
+
+
+  @media screen and (max-width: 991px) {
+    .f-navigation-l {
+        width: 100%;
+        color: white;
+        border: 1px solid #f3f5fb;
+        border-radius: 8px;
+        padding: 12px;
+      }
+    
+      .w-nav[data-collapse="medium"] .w-nav-button {
+        display: block;
+      }
+  
+    
+      .f-navigation-link {
+        width: 100%;
+      }
+    
+      .f-navigation-menu {
+        color: #393b6a;
+        background-color: var(--white);
+        padding: 12px;
+        position: absolute;
+      }
+    
+      .f-navigation-menu.w--open {
+        /* background-color: #282556; */
+        border-color: var(--white);
+      }
+    
+  
+      .f-navigation-l {
+        width: 100%;
+        color: white;
+        border: 1px solid #f3f5fb;
+        border-radius: 8px;
+        padding: 12px;
+      }
+    
+      .f-navigation-l.w--open {
+        background-color: #282556;
+        border-color: var(--white);
+      }    
+
+}
+
+@media screen and (max-width: 767px) {
+
+      .w-nav[data-collapse="small"] .w-nav-button {
+        display: block;
+      }      
+}
+
+@media screen and (max-width: 479px) {
+ 
+    .w-nav[data-collapse="tiny"] .w-nav-button {
+      display: block;
+    }
+  }
+  
+  /* Oculta el modal en dispositivos que superen los 767px de ancho */
+@media screen and (min-width: 991px) {
+  .w-nav-overlay-visibility {
+    display: none !important; /* Usa !important para asegurarte de que esta regla tiene prioridad */
+  }
+}
