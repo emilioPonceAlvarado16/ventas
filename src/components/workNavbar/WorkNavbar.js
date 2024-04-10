@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import SvgIcons from '../svgIcons';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -17,7 +17,7 @@ export default function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const { language, changeLanguage } = useLanguage();
-
+  const dropdownRef = useRef(null)
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -25,6 +25,28 @@ export default function Navbar() {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setDropdownOpen(false);
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   const handleMenuClick = (menuObj) => {
     switch (menuObj?.onClick) {
       case 'Logout':
@@ -74,7 +96,7 @@ export default function Navbar() {
           <div className="f-navigation-content">
        
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div ref={dropdownRef}  data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
