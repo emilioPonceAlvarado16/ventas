@@ -1623,6 +1623,11 @@ textarea.w-select {
   margin-right: auto;
   z-index: 900;
 }
+.w-dropdown.avatar {
+  z-index: 100;
+  top:20px;
+  left:20px
+}
 
 .w-dropdown-btn,
 .w-dropdown-toggle,

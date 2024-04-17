@@ -20,7 +20,7 @@ export default function Navbar() {
 
   const { language, changeLanguage } = useLanguage();
   const dropdownRef = useRef(null)
-  const avatarMenuRef = useRef(null); 
+  const avatarMenuRef = useRef(null);
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -32,17 +32,18 @@ export default function Navbar() {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setDropdownOpen(false);
+        setAvatarMenuOpen(false); 
       }
     };
 
     const handleClickOutside = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)){
-            setDropdownOpen(false);
-        } 
-        if (avatarMenuRef.current && !avatarMenuRef.current.contains(event.target)) {
-            setAvatarMenuOpen(false); 
-        }
-  };
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+      // if (avatarMenuRef.current && !avatarMenuRef.current.contains(event.target)) {
+      //     setAvatarMenuOpen(false); 
+      // }
+    };
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleClickOutside);
@@ -72,7 +73,7 @@ export default function Navbar() {
             <div style={{
               fontFamily: '"Arial", sans-serif',
               fontSize: '24px',
-              backgroundColor: '#445566', 
+              backgroundColor: '#445566',
               padding: '10px',
               borderRadius: '5px',
               boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
@@ -83,7 +84,7 @@ export default function Navbar() {
                 fontStyle: 'italic'
               }}>Format</span>
               <span style={{
-                color: '#708090', 
+                color: '#708090',
                 fontWeight: 'bold',
                 fontStyle: 'italic'
               }}>Maker</span>
@@ -100,9 +101,9 @@ export default function Navbar() {
             ))}
           </nav>
           <div className="f-navigation-content">
-       
+
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div ref={dropdownRef}  data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div ref={dropdownRef} data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -123,8 +124,8 @@ export default function Navbar() {
             </div>
             {/* Menú de navegación responsive */}
             <div className={styles['w-nav-overlay-visibility']} data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation"className={`${styles["f-navigation-l"]} "w-nav-menu" ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`} 
-                
+              <nav role="navigation" className={`${styles["f-navigation-l"]} "w-nav-menu" ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`}
+
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
@@ -135,13 +136,13 @@ export default function Navbar() {
                 {/* Añade el botón de Login para dispositivos móviles */}
                 {navbarTranslations?.mobileMenu.map((menuObj, index) => (
                   <div key={index}  >
-                    
+
                     <Link href={menuObj.route} legacyBehavior>
                       <a
 
                         onClick={() => handleMenuClick(menuObj)}
 
-                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
+                        className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
                     </Link>
                     <div className={`spin ${isSigningOut ? "" : "d-none"}`}></div>
                   </div>
@@ -150,23 +151,27 @@ export default function Navbar() {
             </div>
             <Avatar names="IP" size="small"
               onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
-              
+
               className={` bg-white w-inline-block ${isSigningOut ? "button-loading" : ""} ${styles.avatar}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
               <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
             </Avatar>
-            
-            {/* Submenú del Avatar */}
-            {avatarMenuOpen && (
-            <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{color:"white"}}>
-                {navbarTranslations?.avatarMenu.map((item, index) => (
-                <div key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
-                    {item.label}
-                </div>
-                ))}
+            <div className="w-dropdown avatar">
+              <div className={`f-banner-dropdown-list w-dropdown-list ${avatarMenuOpen ? 'w--open' : ''}`}>
+                {/* Submenú del Avatar */}
+                {avatarMenuOpen && (
+                  <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{ color: "white" }}>
+                    {navbarTranslations?.avatarMenu.map((item, index) => (
+                      <div key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
+                        {item.label}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            )}
+
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">
 
