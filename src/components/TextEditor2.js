@@ -40,7 +40,7 @@ const TextEditor = (props) => {
     const currentSetEnd = Math.min(currentSetStart + 9, totalPages);
   
     const pageNumbers = Array.from({ length: currentSetEnd - currentSetStart + 1 }, (_, i) => currentSetStart + i);
-
+    if(totalPages===1)return null
     return (
       <div style={{ position: 'absolute', top: "-4.5vh", right: "65vw", width: '25%', zIndex: 1000 }}>
         {!props.showTemplates &&
