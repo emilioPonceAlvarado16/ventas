@@ -16,7 +16,7 @@ export default function Navbar() {
   const navbarTranslations = translations.navbar;
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const [avatarMenuOpen, setAvatarMenuOpen] = useState(true); // Nuevo estado para controlar el submenú del Avatar
+  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false); // Nuevo estado para controlar el submenú del Avatar
 
   const { language, changeLanguage } = useLanguage();
   const dropdownRef = useRef(null)
