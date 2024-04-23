@@ -9,7 +9,9 @@ const TextEditor = (props) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const editorObjects = props.editorObjects || []
   const setEditorObjects = props.setEditorObjects
+  const textFoundedField=props.textFoundedField || ""
   const foundedField=props.foundedField || 0
+  const setFoundedField=props.setFoundedField || null
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -31,6 +33,17 @@ const TextEditor = (props) => {
 
     setEditorObjects(newEditorObjects);
   };
+
+  const findSimilarFieldId = (textFoundedField) => {
+    const regex = new RegExp(textFoundedField, 'i');
+  
+    const similarField = editorObjects.find(obj => {
+      return regex.test(obj.value);
+    });
+  
+    return similarField ? similarField.id : foundedField;
+  };
+  
 
   const lineHeightStyle = '20px';
 
@@ -87,12 +100,20 @@ const findPageOfField = (fieldId) => {
 };
 
   // Efecto que se ejecuta cuando foundedField cambia
- useEffect(() => {
-    const page = findPageOfField(foundedField);
-    if (page && page !== props.currentPage) {
-        props.paginate(page);
-    }
-}, [foundedField]);
+//  useEffect(() => {
+//   const newFoundedField = findSimilarFieldId(textFoundedField);
+//     const page = findPageOfField(foundedField);
+//     if (page && page !== props.currentPage) {
+//         props.paginate(page);
+//     }
+// }, [foundedField]);
+
+useEffect(() => {
+  
+    const newFoundedField = findSimilarFieldId(textFoundedField);
+    setFoundedField(newFoundedField); // Actualiza foundedField con el nuevo valor
+}, [textFoundedField]); // Vuelve a ejecutarse si textFoundedField o editorObjects cambian
+
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
