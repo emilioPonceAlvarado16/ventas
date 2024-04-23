@@ -149,8 +149,8 @@ export default function oli() {
 
 
         <TextEditor 
-        textFoundedField={textFoundedField}
-        setEditorObjects={setFields}
+          textFoundedField={textFoundedField}
+          setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
           allFields={Fields}
