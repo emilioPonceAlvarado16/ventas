@@ -3,7 +3,7 @@ import * as pdfjs from 'pdfjs-dist/build/pdf';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import axios from 'axios'; // Importando axios para realizar solicitudes HTTP
 
-function PdfViewer({ url,setFoundedField }) {
+function PdfViewer({ url,setFoundedField, setTextFoundedField }) {
     const containerRef = useRef(null);
     const [scaleFactor, setScaleFactor] = useState(null); // Estado para almacenar el factor de escala
 
@@ -29,6 +29,9 @@ function PdfViewer({ url,setFoundedField }) {
             // Actualizar foundedField con el id de la respuesta
             if(response.data && response.data.id !== undefined) {
                 setFoundedField(response.data.id);
+            }
+            if(response.data && response.data.lineText !== undefined) {
+                setTextFoundedField(response.data.lineText)
             }
 
         } catch (error) {

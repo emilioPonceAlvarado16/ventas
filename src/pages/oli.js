@@ -95,7 +95,9 @@ export default function oli() {
     changeItemsPerPage,
 
     foundedField,
-    setFoundedField
+    setFoundedField,
+    textFoundedField, 
+    setTextFoundedField
 
   } = useFields([]);
 
@@ -147,6 +149,7 @@ export default function oli() {
 
 
         <TextEditor 
+        textFoundedField={textFoundedField}
         setEditorObjects={setFields}
           setIsImageModalOpen={setIsImageModalOpen}
           isImageModalOpen={isImageModalOpen}
@@ -214,7 +217,7 @@ export default function oli() {
 
             <div style={{ flex: 4, width: '50vw' }}>
               <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-                <PdfViewer url={pdfUrl} setFoundedField={setFoundedField}/>
+                <PdfViewer url={pdfUrl} setFoundedField={setFoundedField} setTextFoundedField={setTextFoundedField}/>
 
               </div>
             </div>

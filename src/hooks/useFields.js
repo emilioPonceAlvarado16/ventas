@@ -42,6 +42,7 @@ const useFields = (initialFields = []) => {
   const [itemsPerPage, setItemsPerPage] = useState(13); // Ajusta este valor según tus necesidades
   
   const [foundedField, setFoundedField] = useState(0);
+  const [textFoundedField, setTextFoundedField] = useState("");
 
     // Calcula los elementos para la página actual
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -98,7 +99,9 @@ const useFields = (initialFields = []) => {
 
      // Para el foundedField
      foundedField,
-     setFoundedField
+     setFoundedField,
+     textFoundedField, 
+     setTextFoundedField
   };
 };
 
