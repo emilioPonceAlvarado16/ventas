@@ -30,8 +30,8 @@ function PdfViewer({ url,setFoundedField, setTextFoundedField }) {
             if(response.data && response.data.id !== undefined) {
                 setFoundedField(response.data.id);
             }
-            if(response.data && response.data.lineText !== undefined) {
-                setTextFoundedField(response.data.lineText)
+            if(response.data && response.data.linea_texto !== undefined) {
+                setTextFoundedField(response.data.linea_texto)
             }
 
         } catch (error) {

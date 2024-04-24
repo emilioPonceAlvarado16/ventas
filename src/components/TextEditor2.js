@@ -100,19 +100,25 @@ const findPageOfField = (fieldId) => {
 };
 
   // Efecto que se ejecuta cuando foundedField cambia
-//  useEffect(() => {
-//   const newFoundedField = findSimilarFieldId(textFoundedField);
-//     const page = findPageOfField(foundedField);
+ useEffect(() => {
+   const newFoundedField = findSimilarFieldId(textFoundedField);
+  console.log("new founded field", textFoundedField)
+   const page = findPageOfField(newFoundedField);
+   if (page && page !== props.currentPage) {
+      console.log("new founded field", textFoundedField)
+        props.paginate(page);
+    }
+}, [textFoundedField]);
+
+// useEffect(() => {
+  
+//     const newFoundedField = findSimilarFieldId(textFoundedField);
+//     setFoundedField(newFoundedField); // Actualiza foundedField con el nuevo valor
+//     const page = findPageOfField(newFoundedField);
 //     if (page && page !== props.currentPage) {
 //         props.paginate(page);
 //     }
-// }, [foundedField]);
-
-useEffect(() => {
-  
-    const newFoundedField = findSimilarFieldId(textFoundedField);
-    setFoundedField(newFoundedField); // Actualiza foundedField con el nuevo valor
-}, [textFoundedField]); // Vuelve a ejecutarse si textFoundedField o editorObjects cambian
+//   }, [textFoundedField]); // Vuelve a ejecutarse si textFoundedField o editorObjects cambian
 
 
   return (
