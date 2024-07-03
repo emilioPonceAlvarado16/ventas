@@ -33,6 +33,7 @@ export default function oli() {
   const [pdfUrl, setPdfUrl] = useState(null);
   
   const [isFullScreen, setIsFullScreen] = useState(false);//fullScreen
+  const [showText, setShowText] = useState(false);// show text del editor de texto
   
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -47,7 +48,8 @@ export default function oli() {
         setIsFullScreen(false);
     }
 
-};
+  };
+  
 
   const compileAndRenderPdf = async () => {
     try {
@@ -172,6 +174,7 @@ export default function oli() {
 
           foundedField={foundedField}
           showTemplates={showTemplates}
+          showText={showText}
         />
         {carouselPosition === 0 && (
 
@@ -189,11 +192,11 @@ export default function oli() {
                 <SvgIcons type="lightning" isCompiling={isCompiling} onClick={compileAndRenderPdf} />
                 <span className="tooltip-text">Compile</span>
               </div>
-              <div className='process_icon-2 tooltip'>
+              <div className=' process_icon process_icon-2  tooltip'>
                 <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
                 <span className="tooltip-text">Prompt</span>
               </div>
-              <div className='process_icon-3 tooltip'>
+              <div className='process_icon process_icon-3 tooltip'>
                 <SvgIcons
                   onClick={() => setshowFieldType(!showFieldType)}
                   type={`${Fields && Fields[0] === undefined ? 'eyeOffIcon' : (showFieldType ? 'eyeIcon' : 'eyeOffIcon')}`}
@@ -202,11 +205,17 @@ export default function oli() {
                 />
                 <span className="tooltip-text">Show</span>
               </div>
-              <div className='process_icon-4 tooltip'>
+              <div className='process_icon process_icon-4 tooltip'>
                 {/* <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" /> */}
                 <SvgIcons onClick={toggleFullScreen} type={isFullScreen ? 'collapse' : 'expand'} />
                 <span className="tooltip-text">{isFullScreen ? 'Collapse' : 'Expand'}</span>
               </div>
+              <div className='process_icon process_icon-5 tooltip'>
+                {/* <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" /> */}
+                <SvgIcons onClick={()=> setShowText(!showText)} type="keyboard" />
+                <span className="tooltip-text">Mostrar Texto</span>
+              </div>
+             
             </>
 
           )

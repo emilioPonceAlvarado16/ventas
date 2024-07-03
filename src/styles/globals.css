@@ -5391,31 +5391,20 @@ textarea.w-select {
   transform: translateX(50%);
   z-index: 1000;
 }
-
 .process_icon-2 {
-  position: absolute;
   top: 8%;
-  right: 50vw;
-  transform: translateX(50%);
-  z-index: 1000;
-}
 
+}
 .process_icon-3 {
-  position: absolute;
   top: 14%;
-  right: 50vw;
-  transform: translateX(50%);
-  z-index: 1000;
-}
 
+}
 .process_icon-4 {
-  position: absolute;
   top: 20%;
-  right: 50vw;
-  transform: translateX(50%);
-  z-index: 1000;
 }
-
+.process_icon-5 {
+  top: 26%;
+}
 .rounded-green-bg:hover {
   transform: scale(1.2);
   /* Make it a bit bigger on hover */
