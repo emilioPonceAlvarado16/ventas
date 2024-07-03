@@ -110,17 +110,6 @@ const findPageOfField = (fieldId) => {
     }
 }, [textFoundedField]);
 
-// useEffect(() => {
-  
-//     const newFoundedField = findSimilarFieldId(textFoundedField);
-//     setFoundedField(newFoundedField); // Actualiza foundedField con el nuevo valor
-//     const page = findPageOfField(newFoundedField);
-//     if (page && page !== props.currentPage) {
-//         props.paginate(page);
-//     }
-//   }, [textFoundedField]); // Vuelve a ejecutarse si textFoundedField o editorObjects cambian
-
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       {renderPagination()}
