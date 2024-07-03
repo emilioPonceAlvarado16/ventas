@@ -115,7 +115,7 @@ const TextEditor = (props) => {
   return (
     <>
        {renderPagination()}
-      {showText ? <TextViewer fields={editorObjects} /> :
+      {showText ? <TextViewer fields={editorObjects} setisPromptOpen={props.setisPromptOpen} isPromptOpen={props.isPromptOpen} /> :
       <DragDropContext onDragEnd={onDragEnd}>
      
         <div style={{ display: 'flex', background: '#2c2c2c', height: '100vh', width: '50vw', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', overflow: 'hidden' }}>

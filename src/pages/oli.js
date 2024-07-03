@@ -175,6 +175,8 @@ export default function oli() {
           foundedField={foundedField}
           showTemplates={showTemplates}
           showText={showText}
+          isPromptOpen={isPromptOpen}
+          setisPromptOpen={setisPromptOpen}
         />
         {carouselPosition === 0 && (
 
