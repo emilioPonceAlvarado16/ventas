@@ -47,7 +47,7 @@ export default function TextViewer(props) {
                 ref={textViewerRef}
                 onKeyUp={handleTextSelection}
                 onMouseUp={handleTextSelection}
-                value={props.fields.map(field => field.value).join("\n")}
+                value={props.fields.filter(field => field.type != "im").map(field => field.value).join("\n")}
                 style={{
                     display: 'flex',
                     background: '#2c2c2c',
