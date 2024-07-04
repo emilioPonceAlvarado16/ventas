@@ -33,7 +33,7 @@ export default function Prompt(props) {
         }
     };
     return (
-        <div className='f-modal-overlay'
+        <div className='f-modal-overlay-transparent'
             onClick={handleOutsideClick} >
             <div ref={modalRef}>
 
