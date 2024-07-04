@@ -5,6 +5,7 @@ export default function Prompt(props) {
     const onClose = props.onClose || null
     const modalRef = useRef();
     const selectedText =props.selectedText || ""
+    const setSelectedText =props.setSelectedText || null
     const [status, setStatus] = useState('entering');
 
     useEffect(() => {
@@ -16,6 +17,7 @@ export default function Prompt(props) {
             if (e.key === "Escape") {
                 setStatus('exiting');
                 console.log("entro aqui por ESC");
+                setSelectedText("")
                 setTimeout(() => onClose(), 10);
             }
         };

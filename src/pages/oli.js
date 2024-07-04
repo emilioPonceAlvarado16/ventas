@@ -248,7 +248,7 @@ export default function oli() {
         {/* <DynamicChatProvider> */}
         <ChatProvider>
 
-          {isPromptOpen && <Prompt selectedText={selectedText} onClose={ClosePrompt} />}
+          {isPromptOpen && <Prompt selectedText={selectedText} setSelectedText={setSelectedText} onClose={ClosePrompt} />}
           {/* </DynamicChatProvider> */}
         </ChatProvider>
 

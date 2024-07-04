@@ -51,19 +51,21 @@ const styles = {
         marginRight: '10px',
     }
 };
-
 export default function Chat(props) {
     const { messages, setMessages, newMessage, setNewMessage } = useChat();
     const [isMinimized, setIsMinimized] = useState(false);
     const messageRef = useRef(null);
-    const selectedText=props.selectedText
-
+    const selectedText = props.selectedText;
 
     useEffect(() => {
         if (messageRef.current) {
             messageRef.current.scrollTop = messageRef.current.scrollHeight;
         }
     }, [messages]);
+
+    useEffect(() => {
+        setNewMessage(selectedText);  // Set the message input to the selected text
+    }, [selectedText, setNewMessage]);
 
     const sendMessage = () => {
         if (newMessage.trim() === '') return;
@@ -78,7 +80,7 @@ export default function Chat(props) {
     return (
         <Draggable handle=".handle">
             <div style={{ ...styles.chatContainer, height: isMinimized ? '30px' : '500px' }}>
-                <div className="handle" style={{ padding: '5px', cursor: 'move',color:"white", backgroundColor: '#222' }} onDoubleClick={toggleMinimize}>
+                <div className="handle" style={{ padding: '5px', cursor: 'move', color: 'white', backgroundColor: '#222' }} onDoubleClick={toggleMinimize}>
                     Drag here to move
                 </div>
                 {!isMinimized && (

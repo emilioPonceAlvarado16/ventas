@@ -36,6 +36,7 @@ export default function TextViewer(props) {
                 setShowIcon(true);
             } else {
                 setShowIcon(false);
+                setSelectedText("");
             }
         }
     };
