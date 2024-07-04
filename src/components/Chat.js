@@ -18,6 +18,16 @@ const styles = {
         backgroundColor: '#333',  // Fondo oscuro
         resize: 'both', // Permitir redimensionamiento
         overflow: 'auto' // Asegurar el contenido es accesible aún al redimensionar
+  },
+  collapsedContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '2px 5px', 
+        // padding: '5px',
+        cursor: 'pointer',
+        color: 'white',
+        backgroundColor: '#222'
     },
     messageArea: {
         flex: 1,
@@ -79,10 +89,12 @@ export default function Chat(props) {
 
     return (
         <Draggable handle=".handle">
-            <div style={{ ...styles.chatContainer, height: isMinimized ? '30px' : '500px' }}>
-                <div className="handle" style={{ padding: '5px', cursor: 'move', color: 'white', backgroundColor: '#222' }} onDoubleClick={toggleMinimize}>
-                    Drag here to move
+            <div style={{ ...styles.chatContainer, height: isMinimized ? '25px' : '500px', width: isMinimized ? '10vw' : '50vw', minHeight: isMinimized ? '25px' : '300px'  }}>
+                <div className="handle"  style={styles.collapsedContainer} onDoubleClick={toggleMinimize}>
+                  Drag here to move
+                  <SvgIcons type={isMinimized ? 'expand' : 'collapse'} style={styles.expandIcon} onClick={toggleMinimize} />
                 </div>
+           
                 {!isMinimized && (
                     <>
                         <div ref={messageRef} style={styles.messageArea}>
