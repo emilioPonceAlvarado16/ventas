@@ -4,6 +4,7 @@ import Chat from './Chat';
 export default function Prompt(props) {
     const onClose = props.onClose || null
     const modalRef = useRef();
+    const selectedText =props.selectedText || ""
     const [status, setStatus] = useState('entering');
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function Prompt(props) {
             onClick={handleOutsideClick} >
             <div ref={modalRef}>
 
-                <Chat className={` f-modal-entered`} />
+                <Chat selectedText={selectedText} className={` f-modal-entered`} />
             </div>
         </div>
     )

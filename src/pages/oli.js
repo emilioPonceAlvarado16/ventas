@@ -35,6 +35,8 @@ export default function oli() {
   const [isFullScreen, setIsFullScreen] = useState(false);//fullScreen
   const [showText, setShowText] = useState(false);// show text del editor de texto
   
+  const [selectedText, setSelectedText] = useState("")
+  
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch((e) => {
@@ -177,6 +179,9 @@ export default function oli() {
           showText={showText}
           isPromptOpen={isPromptOpen}
           setisPromptOpen={setisPromptOpen}
+
+          selectedText={selectedText}// para textviewer
+          setSelectedText={setSelectedText}
         />
         {carouselPosition === 0 && (
 
@@ -243,7 +248,7 @@ export default function oli() {
         {/* <DynamicChatProvider> */}
         <ChatProvider>
 
-          {isPromptOpen && <Prompt onClose={ClosePrompt} />}
+          {isPromptOpen && <Prompt selectedText={selectedText} onClose={ClosePrompt} />}
           {/* </DynamicChatProvider> */}
         </ChatProvider>
 

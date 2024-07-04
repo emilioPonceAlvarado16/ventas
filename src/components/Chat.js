@@ -56,6 +56,8 @@ export default function Chat(props) {
     const { messages, setMessages, newMessage, setNewMessage } = useChat();
     const [isMinimized, setIsMinimized] = useState(false);
     const messageRef = useRef(null);
+    const selectedText=props.selectedText
+
 
     useEffect(() => {
         if (messageRef.current) {
