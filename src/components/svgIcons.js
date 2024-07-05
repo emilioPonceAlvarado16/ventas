@@ -372,6 +372,17 @@ export default function SvgIcons(props) {
                 </svg></div>
             );
             break;
+        case 'text':
+            svg = (
+                <div className={`text-icon w-embed rounded-green-bg ${disabled ? 'disabled' : ''}`}>
+                    <svg width={width} height={height} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <text x="4" y="17" fill="#ffffff" font-size="12.2" font-family="Arial, sans-serif">ABC</text>
+                    </svg>
+                </div>
+            );
+            break;
+
+
 
         default:
             svg = (

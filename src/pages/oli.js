@@ -213,14 +213,12 @@ export default function oli() {
                 <span className="tooltip-text">Show</span>
               </div>
               <div className='process_icon process_icon-4 tooltip'>
-                {/* <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" /> */}
                 <SvgIcons onClick={toggleFullScreen} type={isFullScreen ? 'collapse' : 'expand'} />
                 <span className="tooltip-text">{isFullScreen ? 'Collapse' : 'Expand'}</span>
               </div>
               <div className='process_icon process_icon-5 tooltip'>
-                {/* <SvgIcons onClick={() => setShowPlagiarismModal(true)} type="plagiarism" /> */}
-                <SvgIcons onClick={()=> setShowText(!showText)} type="keyboard" />
-                <span className="tooltip-text">Mostrar Texto</span>
+                <SvgIcons onClick={()=> setShowText(!showText)} type="text" />
+                <span className="tooltip-text">Convertir a Texto</span>
               </div>
              
             </>
