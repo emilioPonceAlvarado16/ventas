@@ -5184,26 +5184,7 @@ textarea.w-select {
   /* Asegurar que la superposición esté por encima de otros contenidos */
 
 }
-.f-modal-overlay-transparent {
 
-  position: fixed !important;
-  /* Hace que la superposición se fije en la pantalla */
-  top: 0;
-  left: 0;
-  width: 100%;
-  /* Ocupa toda la anchura de la pantalla */
-  height: 100%;
-  /* Ocupa toda la altura de la pantalla */
-  display: flex;
-  /* Usar flexbox para centrar el modal en la superposición */
-  justify-content: center;
-  /* Centrar el modal horizontalmente */
-  align-items: center;
-  /* Centrar el modal verticalmente */
-  z-index: 1000;
-  /* Asegurar que la superposición esté por encima de otros contenidos */
-
-}
 
 .f-modal-overlay img {
   border: 2px solid #080f25;
