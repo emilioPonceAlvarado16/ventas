@@ -1,90 +1,96 @@
-import React, { useState } from 'react';
-import RegularSection from '@/components/RegularSection';
-import PdfViewer from '@/components/PdfViewer';
-import TextEditor from '@/components/TextEditor2';
-import useFields from '@/hooks/useFields';
-import SvgIcons from '@/components/svgIcons';
-import Prompt from '@/components/Prompt';
-import TemplateModal from '@/components/TemplateModal';
-import { ChatProvider } from '@/contexts/ChatContext';
-import Plagiarism from '@/components/Plagiarism';
-import App from '@/components/App'
-import { compileBlocksToPdf } from '@/services/CompileService';
-import Loading from '@/components/Loading2';
-import Footer from '@/components/footer';
-import Alerts from '@/components/alerts';
+import React, { useState } from "react";
+import RegularSection from "@/components/RegularSection";
+import PdfViewer from "@/components/PdfViewer";
+import TextEditor from "@/components/TextEditor2";
+import useFields from "@/hooks/useFields";
+import SvgIcons from "@/components/svgIcons";
+import Prompt from "@/components/Prompt";
+import TemplateModal from "@/components/TemplateModal";
+import { ChatProvider } from "@/contexts/ChatContext";
+import Plagiarism from "@/components/Plagiarism";
+import App from "@/components/App";
+import { compileBlocksToPdf } from "@/services/CompileService";
+import Loading from "@/components/Loading2";
+import Footer from "@/components/footer";
+import Alerts from "@/components/alerts";
 
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
-  const [imageSelected, setImageSelected] = useState({url:"", id:""});
+  const [imageSelected, setImageSelected] = useState({ url: "", id: "" });
   const [isPromptOpen, setisPromptOpen] = useState(false);
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-  const [alertInfo, setAlertInfo] = useState({visible: false, message: ''});
-  const [showPlagiarismModal, setShowPlagiarismModal] = useState(false)
-  
+  const [alertInfo, setAlertInfo] = useState({ visible: false, message: "" });
+  const [showPlagiarismModal, setShowPlagiarismModal] = useState(false);
+
   const [carouselPosition, setCarouselPosition] = useState(0);
 
-  const [isCompiling, setisCompiling] = useState(false)
-  const [error, setError] = useState("")
+  const [isCompiling, setisCompiling] = useState(false);
+  const [error, setError] = useState("");
   const [allText, setAllText] = useState(``);
-  
+
   const [pdfUrl, setPdfUrl] = useState(null);
-  
-  const [isFullScreen, setIsFullScreen] = useState(false);//fullScreen
-  const [showText, setShowText] = useState(false);// show text del editor de texto
-  
-  const [selectedText, setSelectedText] = useState("")
-  
+
+  const [isFullScreen, setIsFullScreen] = useState(false); //fullScreen
+  const [showText, setShowText] = useState(false); // show text del editor de texto
+
+  const [selectedText, setSelectedText] = useState("");
+
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((e) => {
-            console.error(`Error attempting to enable full-screen mode: ${e.message} (${e.name})`);
-        });
-        setIsFullScreen(true);
+      document.documentElement.requestFullscreen().catch((e) => {
+        console.error(
+          `Error attempting to enable full-screen mode: ${e.message} (${e.name})`
+        );
+      });
+      setIsFullScreen(true);
     } else {
-        document.exitFullscreen().catch((e) => {
-            console.error(`Error attempting to disable full-screen mode: ${e.message} (${e.name})`);
-        });
-        setIsFullScreen(false);
+      document.exitFullscreen().catch((e) => {
+        console.error(
+          `Error attempting to disable full-screen mode: ${e.message} (${e.name})`
+        );
+      });
+      setIsFullScreen(false);
     }
-
   };
-  
 
   const compileAndRenderPdf = async () => {
     try {
       if (Fields.length === 0) {
-        setAlertInfo({visible: true, message: "No hay campos a compilar!"});
-        return; 
-      }else{
-        setAlertInfo({visible: false, message: ""});
+        setAlertInfo({ visible: true, message: "No hay campos a compilar!" });
+        return;
+      } else {
+        setAlertInfo({ visible: false, message: "" });
       }
       setisCompiling(true);
-      if (carouselPosition !== 1) { setCarouselPosition(1) }
-      const newPdfUrl = await compileBlocksToPdf({fields:Fields, documentClass: selectedTemplate});  
+      if (carouselPosition !== 1) {
+        setCarouselPosition(1);
+      }
+      const newPdfUrl = await compileBlocksToPdf({
+        fields: Fields,
+        documentClass: selectedTemplate,
+      });
       setPdfUrl(newPdfUrl);
     } catch (error) {
       setError(error);
       console.error("Error al compilar y renderizar PDF:", error);
-    }
-    finally {
-      setisCompiling(false);  // Asegurarse de que isLoading se establece en false incluso si hay un error
+    } finally {
+      setisCompiling(false); // Asegurarse de que isLoading se establece en false incluso si hay un error
     }
   };
   const handleAlertClose = () => {
     setAlertInfo({ ...alertInfo, visible: false });
   };
   const ClosePrompt = () => {
-    setisPromptOpen(false)
-  }
+    setisPromptOpen(false);
+  };
   const CloseTemplateList = () => {
-    setshowTemplates(false)
-  }
+    setshowTemplates(false);
+  };
   const OpenTemplateList = () => {
-    setshowTemplates(true)
-  }
+    setshowTemplates(true);
+  };
   const {
     fields: Fields,
     setFields,
@@ -100,36 +106,53 @@ export default function oli() {
 
     foundedField,
     setFoundedField,
-    textFoundedField, 
-    setTextFoundedField
-
+    textFoundedField,
+    setTextFoundedField,
   } = useFields([]);
 
   return (
-    
     <div>
-        {alertInfo.visible && (
-          <Alerts
-              type="warning"
-              message={alertInfo.message}
-              above={true}
-              onClose={handleAlertClose} // Pasar handleAlertClose como prop
-          />
+      {alertInfo.visible && (
+        <Alerts
+          type="warning"
+          message={alertInfo.message}
+          above={true}
+          onClose={handleAlertClose} // Pasar handleAlertClose como prop
+        />
       )}
-     {(isCompiling|| error) &&<Loading isLoading={isCompiling} message="compilando" setError={setError} error={error}/>}
-      <div style={{ position: 'relative' }}>
+      {(isCompiling || error) && (
+        <Loading
+          isLoading={isCompiling}
+          message="compilando"
+          setError={setError}
+          error={error}
+        />
+      )}
+      <div style={{ position: "relative" }}>
         <RegularSection
           onCloseTemplateList={CloseTemplateList}
           showTemplates={showTemplates}
           onOpenTemplateList={OpenTemplateList}
-          isPromptOpen={isPromptOpen} onClose={ClosePrompt}
-          setFields={setFields} Fields={Fields}
+          isPromptOpen={isPromptOpen}
+          onClose={ClosePrompt}
+          setFields={setFields}
+          Fields={Fields}
           selectedTemplate={selectedTemplate}
         />
 
         {/* Indicadores del carrusel */}
-        <div style={{ position: "absolute", bottom: 10, right: "49.6%", transform: "translateX(50%)", display: "flex", gap: "8px", alignItems: "center" }}>
-          {[0, 1].map(index => (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 10,
+            right: "49.6%",
+            transform: "translateX(50%)",
+            display: "flex",
+            gap: "8px",
+            alignItems: "center",
+          }}
+        >
+          {[0, 1].map((index) => (
             <div
               key={index}
               onClick={() => setCarouselPosition(index)}
@@ -137,21 +160,25 @@ export default function oli() {
                 width: 30, // Más ancho
                 height: 10, // Mantener el mismo alto
                 borderRadius: 5, // Esquinas redondeadas, pero no completamente circulares
-                backgroundColor: carouselPosition === index ? "#F1F1F1" : "#555", // Gris claro para el activo, gris más oscuro para el inactivo
+                backgroundColor:
+                  carouselPosition === index ? "#F1F1F1" : "#555", // Gris claro para el activo, gris más oscuro para el inactivo
                 cursor: "pointer",
                 border: "1px solid #888", // Borde medio gris
-                transition: "background-color 0.3s ease" // Transición suave al cambiar el color
+                transition: "background-color 0.3s ease", // Transición suave al cambiar el color
               }}
             />
           ))}
         </div>
-
       </div>
-      <div style={{ display: 'flex', height: '100vh', width: '100vw', position: "relative" }}>
-
-
-
-        <TextEditor 
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          width: "100vw",
+          position: "relative",
+        }}
+      >
+        <TextEditor
           textFoundedField={textFoundedField}
           setFoundedField={setFoundedField}
           setEditorObjects={setFields}
@@ -159,104 +186,128 @@ export default function oli() {
           isImageModalOpen={isImageModalOpen}
           allFields={Fields}
           editorObjects={currentFields}
-
           setImageSelected={setImageSelected}
           imageSelected={imageSelected}
           removeField={removeField}
           updateField={updateField}
           showFieldType={showFieldType}
-
           setAllText={setAllText}
           allText={allText}
-         
           totalItems={Fields.length}
           currentPage={currentPage}
           itemsPerPage={itemsPerPage}
           paginate={paginate}
-
           foundedField={foundedField}
           showTemplates={showTemplates}
           showText={showText}
           isPromptOpen={isPromptOpen}
           setisPromptOpen={setisPromptOpen}
-
-          selectedText={selectedText}// para textviewer
+          selectedText={selectedText} // para textviewer
           setSelectedText={setSelectedText}
         />
         {carouselPosition === 0 && (
-
-
-          <div style={{ flex: 4, width: '50vw' }}>
-            <App fields={Fields} setFields={setFields} addField={addField}
-              allText={allText} setAllText={setAllText}
+          <div style={{ flex: 4, width: "50vw" }}>
+            <App
+              fields={Fields}
+              setFields={setFields}
+              addField={addField}
+              allText={allText}
+              setAllText={setAllText}
             />
           </div>
         )}
-        {
-          (!isImageModalOpen && !showTemplates) && (
-            <>
-              <div className='process_icon tooltip'>
-                <SvgIcons type="lightning" isCompiling={isCompiling} onClick={compileAndRenderPdf} />
-                <span className="tooltip-text">Compile</span>
-              </div>
-              <div className=' process_icon process_icon-2  tooltip'>
-                <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
-                <span className="tooltip-text">Prompt</span>
-              </div>
-              <div className='process_icon process_icon-3 tooltip'>
-                <SvgIcons
-                  onClick={() => setshowFieldType(!showFieldType)}
-                  type={`${Fields && Fields[0] === undefined ? 'eyeOffIcon' : (showFieldType ? 'eyeIcon' : 'eyeOffIcon')}`}
-                  isTool={true}
-                  disabled={Fields && Fields[0] === undefined}
-                />
-                <span className="tooltip-text">Show</span>
-              </div>
-              <div className='process_icon process_icon-4 tooltip'>
-                <SvgIcons onClick={toggleFullScreen} type={isFullScreen ? 'collapse' : 'expand'} />
-                <span className="tooltip-text">{isFullScreen ? 'Collapse' : 'Expand'}</span>
-              </div>
-              <div className='process_icon process_icon-5 tooltip'>
-                <SvgIcons onClick={()=> setShowText(!showText)} type="text" />
-                <span className="tooltip-text">Convertir a Texto</span>
-              </div>
-             
-            </>
-
-          )
-        }
+        {!isImageModalOpen && !showTemplates && (
+          <>
+            <div className="process_icon tooltip">
+              <SvgIcons
+                type="lightning"
+                isCompiling={isCompiling}
+                onClick={compileAndRenderPdf}
+              />
+              <span className="tooltip-text">Compile</span>
+            </div>
+            <div className=" process_icon process_icon-2  tooltip">
+              <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
+              <span className="tooltip-text">Prompt</span>
+            </div>
+            <div className="process_icon process_icon-3 tooltip">
+              <SvgIcons
+                onClick={() => setshowFieldType(!showFieldType)}
+                type={`${
+                  Fields && Fields[0] === undefined
+                    ? "eyeOffIcon"
+                    : showFieldType
+                    ? "eyeIcon"
+                    : "eyeOffIcon"
+                }`}
+                isTool={true}
+                disabled={Fields && Fields[0] === undefined}
+              />
+              <span className="tooltip-text">Show</span>
+            </div>
+            <div className="process_icon process_icon-4 tooltip">
+              <SvgIcons
+                onClick={toggleFullScreen}
+                type={isFullScreen ? "collapse" : "expand"}
+              />
+              <span className="tooltip-text">
+                {isFullScreen ? "Collapse" : "Expand"}
+              </span>
+            </div>
+            <div className="process_icon process_icon-5 tooltip">
+              <SvgIcons onClick={() => setShowText(!showText)} type="text" />
+              <span className="tooltip-text">Convertir a Texto</span>
+            </div>
+          </>
+        )}
         {carouselPosition === 1 && (
           <>
-
-
-            <div style={{ flex: 4, width: '50vw' }}>
-              <div style={{ padding: '17px', paddingBottom: "0px", backgroundColor: '#f1f1f1' }}>
-                <PdfViewer url={pdfUrl} setFoundedField={setFoundedField} setTextFoundedField={setTextFoundedField}/>
-
+            <div style={{ flex: 4, width: "50vw" }}>
+              <div
+                style={{
+                  padding: "17px",
+                  paddingBottom: "0px",
+                  backgroundColor: "#f1f1f1",
+                }}
+              >
+                <PdfViewer
+                  url={pdfUrl}
+                  setFoundedField={setFoundedField}
+                  setTextFoundedField={setTextFoundedField}
+                />
               </div>
             </div>
           </>
         )}
-
-
       </div>
 
-
-      <div >
+      <div>
         {/* <DynamicChatProvider> */}
         <ChatProvider>
-
-          {isPromptOpen && <Prompt selectedText={selectedText} setSelectedText={setSelectedText} onClose={ClosePrompt} />}
+          {isPromptOpen && (
+            <Prompt
+              selectedText={selectedText}
+              setSelectedText={setSelectedText}
+              onClose={ClosePrompt}
+            />
+          )}
           {/* </DynamicChatProvider> */}
         </ChatProvider>
 
-        {(showTemplates || false) && <TemplateModal selectedTemplate={selectedTemplate} setSelectedTemplate={setSelectedTemplate} onClose={CloseTemplateList} />}
-
+        {(showTemplates || false) && (
+          <TemplateModal
+            selectedTemplate={selectedTemplate}
+            setSelectedTemplate={setSelectedTemplate}
+            onClose={CloseTemplateList}
+          />
+        )}
       </div>
 
-      {showPlagiarismModal && <Plagiarism onClose={() => setShowPlagiarismModal(false)} />}
+      {showPlagiarismModal && (
+        <Plagiarism onClose={() => setShowPlagiarismModal(false)} />
+      )}
 
-          <Footer/>
+      <Footer />
     </div>
   );
 }
