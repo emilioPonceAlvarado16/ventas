@@ -62,7 +62,7 @@ const styles = {
     }
 };
 export default function Chat(props) {
-    const { messages, setMessages, newMessage, setNewMessage } = useChat();
+    const { messages, setMessages, newMessage, setNewMessage,  chatPosition, setChatPosition} = useChat();
     const [isMinimized, setIsMinimized] = useState(false);
     const messageRef = useRef(null);
     const selectedText = props.selectedText;
@@ -83,12 +83,25 @@ export default function Chat(props) {
         setNewMessage('');
     };
 
-    const toggleMinimize = () => {
+    // const toggleMinimize = () => {
+    //     setIsMinimized(!isMinimized);
+    // };
+      const toggleMinimize = () => {
         setIsMinimized(!isMinimized);
+        // Snap to the bottom right of the window on minimize/maximize
+        setChatPosition({
+            x: window.innerWidth - (isMinimized ? 200 : 800), // Assume 800px is the expanded width
+            y: window.innerHeight - 30  // 30px is the minimized height
+        });
     };
 
     return (
-        <Draggable handle=".handle">
+        <Draggable handle=".handle"
+               defaultPosition={chatPosition}
+               onStop={(e, data) => {
+                setChatPosition({ x: data.x, y: data.y });
+            }}
+        >
             <div style={{ ...styles.chatContainer, height: isMinimized ? '25px' : '500px', width: isMinimized ? '10vw' : '50vw', minHeight: isMinimized ? '25px' : '300px'  }}>
                 <div className="handle"  style={styles.collapsedContainer} onDoubleClick={toggleMinimize}>
                   Drag here to move

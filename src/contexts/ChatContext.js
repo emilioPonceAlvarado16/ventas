@@ -5,9 +5,10 @@ const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
+    const [chatPosition, setChatPosition] = useState({x: 0, y: 0}); // Default position
 
     return (
-        <ChatContext.Provider value={{ messages, setMessages, newMessage, setNewMessage }}>
+        <ChatContext.Provider value={{ messages, setMessages, newMessage, setNewMessage, chatPosition, setChatPosition }}>
             {children}
         </ChatContext.Provider>
     );
