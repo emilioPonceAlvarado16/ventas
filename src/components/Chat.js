@@ -126,7 +126,6 @@ export default function Chat(props) {
   return (
     <Draggable
       handle=".handle"
-      disabled={isMinimized}
       position={chatPosition}
       onStop={(e, data) => setChatPosition({ x: data.x, y: data.y })}
     >

@@ -61,7 +61,7 @@ export default function TextViewer(props) {
                     outline: 'none'
                 }}
             />
-            {showIcon && <SvgIcons onClick={handlePrompt} style={{ position: 'absolute', left: iconPosition.x, top: iconPosition.y, cursor: 'pointer' }} type="lightning" />}
+            {showIcon && <SvgIcons onClick={handlePrompt} style={{ position: 'absolute', left: iconPosition.x, top: iconPosition.y, cursor: 'pointer' }} type="keyboard" />}
         </>
     );
 }
