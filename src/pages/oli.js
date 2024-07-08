@@ -227,7 +227,7 @@ export default function oli() {
               <span className="tooltip-text">Compile</span>
             </div>
             <div className=" process_icon process_icon-2  tooltip">
-              <SvgIcons onClick={() => setVisualizePrompt({ isMinimized:false, isPromptOpen: true})} type="keyboard" />
+              <SvgIcons onClick={() => setVisualizePrompt({ isMinimized:false, isPromptOpen: !visualizePrompt.isPromptOpen})} type="keyboard" />
               <span className="tooltip-text">Prompt</span>
             </div>
             <div className="process_icon process_icon-3 tooltip">
