@@ -10,7 +10,7 @@ const styles = {
     borderRadius: "10px",
     width: "500px",
     minHeight: "50px",
-    maxHeight: "600px", // Fixed max height
+    maxHeight: "600px",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
@@ -18,7 +18,7 @@ const styles = {
     position: "fixed",
     bottom: "20px",
     right: "20px",
-    transition: "all 0.3s ease", // Smooth transition for expanding/collapsing
+    transition: "all 0.3s ease",
   },
   collapsedContainer: {
     display: "flex",
@@ -29,6 +29,10 @@ const styles = {
     color: "white",
     backgroundColor: "#222",
     borderRadius: "10px 10px 0 0",
+  },
+  iconContainer: {
+    display: "flex",
+    alignItems: "center",
   },
   messageArea: {
     flex: 1,
@@ -62,16 +66,10 @@ const styles = {
     alignItems: "center",
     cursor: "pointer",
   },
-  avatar: {
-    width: "30px",
-    height: "30px",
-    borderRadius: "50%",
-    marginRight: "10px",
-  },
   expandIcon: {
     cursor: "pointer",
     color: "#fff",
-    display: "flex",
+    marginRight: "5px",  // Espacio entre los íconos
   },
 };
 
@@ -84,9 +82,9 @@ export default function Chat(props) {
     chatPosition,
     setChatPosition,
   } = useChat();
-  const visualizePrompt = props.visualizePrompt || {isMinimized: false}
-  const {isMinimized} = props.visualizePrompt
-  const setVisualizePrompt=props.setVisualizePrompt || null
+  const visualizePrompt = props.visualizePrompt || {isMinimized: false};
+  const {isMinimized} = props.visualizePrompt;
+  const setVisualizePrompt = props.setVisualizePrompt || null;
   const messageRef = useRef(null);
   const selectedText = props.selectedText;
 
@@ -107,13 +105,14 @@ export default function Chat(props) {
   };
 
   const toggleMinimize = () => {
-    setVisualizePrompt({...visualizePrompt, isMinimized: !isMinimized})
+    setVisualizePrompt({...visualizePrompt, isMinimized: !isMinimized});
   };
-  useEffect(() => {
-    setNewMessage(selectedText);
-  }, [selectedText, setNewMessage]);
+  const onClose = () => {
+    event.stopPropagation();
+    setVisualizePrompt({...visualizePrompt, isPromptOpen: false});
+  };
 
-  useEffect(() => {
+    useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape" && !isMinimized) {
         toggleMinimize();
@@ -122,6 +121,7 @@ export default function Chat(props) {
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isMinimized]); // Solo añadirá el listener cuando esté expandido
+
 
   return (
     <Draggable
@@ -140,20 +140,19 @@ export default function Chat(props) {
           className="handle"
           style={styles.collapsedContainer}
           onClick={isMinimized ? toggleMinimize : null}
-          onDoubleClick={isMinimized ? null :toggleMinimize}
+          onDoubleClick={isMinimized ? null : toggleMinimize}
         >
-          {isMinimized ? (
-            <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
-          ) : (
-            "ChatGPT4 - Drag and Drop"
-          )}
-          {isMinimized ? null : (
-            <SvgIcons
-              type="collapse"
-              style={styles.expandIcon}
-              onClick={toggleMinimize}
-            />
-          )}
+          {!isMinimized && <span>ChatGPT4 - Drag and Drop</span>}
+          <div style={styles.iconContainer}>
+            {isMinimized ? (
+              <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
+            ) : (
+                <>
+                <SvgIcons type="collapse" onClick={toggleMinimize} style={styles.expandIcon} />
+                <SvgIcons type="close" onClick={onClose} style={styles.expandIcon} />
+                </>
+            )}
+          </div>
         </div>
         {!isMinimized && (
           <>
