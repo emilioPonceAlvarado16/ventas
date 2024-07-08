@@ -141,6 +141,7 @@ export default function Chat(props) {
           className="handle"
           style={styles.collapsedContainer}
           onClick={isMinimized ? toggleMinimize : null}
+          onDoubleClick={isMinimized ? null :toggleMinimize}
         >
           {isMinimized ? (
             <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
