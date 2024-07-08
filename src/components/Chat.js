@@ -87,7 +87,6 @@ export default function Chat(props) {
   const visualizePrompt = props.visualizePrompt || {isMinimized: false}
   const {isMinimized} = props.visualizePrompt
   const setVisualizePrompt=props.setVisualizePrompt || null
-  // const [isMinimized, setIsMinimized] = useState(false);
   const messageRef = useRef(null);
   const selectedText = props.selectedText;
 
@@ -141,10 +140,9 @@ export default function Chat(props) {
         <div
           className="handle"
           style={styles.collapsedContainer}
-          onClick={toggleMinimize}
         >
           {isMinimized ? (
-            <SvgIcons type="expand" style={styles.expandIcon} />
+            <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
           ) : (
             "ChatGPT4 - Drag and Drop"
           )}
