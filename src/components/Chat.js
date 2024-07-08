@@ -84,7 +84,10 @@ export default function Chat(props) {
     chatPosition,
     setChatPosition,
   } = useChat();
-  const [isMinimized, setIsMinimized] = useState(false);
+  const visualizePrompt = props.visualizePrompt || {isMinimized: false}
+  const {isMinimized} = props.visualizePrompt
+  const setVisualizePrompt=props.setVisualizePrompt || null
+  // const [isMinimized, setIsMinimized] = useState(false);
   const messageRef = useRef(null);
   const selectedText = props.selectedText;
 
@@ -105,7 +108,7 @@ export default function Chat(props) {
   };
 
   const toggleMinimize = () => {
-    setIsMinimized(!isMinimized);
+    setVisualizePrompt({...visualizePrompt, isMinimized: !isMinimized})
   };
   useEffect(() => {
     setNewMessage(selectedText);

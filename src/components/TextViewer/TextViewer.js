@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import SvgIcons from '../svgIcons';
 
 export default function TextViewer(props) {
-    const setisPromptOpen = props.setisPromptOpen || null;
+    const setVisualizePrompt = props.setVisualizePrompt || null;
     const setSelectedText = props.setSelectedText || function() {};
 
     const textViewerRef = useRef(null);
@@ -15,7 +15,7 @@ export default function TextViewer(props) {
         event.stopPropagation();
         console.log("Icon clicked");
         setShowIcon(false);
-        setisPromptOpen(true);
+        setVisualizePrompt({ isPromptOpen: true, isMinimized: false });
     };
 
     const handleTextSelection = () => {

@@ -17,7 +17,7 @@ import Alerts from "@/components/alerts";
 export default function oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState({ url: "", id: "" });
-  const [isPromptOpen, setisPromptOpen] = useState(false);
+  const [visualizePrompt, setVisualizePrompt] = useState({ isPromptOpen: false, isMinimized: false });
   const [showFieldType, setshowFieldType] = useState(true);
   const [showTemplates, setshowTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -83,7 +83,7 @@ export default function oli() {
     setAlertInfo({ ...alertInfo, visible: false });
   };
   const ClosePrompt = () => {
-    setisPromptOpen(false);
+    setVisualizePrompt({...visualizePrompt, isPromptOpen:false})
   };
   const CloseTemplateList = () => {
     setshowTemplates(false);
@@ -133,7 +133,7 @@ export default function oli() {
           onCloseTemplateList={CloseTemplateList}
           showTemplates={showTemplates}
           onOpenTemplateList={OpenTemplateList}
-          isPromptOpen={isPromptOpen}
+          visualizePrompt={visualizePrompt}
           onClose={ClosePrompt}
           setFields={setFields}
           Fields={Fields}
@@ -200,8 +200,8 @@ export default function oli() {
           foundedField={foundedField}
           showTemplates={showTemplates}
           showText={showText}
-          isPromptOpen={isPromptOpen}
-          setisPromptOpen={setisPromptOpen}
+          visualizePrompt={visualizePrompt}
+          setVisualizePrompt={setVisualizePrompt}
           selectedText={selectedText} // para textviewer
           setSelectedText={setSelectedText}
         />
@@ -227,7 +227,7 @@ export default function oli() {
               <span className="tooltip-text">Compile</span>
             </div>
             <div className=" process_icon process_icon-2  tooltip">
-              <SvgIcons onClick={() => setisPromptOpen(true)} type="keyboard" />
+              <SvgIcons onClick={() => setVisualizePrompt({ isMinimized:false, isPromptOpen: true})} type="keyboard" />
               <span className="tooltip-text">Prompt</span>
             </div>
             <div className="process_icon process_icon-3 tooltip">
@@ -284,11 +284,13 @@ export default function oli() {
       <div>
         {/* <DynamicChatProvider> */}
         <ChatProvider>
-          {isPromptOpen && (
+          {visualizePrompt.isPromptOpen && (
             <Prompt
               selectedText={selectedText}
               setSelectedText={setSelectedText}
               onClose={ClosePrompt}
+              visualizePrompt={visualizePrompt}
+              setVisualizePrompt={setVisualizePrompt}
             />
           )}
           {/* </DynamicChatProvider> */}
