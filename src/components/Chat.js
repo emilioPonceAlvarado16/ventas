@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Avatar from "./avatarName";
 import SvgIcons from "./svgIcons";
 import { useChat } from "@/contexts/ChatContext";
@@ -140,6 +140,7 @@ export default function Chat(props) {
         <div
           className="handle"
           style={styles.collapsedContainer}
+          onClick={isMinimized ? toggleMinimize : null}
         >
           {isMinimized ? (
             <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
