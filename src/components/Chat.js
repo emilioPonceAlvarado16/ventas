@@ -84,7 +84,7 @@ export default function Chat(props) {
     chatPosition,
     setChatPosition,
   } = useChat();
-  const [isMinimized, setIsMinimized] = useState(true); // Start as minimized
+  const [isMinimized, setIsMinimized] = useState(false);
   const messageRef = useRef(null);
   const selectedText = props.selectedText;
 
