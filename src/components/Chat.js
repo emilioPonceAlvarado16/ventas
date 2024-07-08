@@ -86,6 +86,7 @@ export default function Chat(props) {
   const {isMinimized} = props.visualizePrompt;
   const setVisualizePrompt = props.setVisualizePrompt || null;
   const messageRef = useRef(null);
+  const inputRef = useRef(null);
   const selectedText = props.selectedText;
 
   useEffect(() => {
@@ -93,6 +94,14 @@ export default function Chat(props) {
       messageRef.current.scrollTop = messageRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = "0px"; // Reset height
+      const newHeight = inputRef.current.scrollHeight;
+      inputRef.current.style.height = `${newHeight}px`; // Set to new height
+    }
+  }, [newMessage]);
 
   useEffect(() => {
     setNewMessage(selectedText);
@@ -168,7 +177,8 @@ export default function Chat(props) {
               ))}
             </div>
             <div style={styles.inputArea}>
-              <input
+              <textarea
+                ref={inputRef}
                 style={styles.input}
                 type="text"
                 placeholder="Type a message..."
