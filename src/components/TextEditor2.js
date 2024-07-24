@@ -13,7 +13,6 @@ const TextEditor = (props) => {
   const setEditorObjects = props.setEditorObjects
   const textFoundedField = props.textFoundedField || ""
   const foundedField = props.foundedField || 0
-  const setFoundedField = props.setFoundedField || null
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
