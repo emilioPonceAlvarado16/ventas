@@ -5390,7 +5390,6 @@ textarea.w-select {
   top: 2%;
   right: 50vw;
   transform: translateX(50%);
-  z-index: 1000;
 }
 .process_icon-2 {
   top: 8%;

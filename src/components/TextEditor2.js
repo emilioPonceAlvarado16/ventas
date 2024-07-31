@@ -56,7 +56,7 @@ const TextEditor = (props) => {
     const pageNumbers = Array.from({ length: currentSetEnd - currentSetStart + 1 }, (_, i) => currentSetStart + i);
     if (totalPages < 2) return null
     return (
-      <div style={{ position: 'absolute', top: "-4.5vh", right: "65vw", width: '25%', zIndex: 1000 }}>
+      <div style={{ position: 'absolute', top: "-4.5vh", right: "65vw", width: '25%' }}>
         {!props.showTemplates &&
           <nav>
             <ul className='pagination'>
