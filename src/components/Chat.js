@@ -19,6 +19,7 @@ const styles = {
     bottom: "20px",
     right: "20px",
     transition: "all 0.3s ease",
+    opacity:"90%"
   },
   collapsedContainer: {
     display: "flex",
@@ -114,7 +115,19 @@ export default function Chat(props) {
   };
 
   const toggleMinimize = () => {
-    setVisualizePrompt({...visualizePrompt, isMinimized: !isMinimized});
+    setVisualizePrompt({ ...visualizePrompt, isMinimized: !isMinimized });
+    // console.log("la ventana es ", window.innerHeight, " y el tope es ", window.innerHeight - 600,"y la posicion en Y es ", chatPosition.y )
+    console.log("la ventana es ", window.innerWidth, " y el tope es ", window.innerWidth - 500, "y la posicion en X es ", chatPosition.x )
+    if (!isMinimized) { 
+      setChatPosition({ ...chatPosition, y: 0 })
+    } else {
+      if ((Math.abs(chatPosition.y) + 620) >= window.innerHeight) {
+          console.log("excedió") 
+          setChatPosition({  ...chatPosition, y: 0 })
+      }
+    }
+
+      
   };
   const onClose = () => {
     event.stopPropagation();
@@ -131,12 +144,23 @@ export default function Chat(props) {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isMinimized]); // Solo añadirá el listener cuando esté expandido
 
+  const onStop = (e, data) => {
+    console.log("en x queda igual a ", data.x, "y el ancho es", window.innerWidth)
+    if (Math.abs(data.x) + 600 > window.innerWidth) {
+      setChatPosition({ ...chatPosition, x: data.x + 100 })
+    } else if (data.x > 0) {
+      setChatPosition({ ...chatPosition, x: 0 })
+    }
+    else { 
+      setChatPosition({ x: data.x, y: data.y })
+    }
+  }
 
   return (
     <Draggable
       handle=".handle"
       position={chatPosition}
-      onStop={(e, data) => setChatPosition({ x: data.x, y: data.y })}
+      onStop={(e, data)=>onStop(e, data)}
     >
       <div
         style={{
