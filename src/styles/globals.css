@@ -5238,7 +5238,6 @@ textarea.w-select {
   color: #ebe0f5;
   /* El mismo color que el texto */
   cursor: pointer;
-  z-index: 10;
   /* Asegura que esté al frente */
 }
 
