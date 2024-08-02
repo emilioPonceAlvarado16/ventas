@@ -144,16 +144,125 @@ export default function Chat(props) {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [isMinimized]); // Solo añadirá el listener cuando esté expandido
 
+  // const onStop = (e, data) => {
+  //   // console.log("en x queda igual a ", data.x, "x el ancho es", window.innerWidth)
+  //   console.log("en y queda igual a ", data.y, "y el alto es", window.innerHeight)
+  //   const extremoIzquierda = data.x > 0
+  //   const extremoDerecha = Math.abs(data.x) + 600 > window.innerWidth
+  //   const extremoAlto = Math.abs(data.y) + 600 > window.innerHeight
+  //   const extremoBajo = data.y > 0
+
+  //   const esquinas = {
+  //       "esquinaInferiorDerecha": extremoDerecha && extremoBajo,
+  //       "esquinaSuperiorDerecha": extremoDerecha && extremoAlto,
+  //       "esquinaSuperiorIzquierda": extremoIzquierda && extremoAlto,
+  //       "esquinaInferiorIzquierda": extremoIzquierda && extremoBajo,
+  //   }
+
+  //   const mapperCorrection = {
+  //     "esquinaInferiorDerecha": () => setChatPosition({  x: 0, y: 0 }),
+  //     "esquinaSuperiorDerecha": () => setChatPosition({  x: 0, y: window.innerHeight - 500}),
+  //     "esquinaSuperiorIzquierda": () => setChatPosition({ y: window.innerHeight - 500, x: data.x + 220 }),
+  //     "esquinaInferiorIzquierda": () => setChatPosition({ ...chatPosition, x: data.x + 220 }),
+  //   }
+
+  //   const correctDragDrop = () => {
+  //     Object.keys(esquinas).forEach((key) => {
+  //       if (esquinas[key]) {
+  //         mapperCorrection[key]
+  //       }
+  //     })
+  //   }
+  //   correctDragDrop()
+
+  //   setChatPosition({ x: data.x, y: data.y }) //sino entra ningun
+  //   // // eje en x
+  //   // if (Math.abs(data.x) + 600 > window.innerWidth) {
+  //   //   setChatPosition({ ...chatPosition, x: data.x + 220 })//derecha
+  //   // } else if (data.x > 0) {// izquierda
+  //   //   setChatPosition({ ...chatPosition, x: 0 })
+  //   // }
+    
+  //   // // eje en y
+  //   // if (Math.abs(data.y) + 600 > window.innerHeight) {//alto
+  //   //   setChatPosition({ ...chatPosition, y: data.y + 100 })
+  //   // // } else if (data.y + 500 > window.innerHeight) {
+  //   // } else if (data.y > 0) {//bajo
+  //   // // } if (data.y > 0) {
+  //   //   setChatPosition({ ...chatPosition, y: 0 })
+  //   // }
+      
+  //   //   else {
+  //   //     setChatPosition({ x: data.x, y: data.y })
+        
+  //   //   }
+      
+  // }
+
+  // const onStop = (e, data) => {
+  //   const chatWidth = 500; // ancho del chat es de 500px
+  //   const chatHeight = 600; // la altura del chat es de 600px
+
+  //   // Calcular los límites extremos
+  //   const extremoDerecha = data.x + chatWidth > window.innerWidth;
+  //   const extremoIzquierda = data.x < 0;
+  //   const extremoBajo = data.y + chatHeight > window.innerHeight;
+  //   const extremoAlto = data.y < 0;
+
+  //   //data.x en el extremo derecho es 0 y se hace negativo cuando va hacia la izquierda
+  //   //data.y en el extremo inferior es 0 y se hace negativo cuando va hacia la izquierda
+  //   if (extremoDerecha) {
+  //     data.x = window.innerWidth - chatWidth; // borde derecho
+  //   }
+  //   if (extremoIzquierda) {
+  //     data.x = 0; // borde izquierdo
+  //   }
+  //   if (extremoBajo) {
+  //     data.y = window.innerHeight - chatHeight; // el borde inferior
+  //   }
+  //   if (extremoAlto) {
+  //     data.y = 0; // el borde superior
+  //   }
+
+  //   // Establecer la nueva posición corregida
+  //   setChatPosition({ x: data.x, y: data.y });
+  // }
+
+
+
+  // cdmc
+
   const onStop = (e, data) => {
-    console.log("en x queda igual a ", data.x, "y el ancho es", window.innerWidth)
-    if (Math.abs(data.x) + 600 > window.innerWidth) {
-      setChatPosition({ ...chatPosition, x: data.x + 100 })
-    } else if (data.x > 0) {
-      setChatPosition({ ...chatPosition, x: 0 })
+    const chatWidth = 500; // Ancho del chat es de 500px
+    const chatHeight = 600; // Altura del chat es de 600px
+
+    // Calcular los límites extremos
+    const extremoDerecha = data.x + chatWidth > window.innerWidth;
+    const extremoIzquierda = data.x < 0;
+    const extremoBajo = data.y + chatHeight > window.innerHeight;
+    const extremoAlto = data.y < 0;
+
+    // Corregir la posición según los límites detectados
+    if (extremoDerecha) {
+      // Si el chat se extiende más allá del borde derecho de la ventana, ajustar `data.x` para que el chat no desaparezca
+      data.x = data.x + chatWidth; // Ajustar al borde derecho
     }
-    else { 
-      setChatPosition({ x: data.x, y: data.y })
+    if (extremoIzquierda) {
+      // Si el chat se extiende más allá del borde izquierdo de la ventana, ajustar `data.x` a 0
+      data.x = 0; // Ajustar al borde izquierdo
     }
+    if (extremoBajo) {
+      // Si el chat se extiende más allá del borde inferior de la ventana, ajustar `data.y` para que el chat no desaparezca
+      // data.y = window.innerHeight - chatHeight; // Ajustar al borde inferior
+      data.y = data.y - chatHeight; // Ajustar al borde inferior
+    }
+    if (extremoAlto) {
+      // Si el chat se extiende más allá del borde superior de la ventana, ajustar `data.y` a 0
+      data.y = 0; // Ajustar al borde superior
+    }
+
+    // Establecer la nueva posición corregida del chat
+    setChatPosition({ x: data.x, y: data.y });
   }
 
   return (
