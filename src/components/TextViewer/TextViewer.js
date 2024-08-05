@@ -4,8 +4,8 @@ import SvgIcons from '../svgIcons';
 export default function TextViewer(props) {
     const setVisualizePrompt = props.setVisualizePrompt || null;
     const setSelectedText = props.setSelectedText || function() {};
-
     const textViewerRef = useRef(null);
+    const currentText = props.selectedText || ""
 
     const [iconPosition, setIconPosition] = useState({ x: 0, y: 0 });
     const [showIcon, setShowIcon] = useState(false);
@@ -13,19 +13,30 @@ export default function TextViewer(props) {
     const handlePrompt = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log("Icon clicked");
+        copyTextSelection()
         setShowIcon(false);
         setVisualizePrompt({ isPromptOpen: true, isMinimized: false });
     };
-
+    const copyTextSelection = () => {
+         if (textViewerRef.current) {
+            const textarea = textViewerRef.current;
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            if (start !== end) {
+                const selectedText = textarea.value.substring(start, end);
+                setSelectedText(currentText + "\n"+selectedText);        
+            } else {
+                setShowIcon(false);
+                setSelectedText(currentText);
+            }
+        }
+    }
     const handleTextSelection = () => {
         if (textViewerRef.current) {
             const textarea = textViewerRef.current;
             const start = textarea.selectionStart;
             const end = textarea.selectionEnd;
             if (start !== end) {
-                const selectedText = textarea.value.substring(start, end);
-                setSelectedText(selectedText);
                 const beforeText = textarea.value.substring(0, start);
                 const lines = beforeText.split("\n").length;
                 const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight, 10) || 24; // Default line height
@@ -36,7 +47,7 @@ export default function TextViewer(props) {
                 setShowIcon(true);
             } else {
                 setShowIcon(false);
-                setSelectedText("");
+                setSelectedText(currentText);
             }
         }
     };

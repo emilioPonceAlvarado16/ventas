@@ -229,9 +229,7 @@ export default function Chat(props) {
                 type="text"
                 placeholder="Type a message..."
                 value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-              />
+                onChange={(e) => setNewMessage(e.target.value)}/>
               <button style={styles.sendButton} onClick={sendMessage}>
                 <SvgIcons type="send" />
               </button>
