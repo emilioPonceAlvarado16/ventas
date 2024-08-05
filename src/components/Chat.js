@@ -116,13 +116,10 @@ export default function Chat(props) {
 
   const toggleMinimize = () => {
     setVisualizePrompt({ ...visualizePrompt, isMinimized: !isMinimized });
-    // console.log("la ventana es ", window.innerHeight, " y el tope es ", window.innerHeight - 600,"y la posicion en Y es ", chatPosition.y )
-    console.log("la ventana es ", window.innerWidth, " y el tope es ", window.innerWidth - 500, "y la posicion en X es ", chatPosition.x )
     if (!isMinimized) { 
       setChatPosition({ ...chatPosition, y: 0 })
     } else {
       if ((Math.abs(chatPosition.y) + 620) >= window.innerHeight) {
-          console.log("excedió") 
           setChatPosition({  ...chatPosition, y: 0 })
       }
     }
