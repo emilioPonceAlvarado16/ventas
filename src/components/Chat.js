@@ -236,33 +236,37 @@ export default function Chat(props) {
     const chatWidth = 500; // Ancho del chat es de 500px
     const chatHeight = 600; // Altura del chat es de 600px
 
-    // Calcular los límites extremos
-    const extremoDerecha = data.x + chatWidth > window.innerWidth;
-    const extremoIzquierda = data.x < 0;
-    const extremoBajo = data.y + chatHeight > window.innerHeight;
-    const extremoAlto = data.y < 0;
+    // Calculando los límites extremos
+    let coorX = - data.x
+    let coorY = - data.y
+    const extremoIzquierda = coorX + chatWidth >= window.innerWidth ;
+    const extremoDerecha = coorX < 0;
+    const extremoAlto  = coorY + chatHeight >= window.innerHeight;
+    const extremoBajo = coorY < 0;
 
-    // Corregir la posición según los límites detectados
+
+    // Corregir la posición en caso de tocar alguno de estos extremos
+    if (extremoIzquierda) {
+      // Si el chat se extiende más allá del borde derecho de la ventana
+      coorX = coorX - Math.abs(chatWidth - window.innerHeight); 
+    }
+    // if (extremoIzquierda) {
     if (extremoDerecha) {
       // Si el chat se extiende más allá del borde derecho de la ventana, ajustar `data.x` para que el chat no desaparezca
-      data.x = data.x + chatWidth; // Ajustar al borde derecho
-    }
-    if (extremoIzquierda) {
-      // Si el chat se extiende más allá del borde izquierdo de la ventana, ajustar `data.x` a 0
-      data.x = 0; // Ajustar al borde izquierdo
-    }
-    if (extremoBajo) {
-      // Si el chat se extiende más allá del borde inferior de la ventana, ajustar `data.y` para que el chat no desaparezca
-      // data.y = window.innerHeight - chatHeight; // Ajustar al borde inferior
-      data.y = data.y - chatHeight; // Ajustar al borde inferior
+      coorX = 0;  // Ajustando al borde derecho
     }
     if (extremoAlto) {
       // Si el chat se extiende más allá del borde superior de la ventana, ajustar `data.y` a 0
-      data.y = 0; // Ajustar al borde superior
+      coorY = coorY - Math.abs(chatHeight - window.innerHeight); // Ajustar al borde inferior
+    }
+    // if (extremoAlto) {
+    if (extremoBajo) {
+      // Si el chat se extiende más allá del borde inferior de la ventana, ajustar `data.y` para que el chat no desaparezca
+      coorY = 0; // Ajustar al borde superior
     }
 
     // Establecer la nueva posición corregida del chat
-    setChatPosition({ x: data.x, y: data.y });
+    setChatPosition({ x: -coorX, y: -coorY });
   }
 
   return (
