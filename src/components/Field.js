@@ -4,31 +4,34 @@ import SvgIcons from "./svgIcons";
 
 const Field = React.forwardRef((props, ref) => {
 
-  const type = props.type;
-  const removeField = props.removeField;
-  const value = props.value;
-  const size = props.size;
-  const index = props.index;
-  const setImageSelected = props.setImageSelected
-  const updateField = props.updateField || null
-  const setAllText = props.setAllText || null
-  const allText = props.allText || ""
-  const imageObj=props.imageObj || {}
+  const {
+    type,
+    removeField,
+    value,
+    size,
+    index,
+    setImageSelected,
+    updateField = null,
+    setAllText = null,
+    allText = "",
+    imageObj = {},
+    setIsImageModalOpen,
+    showFieldType,
+    id,
+    shouldHighlight
+  } = props;
 
-  const setIsImageModalOpen = props.setIsImageModalOpen;
-
-
-  const [isHighlighted, setIsHighlighted] = useState(props.shouldHighlight);
+  const [isHighlighted, setIsHighlighted] = useState(shouldHighlight);
   useEffect(() => {
-    setIsHighlighted(props.shouldHighlight);
+    setIsHighlighted(shouldHighlight);
 
-    if (props.shouldHighlight) {
+    if (shouldHighlight) {
       const timer = setTimeout(() => {
         setIsHighlighted(false);
       }, 3000); // Resalta durante 3 segundos, ajusta según sea necesario
       return () => clearTimeout(timer);
     }
-  }, [props.shouldHighlight]); // Añadir props.shouldHighlight a las dependencias
+  }, [shouldHighlight]); // Añadir shouldHighlight a las dependencias
 
   const deleteField = () => {
     removeField(index);
@@ -124,7 +127,7 @@ const Field = React.forwardRef((props, ref) => {
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <SvgIcons onClick={deleteField} type="trash" />
-        {type !== "im" && props.showFieldType &&
+        {type !== "im" && showFieldType &&
           <>
             <select
               value={type}
@@ -152,7 +155,7 @@ const Field = React.forwardRef((props, ref) => {
           </>
 
         }
-  #{props.id}
+  #{id}
       </div>
 
     </div>

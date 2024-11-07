@@ -2,10 +2,16 @@ import React from 'react';
 
 
 export default function SvgIcons(props) {
-    const type = props.type;
-    const disabled = props.disabled || false
-    const width = props.width || "16"
-    const height = props.height || "16"
+    const {
+        type,
+        disabled = false,
+        width = "16",
+        height = "16",
+        isCompiling = false,
+        isTool = false,
+        backGroundColor = "#2c2c2c",
+    } = props;
+
     let svg;
 
     switch (type) {
@@ -77,7 +83,6 @@ export default function SvgIcons(props) {
             )
             break;
         case 'eyeIcon':
-            const isTool = props.isTool || false
             svg =
                 (
                     <div className={`${isTool ? 'rounded-keyboard-bg' : ''}`}>
@@ -89,13 +94,12 @@ export default function SvgIcons(props) {
                 );
             break;
         case 'eyeOffIcon':
-            const isTool2 = props.isTool || false
             svg = (
-                <div className={`${isTool2 ? 'rounded-keyboard-bg' + `${disabled ? ' disabled' : ''}` : ''}`}>
+                <div className={`${isTool ? 'rounded-keyboard-bg' + `${disabled ? ' disabled' : ''}` : ''}`}>
 
                     <svg width="21" height="21" viewBox="0 0 24 24">
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" fill={`${isTool2 ? 'white' : ''}`} />
-                        <path d="M2 2l20 20" stroke="#000" strokeLinecap="round" strokeLinejoin="round" fill={`${isTool2 ? 'white' : ''}`} />
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" fill={`${isTool ? 'white' : ''}`} />
+                        <path d="M2 2l20 20" stroke="#000" strokeLinecap="round" strokeLinejoin="round" fill={`${isTool ? 'white' : ''}`} />
                     </svg>
                 </div>
             )
@@ -186,13 +190,12 @@ export default function SvgIcons(props) {
                 );
             break;
         case 'settings':
-            const isTool3 = props.isTool || false
-            const backgroundColor = props.backGroundColor || "#2c2c2c"
+            const backgroundColor = backGroundColor || "#2c2c2c"
             svg =
                 (
-                    <div className={`${isTool3 ? 'rounded-keyboard-bg' : ''}`}>
+                    <div className={`${isTool ? 'rounded-keyboard-bg' : ''}`}>
 
-                        <svg width="16" height="16" style={{ backgroundColor: backgroundColor, marginLeft: `${isTool3 ? '' : '5px'}` }} viewBox="0 0 24 24" fill="#2c2c2c" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="16" style={{ backgroundColor: backgroundColor, marginLeft: `${isTool ? '' : '5px'}` }} viewBox="0 0 24 24" fill="#2c2c2c" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="5" cy="12" r="2" fill="white" />
                             <circle cx="12" cy="12" r="2" fill="white" />
                             <circle cx="19" cy="12" r="2" fill="white" />
@@ -324,7 +327,6 @@ export default function SvgIcons(props) {
             break;
 
         case 'lightning':
-            const isCompiling = props.isCompiling || false;
             svg = (
                 <div className={`rounded-green-bg ${disabled ? 'disabled' : ''}`}>
                     {!isCompiling ? (<svg viewBox="0 0 24 24" width="22" height="22" className={`yellow-fill ${disabled ? 'disabled' : ''}`}>
@@ -376,7 +378,7 @@ export default function SvgIcons(props) {
             svg = (
                 <div className={`text-icon w-embed rounded-green-bg ${disabled ? 'disabled' : ''}`}>
                     <svg width={width} height={height} viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <text x="4" y="17" fill="#ffffff" font-size="12.2" font-family="Arial, sans-serif">ABC</text>
+                        <text x="4" y="17" fill="#ffffff" fontSize="12.2" fontFamily="Arial, sans-serif">ABC</text>
                     </svg>
                 </div>
             );
