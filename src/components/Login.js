@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import Alerts from "../components/alerts"
+import Alerts from "@/components/alerts"
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading';

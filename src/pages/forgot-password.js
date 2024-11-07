@@ -1,5 +1,5 @@
 import React from 'react';
-import ForgotPassword from "../components/forgotPassword";
+import ForgotPassword from "@/components/forgotPassword";
 import { useAuth } from '../hooks/useAuth';
 import Footer from '@/components/footer';
 

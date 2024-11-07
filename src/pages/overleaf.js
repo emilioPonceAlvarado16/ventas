@@ -1,5 +1,5 @@
 import React from 'react'
-import TextEditor from "../components/TextEditor"
+import TextEditor from "@/components/TextEditor"
 import PdfViewer from '@/components/PdfViewer'
 export default function overleaf() {
   return (
