@@ -1,8 +1,12 @@
+// Chat.js
+
 import React, { useEffect, useRef } from "react";
 import Avatar from "./avatarName";
 import SvgIcons from "./svgIcons";
 import { useChat } from "@/contexts/ChatContext";
 import Draggable from "react-draggable";
+// Importa la función para generar UUID
+import { v4 as uuidv4 } from 'uuid';
 
 const styles = {
   chatContainer: {
@@ -19,7 +23,7 @@ const styles = {
     bottom: "20px",
     right: "20px",
     transition: "all 0.3s ease",
-    opacity:"90%"
+    opacity: "90%"
   },
   collapsedContainer: {
     display: "flex",
@@ -30,6 +34,8 @@ const styles = {
     color: "white",
     backgroundColor: "#222",
     borderRadius: "10px 10px 0 0",
+    // Eliminamos el cursor de puntero porque el elemento será un botón
+    // cursor: "pointer",
   },
   iconContainer: {
     display: "flex",
@@ -83,8 +89,8 @@ export default function Chat(props) {
     chatPosition,
     setChatPosition,
   } = useChat();
-  const visualizePrompt = props.visualizePrompt || {isMinimized: false};
-  const {isMinimized} = props.visualizePrompt;
+  const visualizePrompt = props.visualizePrompt || { isMinimized: false };
+  const { isMinimized } = props.visualizePrompt;
   const setVisualizePrompt = props.setVisualizePrompt || null;
   const messageRef = useRef(null);
   const inputRef = useRef(null);
@@ -110,28 +116,31 @@ export default function Chat(props) {
 
   const sendMessage = () => {
     if (newMessage.trim() === "") return;
-    setMessages([...messages, { text: newMessage, sender: "you" }]);
+    // Genera un nuevo ID para cada mensaje
+    const newMsg = { id: uuidv4(), text: newMessage, sender: "you" };
+    setMessages([...messages, newMsg]);
     setNewMessage("");
   };
 
   const toggleMinimize = () => {
     setVisualizePrompt({ ...visualizePrompt, isMinimized: !isMinimized });
+
     if (!isMinimized) { 
-      setChatPosition({ ...chatPosition, y: 0 })
-    } else {
-      if ((Math.abs(chatPosition.y) + 620) >= window.innerHeight) {
-          setChatPosition({  ...chatPosition, y: 0 })
-      }
+      setChatPosition({ ...chatPosition, y: 0 });
+    } 
+
+    // Condición adicional fuera del bloque else
+    if (isMinimized && (Math.abs(chatPosition.y) + 620) >= window.innerHeight) {
+      setChatPosition({ ...chatPosition, y: 0 });
     }
-
-      
   };
-  const onClose = () => {
+
+  const onClose = (event) => {
     event.stopPropagation();
-    setVisualizePrompt({...visualizePrompt, isPromptOpen: false});
+    setVisualizePrompt({ ...visualizePrompt, isPromptOpen: false });
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape" && !isMinimized) {
         toggleMinimize();
@@ -146,29 +155,29 @@ export default function Chat(props) {
     const chatHeight = 600; // Altura del chat es de 600px
 
     // Calculando los límites extremos
-    let coorX = - data.x
-    let coorY = - data.y
-    const extremoIzquierda = coorX + chatWidth >= window.innerWidth ;
+    let coorX = -data.x;
+    let coorY = -data.y;
+    const extremoIzquierda = coorX + chatWidth >= window.innerWidth;
     const extremoDerecha = coorX < 0;
-    const extremoAlto  = coorY + chatHeight >= window.innerHeight;
+    const extremoAlto = coorY + chatHeight >= window.innerHeight;
     const extremoBajo = coorY < 0;
-
 
     // Corregir la posición en caso de tocar alguno de estos extremos
     if (extremoIzquierda) {
       // Si el chat se extiende más allá del borde derecho de la ventana
       coorX = coorX - Math.abs(chatWidth - window.innerHeight); 
     }
-    // if (extremoIzquierda) {
+
     if (extremoDerecha) {
       // Si el chat se extiende más allá del borde derecho de la ventana, ajustar `data.x` para que el chat no desaparezca
       coorX = 0;  // Ajustando al borde derecho
     }
+
     if (extremoAlto) {
       // Si el chat se extiende más allá del borde superior de la ventana, ajustar `data.y` a 0
       coorY = coorY - Math.abs(chatHeight - window.innerHeight); // Ajustar al borde inferior
     }
-    // if (extremoAlto) {
+
     if (extremoBajo) {
       // Si el chat se extiende más allá del borde inferior de la ventana, ajustar `data.y` para que el chat no desaparezca
       coorY = 0; // Ajustar al borde superior
@@ -182,7 +191,7 @@ export default function Chat(props) {
     <Draggable
       handle=".handle"
       position={chatPosition}
-      onStop={(e, data)=>onStop(e, data)}
+      onStop={(e, data) => onStop(e, data)}
     >
       <div
         style={{
@@ -191,30 +200,42 @@ export default function Chat(props) {
           width: isMinimized ? "320px" : styles.chatContainer.width,
         }}
       >
-        <div
+        {/* Reemplazamos el <div> con un <button> */}
+        <button
+          type="button"
           className="handle"
-          style={styles.collapsedContainer}
-          onClick={isMinimized ? toggleMinimize : null}
-          onDoubleClick={isMinimized ? null : toggleMinimize}
+          onClick={isMinimized ? toggleMinimize : undefined}
+          onDoubleClick={isMinimized ? undefined : toggleMinimize}
+          // Aseguramos que el botón no tenga bordes ni fondo por defecto
+          // para que mantenga el estilo del <div>
+          style={{
+            ...styles.collapsedContainer,
+            background: "none",
+            border: "none",
+            padding: "0",
+            // Añadimos width y height si es necesario
+          }}
+          // Opcional: Añadir aria-label para mejorar la accesibilidad
+          aria-label={isMinimized ? "Expand Chat" : "Collapse Chat"}
         >
           {!isMinimized && <span>ChatGPT4 - Drag and Drop</span>}
           <div style={styles.iconContainer}>
             {isMinimized ? (
               <SvgIcons type="expand" onClick={toggleMinimize} style={styles.expandIcon} />
             ) : (
-                <>
+              <>
                 <SvgIcons type="collapse" onClick={toggleMinimize} style={styles.expandIcon} />
                 <SvgIcons type="close" onClick={onClose} style={styles.expandIcon} />
-                </>
+              </>
             )}
           </div>
-        </div>
+        </button>
         {!isMinimized && (
           <>
             <div ref={messageRef} style={styles.messageArea}>
-              {messages.map((message, index) => (
+              {messages.map((message) => (
                 <div
-                  key={index}
+                  key={message.id} // Usamos el id único como key
                   style={{ display: "flex", alignItems: "center" }}
                 >
                   <Avatar size="small" />
@@ -229,7 +250,8 @@ export default function Chat(props) {
                 type="text"
                 placeholder="Type a message..."
                 value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}/>
+                onChange={(e) => setNewMessage(e.target.value)}
+              />
               <button style={styles.sendButton} onClick={sendMessage}>
                 <SvgIcons type="send" />
               </button>

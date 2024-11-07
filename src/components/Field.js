@@ -10,7 +10,6 @@ const Field = React.forwardRef((props, ref) => {
   const size = props.size;
   const index = props.index;
   const setImageSelected = props.setImageSelected
-  const url = props.url || ""
   const updateField = props.updateField || null
   const setAllText = props.setAllText || null
   const allText = props.allText || ""
@@ -18,7 +17,6 @@ const Field = React.forwardRef((props, ref) => {
 
   const setIsImageModalOpen = props.setIsImageModalOpen;
 
-  const [newValue, setNewValue] = useState(value);
 
   const [isHighlighted, setIsHighlighted] = useState(props.shouldHighlight);
   useEffect(() => {
@@ -118,10 +116,10 @@ const Field = React.forwardRef((props, ref) => {
           minHeight: size || "3vh"
 
         }}
-        // value={newValue}
+        // value={value}
         onClick={() => { type === "im" ? handleShowImage() : null }}
       >
-        {newValue}
+        {value}
       </p>
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>

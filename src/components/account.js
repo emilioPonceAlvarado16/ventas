@@ -23,7 +23,6 @@ export default function Account() {
   const handleSubmit = async function (event) {
     event.preventDefault();
     setisLoading(true);
-    let response = await Auth.signIn(state.email, state.password);
     setisLoading(false)
   };
 

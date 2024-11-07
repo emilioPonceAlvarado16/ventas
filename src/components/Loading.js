@@ -2,7 +2,7 @@ function Loading() {
     return (
       <div className="loading-container">
         <div className="spinner"></div>
-        <style jsx>{`
+        <style>{`
           .loading-container {
             position: fixed;
             top: 0;

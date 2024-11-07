@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import Menu from "./Menu";
-import useFields from '../hooks/useFields';
 
 
 const App = (props) => {
@@ -12,7 +11,6 @@ const App = (props) => {
     const [cx, setCx] = useState(0);
     const [cy, setCy] = useState(0);
     const [buttonsStyle, setButtonsStyle] = useState({ visibility: "hidden", position:"absolute",top:"20%" });
-    const [visualizer, setVisualizer] = useState(true);
     const [selectedText, setSelectedText] = useState("");
 
     // const [allText, setAllText] = useState(`What is Lorem Ipsum?
@@ -112,11 +110,7 @@ const App = (props) => {
     };
 
     return (
-        <>
             <div >
-
-
-
                 <textarea
                     onChange={(e) => changeTextArea(e)}
                     ref={textareaElement}
@@ -147,8 +141,6 @@ const App = (props) => {
                 />
 
             </div>
-
-        </>
     );
 };
 
