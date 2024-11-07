@@ -10,8 +10,8 @@ export default function Avatar(props) {
   const onClick=props.onClick || null
 
   return (
-    <div class={totalClases} onClick={onClick}>
-      <div class={textSizeClass}>{initialNames}</div>
+    <div className={totalClases} onClick={onClick}>
+      <div className={textSizeClass}>{initialNames}</div>
     </div>
   )
 }
