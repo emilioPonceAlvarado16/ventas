@@ -31,7 +31,6 @@ export default function Menu(props) {
     }
 
     return (
-        <>
             <div style={{ ...containerStyle, ...buttonsStyle }}>
                 <button
                     style={buttonStyle}
@@ -84,6 +83,5 @@ export default function Menu(props) {
                     Titulo de imagen
                 </button>
             </div>
-        </>
     )
 }
