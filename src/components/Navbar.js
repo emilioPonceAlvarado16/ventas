@@ -22,18 +22,15 @@ export default function Navbar() {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
+
   const handleMenuClick = (menuObj) => {
-    switch (menuObj?.onClick) {
-      case 'Logout':
-        signOut();
-        break;
-      default:
-        break;
+    if (menuObj?.onClick === 'Logout') {
+      signOut();
     }
   };
+  
 
   return (
-    <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
         <div className="f-navigation-container"
         >
@@ -64,14 +61,14 @@ export default function Navbar() {
 
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
-                <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
+                <a href="/default-route" className="f-navigation-link w-nav-link">{routeObj.label}</a>
               </Link>
             ))}
           </nav>
           <div className="f-navigation-content">
        
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div data-hover="false" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -100,7 +97,7 @@ export default function Navbar() {
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
-                    <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
+                    <a  href="/default-route" className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
                   </Link>
                 ))}
 
@@ -136,6 +133,5 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </>
   )
 }

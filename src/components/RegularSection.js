@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useFile from '../hooks/useFile'; // Importa el hook useFile
 import Loading from './Loading2';
 import ProjectPencil from './projectPencil/ProjectPencil';

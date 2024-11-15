@@ -1,5 +1,4 @@
 import React, { useReducer, useState } from 'react';
-import { Auth } from 'aws-amplify';
 
 const initialState = {
   name: '',
@@ -8,12 +7,10 @@ const initialState = {
 };
 
 const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE_FIELD':
-      return { ...state, [action.field]: action.value };
-    default:
-      return state;
+  if (action.type === 'UPDATE_FIELD') {
+    return { ...state, [action.field]: action.value };
   }
+  return state;
 };
 
 export default function Account() {

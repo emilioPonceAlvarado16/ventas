@@ -13,13 +13,10 @@ const initialState = {
   password: ''
 };
 
-// formReducer con sentencias if en lugar de switch
 const formReducer = (state, action) => {
   if (action.type === 'UPDATE_FIELD') {
     return { ...state, [action.field]: action.value };
   }
-  // Puedes optar por lanzar un error si recibes una acción desconocida
-  // throw new Error(`Unhandled action type: ${action.type}`);
   return state;
 };
 

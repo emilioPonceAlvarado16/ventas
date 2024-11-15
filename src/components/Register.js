@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/useAuth'; // Importar el hook
 import PasswordInput from './PasswordInput';
@@ -14,12 +14,10 @@ const initialState = {
 };
 
 const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE_FIELD':
-      return { ...state, [action.field]: action.value };
-    default:
-      return state;
+  if (action.type === 'UPDATE_FIELD') {
+    return { ...state, [action.field]: action.value };
   }
+  return state;
 };
 
 export default function Registro() {
@@ -207,10 +205,10 @@ const handleSubmit = async function (event) {
             </div>
 
             <div className="f-account-form-button">
-              <a type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
+              <button type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
               {/* <div className=" spin"></div> */}
               {isLoading ? <div className=" spin"></div> : 'Ingresar'}
-              </a>
+              </button>
               </div>
           </form>
 

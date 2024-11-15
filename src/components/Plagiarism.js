@@ -57,7 +57,7 @@ export default function Plagiarism(props) {
                     <div>
                         <p>Plagiarism Report:</p>
                         <div>Original Content: 90% - Plagiarized Content: 10%</div>
-                        <p>Review <a style={{ color: "white", fontWeight: "bold", textDecoration: "underline" }}>Report</a></p>
+                        <p>Review <a href="/default-route" style={{ color: "white", fontWeight: "bold", textDecoration: "underline" }}>Report</a></p>
                         <button style={styles.button} onClick={() => setState('init')}>Detect Again</button>
                         <button style={styles.exitButton} onClick={onClose}>Exit</button>
 
