@@ -22,10 +22,10 @@ export default function Hero() {
               </p>
             </div>
             <div className="f-header-button-wrapper">
-              <a href="#" className="f-button-neutral w-inline-block">
+              <a href="/default-route" className="f-button-neutral w-inline-block">
                 <div>{heroText?.getStarted}</div>
               </a>
-              <a href="#" className="f-button-secondary w-inline-block">
+              <a href="/default-route" className="f-button-secondary w-inline-block">
                 <div>{heroText?.learnMore}</div>
               </a>
             </div>

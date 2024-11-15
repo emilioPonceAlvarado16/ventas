@@ -14,8 +14,8 @@ export default function inicio() {
           </div>
           <p className="a-paragraph-regular">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent gravida tempus viverra. Sed non pretium nibh, in tristique diam. </p>
           <div className="a-header-button-wrapper">
-            <a href="#" className="a-button-primary w-button">Get Started</a>
-            <a href="#" className="a-button-video w-inline-block">
+            <a href="/default-route" className="a-button-primary w-button">Get Started</a>
+            <a href="/default-route" className="a-button-video w-inline-block">
               <div>How it works</div>
               <div className="a-header-play">
                 <div className="a-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none">

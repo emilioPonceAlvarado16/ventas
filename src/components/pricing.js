@@ -81,7 +81,7 @@ export default function pricing() {
 
                     </div>
                     <div className="f-pricing-line"></div>
-                    <a href="#" className="f-button-secondary w-button">{pricingText?.getStarted}</a>
+                    <a href="/default-route" className="f-button-secondary w-button">{pricingText?.getStarted}</a>
                   </div>
                   <div id="w-node-_81719f46-3c4f-d08c-afb5-674cfbbcf4dd-d0d34bca" className="f-pricing-card-dark">
                     <div className="f-margin-bottom-133">
@@ -111,7 +111,7 @@ export default function pricing() {
 
                     </div>
                     <div className="f-pricing-line-dark"></div>
-                    <a href="#" className="f-pricing-button w-button">{pricingText?.getStarted}</a>
+                    <a href="/default-route" className="f-pricing-button w-button">{pricingText?.getStarted}</a>
                   </div>
                 </div>
               </div>

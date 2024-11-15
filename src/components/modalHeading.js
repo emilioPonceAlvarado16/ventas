@@ -57,7 +57,7 @@ export default function modalHeading(props) {
   
     <div className="f-modal-wrapper-right">
 
-    <a href="#" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>
+    <a href="/default-route" onClick={handleConfirmClick} className="f-button-neutral w-button">Confirmar</a>
     </div>
   </div>
   </div>

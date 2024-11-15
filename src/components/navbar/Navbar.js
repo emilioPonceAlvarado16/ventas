@@ -62,7 +62,7 @@ export default function Navbar() {
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
         <div className="f-navigation-container"
         >
-          <button href="#" className="f-navigation-logo-link w-inline-block" style={{ backgroundColor: 'transparent', border: 'none' }}>
+          <button href="/default-route" className="f-navigation-logo-link w-inline-block" style={{ backgroundColor: 'transparent', border: 'none' }}>
             <div style={{
               fontFamily: '"Arial", sans-serif',
               fontSize: '24px',

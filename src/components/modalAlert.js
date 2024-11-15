@@ -17,8 +17,8 @@ export default function modalAlert(props) {
       <div className="f-paragraph-small-5 f-text-color-gray-500">{details}</div>
       <div className="f-alert-line"></div>
       <div className="f-alert-button-wrapper">
-        <a href="#" className="f-alert-button">Accept</a>
-        <a href="#" className="f-alert-secondary">Learn More</a>
+        <a href="/default-route" className="f-alert-button">Accept</a>
+        <a href="/default-route" className="f-alert-secondary">Learn More</a>
       </div>
     </div>
   </div>

@@ -62,16 +62,6 @@ export default function ImageResizeModal(props) {
     updateField(imageObj.id, { scale: newScale });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const newImageUrl = URL.createObjectURL(file);
-      // Aquí puedes manejar la lógica para actualizar la imagen según tus necesidades
-      // Por ejemplo, podrías llamar a una función prop para actualizar la imagen en el estado padre
-      // props.updateImage(newImageUrl);
-    }
-  };
-
   return (
     <dialog
       ref={dialogRef}
@@ -149,7 +139,6 @@ export default function ImageResizeModal(props) {
               id="image-upload"
               type="file"
               accept="image/*"
-              onChange={handleImageChange}
               style={{
                 padding: '5px',
                 width: '100%',

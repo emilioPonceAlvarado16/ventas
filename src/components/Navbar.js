@@ -1,12 +1,9 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
-import { useAuth } from '../../hooks/useAuth';
-import SvgIcons from '../svgIcons';
-import { useLanguage } from '../../hooks/useLanguage';
+import React, { useState, useContext } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import SvgIcons from './svgIcons';
+import { useLanguage } from '../hooks/useLanguage';
 import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
-import styles from "./Navbar.module.css"
-import Avatar from '../avatarName';
-
 
 export default function Navbar() {
 
@@ -16,11 +13,8 @@ export default function Navbar() {
   const navbarTranslations = translations.navbar;
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false); // Nuevo estado para controlar el submenú del Avatar
-
   const { language, changeLanguage } = useLanguage();
-  const dropdownRef = useRef(null)
-  const avatarMenuRef = useRef(null);
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -28,32 +22,6 @@ export default function Navbar() {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setDropdownOpen(false);
-        setAvatarMenuOpen(false); 
-      }
-    };
-
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-      // if (avatarMenuRef.current && !avatarMenuRef.current.contains(event.target)) {
-      //     setAvatarMenuOpen(false); 
-      // }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
   const handleMenuClick = (menuObj) => {
     switch (menuObj?.onClick) {
       case 'Logout':
@@ -73,18 +41,18 @@ export default function Navbar() {
             <div style={{
               fontFamily: '"Arial", sans-serif',
               fontSize: '24px',
-              backgroundColor: '#445566',
+              backgroundColor: '#445566', // Gris azulado suave para el fondo del logo
               padding: '10px',
               borderRadius: '5px',
               boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
             }}>
               <span style={{
-                color: 'white',
+                color: 'white', // Blanco para alto contraste en la primera parte del texto
                 fontWeight: 'bold',
                 fontStyle: 'italic'
               }}>Format</span>
               <span style={{
-                color: '#708090',
+                color: '#708090', // Gris azulado para complementar en la segunda parte del texto
                 fontWeight: 'bold',
                 fontStyle: 'italic'
               }}>Maker</span>
@@ -92,18 +60,18 @@ export default function Navbar() {
           </button>
 
 
-          <nav role="navigation" className={`${styles["f-navigation-menu"]} w-nav-menu`}>
+          <nav role="navigation" className="f-navigation-menu w-nav-menu">
 
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
-                <a className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</a>
+                <a className="f-navigation-link w-nav-link">{routeObj.label}</a>
               </Link>
             ))}
           </nav>
           <div className="f-navigation-content">
-
+       
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div ref={dropdownRef} data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -123,55 +91,43 @@ export default function Navbar() {
               </div>
             </div>
             {/* Menú de navegación responsive */}
-            <div className={styles['w-nav-overlay-visibility']} data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
-              <nav role="navigation" className={`${styles["f-navigation-l"]} "w-nav-menu" ${isNavOpen ? styles['f-navigation-visible'] : styles['f-navigation-hidden']}`}
-
+            <div className="w-nav-overla,y" data-wf-ignore="" id="w-nav-overlay-2" style={{ display: isNavOpen ? 'block' : 'none' }}>
+              <nav role="navigation" className="f-navigation-l w-nav-menu"
+                style={{
+                  transform: `translateY(75px) translateX(0px)`,
+                  transition: 'transform 400ms ease 0s'
+                }}
                 data-nav-menu-open>
                 {navbarTranslations?.routes.map((routeObj, index) => (
                   <Link href={routeObj.route} key={index} legacyBehavior>
-                    <a className={`${styles["f-navigation-link"]} w-nav-link w--nav-link-open`}>{routeObj.label}</a>
+                    <a className="f-navigation-link w-nav-link w--nav-link-open">{routeObj.label}</a>
                   </Link>
                 ))}
 
                 {/* Añade el botón de Login para dispositivos móviles */}
                 {navbarTranslations?.mobileMenu.map((menuObj, index) => (
                   <div key={index}  >
-
+                    
                     <Link href={menuObj.route} legacyBehavior>
                       <a
 
                         onClick={() => handleMenuClick(menuObj)}
 
-                        className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
+                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
                     </Link>
                     <div className={`spin ${isSigningOut ? "" : "d-none"}`}></div>
                   </div>
                 ))}
               </nav>
             </div>
-            <Avatar names="IP" size="small"
-              onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
-
-              className={` bg-white w-inline-block ${isSigningOut ? "button-loading" : ""} ${styles.avatar}`}
+            <a
+              onClick={signOut}
+              className={`f-navigation-button w-nav-menu  w-inline-block ${isSigningOut ? "button-loading" : ""}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
               <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
-            </Avatar>
-            <div className="w-dropdown avatar">
-              <div className={`f-banner-dropdown-list w-dropdown-list ${avatarMenuOpen ? 'w--open' : ''}`}>
-                {/* Submenú del Avatar */}
-                {avatarMenuOpen && (
-                  <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{ color: "white" }}>
-                    {navbarTranslations?.avatarMenu.map((item, index) => (
-                      <div key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
-                        {item.label}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
+            </a>
+            
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">
 

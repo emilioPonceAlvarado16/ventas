@@ -106,13 +106,13 @@ export default function Account() {
           </div>
           <p className="f-paragraph-regular">Inicia sesión con redes sociales</p>
           <div className="f-account-social-wrapper">
-            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Facebook">
+            <a href="/default-route" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Facebook">
               <SvgIcons type="facebook" />
             </a>
-            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Instagram">
+            <a href="/default-route" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Instagram">
               <SvgIcons type="instagram" />
             </a>
-            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Twitter">
+            <a href="/default-route" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Twitter">
               <SvgIcons type="twitter" />
             </a>
           </div>
