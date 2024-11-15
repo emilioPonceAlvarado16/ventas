@@ -5719,7 +5719,7 @@ template-item img {
   margin: 0 1px;
 }
 
-.page-item a {
+.page-item button {
   border: 1px solid #FFC107; /* Borde amarillo */
   padding: 8px 12px;
   padding: 2.5px 10px;
@@ -5730,7 +5730,7 @@ template-item img {
   transition: color 0.3s, background-color 0.3s; /* Transición suave */
 }
 
-.page-item a:hover, .page-item.active a {
+.page-item button:hover, .page-item.active button {
   color: #001c33; /* Color de fondo principal para contraste */
   background-color: #FFC107; /* Fondo amarillo */
 }

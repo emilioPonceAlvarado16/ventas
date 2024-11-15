@@ -63,23 +63,23 @@ const TextEditor = (props) => {
               {/* Botón para ir a la página anterior */}
               {props.currentPage > 1 && (
                 <li className='page-item'>
-                  <a onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</a>
+                  <button onClick={() => props.paginate(props.currentPage - 1)} className='page-link'>&laquo;</button>
                 </li>
               )}
     
               {/* Números de página */}
               {pageNumbers.map(number => (
                 <li key={number} className={`page-item ${props.currentPage === number ? 'active' : ''} ${number > totalPages ? 'disabled' : ''}`}>
-                  <a onClick={() => props.paginate(number)} className='page-link'>
+                  <button onClick={() => props.paginate(number)} className='page-link'>
                     {number}
-                  </a>
+                  </button>
                 </li>
               ))}
     
               {/* Botón para ir a la página siguiente */}
               {props.currentPage < totalPages && (
                 <li className='page-item'>
-                  <a onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</a>
+                  <button onClick={() => props.paginate(props.currentPage + 1)} className='page-link'>&raquo;</button>
                 </li>
               )}
             </ul>

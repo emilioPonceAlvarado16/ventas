@@ -48,14 +48,11 @@ export default function Navbar() {
   }, []);
 
   const handleMenuClick = (menuObj) => {
-    switch (menuObj?.onClick) {
-      case 'Logout':
-        signOut();
-        break;
-      default:
-        break;
+    if (menuObj?.onClick === 'Logout') {
+      signOut();
     }
   };
+  
 
   return (
     <>
@@ -89,7 +86,7 @@ export default function Navbar() {
 
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
-                <a className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</a>
+                <button className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</button>
               </Link>
             ))}
           </nav>
@@ -131,24 +128,24 @@ export default function Navbar() {
                   <div key={index}  >
                     
                     <Link href={menuObj.route} legacyBehavior>
-                      <a
+                      <button
 
                         onClick={() => handleMenuClick(menuObj)}
 
-                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</a>
+                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</button>
                     </Link>
                     <div className={`spin ${isSigningOut ? "" : "d-none"}`}></div>
                   </div>
                 ))}
               </nav>
             </div>
-            <a
+            <button
               onClick={signOut}
               className={`f-navigation-button w-nav-menu  w-inline-block ${isSigningOut ? "button-loading" : ""}`}
             >
               <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
               <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
-            </a>
+            </button>
             
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">

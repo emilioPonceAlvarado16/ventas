@@ -25,7 +25,6 @@ export default function CustomTable({ dataTable }) {
   }), [dataTable]);
 
   const {
-    getTableProps,
     headerGroups,
     rows,
     setGlobalFilter,

@@ -55,14 +55,11 @@ export default function Navbar() {
   }, []);
 
   const handleMenuClick = (menuObj) => {
-    switch (menuObj?.onClick) {
-      case 'Logout':
-        signOut();
-        break;
-      default:
-        break;
+    if (menuObj?.onClick === 'Logout') {
+      signOut();
     }
   };
+  
 
   return (
     <>
@@ -96,14 +93,14 @@ export default function Navbar() {
 
             {navbarTranslations?.routes.map((routeObj, index) => (
               <Link href={routeObj.route} key={index} legacyBehavior>
-                <a className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</a>
+                <button className={`${styles["f-navigation-link"]} w-nav-link`}>{routeObj.label}</button>
               </Link>
             ))}
           </nav>
           <div className="f-navigation-content">
 
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div ref={dropdownRef} data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div ref={dropdownRef} data-hover="false" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

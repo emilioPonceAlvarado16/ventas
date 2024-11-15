@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Alerts from './alerts';
-import ResetPassword from './resetPassword';
+import ResetPassword from './ResetPassword';
 export default function ForgotPassword({ forgotPassword, forgotPasswordError }) {
   const [email, setEmail] = useState('');
   const [showRecovery, setShowRecovery] = useState(false)

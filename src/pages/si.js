@@ -7,7 +7,7 @@ import Hero from '@/components/hero/Hero'
 import Navbar from '@/components/navbar/Navbar'
 import Pricing from '@/components/pricing'
 import React from 'react'
-import Features from "@/components/features"
+import Features from "@/components/Features"
 import Footer from '@/components/Footer'
 // import Features from "@/components/features_new"
 

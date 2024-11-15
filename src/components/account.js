@@ -16,11 +16,10 @@ const formReducer = (state, action) => {
 export default function Account() {
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const handleSubmit = async function (event) {
     event.preventDefault();
-    setisLoading(true);
-    setisLoading(false)
+    setIsLoading(false)
   };
 
   const handleFieldChange = (event) => {
@@ -121,10 +120,10 @@ export default function Account() {
               </label>
             </div>
             <div className="f-account-form-button">
-              <a type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
+              <button type="submit" onClick={handleSubmit} className="f-button-neutral w-button">
               {/* <div className=" spin"></div> */}
               {isLoading ? <div className=" spin"></div> : 'Ingresar'}
-              </a>
+              </button>
               </div>
           </form>
           <div className="f-success-message w-form-done">

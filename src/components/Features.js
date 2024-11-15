@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
 
-export default function features() {
+export default function Features() {
   const {  translations } = useContext(LanguageContext);
   const features=translations.featuresSection;
   return (

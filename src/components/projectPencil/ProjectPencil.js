@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './ProjectPencil.module.css';
 import SvgIcons from '../svgIcons';
 

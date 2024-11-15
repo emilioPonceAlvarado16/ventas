@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import SvgIcons from './svgIcons';
 import { LanguageContext } from '@/contexts/LanguageContext';
 
-export default function pricing() {
+export default function Pricing() {
   const {  translations } = useContext(LanguageContext);
 
 
@@ -28,7 +28,6 @@ export default function pricing() {
     setCurrentTab(tab);
   };
   return (
-    <>
       <div className="f-section-large">
         <div className="f-container-small">
           <div className="f-margin-bottom-56">
@@ -41,20 +40,20 @@ export default function pricing() {
           </div>
           <div data-duration-in="300" data-duration-out="100" data-current="Tab 1" data-easing="ease" className="f-pricing-tab w-tabs">
             <div className="f-pricing-toggle-menu w-tab-menu">
-              <a
+              <button
                 data-w-tab="Tab 1"
                 className={`f-pricing-button-toggle w-inline-block w-tab-link ${currentTab === 'monthly' ? 'w--current' : ''}`}
                 onClick={() => changeTab('monthly')}
               >
                 <div>{pricingText?.monthly}</div>
-              </a>
-              <a
+              </button>
+              <button
                 data-w-tab="Tab 2"
                 className={`f-pricing-button-toggle w-inline-block w-tab-link ${currentTab === 'yearly' ? 'w--current' : ''}`}
                 onClick={() => changeTab('yearly')}
               >
                 <div>{pricingText?.yearly}</div>
-              </a>
+              </button>
             </div>
             <div className="w-tab-content">
               <div data-w-tab="Tab 1" className="f-pricing-tab-pane w-tab-pane w--tab-active">
@@ -120,6 +119,5 @@ export default function pricing() {
           </div>
         </div>
       </div>
-    </>
   )
 }

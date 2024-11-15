@@ -2,7 +2,6 @@
   
   .f-navigation-link {
     color: #ffffff; /* Blanco para mayor contraste */
-    transition: background-color .35s, color .35s; /* Transición suave para efectos hover */
     letter-spacing: -.01em;
     white-space: nowrap;
     background-color: var(--landing-background); /* Fondo del menú */
@@ -41,14 +40,6 @@
 
 
   @media screen and (max-width: 991px) {
-    .f-navigation-l {
-        width: 100%;
-        color: white;
-        border: 1px solid #f3f5fb;
-        border-radius: 8px;
-        padding: 12px;
-      }
-    
       .w-nav[data-collapse="medium"] .w-nav-button {
         display: block;
       }
@@ -66,11 +57,9 @@
       }
     
       .f-navigation-menu.w--open {
-        /* background-color: #282556; */
         border-color: var(--white);
       }
     
-  
       .f-navigation-l {
         width: 100%;
         color: white;

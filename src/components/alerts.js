@@ -5,9 +5,18 @@ export default function Alerts(props) {
     const classSelected = `f-alert-${props.type}`;
     const messageSelected = props.message || "Alert placeholder";
     const closeIcon = props.close || false;
-    // const isAbove =props.above ? "f-alert-small-above": "f-alert-small"
-    const isAbove = props.above ? (props.type === 'warning' ? "f-alert-regular-above" : "f-alert-small-above") : "f-alert-small";
-    // const isAbove =props.above ? "f-alert-regular-above": "f-alert-small"
+    let isAbove;
+
+    if (props.above) {
+      if (props.type === 'warning') {
+        isAbove = "f-alert-regular-above";
+      } else {
+        isAbove = "f-alert-small-above";
+      }
+    } else {
+      isAbove = "f-alert-small";
+    }
+    
     const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {

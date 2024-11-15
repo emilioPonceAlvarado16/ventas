@@ -382,7 +382,6 @@ const useFields = (initialFields = []) => {
   };
 
   const removeField = (index) => {
-    const fieldToRemove = fields[index];
     dispatch({ type: REMOVE_FIELD, payload: index });
   };
 

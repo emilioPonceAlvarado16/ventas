@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function Features() {
   return (
-    <>
       <div className="f-section-large">
         <div className="f-container-regular">
 
@@ -32,6 +31,5 @@ export default function Features() {
           </div>
         </div>
       </div>
-    </>
   )
 }
