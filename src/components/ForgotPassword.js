@@ -3,20 +3,20 @@ import Alerts from './alerts';
 import ResetPassword from './resetPassword';
 export default function ForgotPassword({ forgotPassword, forgotPasswordError }) {
   const [email, setEmail] = useState('');
-  const [showRecovery, setshowRecovery] = useState(false)
-  const [loading, setloading] = useState(false)
+  const [showRecovery, setShowRecovery] = useState(false)
+  const [loading, setLoading] = useState(false)
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setloading(true)
+    setLoading(true)
     const wasSuccessful =await forgotPassword(email);
     if (wasSuccessful){
-      setshowRecovery(true)
+      setShowRecovery(true)
     }else{
-      setshowRecovery(false)
+      setShowRecovery(false)
     }
-    setloading(false)
+    setLoading(false)
   };
 
   return (

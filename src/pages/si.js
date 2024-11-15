@@ -8,7 +8,7 @@ import Navbar from '@/components/navbar/Navbar'
 import Pricing from '@/components/pricing'
 import React from 'react'
 import Features from "@/components/features"
-import Footer from '@/components/footer'
+import Footer from '@/components/Footer'
 // import Features from "@/components/features_new"
 
 // import TemplateConfig from '@/components/TemplateConfigBorrar'
@@ -20,13 +20,13 @@ export default function si() {
     <RequireAuth> 
     <Navbar/>
     </RequireAuth>
+    <Features/>
     {/* 
 
 
     {/* 
     
     <Footer/>
-    <Features/>
     <Hero/> */}
     {/* <MouseEffect/>  */}
     {/* <Pricing /> */}

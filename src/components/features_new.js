@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function features_new() {
+export default function Features() {
   return (
     <>
       <div className="f-section-large">

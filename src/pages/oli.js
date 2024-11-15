@@ -11,7 +11,7 @@ import Plagiarism from "@/components/Plagiarism";
 import App from "@/components/App";
 import { compileBlocksToPdf } from "@/services/CompileService";
 import Loading from "@/components/Loading2";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 import Alerts from "@/components/alerts";
 
 export default function oli() {

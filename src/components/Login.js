@@ -1,35 +1,36 @@
+// src/components/Login.js
+
 import React, { useReducer, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import Alerts from "@/components/alerts"
+import Alerts from "@/components/alerts";
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading';
 import SvgIcons from './svgIcons';
 
-
 const initialState = {
-  name: '',
   email: '',
   password: ''
 };
 
+// formReducer con sentencias if en lugar de switch
 const formReducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE_FIELD':
-      return { ...state, [action.field]: action.value };
-    default:
-      return state;
+  if (action.type === 'UPDATE_FIELD') {
+    return { ...state, [action.field]: action.value };
   }
+  // Puedes optar por lanzar un error si recibes una acción desconocida
+  // throw new Error(`Unhandled action type: ${action.type}`);
+  return state;
 };
 
 export default function Account() {
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const { signIn, isLoading, signInError, setSignInError, confirmationError, resendConfirmationCode, confirmSignUp } = useAuth(); // Extraer signIn e isLoading desde el hook useAuth
+  const { signIn, isLoading, signInError, setSignInError, confirmationError, resendConfirmationCode, confirmSignUp } = useAuth();
   const [hasStartedTyping, setHasStartedTyping] = useState(false);
 
-  const [showModal, setShowModal] = useState(false); // Estado para mostrar el modal
-  const [showConfirmed, setshowConfirmed] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [showConfirmed, setShowConfirmed] = useState(false);
 
   const handleSubmit = async function (event) {
     event.preventDefault();
@@ -62,34 +63,31 @@ export default function Account() {
     return regex.test(email);
   };
 
-
   const handleConfirmation = async (code) => {
-    const wasSuccessful = await confirmSignUp(state.email, code);  // Confirmamos el registro con el código
+    const wasSuccessful = await confirmSignUp(state.email, code);
 
     if (wasSuccessful) {
       setShowModal(false);
-      setshowConfirmed(true); // Mostrar la alerta de bienvenida
+      setShowConfirmed(true);
       setTimeout(() => {
-        setSignInError()// Redirige al usuario a "/home"
+        setSignInError(); // Redirige al usuario a "/home"
       }, 2000);
     } else {
       setShowModal(true);
-      setshowConfirmed(false);
+      setShowConfirmed(false);
     }
   };
 
   const handleResendCode = async () => {
     try {
       await resendConfirmationCode(state.email);
-      setShowModal(true)
+      setShowModal(true);
       // Mostrar un mensaje de que el código se reenvió exitosamente si es necesario.
     } catch (error) {
-      setShowModal(false)
+      setShowModal(false);
       // Manejo del error al reenviar el código.
     }
   };
-
-
 
   return (
     <div className="f-account-section">
@@ -108,15 +106,13 @@ export default function Account() {
           </div>
           <p className="f-paragraph-regular">Inicia sesión con redes sociales</p>
           <div className="f-account-social-wrapper">
-            <a href="#" className="f-account-social-icon w-inline-block">
+            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Facebook">
               <SvgIcons type="facebook" />
             </a>
-            <a href="#" className="f-account-social-icon w-inline-block">
+            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Instagram">
               <SvgIcons type="instagram" />
-
             </a>
-            <a href="#" className="f-account-social-icon w-inline-block">
-
+            <a href="#" className="f-account-social-icon w-inline-block" aria-label="Iniciar sesión con Twitter">
               <SvgIcons type="twitter" />
             </a>
           </div>
@@ -124,12 +120,20 @@ export default function Account() {
             <p className="f-paragraph-small-5 f-text-color-gray-500">O usa tu correo :</p>
           </div>
           <div className="f-account-form-block w-form">
-            <form id="wf-form-Sign-Up-Form" name="wf-form-Sign-Up-Form" data-name="Sign Up Form" data-wf-page-id="64c27d1872143fc4d0d34bca" data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0">
+            <form
+              id="wf-form-Sign-Up-Form"
+              name="wf-form-Sign-Up-Form"
+              data-name="Sign Up Form"
+              data-wf-page-id="64c27d1872143fc4d0d34bca"
+              data-wf-element-id="93df8944-7819-2d4d-bbe7-1a68d6877ee0"
+              onSubmit={handleSubmit} // Añadido manejo de submit
+            >
               <div className="w-layout-grid f-account-input-grid">
 
                 <div className="f-field-wrapper">
-                  <div className="f-field-label">Email</div>
+                  <label htmlFor="email-input" className="f-field-label">Email</label>
                   <input
+                    id="email-input"
                     type="email"
                     className="f-field-input w-input"
                     name="email"
@@ -138,63 +142,72 @@ export default function Account() {
                     onChange={handleFieldChange}
                     onKeyDown={handleKeyDown}
                     style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
-                    required={true}
-
+                    required
                   />
                 </div>
-                <div className="f-field-label">Password</div>
-                <PasswordInput
-                  name="password"
-                  placeholder="Enter a password..."
-                  value={state.password}
-                  onChange={handleFieldChange}
-                  onKeyDown={handleKeyDown}
-                  style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
-                  required={true}
 
+                <div className="f-field-wrapper">
+                  <label htmlFor="password-input" className="f-field-label">Password</label>
+                  <PasswordInput
+                    id="password-input"
+                    name="password"
+                    placeholder="Enter a password..."
+                    value={state.password}
+                    onChange={handleFieldChange}
+                    onKeyDown={handleKeyDown}
+                    style={signInError && !hasStartedTyping ? { borderColor: "#f93" } : {}}
+                    required
+                  />
+                </div>
 
-                />
               </div>
-              {signInError && !hasStartedTyping ? <Alerts type="warning" message={`${signInError}`} /> : <></>}
+              {signInError && !hasStartedTyping && <Alerts type="warning" message={`${signInError}`} />}
 
-              {
-                signInError === "User is not confirmed." ? (
-                  <p className="f-paragraph-small-5">
-                    Generar
-                    <span
-                      onClick={handleResendCode}
-                      className="f-account-link"
-                      style={{ cursor: 'pointer' }}  // Esto es para que el cursor cambie a "mano" al pasar sobre el texto.
-                    >
-                      Código de verificación.
-                    </span>
-                  </p>
-                ) : <></>
-              }
-
+              {signInError === "User is not confirmed." && (
+                <p className="f-paragraph-small-5">
+                  Generar{' '}
+                  <span
+                    onClick={handleResendCode}
+                    className="f-account-link"
+                    style={{ cursor: 'pointer' }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') handleResendCode(); }}
+                    aria-label="Reenviar código de verificación"
+                  >
+                    Código de verificación.
+                  </span>
+                </p>
+              )}
 
               <div className="f-account-form-button">
-                <a
-                  onClick={handleSubmit}
+                <button
+                  type="submit"
                   className={`f-button-neutral w-button ${isLoading ? "button-loading" : ""}`}
+                  disabled={isLoading}
+                  aria-busy={isLoading}
                 >
-                  {isLoading ? <div className="spin"></div> : 'Ingresar'}
-                </a>
-
-
+                  {isLoading ? <div className="spin" aria-label="Cargando"></div> : 'Ingresar'}
+                </button>
               </div>
 
             </form>
           </div>
-          <p className="f-paragraph-small-5">Eres nuevo?
-            <Link href="/register" className="f-account-link"> Registrate.</Link>
-
+          <p className="f-paragraph-small-5">
+            Eres nuevo?
+            <Link href="/register" className="f-account-link">
+              Registrate.
+            </Link>
           </p>
-          <Link href="/forgot-password" className="f-account-link">Olvidaste tu contraseña?</Link>
+          <Link href="/forgot-password" className="f-account-link">
+            Olvidaste tu contraseña?
+          </Link>
 
         </div>
       </div>
-      <div className="f-account-image-wrapper"><img src="images/formatmaker_photo.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="" className="f-image-cover" /></div>
+      <div className="f-account-image-wrapper">
+        <img src="images/formatmaker_photo.png" loading="lazy" sizes="(max-width: 767px) 100vw, 45vw" alt="Imagen ilustrativa" className="f-image-cover" />
+      </div>
       {showModal && (
         <ModalHeading
           type="success"
@@ -205,9 +218,8 @@ export default function Account() {
           canResend={false}
           confirmationError={confirmationError}
           hasIcon={false}
-
         />
       )}
     </div>
-  )
+  );
 }

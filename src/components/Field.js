@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SvgIcons from "./svgIcons";
 
-
 const Field = React.forwardRef((props, ref) => {
 
   const {
@@ -22,6 +21,7 @@ const Field = React.forwardRef((props, ref) => {
   } = props;
 
   const [isHighlighted, setIsHighlighted] = useState(shouldHighlight);
+  
   useEffect(() => {
     setIsHighlighted(shouldHighlight);
 
@@ -45,10 +45,12 @@ const Field = React.forwardRef((props, ref) => {
       updateField(index, { type: newType });
     }
   };
+
   const handleShowImage = () => {
     setIsImageModalOpen(true);
     setImageSelected(imageObj);
   }
+
   const pRef = React.useRef(null); // Añadir un ref para el elemento <p>
 
   const handleChange = (event) => {
@@ -69,7 +71,6 @@ const Field = React.forwardRef((props, ref) => {
 
       if (pRef.current.childNodes[0]) {
         nodeToSet = pRef.current.childNodes[0];
-
         positionToSet = Math.min(cursorPosition, nodeToSet.length);
       }
 
@@ -94,10 +95,23 @@ const Field = React.forwardRef((props, ref) => {
     subseccion: 'palevioletred',
     text: 'olivedrab',
     titulo: 'sandybrown',
-    im: 'steelblue' // Nueva etiqueta y color añadidos
+    im: 'steelblue' 
   };
 
+  // Función para manejar el clic, reemplaza el uso de ternario
+  const handleClick = () => {
+    if (type === "im") {
+      handleShowImage();
+    }
+  };
 
+  // Función para manejar eventos de teclado para accesibilidad
+  const handleKeyDown = (event) => {
+    if (type === "im" && (event.key === 'Enter' || event.key === ' ')) {
+      handleShowImage();
+      event.preventDefault();
+    }
+  };
 
   return (
     <div
@@ -110,17 +124,23 @@ const Field = React.forwardRef((props, ref) => {
       <p
         ref={pRef}
 
-        contentEditable={type === "im" ? false : true}
+        // Simplificación de la expresión booleana
+        contentEditable={type !== "im"}
         suppressContentEditableWarning={true}
 
         onInput={handleChange}
         style={{
-          cursor: 'pointer',
+          // Cambiar el cursor solo si es interactivo
+          cursor: type === "im" ? 'pointer' : 'text',
           minHeight: size || "3vh"
-
         }}
-        // value={value}
-        onClick={() => { type === "im" ? handleShowImage() : null }}
+        // Reemplazo del ternario por una función
+        onClick={handleClick}
+        
+        // Añadir atributos de accesibilidad si es interactivo
+        role={type === "im" ? "button" : undefined}
+        tabIndex={type === "im" ? 0 : undefined}
+        onKeyDown={type === "im" ? handleKeyDown : undefined}
       >
         {value}
       </p>
@@ -151,15 +171,11 @@ const Field = React.forwardRef((props, ref) => {
               }
             </select>
             <SvgIcons type="settings" />
-          
           </>
-
         }
-  #{id}
+        #{id}
       </div>
-
     </div>
-
   );
 });
 

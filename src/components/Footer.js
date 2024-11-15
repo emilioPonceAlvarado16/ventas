@@ -4,7 +4,7 @@ import { LanguageContext } from '@/contexts/LanguageContext';
 
 
 
-export default function footer() {
+export default function Footer() {
   const {  translations } = useContext(LanguageContext);
 
   return (

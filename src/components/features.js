@@ -7,7 +7,6 @@ export default function features() {
   const {  translations } = useContext(LanguageContext);
   const features=translations.featuresSection;
   return (
-    <>
     <div className="f-section-large">
     <div className="f-container-regular">
       <div className="f-margin-bottom-128">
@@ -36,6 +35,5 @@ export default function features() {
           </div>
     </div>
   </div>
-    </>
   )
 }

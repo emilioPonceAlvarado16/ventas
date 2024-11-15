@@ -1,5 +1,4 @@
 import React from 'react'
-import PasswordInput from './PasswordInput'
 import SvgIcons from './svgIcons'
 import Alerts from './alerts';
 

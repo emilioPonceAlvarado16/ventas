@@ -49,7 +49,7 @@ function Loading2({ message, error, setError, isLoading }) {
                     </>
                 )}
             </div>
-            <style jsx>{`
+            <style>{`
                 .loading-container {
                     position: fixed;
                     top: 0;
