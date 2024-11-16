@@ -62,7 +62,6 @@ export default function Navbar() {
   
 
   return (
-    <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
         <div className="f-navigation-container"
         >
@@ -177,6 +176,5 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </>
   )
 }

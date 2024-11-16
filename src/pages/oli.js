@@ -262,7 +262,6 @@ export default function Oli() {
           </>
         )}
         {carouselPosition === 1 && (
-          <>
             <div style={{ flex: 4, width: "50vw" }}>
               <div
                 style={{
@@ -279,7 +278,6 @@ export default function Oli() {
                 />
               </div>
             </div>
-          </>
         )}
       </div>
 

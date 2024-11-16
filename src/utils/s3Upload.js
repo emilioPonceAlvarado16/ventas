@@ -1,4 +1,4 @@
-import { Auth, Amplify, Storage } from 'aws-amplify';
+import { Storage } from 'aws-amplify';
 
 export const configureDynamicBucket = (userId) => {
   Storage.configure({

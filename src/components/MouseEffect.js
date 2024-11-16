@@ -1,9 +1,10 @@
 // src/components/MouseEffect.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 // Definir un contador fuera del componente para mantener el estado entre renderizados
 let particleId = 0;
 
+// Función para crear una nueva partícula
 const createParticle = (x, y) => ({
   id: particleId++, // Asignar un id único
   x, 
@@ -13,29 +14,40 @@ const createParticle = (x, y) => ({
   color: Math.random() < 0.5 ? 'rgba(255, 223, 0, ALPHA)' : 'rgba(0, 0, 139, ALPHA)' // Color amarillo o azul oscuro
 });
 
+// Función para actualizar cada partícula
+const decreaseAlphaAndMove = (particle) => ({
+  ...particle,
+  alpha: particle.alpha - 0.02,
+  y: particle.y - 1,
+});
+
+// Función para filtrar partículas visibles
+const isVisible = (particle) => particle.alpha > 0;
+
 const MouseEffect = () => {
   const [particles, setParticles] = useState([]);
+  const lastTimeRef = useRef(Date.now());
+
+  // Memorizar la función updateParticles
+  const updateParticles = useCallback(() => {
+    setParticles((currentParticles) => 
+      currentParticles
+        .map(decreaseAlphaAndMove)
+        .filter(isVisible)
+    );
+  }, []);
+
+  // Memorizar la función moveHandler
+  const moveHandler = useCallback((e) => {
+    const now = Date.now();
+    if (now - lastTimeRef.current > 100) { // Controla la frecuencia de generación de partículas
+      const newParticle = createParticle(e.clientX, e.clientY);
+      setParticles(prev => [newParticle, ...prev]);
+      lastTimeRef.current = now;
+    }
+  }, []);
 
   useEffect(() => {
-    const updateParticles = () => {
-      setParticles((particles) =>
-        particles
-          .map(p => ({ ...p, alpha: p.alpha - 0.02, y: p.y - 1 }))
-          .filter(p => p.alpha > 0)
-      );
-    };
-
-    let lastTime = Date.now();
-
-    const moveHandler = (e) => {
-      const now = Date.now();
-      if (now - lastTime > 100) { // Controla la frecuencia de generación de partículas
-        const newParticle = createParticle(e.clientX, e.clientY);
-        setParticles(prev => [newParticle, ...prev]);
-        lastTime = now;
-      }
-    };
-
     window.addEventListener('mousemove', moveHandler);
     const interval = setInterval(updateParticles, 50);
 
@@ -43,7 +55,7 @@ const MouseEffect = () => {
       window.removeEventListener('mousemove', moveHandler);
       clearInterval(interval);
     };
-  }, []);
+  }, [moveHandler, updateParticles]); // Añadir dependencias
 
   return (
     <>

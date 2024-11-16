@@ -55,7 +55,6 @@ export default function Navbar() {
   
 
   return (
-    <>
       <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" className="f-navigation w-nav">
         <div className="f-navigation-container"
         >
@@ -93,7 +92,7 @@ export default function Navbar() {
           <div className="f-navigation-content">
        
             <SvgIcons type="international" onClick={toggleDropdown} />
-            <div ref={dropdownRef} data-hover="false" dataCollapse="all" onClick={toggleDropdown} className="w-dropdown">
+            <div ref={dropdownRef} data-hover="false" onClick={toggleDropdown} className="w-dropdown">
               <div className="f-banner-dropdown-toggle w-dropdown-toggle">
                 <div className="f-banner-caption">{language}</div>
                 <div className="f-icon-small w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -155,6 +154,5 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </>
   )
 }

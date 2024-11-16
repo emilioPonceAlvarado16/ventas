@@ -12,18 +12,13 @@ const templates = [
 ];
 const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
     const modalRef = useRef();
-    const [status, setStatus] = useState('entering');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
-        const timer = setTimeout(() => setStatus('entered'), 0);
-        return () => clearTimeout(timer);
-    }, []);
+
 
     const handleOutsideClick = (e) => {
         if (modalRef.current && !modalRef.current.contains(e.target) && onClose) {
-            setStatus('exiting');
             setTimeout(() => onClose(), 80);
         }
     };
@@ -35,7 +30,6 @@ const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') {
-                setStatus('exiting');
                 setTimeout(() => onClose(), 150);
             } else if (e.key === 'Tab') {
                 e.preventDefault();
@@ -55,7 +49,6 @@ const Modal = ({ onClose, selectedTemplate, setSelectedTemplate }) => {
             }
             else if (e.key === 'Enter' && selectedTemplate) {
                 e.preventDefault(); 
-                setStatus('exiting');
                 setTimeout(() => onClose(), 80);
             }
         };

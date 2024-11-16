@@ -2,7 +2,6 @@
   --neutral-primario: #160042;
   --primary-dark: #2D0896;
   --neutral-light: #F3F5FB;
-  /* Para el las lineas de los */
   --white: #fff;
   --landing-navbar: #001c33;
   --card-color:#f7f9fd;
@@ -24,9 +23,7 @@ html {
   /* 2 */
 }
 
-/**
- * Remove default margin.
- */
+
 body {
   margin: 0;
 
@@ -745,7 +742,6 @@ button,
 }
 
 label {
-  /* display: block; */
   margin-bottom: 5px;
   margin-left: 10px;
   margin-top: 10px;
@@ -1765,7 +1761,6 @@ textarea.w-select {
 @media (min-width: 768px) {
   .treeview-animated {
     width: 19;
-    /* Toma el 50% del ancho en pantallas más grandes */
   }
 
   .w-lightbox-content {
@@ -1780,7 +1775,6 @@ textarea.w-select {
     height: 96vh;
   }
 
-  /* .w-lightbox-content */
   .w-lightbox-group,
   .w-lightbox-group .w-lightbox-view,
   .w-lightbox-group .w-lightbox-view:before {
@@ -2257,7 +2251,6 @@ textarea.w-select {
   max-width: 520px;
   grid-column-gap: 16px;
   color: #f93;
-  /* background-color: var(--white); */
   background-color:#2c2c2c;
   border-radius: 8px;
   justify-content: space-between;
@@ -2267,26 +2260,19 @@ textarea.w-select {
   box-shadow: 28px 28px 40px -28px rgba(57, 59, 106, .12);
   position: absolute;
   top: 10px;
-  /* Darle un poco de espacio desde la parte superior */
   right: 10px;
-  /* Darle un poco de espacio desde la derecha */
   z-index: 1000;
-  /* Un alto z-index para asegurarse de que esté encima de otros elementos */
-
-  /* transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out; */
   transform: translateX(0);
 
 }
 /* Aplica el desplazamiento y desvanecimiento a f-alert-regular-above */
 .f-alert-regular-above.dismissed {
-  transform: translateX(100%); /* Desplaza el elemento a la derecha */
-  opacity: 0; /* Desvanece el elemento */
+  transform: translateX(100%); 
+  opacity: 0; 
 }
 .f-alert-small-above.dismissed {
   transform: translateX(100%);
-  /* Desplaza el elemento a la derecha */
   opacity: 0;
-  /* Desvanece el elemento */
 }
 
 
@@ -2695,8 +2681,6 @@ textarea.w-select {
 }
 
 .f-alert-line {
-  /* height: 1px; */
-  /* background-color: #f3f5fb; */
   margin-top: 16px;
   margin-bottom: 16px;
   border-top: 2px solid #000;
@@ -2861,7 +2845,6 @@ textarea.w-select {
 }
 
 .f-h1-heading {
-  /* color: var(--neutral-primario); */
   letter-spacing: -.04em;
   margin-top: 0;
   margin-bottom: 0;
@@ -3159,7 +3142,6 @@ textarea.w-select {
 }
 
 .f-sub-heading-large {
-  /* color: var(--neutral-primario); */
   letter-spacing: -.02em;
   font-size: 24px;
   font-weight: 700;
@@ -3189,7 +3171,6 @@ textarea.w-select {
 }
 
 .f-h3-heading {
-  /* color: var(--neutral-primario); */
   letter-spacing: -.02em;
   margin-top: 0;
   margin-bottom: 0;
@@ -3232,7 +3213,6 @@ textarea.w-select {
   display: flex;
   position: relative;
   white-space: nowrap;
-  /* This ensures all words are on the same line */
 }
 
 .f-margin-bottom-128 {
@@ -4458,9 +4438,7 @@ textarea.w-select {
   font-weight: 700;
   line-height: 1.5;
   margin-bottom: 16px;
-  /* Añadir margen para dar espacio entre título y descripción */
   text-align: center;
-  /* Centrar texto dentro de su contenedor */
 }
 
 .f-margin-bottom-143 {
@@ -4613,18 +4591,14 @@ textarea.w-select {
 
 .f-modal-base-small {
   display: flex;
-  /* convierte esto en un contenedor flex */
   width: 50%;
   max-width: 500px;
   color: var(--neutral-primario);
   background-color: var(--white);
   border-radius: 16px;
   flex-direction: column;
-  /* los elementos hijos se apilarán verticalmente */
   justify-content: center;
-  /* centra los hijos verticalmente */
   align-items: center;
-  /* centra los hijos horizontalmente */
   padding: 24px;
   box-shadow: 105px 105px 144px -32px rgba(27, 9, 67, .04);
   text-align: center;
@@ -4682,9 +4656,7 @@ textarea.w-select {
   align-items: center;
   display: flex;
   width: 100%;
-  /* Ocupa todo el ancho disponible */
   justify-content: center;
-  /* centra los hijos horizontalmente */
 }
 
 .f-modal-base-wide {
@@ -4694,7 +4666,6 @@ textarea.w-select {
   border-radius: 16px;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: center; */
   align-items: flex-start;
   padding: 24px;
   display: block;
@@ -4765,7 +4736,6 @@ textarea.w-select {
   }
 
   .f-navigation-menu.w--open {
-    /* background-color: #282556; */
     border-color: var(--white);
   }
 
@@ -4856,15 +4826,13 @@ textarea.w-select {
 
 @media screen and (max-width: 767px) {
   .w--nav-link-open {
-    display: block; /* Asegúrate de que los enlaces sean visibles */
+    display: block; 
   }
   .f-navigation-l.w-nav-menu {
-    /* transform: translateX(0); Ajusta para que el menú aparezca */
     transition: transform 0.4s ease;
     position: absolute;
     left: 0;
-    width: 100%; /* O el ancho que prefieras */
-    /* z-index: 15;  */
+    width: 100%;
   }
   .f-banner-badge {
     margin-bottom: 4px;
@@ -5109,79 +5077,52 @@ textarea.w-select {
 .password-container {
   position: relative;
   width: 100%;
-  /* ensure it takes the full width of its parent */
 }
 
 .password-input {
   width: 100%;
-  /* ensure it takes the full width of its container */
   box-sizing: border-box;
-  /* to include padding and border in width */
   padding-right: 40px;
-  /* space for the icon inside the input */
 }
 
 .icon-container {
   position: absolute;
   top: 50%;
-  /* center vertically */
   right: 12px;
-  /* adjust as needed for your design */
   transform: translateY(-50%);
-  /* vertical centering trick */
   cursor: pointer;
-  /* indicate it's clickable */
   z-index: 10;
-  /* place it above the input field */
 
 }
 
 .f-field-input-code {
   width: 60%;
-  /* Limitar el ancho para códigos cortos */
   padding: 12px 16px;
-  /* Padding para comodidad */
   font-size: 16px;
-  /* Tamaño de fuente legible */
   text-align: center;
-  /* Centrar el texto ya que los códigos suelen ser cortos */
   border: 1px solid var(--neutral-primario);
-  /* Bordes visibles pero no muy destacados */
   border-radius: 8px;
-  /* Esquinas redondeadas para un aspecto moderno */
   margin: 20px 0;
-  /* Espacio antes y después del input para separarlo de otros elementos */
   outline: none;
-  /* Quitar el contorno predeterminado en foco */
   transition: border-color 0.3s ease;
-  /* Transición suave para cambios en el borde */
 }
 
 .f-field-input-code:focus {
   border-color: var(--color-primary);
-  /* Cambiar el color del borde al enfocarse, para un feedback visual */
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .f-modal-overlay {
   position: fixed !important;
-  /* Hace que la superposición se fije en la pantalla */
   top: 0;
   left: 0;
   width: 100%;
-  /* Ocupa toda la anchura de la pantalla */
   height: 100%;
-  /* Ocupa toda la altura de la pantalla */
   background-color: rgba(0, 0, 0, 0.5) !important;
-  /* Un fondo semitransparente para oscurecer el contenido detrás del modal */
   display: flex;
-  /* Usar flexbox para centrar el modal en la superposición */
   justify-content: center;
-  /* Centrar el modal horizontalmente */
   align-items: center;
-  /* Centrar el modal verticalmente */
   z-index: 1000;
-  /* Asegurar que la superposición esté por encima de otros contenidos */
 
 }
 
@@ -5193,31 +5134,20 @@ textarea.w-select {
 
 /* Estilos para el contenedor general del árbol */
 .treeview-animated {
-  /* width: 16.5%; */
-  /* width: 20vw%; */
+
   border-right: 0.1px solid #9a68d0 !important;
-  /* Un borde más claro que el fondo morado oscuro */
   padding: 1rem;
   font-family: Arial, sans-serif;
   font-size: 14px;
   height: 100em;
   background-color: #080f25 !important;
-  /* Fondo morado oscuro */
   color: #ebe0f5;
-  /* Letras en un tono claro para contraste */
   position: relative;
-  /* Posición absoluta */
   top: 0;
-  /* Pegado a la parte superior*/
   left: 0;
-  /* Pegado a la izquierda */
   overflow-y: auto;
-  /* Scroll vertical en caso de que haya muchos ítems */
   transition: width 0.3s ease;
-  /* Transición para el efecto de colapsar 	*/
-  /* left: 0;	/*  Pegado a la derecha 	*/
   right: auto;
-  /* Anulando la propiedad anterior	 */
 }
 
 /* Estilo para el estado colapsado del árbol de directorios */
@@ -5232,13 +5162,10 @@ textarea.w-select {
   position: absolute;
   top: 0.5rem;
   right: 0.2rem;
-  /* Cambiamos 'left' por 'right' */
   border: none;
   background: transparent;
   color: #ebe0f5;
-  /* El mismo color que el texto */
   cursor: pointer;
-  /* Asegura que esté al frente */
 }
 
 /* Estilo adicional para el icono del botón */
@@ -5278,7 +5205,6 @@ textarea.w-select {
   align-items: center;
   text-decoration: none;
   color: inherit;
-  /* Se heredará el color claro definido en .treeview-animated */
 }
 
 /* Ícono de flecha a la derecha */
@@ -5302,7 +5228,6 @@ textarea.w-select {
   margin-top: 0.5rem;
   list-style-type: none;
   padding-left: 1px;
-  /* Esto es para la indentación de los children */
 }
 
 @media (max-width: 768px) {
@@ -5331,7 +5256,6 @@ textarea.w-select {
   padding: 20px;
   color: white;
   position: relative;
-  /*border-bottom: 0.5px solid #9a68d0  !important;   Un borde más claro que el fondo morado oscuro */
 
 }
 
@@ -5378,9 +5302,7 @@ textarea.w-select {
   justify-content: center;
   align-items: center;
   transition: transform 0.1s ease-in-out;
-  /* Transition for hover effect */
   opacity: 1;
-  /* Full opacity by default */
 }
 
 
@@ -5406,13 +5328,11 @@ textarea.w-select {
 }
 .rounded-green-bg:hover {
   transform: scale(1.2);
-  /* Make it a bit bigger on hover */
 }
 
 .rounded-green-bg.disabled,
 .yellow-fill.disabled {
   opacity: 0.6;
-  /* Reduced opacity for disabled state */
 }
 
 .yellow-fill {
@@ -5433,7 +5353,6 @@ textarea.w-select {
 
 .keyboard-fill {
   fill: #ffffff;
-  /* Color blanco para el SVG */
   transition: opacity 0.1s ease-in-out;
 }
 
@@ -5444,7 +5363,6 @@ textarea.w-select {
 .rounded-keyboard-bg.disabled,
 .keyboard-fill.disabled {
   opacity: 0.6;
-  /* Reduced opacity for disabled state */
 }
 
 
@@ -5458,15 +5376,12 @@ textarea.w-select {
   padding: 5px;
   border-radius: 4px;
   bottom: 125%;
-  /* Posición del tooltip */
   left: 50%;
   margin-left: -30px;
   z-index: 1001;
-  /* por encima del SVG */
   opacity: 0;
   transition: opacity 0.3s;
   transition-delay: 0s;
-  /* inicialmente sin retraso */
 
 }
 
@@ -5474,7 +5389,6 @@ textarea.w-select {
   visibility: visible;
   opacity: 1;
   transition-delay: 0.8s;
-  /* retraso de 0.8 segundos */
 
 }
 
@@ -5490,8 +5404,6 @@ textarea.w-select {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  /* fondo semitransparente */
-  /* color:white !important */
 }
 
 .modal-content {
@@ -5499,13 +5411,8 @@ textarea.w-select {
   width: 80%;
   height: 70%;
   background-color: #fff;
-  /* fondo blanco para resaltar el contenido */
-  /* background-color: #2c2c2c; fondo blanco para resaltar el contenido */
-  /* background-color: #080f25; fondo blanco para resaltar el contenido */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  /* sombra para darle profundidad */
   border-radius: 8px;
-  /* bordes redondeados */
   position: absolute;
 }
 
@@ -5514,31 +5421,22 @@ textarea.w-select {
   padding: 20px;
   overflow-y: auto;
   border-right: 1px solid #e0e0e0;
-  /* borde claro */
   background-color: #f9f9f9;
-  /* fondo ligeramente gris para diferenciar las secciones */
   background-color: #080f25;
-  /* fondo ligeramente gris para diferenciar las secciones */
-
 }
 
 .category-list div {
   cursor: pointer;
   padding: 10px;
   border-bottom: 1px solid #e0e0e0;
-  /* borde claro */
   color: #333;
-  /* texto oscuro para mejor contraste */
   color: white;
-  /* texto oscuro para mejor contraste */
   font-weight: bold;
 }
 
 .category-list div:hover {
   background-color: #e0e0e0;
-  /* resaltado al pasar el cursor */
   background-color: #FFC107;
-  /* resaltado al pasar el cursor */
   color: #080f25;
 }
 
@@ -5553,9 +5451,7 @@ textarea.w-select {
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #e0e0e0;
-  /* borde claro */
   border-radius: 4px;
-  /* bordes redondeados */
 }
 
 .template-grid {
@@ -5565,53 +5461,36 @@ textarea.w-select {
 }
 
 .template-item {
-  /* width: calc(33.3333% - 20px); */
   border: 1px solid #e0e0e0;
-  /* borde claro */
   padding: 10px;
   margin-bottom:30px;
   text-align: center;
   background-color: #fff;
-  /* fondo blanco */
   border-radius: 4px;
-  /* bordes redondeados */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  /* sombra para darle profundidad */
   transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
-  /* transición suave */
   width: 200px;
-  /* ancho específico de la plantilla */
   height: 200px;
-  /* alto específico de la plantilla */
 
 }
 
 .template-item:hover {
   transform: translateY(-5px);
-  /* efecto de levitación al pasar el cursor */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  /* sombra más pronunciada al pasar el cursor */
-
 }
 
 template-item img {
   width: 100%;
-  /* ocupar el 100% del ancho del contenedor */
   height: 100%;
-  /* ocupar el 100% del alto del contenedor */
   object-fit: cover;
-  /* mantener la proporción, recortar si es necesario */
   border-radius: 4px;
-  /* bordes redondeados */
 }
 
 .icon-container2 {
   position: absolute;
-  /* Posición absoluta */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* Centrado */
   opacity: 0;
   /* Inicialmente invisible */
   display: flex;
@@ -5642,7 +5521,6 @@ template-item img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* margin-top: 7%; */
   padding: 0 15px;
   /* Añadir un padding para alinearse con los items del grid */
 
@@ -5680,7 +5558,6 @@ template-item img {
 .react-resizable-handle {
   width: 20px;
   height: 20px;
-  /* background: url('path_to_your_custom_icon') no-repeat center center; */
   background-size: 20px 20px;
 }
 .f-navigation-link:hover {

@@ -1,14 +1,25 @@
-import React, { createContext, useState, useContext } from 'react';
+// src/contexts/ChatContext.js
+import React, { createContext, useState, useContext, useMemo } from 'react';
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const [chatPosition, setChatPosition] = useState({x: 0, y: 0}); // Default position
+    const [chatPosition, setChatPosition] = useState({ x: 0, y: 0 }); // Default position
+
+    // Memorizar el valor del contexto para evitar recrearlo en cada render
+    const value = useMemo(() => ({
+        messages,
+        setMessages,
+        newMessage,
+        setNewMessage,
+        chatPosition,
+        setChatPosition
+    }), [messages, setMessages, newMessage, setNewMessage, chatPosition, setChatPosition]);
 
     return (
-        <ChatContext.Provider value={{ messages, setMessages, newMessage, setNewMessage, chatPosition, setChatPosition }}>
+        <ChatContext.Provider value={value}>
             {children}
         </ChatContext.Provider>
     );
