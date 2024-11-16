@@ -21,8 +21,8 @@ export default function Features() {
         </div>
       </div>
       <div className="w-layout-grid f-grid-three-column">
-            {features?.features.map((feature, index) => (
-              <div key={index}>
+            {features?.features.map((feature) => (
+              <div key={feature.id}>
                 <div className="f-feature-icon-wrapper">
                   <img src={feature.logo} loading="lazy" alt="" />
                 </div>

@@ -36,11 +36,11 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          {translations.footer?.data.map((block, index) => (
-            <div key={index} className="f-footer-block">
+          {translations.footer?.data.map((block) => (
+            <div key={block.id} className="f-footer-block">
               <div className="f-footer-title">{block.title}</div>
-              {block.links.map((link, linkIndex) => (
-                <a key={linkIndex} href={link.url} className="f-footer-link w-inline-block">
+              {block.links.map((link) => (
+                <a key={link.id} href={link.url} className="f-footer-link w-inline-block">
                   <div>{link.text}</div>
                 </a>
               ))}

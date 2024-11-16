@@ -1,7 +1,11 @@
 // src/components/MouseEffect.js
 import React, { useState, useEffect } from 'react';
 
+// Definir un contador fuera del componente para mantener el estado entre renderizados
+let particleId = 0;
+
 const createParticle = (x, y) => ({
+  id: particleId++, // Asignar un id único
   x, 
   y, 
   alpha: 1, 
@@ -43,19 +47,22 @@ const MouseEffect = () => {
 
   return (
     <>
-      {particles.map((particle, index) => (
-        <div key={index} style={{
-          position: 'fixed',
-          left: particle.x,
-          top: particle.y,
-          width: particle.size,
-          height: particle.size,
-          borderRadius: '50%',
-          backgroundColor: particle.color.replace('ALPHA', particle.alpha.toString()),
-          pointerEvents: 'none',
-          transform: 'translate(-50%, -50%)',
-          boxShadow: '0 0 10px 5px rgba(255, 255, 255, 0.7)' // Añade brillo a las partículas
-        }} />
+      {particles.map((particle) => (
+        <div
+          key={particle.id} 
+          style={{
+            position: 'fixed',
+            left: particle.x,
+            top: particle.y,
+            width: particle.size,
+            height: particle.size,
+            borderRadius: '50%',
+            backgroundColor: particle.color.replace('ALPHA', particle.alpha.toString()),
+            pointerEvents: 'none',
+            transform: 'translate(-50%, -50%)',
+            boxShadow: '0 0 10px 5px rgba(255, 255, 255, 0.7)' // Añade brillo a las partículas
+          }}
+        />
       ))}
     </>
   );

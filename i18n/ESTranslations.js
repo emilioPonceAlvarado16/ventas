@@ -57,26 +57,31 @@ const ESTranslations = {
     featuresSection: {
         features: [
             {
+                id:"f1",
                 logo: "images/Logo-Mark.png",
                 title: "IA para Clasificación de Textos",
                 paragraph: "Automatiza la clasificación de tus documentos de Word y textos con nuestra avanzada IA."
             },
             {
+                id:"f2",
                 logo: "images/Logo-Mark.png",
                 title: "Clasificación Manual Avanzada",
                 paragraph: "Control total en la organización de tus archivos con herramientas de clasificación manual."
             },
             {
+                id:"f3",
                 logo: "images/Logo-Mark.png",
                 title: "Edición de Formato Simplificada",
                 paragraph: "Cambia el formato de tus documentos de manera rápida y uniforme con solo unos clics."
             },
             {
+                id:"f4",
                 logo: "images/Logo-Mark.png",
                 title: "Edición Avanzada con GPT-4",
                 paragraph: "Edita tus documentos con precisión usando la tecnología de GPT-4 para instrucciones específicas."
             },
             {
+                id:"f5",
                 logo: "images/Logo-Mark.png",
                 title: "Exportación a LaTeX y Renderizado de PDF",
                 paragraph: "Exporta fácilmente a LaTeX y renderiza tus documentos en PDF para un acabado profesional."
@@ -90,35 +95,39 @@ const ESTranslations = {
             
             data:[
             {
+              id:"about-us",
               title: "Acerca de Nosotros",
               links: [
-                { url: "#", text: "Quiénes Somos" },
-                { url: "#", text: "Nuestra Misión" },
-                { url: "#", text: "Contacto" }
+                { id:"who", url: "#", text: "Quiénes Somos" },
+                { id:"mission", url: "#", text: "Nuestra Misión" },
+                { id:"contact", url: "#", text: "Contacto" }
               ]
             },
             {
+              id:"products",
               title: "Productos",
               links: [
-                { url: "#", text: "FormatMaker Pro" },
-                { url: "#", text: "FormatMaker Basic" },
-                { url: "#", text: "Comparar Productos" }
+                {id:"fm-pro", url: "#", text: "FormatMaker Pro" },
+                {id:"fm-basic", url: "#", text: "FormatMaker Basic" },
+                {id:"fm-comp", url: "#", text: "Comparar Productos" }
               ]
             },
             {
+              id:"support",
               title: "Soporte",
               links: [
-                { url: "#", text: "Centro de Ayuda" },
-                { url: "#", text: "Documentación" },
-                { url: "#", text: "Comunidad" }
+                { id:"help", url: "#", text: "Centro de Ayuda" },
+                { id:"docs", url: "#", text: "Documentación" },
+                { id:"com", url: "#", text: "Comunidad" }
               ]
             },
             {
+              id:"resources",    
               title: "Recursos",
               links: [
-                { url: "#", text: "Blog" },
-                { url: "#", text: "Estudios de Caso" },
-                { url: "#", text: "Webinars" }
+                { id:"blog", url: "#", text: "Blog" },
+                { d:"case", url: "#", text: "Estudios de Caso" },
+                { id:"webinars", url: "#", text: "Webinars" }
               ]
             }
           ],

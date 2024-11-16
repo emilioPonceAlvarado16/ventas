@@ -14,19 +14,19 @@ import Loading from "@/components/Loading2";
 import Footer from "@/components/Footer";
 import Alerts from "@/components/alerts";
 
-export default function oli() {
+export default function Oli() {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [imageSelected, setImageSelected] = useState({ url: "", id: "" });
   const [visualizePrompt, setVisualizePrompt] = useState({ isPromptOpen: false, isMinimized: false });
-  const [showFieldType, setshowFieldType] = useState(true);
-  const [showTemplates, setshowTemplates] = useState(false);
+  const [showFieldType, setShowFieldType] = useState(true);
+  const [showTemplates, setShowTemplates] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [alertInfo, setAlertInfo] = useState({ visible: false, message: "" });
   const [showPlagiarismModal, setShowPlagiarismModal] = useState(false);
 
   const [carouselPosition, setCarouselPosition] = useState(0);
 
-  const [isCompiling, setisCompiling] = useState(false);
+  const [isCompiling, setIsCompiling] = useState(false);
   const [error, setError] = useState("");
   const [allText, setAllText] = useState(``);
 
@@ -63,7 +63,7 @@ export default function oli() {
       } else {
         setAlertInfo({ visible: false, message: "" });
       }
-      setisCompiling(true);
+      setIsCompiling(true);
       if (carouselPosition !== 1) {
         setCarouselPosition(1);
       }
@@ -76,7 +76,7 @@ export default function oli() {
       setError(error);
       console.error("Error al compilar y renderizar PDF:", error);
     } finally {
-      setisCompiling(false); // Asegurarse de que isLoading se establece en false incluso si hay un error
+      setIsCompiling(false); // Asegurarse de que isLoading se establece en false incluso si hay un error
     }
   };
   const handleAlertClose = () => {
@@ -86,10 +86,10 @@ export default function oli() {
     setVisualizePrompt({...visualizePrompt, isPromptOpen:false})
   };
   const CloseTemplateList = () => {
-    setshowTemplates(false);
+    setShowTemplates(false);
   };
   const OpenTemplateList = () => {
-    setshowTemplates(true);
+    setShowTemplates(true);
   };
   const {
     fields: Fields,
@@ -97,18 +97,26 @@ export default function oli() {
     removeField,
     updateField,
     addField,
-
     currentFields,
     currentPage,
     itemsPerPage,
     paginate,
-    changeItemsPerPage,
-
     foundedField,
     setFoundedField,
     textFoundedField,
     setTextFoundedField,
   } = useFields([]);
+
+    // **Función para determinar el tipo de icono**
+    const determineShowIconType = () => {
+      if (Fields && Fields[0] === undefined) {
+        return "eyeOffIcon";
+      } else if (showFieldType) {
+        return "eyeIcon";
+      } else {
+        return "eyeOffIcon";
+      }
+    };
 
   return (
     <div>
@@ -231,14 +239,8 @@ export default function oli() {
             </div>
             <div className="process_icon process_icon-3 tooltip">
               <SvgIcons
-                onClick={() => setshowFieldType(!showFieldType)}
-                type={`${
-                  Fields && Fields[0] === undefined
-                    ? "eyeOffIcon"
-                    : showFieldType
-                    ? "eyeIcon"
-                    : "eyeOffIcon"
-                }`}
+                onClick={() => setShowFieldType(!showFieldType)}
+                type={determineShowIconType()}
                 isTool={true}
                 disabled={Fields && Fields[0] === undefined}
               />

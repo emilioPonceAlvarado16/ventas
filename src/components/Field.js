@@ -117,33 +117,40 @@ const Field = React.forwardRef((props, ref) => {
     <div
       ref={ref}
       {...props}
-
       className="field"
       style={isHighlighted ? { backgroundColor: 'rgba(255, 193, 7, 0.5)' } : null}
     >
-      <p
-        ref={pRef}
-
-        // Simplificación de la expresión booleana
-        contentEditable={type !== "im"}
-        suppressContentEditableWarning={true}
-
-        onInput={handleChange}
-        style={{
-          // Cambiar el cursor solo si es interactivo
-          cursor: type === "im" ? 'pointer' : 'text',
-          minHeight: size || "3vh"
-        }}
-        // Reemplazo del ternario por una función
-        onClick={handleClick}
-        
-        // Añadir atributos de accesibilidad si es interactivo
-        role={type === "im" ? "button" : undefined}
-        tabIndex={type === "im" ? 0 : undefined}
-        onKeyDown={type === "im" ? handleKeyDown : undefined}
-      >
-        {value}
-      </p>
+      {type === "im" ? (
+        <button
+          type="button"
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          style={{
+            cursor: 'pointer',
+            minHeight: size || "3vh",
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            textAlign: 'left'
+          }}
+          aria-label="Imagen"
+        >
+          {value}
+        </button>
+      ) : (
+        <p
+          ref={pRef}
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          onInput={handleChange}
+          style={{
+            cursor: 'text',
+            minHeight: size || "3vh"
+          }}
+        >
+          {value}
+        </p>
+      )}
       {/* <div style={{ width: "1.7vw" }}> */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <SvgIcons onClick={deleteField} type="trash" />

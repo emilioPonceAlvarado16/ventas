@@ -52,9 +52,7 @@ export default function posi() {
   
   
   return (
-    <>
-    
+
    <CustomTable dataTable={data}/>
-    </>
   )
 }
