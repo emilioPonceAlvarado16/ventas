@@ -163,19 +163,26 @@ export default function Account() {
               {signInError === "User is not confirmed." && (
                 <p className="f-paragraph-small-5">
                   Generar{' '}
-                  <span
+                  <button
                     onClick={handleResendCode}
                     className="f-account-link"
-                    style={{ cursor: 'pointer' }}
-                    role="button"
-                    tabIndex={0}
-                    onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') handleResendCode(); }}
+                    style={{
+                      cursor: 'pointer',
+                      background: 'none',
+                      border: 'none',
+                      padding: 0,
+                      font: 'inherit',
+                      color: 'inherit',
+                      textDecoration: 'underline',
+                      display: 'inline',
+                    }}
                     aria-label="Reenviar código de verificación"
                   >
                     Código de verificación.
-                  </span>
+                  </button>
                 </p>
               )}
+
 
               <div className="f-account-form-button">
                 <button

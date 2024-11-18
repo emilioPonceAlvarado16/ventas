@@ -22,7 +22,7 @@ const formReducer = (state, action) => {
 
 const handleInput = (e) => {
   // Reemplaza cualquier caracter que no sea un dígito con una cadena vacía.
-  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+  e.target.value = e.target.value.replace(/\D/g, "");
 };
 
 export default function RegularForm(props) {
