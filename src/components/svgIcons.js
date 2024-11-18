@@ -147,7 +147,7 @@ export default function SvgIcons(props) {
                     </svg>
                     <style jsx>{`
                         .gear-svg {
-                            position: absolute;
+                            position: abs   olute;
                             animation: spin 5s linear infinite;                        }
 
                         .small-gear {
