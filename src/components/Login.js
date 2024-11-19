@@ -1,7 +1,7 @@
 // src/components/Login.js
 
 import React, { useReducer, useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import Alerts from "@/components/alerts";
 import Link from 'next/link';
 import PasswordInput from './PasswordInput';

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import Login from '@/components/Login';
 import { useRouter } from 'next/router';
 import Loading from '@/components/Loading';

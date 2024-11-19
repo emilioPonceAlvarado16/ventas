@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../hooks/useAuth'; // Importar el hook
+import { useAuth } from '@/hooks/useAuth'; // Importar el hook
 import PasswordInput from './PasswordInput';
 import ModalHeading from './modalHeading'; 
 import Alerts from './alerts';

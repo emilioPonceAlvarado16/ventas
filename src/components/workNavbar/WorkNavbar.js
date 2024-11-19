@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 import SvgIcons from '../svgIcons';
-import { useLanguage } from '../../hooks/useLanguage';
+import { useLanguage } from '@/hooks/useLanguage';
 import Link from 'next/link';
 import { LanguageContext } from '@/contexts/LanguageContext';
 import styles from "./Navbar.module.css"
