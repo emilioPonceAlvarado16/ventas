@@ -1,6 +1,7 @@
 
 import CustomTable from '@/components/customTable/CustomTable'
 import React from 'react'
+import Navbar from "@/components/workNavbar/WorkNavbar"
 
 export default function posi() {
   const data = {
@@ -52,7 +53,9 @@ export default function posi() {
   
   
   return (
-
-   <CustomTable dataTable={data}/>
+<>
+<Navbar/>
+<CustomTable dataTable={data}/>
+</>
   )
 }

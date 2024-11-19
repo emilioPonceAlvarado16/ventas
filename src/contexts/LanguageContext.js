@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react';
+// src/contexts/LanguageContext.js
+
+import React, { createContext, useState, useEffect, useMemo, useCallback } from 'react';
 
 export const LanguageContext = createContext();
 
@@ -9,25 +11,34 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     async function loadTranslations() {
       try {
-        // Suponiendo que tus archivos de traducción están en la carpeta 'i18n'
+        // En la carpeta 'i18n'
         // y se llaman 'ENtranslations.js', 'EStranslations.js', etc.
         const langTranslations = await import(`../../i18n/${language}Translations.js`);
         setTranslations(langTranslations.default);
       } catch (error) {
         console.error("Error loading translations", error);
         // Considera establecer unas traducciones predeterminadas en caso de error
+        setTranslations({});
       }
     }
 
     loadTranslations();
   }, [language]);
 
-  const changeLanguage = (lang) => {
+  // Memoizar la función changeLanguage para evitar recreación en cada renderizado
+  const changeLanguage = useCallback((lang) => {
     setLanguage(lang);
-  };
+  }, []);
+
+  // Memoizar el objeto value para evitar cambios innecesarios
+  const value = useMemo(() => ({
+    language,
+    changeLanguage,
+    translations
+  }), [language, changeLanguage, translations]);
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage, translations }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
