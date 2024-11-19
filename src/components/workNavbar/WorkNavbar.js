@@ -159,9 +159,9 @@ export default function Navbar() {
                 {avatarMenuOpen && (
                   <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{ color: "white" }}>
                     {navbarTranslations?.avatarMenu.map((item, index) => (
-                      <div key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
+                      <button key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
                         {item.label}
-                      </div>
+                      </button>
                     ))}
                   </div>
                 )}

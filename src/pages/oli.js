@@ -161,7 +161,7 @@ export default function Oli() {
           }}
         >
           {[0, 1].map((index) => (
-            <div
+            <button
               key={index}
               onClick={() => setCarouselPosition(index)}
               style={{
