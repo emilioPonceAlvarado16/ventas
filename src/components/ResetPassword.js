@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import RegularForm from './RegularForm'
 import { useAuth } from '@/hooks/useAuth';
 
-export default function resetPassword() {
+export default function ResetPassword() {
     const { forgotPasswordSubmit, setResetPasswordError ,resetPasswordError, isLoading} = useAuth();
     const [isSuccess, setIsSuccess] = useState(false)
     const handleSubmit = async (formData) => {
