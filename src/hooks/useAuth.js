@@ -26,7 +26,7 @@ export function useAuth() {
     const checkAuth = async () => {
       try {
         const localAuth = JSON.parse(localStorage.getItem('auth'));
-        if (localAuth && localAuth.isAuthenticated) {
+        if (localAuth?.isAuthenticated) {
           setCurrentUser(localAuth.user);
           setIsAuthenticated(true);
         } else {
@@ -53,7 +53,6 @@ export function useAuth() {
           setIsAuthenticated(false);
           localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
           break;
-        // Puedes manejar otros eventos si es necesario
         default:
           break;
       }
