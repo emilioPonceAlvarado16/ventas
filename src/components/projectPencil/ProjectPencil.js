@@ -18,7 +18,6 @@ export default function ProjectPencil() {
   const handleChange = (e) => {
     if (e.target.value.length <= charLimit) {
       setProjectName(e.target.value);
-    } else {
     }
   };
 

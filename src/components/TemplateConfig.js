@@ -1,15 +1,18 @@
+// src/components/TemplateConfig.js
+
 import React, { useState } from 'react';
 import SvgIcons from './svgIcons';
+import { v4 as uuidv4 } from 'uuid'; 
 
 export default function TemplateConfig() {
-  const inputCount = 10;  // Ajusta este número según lo necesites
+  const inputCount = 10; 
   const defaultState = {};
   for (let i = 1; i <= inputCount; i++) {
     defaultState[`input${i}`] = "";
   }
 
   const [inputs, setInputs] = useState(defaultState);
-  const [customStyles, setCustomStyles] = useState([{ label: '', value: '' }]);
+  const [customStyles, setCustomStyles] = useState([{ id: uuidv4(), label: '', value: '' }]);
 
   const handleChange = (id, value) => {
     setInputs(prevState => ({
@@ -18,23 +21,26 @@ export default function TemplateConfig() {
     }));
   };
 
-  const handleCustomStyleChange = (index, type, value) => {
-    const newStyles = [...customStyles];
-    newStyles[index][type] = value;
-    setCustomStyles(newStyles);
+  const handleCustomStyleChange = (id, type, value) => {
+    setCustomStyles(prevStyles =>
+      prevStyles.map(style =>
+        style.id === id ? { ...style, [type]: value } : style
+      )
+    );
   };
+
   const addCustomStyle = () => {
     // Verifica si hay algún campo "Custom Styles" que esté vacío
     const hasEmptyField = customStyles.some(style => !style.label || !style.value);
-  
-    // Si todos los campos están completos, agrega un nuevo campo
+
+    // Si todos los campos están completos, agrega un nuevo campo con un ID único
     if (!hasEmptyField) {
-      setCustomStyles(prevStyles => [...prevStyles, { label: '', value: '' }]);
+      setCustomStyles(prevStyles => [...prevStyles, { id: uuidv4(), label: '', value: '' }]);
     } else {
       alert('Complete todos los campos antes de agregar más.');
     }
   };
-  
+
   // Cálculo de cuántos campos por columna
   const inputsPerColumn = Math.ceil(inputCount / 2);
 
@@ -54,36 +60,38 @@ export default function TemplateConfig() {
         {/* Custom Styles section */}
         <div style={{ marginBottom: '20px', width: '100%' }}>
           <h2 style={{ textAlign: 'center', color: "#E0A900" }}> Custom Styles</h2>
-          {customStyles.map((style, index) => (
-            <div key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10px' }}>
+          {customStyles.map((style) => (
+            <div key={style.id} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '10px' }}>
               <input
                 placeholder="Label"
                 value={style.label}
-                onChange={(e) => handleCustomStyleChange(index, 'label', e.target.value)}
+                onChange={(e) => handleCustomStyleChange(style.id, 'label', e.target.value)}
                 style={{ marginRight: '10px', color: "white", backgroundColor: "#2c2c2c", maxWidth: '150px' }}
                 className='w-input'
               />
               <input
                 placeholder="Value"
                 value={style.value}
-                onChange={(e) => handleCustomStyleChange(index, 'value', e.target.value)}
+                onChange={(e) => handleCustomStyleChange(style.id, 'value', e.target.value)}
                 style={{ marginRight: '10px', color: "white", backgroundColor: "#2c2c2c", maxWidth: '150px' }}
                 className='w-input'
               />
             </div>
           ))}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <SvgIcons onClick={addCustomStyle} type="plus"/>
-          </div>        </div>
+            <SvgIcons onClick={addCustomStyle} type="plus" />
+          </div>
+        </div>
+
         <h2 style={{ textAlign: 'center', color: "#E0A900", marginTop: '5px' }}>Standard Styles</h2>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           {/* Llenado dinámico de las columnas */}
           {[...Array(2)].map((_, colIndex) => (
             <div key={colIndex}>
-              {Object.keys(inputs).slice(colIndex * inputsPerColumn, (colIndex + 1) * inputsPerColumn).map((key, index) => (
+              {Object.keys(inputs).slice(colIndex * inputsPerColumn, (colIndex + 1) * inputsPerColumn).map((key) => (
                 <div key={key} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
-                  <label className='w-form-label-2'>{`Label ${colIndex * inputsPerColumn + index + 1}`}</label>
+                  <label className='w-form-label-2'>{`Label ${parseInt(key.replace('input', ''))}`}</label>
                   <input
                     value={inputs[key]}
                     onChange={(e) => handleChange(key, e.target.value)}
