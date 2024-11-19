@@ -1,3 +1,5 @@
+// src/hooks/useAuth.js
+
 import { Auth, Hub } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -14,10 +16,8 @@ export function useAuth() {
   const [confirmationError, setConfirmationError] = useState(null);
   const [resendCodeError, setResendCodeError] = useState(null);
 
-
   const [canResend, setCanResend] = useState(true);
   const [resendCooldown, setResendCooldown] = useState(0);
-
 
   const [forgotPasswordError, setForgotPasswordError] = useState(null);
   const [resetPasswordError, setResetPasswordError] = useState(null);
@@ -26,9 +26,9 @@ export function useAuth() {
     const checkAuth = async () => {
       try {
         const localAuth = JSON.parse(localStorage.getItem('auth'));
-        if (localAuth) {
+        if (localAuth && localAuth.isAuthenticated) {
           setCurrentUser(localAuth.user);
-          setIsAuthenticated(localAuth.isAuthenticated);
+          setIsAuthenticated(true);
         } else {
           const user = await Auth.currentAuthenticatedUser();
           setCurrentUser(user);
@@ -43,8 +43,6 @@ export function useAuth() {
       setIsLoading(false);
     };
 
-
-
     const authListener = (data) => {
       switch (data.payload.event) {
         case 'signIn':
@@ -55,14 +53,19 @@ export function useAuth() {
           setIsAuthenticated(false);
           localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
           break;
+        // Puedes manejar otros eventos si es necesario
+        default:
+          break;
       }
     };
 
-    Hub.listen('auth', authListener);
+    // Capturar la función de desuscripción
+    const unsubscribe = Hub.listen('auth', authListener);
     checkAuth();
 
+    // Cleanup usando la función de desuscripción
     return () => {
-      Hub.remove('auth', authListener);
+      unsubscribe();
     };
   }, []);
 
@@ -77,8 +80,6 @@ export function useAuth() {
     }
     return () => clearTimeout(cooldownTimer);
   }, [resendCooldown]);
-
-
 
   const signIn = async (username, password) => {
     setIsLoading(true);
@@ -106,6 +107,7 @@ export function useAuth() {
       setCurrentUser(null);
       setIsAuthenticated(false);
       localStorage.setItem('auth', JSON.stringify({ user: null, isAuthenticated: false }));
+      router.push('/login'); // Redirige al usuario después de cerrar sesión
     } catch (error) {
       console.log('Error signing out:', error);
     }
@@ -128,7 +130,6 @@ export function useAuth() {
       return false; // Devuelve false si hubo un error
     }
   };
-
 
   const confirmSignUp = async (username, code) => {
     setIsLoading(true);
@@ -185,6 +186,7 @@ export function useAuth() {
       return false; // Devuelve false si hubo un error
     }
   };
+
   const forgotPasswordSubmit = async (username, code, newPassword) => {
     setIsLoading(true);
     setResetPasswordError(null);
@@ -193,7 +195,7 @@ export function useAuth() {
       await Auth.forgotPasswordSubmit(username, code, newPassword);
       setIsLoading(false);
       setTimeout(() => {
-        router.push('/login'); // Redirige al usuario a "/home"
+        router.push('/login'); // Redirige al usuario a "/login"
       }, 1200);
     
       return true; // Devuelve true si el reseteo fue exitoso
@@ -207,14 +209,27 @@ export function useAuth() {
 
   return {
     currentUser,
-    canResend, resendCooldown,
+    canResend, 
+    resendCooldown,
     isAuthenticated, 
+    forgotPasswordError,
+    resetPasswordError,
+    isLoading, 
+    isSigningOut, 
+    signInError, 
+    signUpError, 
+    resendCodeError,
+    confirmationError,
     signOut, 
     forgotPassword,
     forgotPasswordSubmit,
-    forgotPasswordError,
-    resetPasswordError,
     setResetPasswordError,
-    setConfirmationError, signIn, signUp, confirmSignUp, resendConfirmationCode, isLoading, isSigningOut, signInError, signUpError, setSignInError, setSignUpError, confirmationError, resendCodeError
+    setConfirmationError, 
+    signIn, 
+    signUp, 
+    confirmSignUp, 
+    resendConfirmationCode, 
+    setSignInError, 
+    setSignUpError 
   };
 }
