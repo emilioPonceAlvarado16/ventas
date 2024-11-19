@@ -1,7 +1,7 @@
 // src/components/TemplateConfig.js
 
-import React, { useState } from 'react';
-import SvgIcons from './svgIcons';
+import React, { useState, useMemo } from 'react';
+import SvgIcons from './svgicons';
 import { v4 as uuidv4 } from 'uuid'; 
 
 export default function TemplateConfig() {
@@ -43,6 +43,9 @@ export default function TemplateConfig() {
 
   // Cálculo de cuántos campos por columna
   const inputsPerColumn = Math.ceil(inputCount / 2);
+
+  // Generar claves únicas para las columnas una sola vez
+  const columnIds = useMemo(() => [...Array(2)].map(() => uuidv4()), []);
 
   return (
     <div className="modal" style={{ overflowY: 'auto', alignItems: 'center' }}>
@@ -88,7 +91,7 @@ export default function TemplateConfig() {
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
           {/* Llenado dinámico de las columnas */}
           {[...Array(2)].map((_, colIndex) => (
-            <div key={colIndex}>
+            <div key={columnIds[colIndex]}>
               {Object.keys(inputs).slice(colIndex * inputsPerColumn, (colIndex + 1) * inputsPerColumn).map((key) => (
                 <div key={key} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
                   <label className='w-form-label-2'>{`Label ${parseInt(key.replace('input', ''))}`}</label>

@@ -157,7 +157,7 @@ export default function Navbar() {
               <div className={`f-banner-dropdown-list w-dropdown-list ${avatarMenuOpen ? 'w--open' : ''}`}>
                 {/* Submenú del Avatar */}
                 {avatarMenuOpen && (
-                  <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} styles={{ color: "white" }}>
+                  <div ref={avatarMenuRef} className={`bg-white ${styles.avatarMenu}`} style={{ color: "white" }}>
                     {navbarTranslations?.avatarMenu.map((item, index) => (
                       <button key={index} onClick={() => console.log(item.onClick)} className={styles.avatarMenuItem}>
                         {item.label}

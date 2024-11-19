@@ -16,9 +16,9 @@ const PasswordInput = (props) => {
                 className="f-field-input w-input"
                 {...props}
             />
-            <div className="icon-container" onClick={togglePasswordVisibility}>
+            <button className="icon-container" onClick={togglePasswordVisibility}>
                 {!showPassword ? <SvgIcons type="eyeOffIcon" /> :<SvgIcons type="eyeIcon" />}
-            </div>
+            </button>
         </div>
     );
 }
