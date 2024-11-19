@@ -14,20 +14,7 @@
  * 2. Prevent iOS and IE text size adjust after device orientation change,
  *    without disabling user zoom.
  */
-html {
-  font-family: sans-serif;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
-}
 
-
-body {
-  margin: 0;
-
-}
 
 /* HTML5 display definitions
    ========================================================================== */
@@ -78,7 +65,6 @@ video {
   /* Transición suave para el hover */
   top: 87%;
   position: absolute;
-  /* bottom:8px; */
   left: 87%;
 }
 
@@ -146,10 +132,6 @@ dfn {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari, and Chrome.
  */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
 
 /**
  * Address styling not present in IE 8/9.
@@ -190,11 +172,7 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9/10.
  */
-img {
 
-  border: 0;
-
-}
 
 /**
  * Correct overflow not hidden in IE 9/10/11.
@@ -208,9 +186,6 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari.
  */
-figure {
-  margin: 1em 40px;
-}
 
 /**
  * Address differences between Firefox and other browsers.
@@ -234,7 +209,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace, monospace;
+  font-family: monospace;
   font-size: 1em;
 }
 
@@ -374,15 +349,6 @@ input[type='search']::-webkit-search-decoration {
 }
 
 /**
- * Define consistent border, margin, and padding.
- */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-
-/**
  * 1. Correct `color` not being inherited in IE 8/9/10/11.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
@@ -433,7 +399,7 @@ th {
 [class^="w-icon-"],
 [class*=" w-icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'webflow-icons' !important;
+  font-family: 'webflow-icons', sans-serif !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -480,6 +446,9 @@ th {
 
 html {
   height: 100%;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -493,6 +462,7 @@ body {
 }
 
 img {
+  border: 0;
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
@@ -610,6 +580,7 @@ h6 {
 h1 {
   font-size: 38px;
   line-height: 44px;
+  margin: 0.67em 0;
   margin-top: 20px;
 }
 
@@ -742,9 +713,6 @@ button,
 }
 
 label {
-  margin-bottom: 5px;
-  margin-left: 10px;
-  margin-top: 10px;
   margin: 10px;
   font-weight: bold;
   display: inline-block;
@@ -861,12 +829,8 @@ textarea.w-select {
   line-height: normal;
   float: left;
   margin-left: -20px;
-}
-
-.w-radio-input {
   margin-top: 3px;
 }
-
 .w-file-upload {
   display: block;
   margin-bottom: 10px;
@@ -901,11 +865,8 @@ textarea.w-select {
 }
 
 .w-file-upload-uploading-btn {
-  display: flex;
   font-size: 14px;
-  cursor: pointer;
   margin: 0;
-  padding: 8px 12px;
   background-color: #FFC107;
   border: 1px solid #E0A900;
   padding: 10px;
@@ -1451,7 +1412,6 @@ textarea.w-select {
   background: #dddddd;
   clear: both;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .w-slider-mask {
@@ -1487,7 +1447,6 @@ textarea.w-select {
   height: 40px;
   text-align: center;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .w-slider-nav.w-round>div {
@@ -1556,7 +1515,6 @@ textarea.w-select {
   color: white;
   font-size: 40px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -1877,16 +1835,16 @@ textarea.w-select {
 }
 
 .w-nav-overlay {
-  position: absolute;
+  display: block; /* Cambia a 'none' para ocultar */
   overflow: hidden;
-  display: none;
-  display: block;
-  top: 100%;
+  position: fixed; /* O 'absolute' si se ajusta mejor a tu diseño */
+  top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  z-index: 10; /* Asegúrate de que esté sobre otros elementos */
   width: 100%;
 }
-
 .w-nav-overlay [data-nav-menu-open] {
   top: 0;
 }
@@ -1921,7 +1879,6 @@ textarea.w-select {
   display: none;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -2327,7 +2284,6 @@ textarea.w-select {
   color: var(--white);
   text-align: center;
   letter-spacing: -.02em;
-  background-color: var(--neutral-primario);
   border-radius: 48px;
   outline: 2px solid rgba(0, 0, 0, 0);
   justify-content: center;
@@ -2341,7 +2297,7 @@ textarea.w-select {
   text-decoration: none;
   transition: all .2s;
   display: flex;
-  /* Importante para el centrado con justify-content y align-items */
+  background-color: #6b7094; /* Diferenciando el botón 'Salir' */
 }
 
 .f-navigation-button:hover {
@@ -2376,7 +2332,6 @@ textarea.w-select {
 
 .f-navigation-link {
   color: #ffffff; /* Blanco para mayor contraste */
-  transition: background-color .35s, color .35s; /* Transición suave para efectos hover */
   letter-spacing: -.01em;
   white-space: nowrap;
   background-color: var(--landing-background); /* Fondo del menú */
@@ -2396,7 +2351,7 @@ textarea.w-select {
 
 .f-navigation-link:hover {
   color: var(--neutral-primario);
-  background-color: #f3f5fb;
+  background-color: #6b7094; /* Efecto hover sutil */
 }
 
 .f-navigation-link.w--current {
@@ -2749,20 +2704,7 @@ textarea.w-select {
   min-height: 40px;
   min-width: 40px;
   color: #f93;
-  background-color: var(--white)9f0;
-  border-radius: 100px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 16px;
-  display: flex;
-}
-.f-alert-error {
-  width: 40px;
-  height: 40px;
-  min-height: 40px;
-  min-width: 40px;
-  color: rgb(231, 82, 37);
-  background-color: var(--white)9f0;
+  background-color: var(--white);
   border-radius: 100px;
   justify-content: center;
   align-items: center;
@@ -4209,7 +4151,6 @@ textarea.w-select {
 }
 
 .f-footer-regular {
-  background-color: var(--white);
   color:white;
   background-color: var(--landing-background);
   padding: 64px 5%;
@@ -5250,10 +5191,8 @@ textarea.w-select {
 
 
 .a-section-regular-2 {
-  padding-top: 72px;
-  padding-bottom: 72px;
-  background-color: #080f25;
   padding: 20px;
+  background-color: #080f25;
   color: white;
   position: relative;
 
@@ -5394,7 +5333,6 @@ textarea.w-select {
 
 /* Listado de templates */
 .modal {
-  position: fixed !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5560,24 +5498,6 @@ template-item img {
   height: 20px;
   background-size: 20px 20px;
 }
-.f-navigation-link:hover {
-  background-color: #6b7094; /* Efecto hover sutil */
-}
-
-.f-navigation-button {
-  background-color: #6b7094; /* Diferenciando el botón 'Salir' */
-  color: #ffffff; /* Blanco para el texto dentro del botón */
-}
-/* sobre escritura */
-.w-nav-overlay {
-  display: block; /* Cambia a 'none' para ocultar */
-  position: fixed; /* O 'absolute' si se ajusta mejor a tu diseño */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10; /* Asegúrate de que esté sobre otros elementos */
-}
 
 .w-nav-overlay[data-wf-ignore] {
   display: none; /* Oculta el overlay cuando no se necesite */
@@ -5598,7 +5518,6 @@ template-item img {
 
 .page-item button {
   border: 1px solid #FFC107; /* Borde amarillo */
-  padding: 8px 12px;
   padding: 2.5px 10px;
   text-decoration: none;
   color: #FFC107; /* Texto amarillo */
