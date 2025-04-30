@@ -21,8 +21,8 @@ function Home() {
 
   // Verificar consentimientos previos al montar
   useEffect(() => {
-    const savedGeoConsent = 's';
-    const savedCameraConsent = 's';
+    const savedGeoConsent = 'granted';
+    const savedCameraConsent = 'granted';
 
     if (savedGeoConsent === 'granted') {
       setShowGeoBanner(false);
