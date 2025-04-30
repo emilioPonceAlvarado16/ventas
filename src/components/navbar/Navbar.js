@@ -71,12 +71,12 @@ export default function Navbar() {
                 color: 'white',
                 fontWeight: 'bold',
                 fontStyle: 'italic'
-              }}>Format</span>
+              }}>Bellisimas S.A.</span>
               <span style={{
                 color: '#708090', 
                 fontWeight: 'bold',
                 fontStyle: 'italic'
-              }}>Maker</span>
+              }}>!!!</span>
             </div>
           </button>
 

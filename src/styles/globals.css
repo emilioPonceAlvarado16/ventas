@@ -5537,3 +5537,15 @@ template-item img {
     display: none !important; /* Usa !important para asegurarte de que esta regla tiene prioridad */
   }
 }
+
+
+.consent-banner {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
