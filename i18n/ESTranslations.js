@@ -1,139 +1,140 @@
 const ESTranslations = {
-    pricing: {
-        features: {
-
-            "basic": [
-                "Cargar documentos de MS Word o archivos TXT",
-                "Clasificación de texto con IA",
-                "Edición simple y compilación de PDF con LaTeX",
-                "Editor de texto con funcionalidad de arrastrar y soltar y cambio de plantillas"
-            ],
-            "professional": [
-                "Todas las características del plan Básico",
-                "Uso de GPT-4 para edición avanzada",
-                "Capacidades mejoradas del editor de texto"
-            ]
-        },
-
-        "headingDetail": "FormatMaker: Edición Simplificada",
-        "headingH2": "Documentos Mejorados con AI & LaTeX",
-        "monthly": "Mensual",
-        "yearly": "Anual",
-        "month": "Mes",
-        "year": "Año",
-        "basicPlan": "Plan Básico",
-        "professionalPlan": "Profesional",
-        "getStarted": "Empieza Ya"
-
+  pricing: {
+    features: {
+      "basic": [
+        "5% de descuento en toda la tienda",
+        "Envío estándar gratuito",
+        "Acceso a promociones mensuales"
+      ],
+      "professional": [
+        "10% de descuento en toda la tienda",
+        "Envío exprés gratuito",
+        "Acceso anticipado a ventas",
+        "Regalo de cumpleaños"
+      ]
     },
-    hero: {
-        innovativeDocumentEditing: "Edición Innovadora de Documentos",
-        transformYourDocuments: "Transforma Tus Documentos sin Esfuerzo",
-        paragraph: "Format Maker revoluciona la edición y creación de documentos. Utiliza herramientas impulsadas por IA para modificar, crear y exportar documentos en formato LaTeX con facilidad. Importa desde MS Word, .txt o elige entre plantillas para optimizar tu flujo de trabajo.",
-        getStarted: "Empieza Ya",
-        learnMore: "Aprende Más",
-    },
-    navbar: {
-        routes: [
-            { route: "#demo", label: "Demo" },
-            { route: "#features", label: "Funcionalidades" },
-            { route: "#link-three", label: "Contacto" },
-            { route: "#pricing", label: "Precios" }
-        ],
-        logout: "Salir",
-        mobileMenu: [
-          { route: "", label: "Salir", onClick:"Logout" } // Añade aquí otros elementos específicos para móviles si es necesario
-        ],
-        languages: [
-            { code: 'EN', name: 'Inglés' },
-            { code: 'ES', name: 'Español' },
-        ],
-        avatarMenu: [ 
-          { label: "Mi Perfil", onClick: "profile" },
-          { label: "Configuración", onClick: "settings" },
+    "headingDetail": "Bellisimas EC: Planes de Suscripción",
+    "headingH2": "Beneficios Exclusivos para Miembros",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "month": "Mes",
+    "year": "Año",
+    "basicPlan": "Básico",
+    "professionalPlan": "Premium",
+    "getStarted": "Suscríbete Ya"
+  },
+
+  hero: {
+    innovativeDocumentEditing: "Descubre tu estilo en Bellisimas EC",
+    transformYourDocuments: "Moda única para cada ocasión",
+    paragraph: "Explora nuestra colección de ropa y accesorios de temporada. Encuentra las últimas tendencias y recibe tu pedido con envío rápido a todo Ecuador.",
+    getStarted: "Compra Ahora",
+    learnMore: "Ver Novedades"
+  },
+
+  navbar: {
+    routes: [
+      { route: "#inicio", label: "Inicio" },
+      { route: "#tienda", label: "Tienda" },
+      { route: "#novedades", label: "Novedades" },
+      { route: "#ofertas", label: "Ofertas" }
+    ],
+    logout: "Cerrar Sesión",
+    mobileMenu: [
+      { route: "#inicio", label: "Inicio", onClick: "navigate" },
+      { route: "#tienda", label: "Tienda", onClick: "navigate" },
+      { route: "#ofertas", label: "Ofertas", onClick: "navigate" },
+      { route: "#contacto", label: "Contacto", onClick: "navigate" }
+    ],
+    languages: [
+      { code: 'EN', name: 'Inglés' },
+      { code: 'ES', name: 'Español' }
+    ],
+    avatarMenu: [
+      { label: "Mi Perfil", onClick: "profile" },
+      { label: "Cerrar Sesión", onClick: "logout" }
+    ]
+  },
+
+  featuresSection: {
+    features: [
+      {
+        id: "f1",
+        logo: "icons/fast-shipping.svg",
+        title: "Envío Rápido",
+        paragraph: "Recibe tu pedido en 24–48 horas en las principales ciudades."
+      },
+      {
+        id: "f2",
+        logo: "icons/secure-payment.svg",
+        title: "Pago Seguro",
+        paragraph: "Transacciones protegidas con cifrado SSL."
+      },
+      {
+        id: "f3",
+        logo: "icons/variety.svg",
+        title: "Gran Variedad",
+        paragraph: "Ropa para todos los estilos y tallas."
+      },
+      {
+        id: "f4",
+        logo: "icons/customer-support.svg",
+        title: "Atención al Cliente",
+        paragraph: "Soporte 24/7 para consultas y devoluciones."
+      },
+      {
+        id: "f5",
+        logo: "icons/quality.svg",
+        title: "Moda de Calidad",
+        paragraph: "Productos seleccionados de las mejores marcas."
+      }
+    ],
+    headingDetail: "Ventajas de Comprar en Bellisimas EC",
+    headingH3: "Características Destacadas",
+    paragraph: "Descubre por qué somos la mejor opción para renovar tu estilo con la última moda."
+  },
+
+  footer: {
+    data: [
+      {
+        id: "about-us",
+        title: "Bellisimas EC",
+        links: [
+          { id: "who", url: "#about", text: "Quiénes Somos" },
+          { id: "careers", url: "#careers", text: "Trabaja con Nosotros" },
+          { id: "blog", url: "#blog", text: "Blog" }
         ]
+      },
+      {
+        id: "customer-service",
+        title: "Servicio al Cliente",
+        links: [
+          { id: "help", url: "#help", text: "Centro de Ayuda" },
+          { id: "shipping", url: "#shipping", text: "Envíos y Devoluciones" },
+          { id: "faq", url: "#faq", text: "Preguntas Frecuentes" }
+        ]
+      },
+      {
+        id: "legal",
+        title: "Legal",
+        links: [
+          { id: "privacy", url: "#privacy", text: "Política de Privacidad" },
+          { id: "terms", url: "#terms", text: "Términos y Condiciones" },
+          { id: "cookies", url: "#cookies", text: "Política de Cookies" }
+        ]
+      },
+      {
+        id: "contact",
+        title: "Contacto",
+        links: [
+          { id: "email", url: "mailto:soporte@bellisimasec.com", text: "soporte@bellisimasec.com" },
+          { id: "phone", url: "tel:+593987654321", text: "+593 9 8765 4321" },
+          { id: "stores", url: "#stores", text: "Nuestras Tiendas" }
+        ]
+      }
+    ],
+    paragraphSmall: "En Bellisimas EC, vestimos tu estilo con moda de calidad y atención excepcional."
+  }
+};
 
-    },
-    featuresSection: {
-        features: [
-            {
-                id:"f1",
-                logo: "images/Logo-Mark.png",
-                title: "IA para Clasificación de Textos",
-                paragraph: "Automatiza la clasificación de tus documentos de Word y textos con nuestra avanzada IA."
-            },
-            {
-                id:"f2",
-                logo: "images/Logo-Mark.png",
-                title: "Clasificación Manual Avanzada",
-                paragraph: "Control total en la organización de tus archivos con herramientas de clasificación manual."
-            },
-            {
-                id:"f3",
-                logo: "images/Logo-Mark.png",
-                title: "Edición de Formato Simplificada",
-                paragraph: "Cambia el formato de tus documentos de manera rápida y uniforme con solo unos clics."
-            },
-            {
-                id:"f4",
-                logo: "images/Logo-Mark.png",
-                title: "Edición Avanzada con GPT-4",
-                paragraph: "Edita tus documentos con precisión usando la tecnología de GPT-4 para instrucciones específicas."
-            },
-            {
-                id:"f5",
-                logo: "images/Logo-Mark.png",
-                title: "Exportación a LaTeX y Renderizado de PDF",
-                paragraph: "Exporta fácilmente a LaTeX y renderiza tus documentos en PDF para un acabado profesional."
-            }
-        ],
-        headingDetail: "Edición Eficaz y Sencilla",
-        headingH3: "Funcionalidades Innovadoras",
-        paragraph: "Descubre las herramientas avanzadas que transformarán tu flujo de trabajo. Desde IA hasta edición precisa, FormatMaker lo hace posible."
-    },
-        footer: {
-            
-            data:[
-            {
-              id:"about-us",
-              title: "Acerca de Nosotros",
-              links: [
-                { id:"who", url: "#", text: "Quiénes Somos" },
-                { id:"mission", url: "#", text: "Nuestra Misión" },
-                { id:"contact", url: "#", text: "Contacto" }
-              ]
-            },
-            {
-              id:"products",
-              title: "Productos",
-              links: [
-                {id:"fm-pro", url: "#", text: "FormatMaker Pro" },
-                {id:"fm-basic", url: "#", text: "FormatMaker Basic" },
-                {id:"fm-comp", url: "#", text: "Comparar Productos" }
-              ]
-            },
-            {
-              id:"support",
-              title: "Soporte",
-              links: [
-                { id:"help", url: "#", text: "Centro de Ayuda" },
-                { id:"docs", url: "#", text: "Documentación" },
-                { id:"com", url: "#", text: "Comunidad" }
-              ]
-            },
-            {
-              id:"resources",    
-              title: "Recursos",
-              links: [
-                { id:"blog", url: "#", text: "Blog" },
-                { d:"case", url: "#", text: "Estudios de Caso" },
-                { id:"webinars", url: "#", text: "Webinars" }
-              ]
-            }
-          ],
-          paragraphSmall:"Con FormatMaker, transforma tus documentos de forma rápida y eficiente, optimizando tu flujo de trabajo."
-
-        }
-
-}
 export default ESTranslations;

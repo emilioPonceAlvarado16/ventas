@@ -31,7 +31,7 @@ export default function Hero() {
             </div>
           </div>
           <div id="w-node-_image" className="f-header-image-wrapper-tall">
-            <img src="images/formatmaker_photo.png" loading="lazy" alt="Format Maker Interface" className="f-image-cover"/>
+            <img src="images/bellisimas.png" loading="lazy" alt="Format Maker Interface" className="f-image-cover"/>
           </div>
         </div>
       </div>

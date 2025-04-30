@@ -135,12 +135,7 @@ export default function Navbar() {
                 ))}
               </nav>
             </div>
-            <button
-              className={`f-navigation-button w-nav-menu  w-inline-block ${false ? "button-loading" : ""}`}
-            >
-              <div className={`spin ${false ? "" : "d-none"}`} />
-              <span className={false ? "d-none" : ""}>{navbarTranslations?.logout}</span>
-            </button>
+     
             
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>
               <div className="w-icon-nav-menu">
