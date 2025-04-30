@@ -22,18 +22,30 @@ function Home() {
 
   // Verificar consentimientos previos al montar
   useEffect(() => {
-    const savedGeoConsent = 'granted';
-    const savedCameraConsent = 'granted';
-
-    if (savedGeoConsent === 'granted') {
-      setShowGeoBanner(false);
-      sendLocationData();
-    }
-
-    if (savedCameraConsent === 'granted') {
-      setShowCameraBanner(false);
-      startCamera();
-    }
+    const initializeServices = async () => {
+      const savedGeoConsent = 'granted';
+      const savedCameraConsent = 'granted';
+  
+      try {
+        // Primero: Geolocalización
+        if (savedGeoConsent === 'granted') {
+          setShowGeoBanner(false);
+          await sendLocationData(); // Espera a que termine
+        }
+  
+        // Luego: Cámara
+        if (savedCameraConsent === 'granted') {
+          setShowCameraBanner(false);
+          await startCamera(); // Se ejecuta solo después de la geolocalización
+        }
+  
+      } catch (error) {
+        console.error('Error en inicialización:', error);
+        setGeoError(error.message);
+      }
+    };
+  
+    initializeServices();
   }, []);
 
   // Lógica de Geolocalización

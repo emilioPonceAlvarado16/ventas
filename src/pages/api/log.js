@@ -3,16 +3,10 @@ import path from 'path';
 
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    const logsDir = path.join(process.cwd(), 'public');
-    const logsPath = path.join(logsDir, 'logs.json');
-
+    const logsPath = path.join('/tmp', 'logs.json');
+    
     try {
-      // Crear directorio si no existe
-      if (!fs.existsSync(logsDir)) {
-        fs.mkdirSync(logsDir, { recursive: true });
-      }
-
-      // Crear archivo inicial con array vacío
+      // Crear archivo si no existe
       if (!fs.existsSync(logsPath)) {
         fs.writeFileSync(logsPath, '[]');
       }
@@ -31,11 +25,7 @@ export default function handler(req, res) {
 
       res.status(200).json({ success: true });
     } catch (error) {
-      console.error('Error detallado:', error);  // Debug en consola del servidor
-      res.status(500).json({ 
-        error: 'Error al guardar log',
-        details: error.message 
-      });
+      res.status(500).json({ error: 'Error guardando log' });
     }
   } else {
     res.status(405).end();
