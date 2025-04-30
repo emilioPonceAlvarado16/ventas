@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+public/capturas
+
+public/logs.json
 # next.js
 /.next/
 /out/
