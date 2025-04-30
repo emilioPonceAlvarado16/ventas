@@ -86,5 +86,101 @@
     "timestamp": "2025-04-30T20:45:40.686Z",
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
     "ip": "::1"
+  },
+  {
+    "lat": -2.187114,
+    "lng": -80.0038879,
+    "accuracy": 21.146,
+    "timestamp": "2025-04-30T20:48:59.179Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.187114,
+    "lng": -80.0038879,
+    "accuracy": 21.146,
+    "timestamp": "2025-04-30T20:48:59.180Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.187114,
+    "lng": -80.0038879,
+    "accuracy": 21.146,
+    "timestamp": "2025-04-30T20:50:19.164Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.187114,
+    "lng": -80.0038879,
+    "accuracy": 21.146,
+    "timestamp": "2025-04-30T20:50:19.165Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:01:37.935Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:01:37.936Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:05:35.085Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:05:35.086Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:25:52.199Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:25:52.202Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:26:02.221Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
+  },
+  {
+    "lat": -2.1233664,
+    "lng": -79.9408128,
+    "accuracy": 183865.34479082868,
+    "timestamp": "2025-04-30T21:26:02.226Z",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip": "::1"
   }
 ]

