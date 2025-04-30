@@ -5,6 +5,7 @@ import Pricing from "@/components/Pricing";
 import MouseEffect from '@/components/MouseEffect'
 import Footer from "@/components/Footer";
 import Features from "@/components/Features";
+import Head from 'next/head';
 
 function Home() {
   // Estados para geolocalización
@@ -191,6 +192,30 @@ function Home() {
 
   return (
     <>
+
+      <Head>
+        <title>Bellisimas EC | Moda Online para Cada Estilo</title>
+        <meta
+          name="description"
+          content="Descubre la última tendencia en ropa y accesorios en Bellisimas EC. Envío rápido, pago seguro y atención 24/7."
+        />
+        <meta property="og:title" content="Bellisimas EC | Moda Online" />
+        <meta
+          property="og:description"
+          content="Explora nuestra colección de temporada y recibe tu pedido en 24–48 horas en Ecuador."
+        />
+          {/* Esto hace que esa imagen salga en la vista previa al compartir el enlace */}
+        <meta
+          property="og:image"
+          content="https://www.bellisimas.ec/images/bellisimas.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.bellisimas.ec/home" />
+        {/* Puedes añadir más meta (twitter cards, favicon, etc.) aquí */}
+      </Head>
         <Navbar />
         
         {/* Banner de Geolocalización */}
