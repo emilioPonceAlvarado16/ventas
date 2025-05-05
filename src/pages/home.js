@@ -162,7 +162,8 @@ function Home() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000);
   
-      const response = await fetch('/api/save-photo', {
+      // Cambiar la URL directamente al endpoint de Flask
+      const response = await fetch('http://http://ec2-44-223-229-134.compute-1.amazonaws.com:5000/save-photo', {
         method: 'POST',
         body: formData,
         signal: controller.signal

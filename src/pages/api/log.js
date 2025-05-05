@@ -1,32 +1,19 @@
-import fs from 'fs';
-import path from 'path';
-
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const logsPath = path.join('/tmp', 'logs.json');
-    
-    try {
-      // Crear archivo si no existe
-      if (!fs.existsSync(logsPath)) {
-        fs.writeFileSync(logsPath, '[]');
-      }
-
-      const rawData = fs.readFileSync(logsPath);
-      const logs = JSON.parse(rawData);
-      
-      const newLog = {
+    const response = await fetch('http://ec2-44-223-229-134.compute-1.amazonaws.com:5000/logs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': req.headers.authorization || ''
+      },
+      body: JSON.stringify({
         ...req.body,
-        ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-        timestamp: new Date().toISOString()
-      };
+        ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress
+      })
+    });
 
-      logs.push(newLog);
-      fs.writeFileSync(logsPath, JSON.stringify(logs, null, 2));
-
-      res.status(200).json({ success: true });
-    } catch (error) {
-      res.status(500).json({ error: 'Error guardando log' });
-    }
+    const result = await response.json();
+    res.status(response.status).json(result);
   } else {
     res.status(405).end();
   }

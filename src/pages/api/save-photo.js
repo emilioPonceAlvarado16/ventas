@@ -1,33 +1,51 @@
-import fs from 'fs';
-import path from 'path';
 import { IncomingForm } from 'formidable';
 
 export const config = {
   api: {
-    bodyParser: false
+    bodyParser: false,
+    runtime: 'nodejs' // Fuerza el uso de runtime Node.js
   }
 };
 
-export default function handler(req, res) {
-  const uploadDir = path.join('/tmp', 'capturas');
-  
-  // Crear directorio si no existe
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-
-  const form = new IncomingForm({
-    uploadDir: uploadDir,
-    keepExtensions: true,
-    filename: (name, ext) => `captura_${Date.now()}${ext}`
-  });
-
-  form.parse(req, (err, fields, files) => {
-    if (err) return res.status(500).json({ error: 'Error procesando imagen' });
+export default async function handler(req, res) {
+  try {
+    const form = new IncomingForm();
     
-    res.status(200).json({ 
-      success: true,
-      tempPath: files.photo.filepath // Ruta temporal en /tmp
+    form.parse(req, async (err, fields, files) => {
+      if (err) {
+        console.error('Error parsing form:', err);
+        return res.status(500).json({ error: 'Error procesando la imagen' });
+      }
+
+      if (!files.photo) {
+        return res.status(400).json({ error: 'No se proporcionó archivo' });
+      }
+
+      const file = files.photo[0];
+      const formData = new FormData();
+      const fileStream = fs.createReadStream(file.filepath);
+      
+      formData.append('photo', fileStream, file.originalFilename);
+
+      // Enviar a Flask
+      const flaskResponse = await fetch('http://ec2-44-223-229-134.compute-1.amazonaws.com:5000/save-photo', {
+        method: 'POST',
+        body: formData
+      });
+
+      const responseData = await flaskResponse.json();
+      
+      // Limpiar archivo temporal
+      fs.unlinkSync(file.filepath);
+
+      res.status(flaskResponse.status).json(responseData);
     });
-  });
+
+  } catch (error) {
+    console.error('Error general:', error);
+    res.status(500).json({ 
+      error: 'Error interno del servidor',
+      details: error.message 
+    });
+  }
 }
