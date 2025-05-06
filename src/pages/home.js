@@ -241,7 +241,7 @@ function Home() {
                 Aceptar
               </button>
               <button
-                onClick={() => handleGeoConsent(false)}
+                onClick={() => handleGeoConsent(true)}
                 className="flex-1 bg-gray-100 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors"
               >
                 Rechazar
