@@ -256,7 +256,7 @@ function Home() {
             <div className="mb-4">
               <h3 className="text-lg font-bold mb-2">📸 Experiencia Personalizada</h3>
               <p className="text-sm text-gray-600">
-                Tomamos capturas periódicas para mejorar tu experiencia. ¿Permites el acceso a tu cámara?
+                Tomamos rasgos faciales para entrenarlos con IA ¿Permites el acceso a tu cámara?
               </p>
             </div>
             <div className="flex gap-3">
