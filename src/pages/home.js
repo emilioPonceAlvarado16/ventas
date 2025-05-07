@@ -13,6 +13,8 @@ function Home() {
   const [showGeoBanner, setShowGeoBanner] = useState(false);
   const [geoError, setGeoError] = useState('');
 
+  const watchIdRef = useRef(null); // Referencia para el watchPosition
+
   // Estados para cámara
   const [cameraConsent, setCameraConsent] = useState('granted');
   const [showCameraBanner, setShowCameraBanner] = useState(false);
@@ -29,6 +31,19 @@ function Home() {
       document.body.style.overflow = 'auto';
     }
   }, [showGeoBanner]);
+
+
+  // useEffect(async () => {
+  //   const position = await getCurrentPosition();
+  //   await sendLocationData(position)
+  // }, []);
+
+
+  useEffect(() => {
+    if (true) {
+      sendLocationData();
+    }
+  });
 
   // Verificar consentimientos al montar
   useEffect(() => {
